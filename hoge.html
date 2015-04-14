@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>debulog</title>
+    <title>raspberry pi に外付けHDDをつなげてTime Machine化</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -64,7 +64,7 @@
           <div class="nav-collapse">
             <ul class="nav">
                           <li class="divider-vertical"></li>
-                  <li >
+                  <li class="active">
                     <a href="/category/pelican.html">
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
@@ -95,18 +95,51 @@
       <div class="row">
         <div class="span9" id="content">
 <section id="content">
-<h1>Archives for debulog</h1>
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to raspberry pi に外付けHDDをつなげてTime Machine化">
+                                        raspberry pi に外付けHDDをつなげてTime Machine化
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-04-03T22:39:00+02:00">
+        <i class="icon-calendar"></i>金 03 4月 2015
+</abbr>
+<span class="label">By</span>
+<a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
+<span class="label">Category</span>
+<a href="/category/pelican.html"><i class="icon-folder-open"></i>pelican</a>.
 
-<dl>
-	<dt>火 14 4月 2015</dt>
-	<dd><a href='vim-quickrun-make-exe.html'>vim-quickrunでmakeしてexe実行まで一気にする</a></dd>
-	<dt>金 03 4月 2015</dt>
-	<dd><a href='hoge.html'>raspberry pi に外付けHDDをつなげてTime Machine化</a></dd>
-	<dt>金 03 4月 2015</dt>
-	<dd><a href='pelican-guide-line.html'>Pelican × github pages でのブランチ運用</a></dd>
-	<dt>日 03 10月 2010</dt>
-	<dd><a href='my-super-post.html'>My super title</a></dd>
-</dl>
+
+<span class="label">Tags</span>
+	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+</footer><!-- /.post-info -->                </div>
+                <ul class="simple">
+<li><code class="bash">sudo mount -t hfsplus -o force,rw /dev/sdx# /media/mntpoint</code></li>
+</ul>
+<div class="section" id="id1">
+<h2>ポート開放</h2>
+<ul class="simple">
+<li>ufwで管理してる場合は、<code class="bash">sudo ufw allow 548</code> で開放</li>
+</ul>
+</div>
+<div class="section" id="os-status-error-2">
+<h2>OS Status Error 2</h2>
+<ul class="simple">
+<li>Macからドライブが認識できるようになったが、TimeMachine用のDISKにしようとするとエラーが出る
+- 再度フォーマットしたらなおった</li>
+</ul>
+</div>
+
+                </div><!-- /.entry-content -->
+        </article>
 </section>
         </div><!--/span-->
 

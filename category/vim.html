@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>debulog</title>
+    <title>debulog - vim</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/vim.html">
 						<i class="icon-folder-open icon-large"></i>vim
 					</a>
@@ -94,20 +94,61 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-<section id="content">
-<h1>Archives for debulog</h1>
+        <div class="article">
+                <h1><a href="/vim-quickrun-make-exe.html">vim-quickrunでmakeしてexe実行まで一気にする</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-04-14T23:51:00+02:00">
+        <i class="icon-calendar"></i>火 14 4月 2015
+</abbr>
+<span class="label">By</span>
+<a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
+<span class="label">Category</span>
+<a href="/category/vim.html"><i class="icon-folder-open"></i>vim</a>.
 
-<dl>
-	<dt>火 14 4月 2015</dt>
-	<dd><a href='vim-quickrun-make-exe.html'>vim-quickrunでmakeしてexe実行まで一気にする</a></dd>
-	<dt>金 03 4月 2015</dt>
-	<dd><a href='hoge.html'>raspberry pi に外付けHDDをつなげてTime Machine化</a></dd>
-	<dt>金 03 4月 2015</dt>
-	<dd><a href='pelican-guide-line.html'>Pelican × github pages でのブランチ運用</a></dd>
-	<dt>日 03 10月 2010</dt>
-	<dd><a href='my-super-post.html'>My super title</a></dd>
-</dl>
-</section>
+
+<span class="label">Tags</span>
+	<a href="/tag/vim.html"><i class="icon-tag"></i>vim</a>
+	<a href="/tag/quickrun.html"><i class="icon-tag"></i>quickrun</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><ul class="simple">
+<li>C/C++で複数ファイルにまたがるプログラムを書いて、実行結果をすぐ見たい<ul>
+<li>Makefileを用意して、quickrunで実行→バイナリ実行で結果を見れないか</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="make">
+<h2>makeを実行</h2>
+<pre class="code bash literal-block">
+<span class="nb">let </span>g:quickrun_config.make <span class="o">=</span> <span class="o">{</span><span class="s1">'command'</span>: <span class="s1">'make'</span>, <span class="s1">'exec'</span>: <span class="s1">'%c'</span><span class="o">}</span>
+nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun make&lt;CR&gt;
+</pre>
+<ul class="simple">
+<li>カレントディレクトリのMakefileが実行される</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>バイナリを実行</h2>
+<ul class="simple">
+<li>続いて、作られたバイナリを実行する</li>
+<li>ここで、バイナリのファイル名は編集中のファイル名から拡張子を除いたものであるとする<ul>
+<li>どんな名前でもいいが、ある特定のファイル名にする必要がある</li>
+</ul>
+</li>
+<li>まずはhookの登録から<ul>
+<li>makeが成功したらほげほげしますという宣言</li>
+</ul>
+</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">let </span>s:hook <span class="o">=</span> <span class="o">{</span><span class="s1">'name'</span>: <span class="s1">'make_exec'</span>, <span class="s1">'kind'</span>: <span class="s1">'hook'</span>, <span class="s1">'config'</span>: <span class="o">{</span><span class="s1">'enable'</span>: 0<span class="o">}}</span>
+<span class="k">function</span>! s:hook.on_success<span class="o">(</span>session, context<span class="o">)</span>
+    :QuickRun exec_only ...</pre></div>
+                        <a class="btn primary xsmall" href="/vim-quickrun-make-exe.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
