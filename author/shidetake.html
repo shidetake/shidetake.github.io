@@ -95,6 +95,36 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/none.html">Pelicanで投稿日をいちいち入力しない</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-04-19T22:47:11+02:00">
+        <i class="icon-calendar"></i>日 19 4月 2015
+</abbr>
+<span class="label">By</span>
+<a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
+<span class="label">Category</span>
+<a href="/category/vim.html"><i class="icon-folder-open"></i>vim</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/vim.html"><i class="icon-tag"></i>vim</a>
+	<a href="/tag/quickrun.html"><i class="icon-tag"></i>quickrun</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><ul class="simple">
+<li>いちいち:bash:<cite>:date: 2015-04-19 22:42</cite> とか書きたくない</li>
+<li>pelicanconf.pyに以下を書いて:date:ディレクティブを省略すればOK
+- :date:ディレクティブで指定するとそちらが優先される</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nv">DEFAULT_DATE</span> <span class="o">=</span> <span class="s1">'fs'</span>
+</pre>
+
+                        <a class="btn primary xsmall" href="/none.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/vim-quickrun-make-exe.html">vim-quickrunでmakeしてexe実行まで一気にする</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -249,13 +279,18 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="/tag/quickrun.html">
-        <i class="icon-tag icon-large"></i>quickrun
+    <a href="/tag/thats.html">
+        <i class="icon-tag icon-large"></i>thats
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/thats.html">
-        <i class="icon-tag icon-large"></i>thats
+    <a href="/tag/awesome.html">
+        <i class="icon-tag icon-large"></i>awesome
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/quickrun.html">
+        <i class="icon-tag icon-large"></i>quickrun
     </a>
 </li>
 <li class="tag-1">
@@ -263,14 +298,9 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
         <i class="icon-tag icon-large"></i>pelican
     </a>
 </li>
-<li class="tag-4">
+<li class="tag-1">
     <a href="/tag/vim.html">
         <i class="icon-tag icon-large"></i>vim
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/awesome.html">
-        <i class="icon-tag icon-large"></i>awesome
     </a>
 </li>
 
