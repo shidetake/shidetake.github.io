@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Pelican × github pages でのブランチ運用</title>
+    <title>Pelicanで公開した記事のURLをカスタマイズ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to Pelican × github pages でのブランチ運用">
-                                        Pelican × github pages でのブランチ運用
+                                        title="Permalink to Pelicanで公開した記事のURLをカスタマイズ">
+                                        Pelicanで公開した記事のURLをカスタマイズ
                                 </a>
                         </h1>
                 </header>
@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2015-04-03T22:39:00+02:00">
-        <i class="icon-calendar"></i>金 03 4月 2015
+<abbr class="published" title="2015-05-24T10:08:28+02:00">
+        <i class="icon-calendar"></i>日 24 5月 2015
 </abbr>
 <span class="label">By</span>
 <a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
@@ -126,26 +126,19 @@
 <span class="label">Tags</span>
 	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
 </footer><!-- /.post-info -->                </div>
-                <ul>
-<li><p class="first"><code class="bash">ghp-import output</code> すると勝手にgh-pagesブランチを作ってコミットし始める</p>
-</li>
-<li><p class="first"><code class="bash">git push origin gh-pages:master</code> するのが基本らしいが、ローカルのmasterブランチどうすんの？という話</p>
-<ul>
-<li><p class="first">設定ファイルとかをmasterでコミットする一方で、
-記事を書いてgh-pagesブランチとマージしたらたったこれだけのコミットのログがひどいことに</p>
-<img alt="images/150403_git_la.png" src="images/150403_git_la.png" />
-</li>
-</ul>
-</li>
-<li><p class="first">ブログの場合、そんなブランチ分ける必要もなさそうだし、
-とりあえずローカルのmasterは無視してgh-pagesをローカルでもリモートでも唯一のブランチとする</p>
-</li>
-<li><p class="first">それからUpdate documentationてコミットログが連なっていくとわけがわからなくなりそう</p>
-<ul class="simple">
-<li><code class="bash">git commit --amend</code> してログを書き換えることにする</li>
-</ul>
-</li>
-</ul>
+                <div class="line-block">
+<div class="line">デフォルトではslugがURLに使われるが、</div>
+<div class="line">重複できないためslugを毎回考えるのが面倒</div>
+</div>
+<div class="section" id="yyyy-mm-dd-hhmmss">
+<h2>yyyy-mm-dd-HHMMSS形式にする</h2>
+<p>pelicanconf.pyに以下のオプションを追記する</p>
+<pre class="code bash literal-block">
+<span class="nv">ARTICLE_URL</span>     <span class="o">=</span> <span class="s1">'{date:%Y}-{date:%m}-{date:%d}-{date:%H%M%S}.html'</span>
+<span class="nv">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="s1">'{date:%Y}-{date:%m}-{date:%d}-{date:%H%M%S}.html'</span>
+</pre>
+<p>これでslugから解放される</p>
+</div>
 
                 </div><!-- /.entry-content -->
         </article>
@@ -192,14 +185,9 @@
         <i class="icon-tag icon-large"></i>encoding
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/quickrun.html">
-        <i class="icon-tag icon-large"></i>quickrun
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+<li class="tag-4">
+    <a href="/tag/thats.html">
+        <i class="icon-tag icon-large"></i>thats
     </a>
 </li>
 <li class="tag-2">
@@ -207,9 +195,9 @@
         <i class="icon-tag icon-large"></i>vim
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/thats.html">
-        <i class="icon-tag icon-large"></i>thats
+<li class="tag-1">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
     </a>
 </li>
 <li class="tag-4">
@@ -220,6 +208,11 @@
 <li class="tag-4">
     <a href="/tag/awesome.html">
         <i class="icon-tag icon-large"></i>awesome
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/quickrun.html">
+        <i class="icon-tag icon-large"></i>quickrun
     </a>
 </li>
 
