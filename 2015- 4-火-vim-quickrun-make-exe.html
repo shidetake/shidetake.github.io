@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>debulog - yeah</title>
+    <title>vim-quickrunでmakeしてexe実行まで一気にする</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -74,12 +74,12 @@
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/vim.html">
 						<i class="icon-folder-open icon-large"></i>vim
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/yeah.html">
 						<i class="icon-folder-open icon-large"></i>yeah
 					</a>
@@ -99,30 +99,101 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="/2010-10-03-102000.html">My super title</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to vim-quickrunでmakeしてexe実行まで一気にする">
+                                        vim-quickrunでmakeしてexe実行まで一気にする
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2010-10-03T10:20:00+02:00">
-        <i class="icon-calendar"></i>日 03 10月 2010
+<abbr class="published" title="2015-04-14T23:51:00+02:00">
+        <i class="icon-calendar"></i>火 14 4月 2015
 </abbr>
 <span class="label">By</span>
 <a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
 <span class="label">Category</span>
-<a href="/category/yeah.html"><i class="icon-folder-open"></i>yeah</a>.
+<a href="/category/vim.html"><i class="icon-folder-open"></i>vim</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/thats.html"><i class="icon-tag"></i>thats</a>
-	<a href="/tag/awesome.html"><i class="icon-tag"></i>awesome</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p class="first last">Short version for index and feeds</p>
+	<a href="/tag/vim.html"><i class="icon-tag"></i>vim</a>
+	<a href="/tag/quickrun.html"><i class="icon-tag"></i>quickrun</a>
+</footer><!-- /.post-info -->                </div>
+                <ul class="simple">
+<li>C/C++で複数ファイルにまたがるプログラムを書いて、実行結果をすぐ見たい<ul>
+<li>Makefileを用意して、quickrunで実行→バイナリ実行で結果を見れないか</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="make">
+<h2>makeを実行</h2>
+<pre class="code bash literal-block">
+<span class="nb">let </span>g:quickrun_config.make <span class="o">=</span> <span class="o">{</span><span class="s1">'command'</span>: <span class="s1">'make'</span>, <span class="s1">'exec'</span>: <span class="s1">'%c'</span><span class="o">}</span>
+nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun make&lt;CR&gt;
+</pre>
+<ul class="simple">
+<li>カレントディレクトリのMakefileが実行される</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>バイナリを実行</h2>
+<ul class="simple">
+<li>続いて、作られたバイナリを実行する</li>
+<li>ここで、バイナリのファイル名は編集中のファイル名から拡張子を除いたものであるとする<ul>
+<li>どんな名前でもいいが、ある特定のファイル名にする必要がある</li>
+</ul>
+</li>
+<li>まずはhookの登録から<ul>
+<li>makeが成功したらほげほげしますという宣言</li>
+</ul>
+</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">let </span>s:hook <span class="o">=</span> <span class="o">{</span><span class="s1">'name'</span>: <span class="s1">'make_exec'</span>, <span class="s1">'kind'</span>: <span class="s1">'hook'</span>, <span class="s1">'config'</span>: <span class="o">{</span><span class="s1">'enable'</span>: 0<span class="o">}}</span>
+<span class="k">function</span>! s:hook.on_success<span class="o">(</span>session, context<span class="o">)</span>
+    :QuickRun exec_only
+endfunction
 
-                        <a class="btn primary xsmall" href="/2010-10-03-102000.html">more ...</a>
-                </div>
-        </div>
-        <hr />
+call quickrun#module#register<span class="o">(</span>s:hook, 1<span class="o">)</span>
+unlet s:hook
+</pre>
+<ul class="simple">
+<li>make_execという名前のhookを作成<ul>
+<li>QuickRunの実行が成功したら、QuickRun exec_onlyを実行する</li>
+</ul>
+</li>
+<li>先ほどのmake実行用のconfigにhookを仕掛ける</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">let </span>g:quickrun_config.make <span class="o">=</span> <span class="o">{</span><span class="s1">'command'</span>: <span class="s1">'make'</span>, <span class="s1">'exec'</span>: <span class="s1">'%c'</span>, <span class="s1">'hook/make_exec/enable'</span>: 1<span class="o">}</span>
+</pre>
+<ul class="simple">
+<li>最後にQuickRun exec_onlyで実行する内容を定義</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">let </span>g:quickrun_config.exec_only <span class="o">=</span> <span class="o">{</span><span class="s1">'command'</span>: expand<span class="o">(</span><span class="s1">'%:p:r'</span><span class="o">)</span>, <span class="s1">'exec'</span>: <span class="s1">'%c'</span><span class="o">}</span>
+</pre>
+<ul class="simple">
+<li><code class="bash">expand<span class="o">(</span><span class="s1">'%:p:r'</span><span class="o">)</span></code> はカレントファイルのフルパスから拡張子を除いたもの<ul>
+<li>Makefileの出力ファイル名になるようにする</li>
+<li>この設定の場合、main.cとsub.cがあるとき、sub.cの編集中には使えなかったりする</li>
+<li>適当にoutとかにしておくとどのファイルの編集中でも使える</li>
+</ul>
+</li>
+</ul>
+</div>
 
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
@@ -160,24 +231,19 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="/tag/encoding.html">
+        <i class="icon-tag icon-large"></i>encoding
+    </a>
+</li>
 <li class="tag-2">
     <a href="/tag/quickrun.html">
         <i class="icon-tag icon-large"></i>quickrun
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/thats.html">
-        <i class="icon-tag icon-large"></i>thats
-    </a>
-</li>
 <li class="tag-1">
     <a href="/tag/pelican.html">
         <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/encoding.html">
-        <i class="icon-tag icon-large"></i>encoding
     </a>
 </li>
 <li class="tag-2">
@@ -186,13 +252,18 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/awesome.html">
-        <i class="icon-tag icon-large"></i>awesome
+    <a href="/tag/thats.html">
+        <i class="icon-tag icon-large"></i>thats
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/bash.html">
         <i class="icon-tag icon-large"></i>bash
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/awesome.html">
+        <i class="icon-tag icon-large"></i>awesome
     </a>
 </li>
 

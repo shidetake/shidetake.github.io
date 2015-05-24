@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>debulog - yeah</title>
+    <title>Pelicanで投稿日をいちいち入力しない</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -74,12 +74,12 @@
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/vim.html">
 						<i class="icon-folder-open icon-large"></i>vim
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/yeah.html">
 						<i class="icon-folder-open icon-large"></i>yeah
 					</a>
@@ -99,30 +99,46 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="/2010-10-03-102000.html">My super title</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Pelicanで投稿日をいちいち入力しない">
+                                        Pelicanで投稿日をいちいち入力しない
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2010-10-03T10:20:00+02:00">
-        <i class="icon-calendar"></i>日 03 10月 2010
+<abbr class="published" title="2015-04-19T22:47:11+02:00">
+        <i class="icon-calendar"></i>日 19 4月 2015
 </abbr>
 <span class="label">By</span>
 <a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
 <span class="label">Category</span>
-<a href="/category/yeah.html"><i class="icon-folder-open"></i>yeah</a>.
+<a href="/category/vim.html"><i class="icon-folder-open"></i>vim</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/thats.html"><i class="icon-tag"></i>thats</a>
-	<a href="/tag/awesome.html"><i class="icon-tag"></i>awesome</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p class="first last">Short version for index and feeds</p>
+	<a href="/tag/vim.html"><i class="icon-tag"></i>vim</a>
+	<a href="/tag/quickrun.html"><i class="icon-tag"></i>quickrun</a>
+</footer><!-- /.post-info -->                </div>
+                <ul class="simple">
+<li>いちいち:bash:<cite>:date: 2015-04-19 22:42</cite> とか書きたくない</li>
+<li>pelicanconf.pyに以下を書いて:date:ディレクティブを省略すればOK
+- :date:ディレクティブで指定するとそちらが優先される</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nv">DEFAULT_DATE</span> <span class="o">=</span> <span class="s1">'fs'</span>
+</pre>
 
-                        <a class="btn primary xsmall" href="/2010-10-03-102000.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
@@ -161,13 +177,13 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-2">
-    <a href="/tag/quickrun.html">
-        <i class="icon-tag icon-large"></i>quickrun
+    <a href="/tag/vim.html">
+        <i class="icon-tag icon-large"></i>vim
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/thats.html">
-        <i class="icon-tag icon-large"></i>thats
+    <a href="/tag/encoding.html">
+        <i class="icon-tag icon-large"></i>encoding
     </a>
 </li>
 <li class="tag-1">
@@ -176,13 +192,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/encoding.html">
-        <i class="icon-tag icon-large"></i>encoding
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/vim.html">
-        <i class="icon-tag icon-large"></i>vim
+    <a href="/tag/thats.html">
+        <i class="icon-tag icon-large"></i>thats
     </a>
 </li>
 <li class="tag-4">
@@ -193,6 +204,11 @@
 <li class="tag-4">
     <a href="/tag/bash.html">
         <i class="icon-tag icon-large"></i>bash
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/quickrun.html">
+        <i class="icon-tag icon-large"></i>quickrun
     </a>
 </li>
 

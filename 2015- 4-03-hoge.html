@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>debulog - yeah</title>
+    <title>raspberry pi に外付けHDDをつなげてTime Machine化</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>bash
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/pelican.html">
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
@@ -79,7 +79,7 @@
 						<i class="icon-folder-open icon-large"></i>vim
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/yeah.html">
 						<i class="icon-folder-open icon-large"></i>yeah
 					</a>
@@ -99,30 +99,53 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="/2010-10-03-102000.html">My super title</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to raspberry pi に外付けHDDをつなげてTime Machine化">
+                                        raspberry pi に外付けHDDをつなげてTime Machine化
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2010-10-03T10:20:00+02:00">
-        <i class="icon-calendar"></i>日 03 10月 2010
+<abbr class="published" title="2015-04-03T22:39:00+02:00">
+        <i class="icon-calendar"></i>金 03 4月 2015
 </abbr>
 <span class="label">By</span>
 <a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
 <span class="label">Category</span>
-<a href="/category/yeah.html"><i class="icon-folder-open"></i>yeah</a>.
+<a href="/category/pelican.html"><i class="icon-folder-open"></i>pelican</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/thats.html"><i class="icon-tag"></i>thats</a>
-	<a href="/tag/awesome.html"><i class="icon-tag"></i>awesome</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p class="first last">Short version for index and feeds</p>
+	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+</footer><!-- /.post-info -->                </div>
+                <ul class="simple">
+<li><code class="bash">sudo mount -t hfsplus -o force,rw /dev/sdx# /media/mntpoint</code></li>
+</ul>
+<div class="section" id="id1">
+<h2>ポート開放</h2>
+<ul class="simple">
+<li>ufwで管理してる場合は、<code class="bash">sudo ufw allow 548</code> で開放</li>
+</ul>
+</div>
+<div class="section" id="os-status-error-2">
+<h2>OS Status Error 2</h2>
+<ul class="simple">
+<li>Macからドライブが認識できるようになったが、TimeMachine用のDISKにしようとするとエラーが出る
+- 再度フォーマットしたらなおった</li>
+</ul>
+</div>
 
-                        <a class="btn primary xsmall" href="/2010-10-03-102000.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
@@ -161,13 +184,13 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-2">
-    <a href="/tag/quickrun.html">
-        <i class="icon-tag icon-large"></i>quickrun
+    <a href="/tag/vim.html">
+        <i class="icon-tag icon-large"></i>vim
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/thats.html">
-        <i class="icon-tag icon-large"></i>thats
+    <a href="/tag/encoding.html">
+        <i class="icon-tag icon-large"></i>encoding
     </a>
 </li>
 <li class="tag-1">
@@ -176,13 +199,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/encoding.html">
-        <i class="icon-tag icon-large"></i>encoding
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/vim.html">
-        <i class="icon-tag icon-large"></i>vim
+    <a href="/tag/thats.html">
+        <i class="icon-tag icon-large"></i>thats
     </a>
 </li>
 <li class="tag-4">
@@ -193,6 +211,11 @@
 <li class="tag-4">
     <a href="/tag/bash.html">
         <i class="icon-tag icon-large"></i>bash
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/quickrun.html">
+        <i class="icon-tag icon-large"></i>quickrun
     </a>
 </li>
 

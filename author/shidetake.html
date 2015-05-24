@@ -65,6 +65,11 @@
             <ul class="nav">
                           <li class="divider-vertical"></li>
                   <li >
+                    <a href="/category/bash.html">
+						<i class="icon-folder-open icon-large"></i>bash
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/pelican.html">
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
@@ -95,7 +100,135 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/none.html">Pelicanで投稿日をいちいち入力しない</a></h1>
+                <h1><a href="/2015-05-24-100506.html">Pelicanで公開した記事のURLをカスタマイズ</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-05-24T10:05:06+02:00">
+        <i class="icon-calendar"></i>日 24 5月 2015
+</abbr>
+<span class="label">By</span>
+<a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
+<span class="label">Category</span>
+<a href="/category/pelican.html"><i class="icon-folder-open"></i>pelican</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="line-block">
+<div class="line">デフォルトではslugがURLに使われるが、</div>
+<div class="line">重複できないためslugを毎回考えるのが面倒</div>
+</div>
+<div class="section" id="yyyy-mm-dd-hhmmss">
+<h2>yyyy-mm-dd-HHMMSS形式にする</h2>
+<ul class="simple">
+<li>fromとtoのオプションで文字コードを指定する。</li>
+</ul>
+<pre class="code bash literal-block">
+iconv -f SHIFT_JIS -t UTF-8 hoge.txt
+</pre>
+<ul class="simple">
+<li>上書きはできないので、以下の書き方はNG<ul>
+<li>エラーは出ず、中身が消えるという仕様なので注意。</li>
+</ul>
+</li>
+</ul>
+<pre class="code bash literal-block">
+iconv -f SHIFT_JIS -t UTF-8 hoge.txt &gt; hoge.txt
+</pre>
+</div>
+<div class="section" id="id1">
+<h2>エイリアス</h2>
+<ul class="simple">
+<li>いちいちオプション書くのが面倒なのでエイリアスを作る。</li>
+<li>~/.bashrcに以下を追記</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">alias </span><span class="nv">sjis2utf</span><span class="o">=</span><span class="s1">'iconv -f SHIFT_JIS -t UTF-8'</span>
+<span class="nb">alias </span><span class="nv">utf2sjis</span><span class="o">=</span><span class="s1">'iconv -f UTF-8 -t SHIFT_JIS'</span>
+</pre>
+<ul class="simple">
+<li>使い方</li>
+</ul>
+<pre class="code bash literal-block">
+sjis2utf hoge.txt
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>スクリプト化</h2>
+<ul class="simple">
+<li>ここまででも十分に使えるんだけど、ファイルの数だけ実行しないといけないのが面倒</li>
+<li>sjis2utfAll.shというシェルスクリプトを書いて ...</li></ul></div>
+                        <a class="btn primary xsmall" href="/2015-05-24-100506.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/2015-04-26-174600.html">Windowsで書いたテキストをMacで読む</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-04-26T17:46:00+02:00">
+        <i class="icon-calendar"></i>日 26 4月 2015
+</abbr>
+<span class="label">By</span>
+<a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
+<span class="label">Category</span>
+<a href="/category/bash.html"><i class="icon-folder-open"></i>bash</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/bash.html"><i class="icon-tag"></i>bash</a>
+	<a href="/tag/encoding.html"><i class="icon-tag"></i>encoding</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><ul class="simple">
+<li>Xcodeで書いたプログラムをVCで動かしたり、VCで書いたプログラムをXcodeで動かしたりしたい</li>
+<li>文字コードやら改行コードやらが違い、文字化けするのが厄介なので、iconvを使って変換するスクリプトを書いた</li>
+</ul>
+<div class="section" id="iconv">
+<h2>iconvの使い方</h2>
+<ul class="simple">
+<li>fromとtoのオプションで文字コードを指定する。</li>
+</ul>
+<pre class="code bash literal-block">
+iconv -f SHIFT_JIS -t UTF-8 hoge.txt
+</pre>
+<ul class="simple">
+<li>上書きはできないので、以下の書き方はNG<ul>
+<li>エラーは出ず、中身が消えるという仕様なので注意。</li>
+</ul>
+</li>
+</ul>
+<pre class="code bash literal-block">
+iconv -f SHIFT_JIS -t UTF-8 hoge.txt &gt; hoge.txt
+</pre>
+</div>
+<div class="section" id="id1">
+<h2>エイリアス</h2>
+<ul class="simple">
+<li>いちいちオプション書くのが面倒なのでエイリアスを作る。</li>
+<li>~/.bashrcに以下を追記</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">alias </span><span class="nv">sjis2utf</span><span class="o">=</span><span class="s1">'iconv -f SHIFT_JIS -t UTF-8'</span>
+<span class="nb">alias </span><span class="nv">utf2sjis</span><span class="o">=</span><span class="s1">'iconv -f UTF-8 -t SHIFT_JIS'</span>
+</pre>
+<ul class="simple">
+<li>使い方</li>
+</ul>
+<pre class="code bash literal-block">
+sjis2utf hoge.txt
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>スクリプト化</h2>
+<ul class="simple">
+<li>ここまででも十分に使えるんだけど ...</li></ul></div>
+                        <a class="btn primary xsmall" href="/2015-04-26-174600.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/2015-04-19-224711.html">Pelicanで投稿日をいちいち入力しない</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2015-04-19T22:47:11+02:00">
@@ -120,12 +253,12 @@
 <span class="nv">DEFAULT_DATE</span> <span class="o">=</span> <span class="s1">'fs'</span>
 </pre>
 
-                        <a class="btn primary xsmall" href="/none.html">more ...</a>
+                        <a class="btn primary xsmall" href="/2015-04-19-224711.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/vim-quickrun-make-exe.html">vim-quickrunでmakeしてexe実行まで一気にする</a></h1>
+                <h1><a href="/2015-04-14-235100.html">vim-quickrunでmakeしてexe実行まで一気にする</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2015-04-14T23:51:00+02:00">
@@ -174,16 +307,16 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 <span class="nb">let </span>s:hook <span class="o">=</span> <span class="o">{</span><span class="s1">'name'</span>: <span class="s1">'make_exec'</span>, <span class="s1">'kind'</span>: <span class="s1">'hook'</span>, <span class="s1">'config'</span>: <span class="o">{</span><span class="s1">'enable'</span>: 0<span class="o">}}</span>
 <span class="k">function</span>! s:hook.on_success<span class="o">(</span>session, context<span class="o">)</span>
     :QuickRun exec_only ...</pre></div>
-                        <a class="btn primary xsmall" href="/vim-quickrun-make-exe.html">more ...</a>
+                        <a class="btn primary xsmall" href="/2015-04-14-235100.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/hoge.html">raspberry pi に外付けHDDをつなげてTime Machine化</a></h1>
+                <h1><a href="/2015-04-09-223900.html">raspberry pi に外付けHDDをつなげてTime Machine化</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2015-04-03T22:39:00+02:00">
-        <i class="icon-calendar"></i>金 03 4月 2015
+<abbr class="published" title="2015-04-09T22:39:00+02:00">
+        <i class="icon-calendar"></i>木 09 4月 2015
 </abbr>
 <span class="label">By</span>
 <a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
@@ -196,12 +329,12 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 </footer><!-- /.post-info --></div>
                 <div class="summary"><p class="first last">Under construction</p>
 
-                        <a class="btn primary xsmall" href="/hoge.html">more ...</a>
+                        <a class="btn primary xsmall" href="/2015-04-09-223900.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/pelican-guide-line.html">Pelican × github pages でのブランチ運用</a></h1>
+                <h1><a href="/2015-04-03-223900.html">Pelican × github pages でのブランチ運用</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2015-04-03T22:39:00+02:00">
@@ -218,12 +351,12 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 </footer><!-- /.post-info --></div>
                 <div class="summary"><p class="first last">Short version for index and feeds</p>
 
-                        <a class="btn primary xsmall" href="/pelican-guide-line.html">more ...</a>
+                        <a class="btn primary xsmall" href="/2015-04-03-223900.html">more ...</a>
                 </div>
         </div>
         <hr />
         <div class="article">
-                <h1><a href="/my-super-post.html">My super title</a></h1>
+                <h1><a href="/2010-10-03-102000.html">My super title</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2010-10-03T10:20:00+02:00">
@@ -241,7 +374,7 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 </footer><!-- /.post-info --></div>
                 <div class="summary"><p class="first last">Short version for index and feeds</p>
 
-                        <a class="btn primary xsmall" href="/my-super-post.html">more ...</a>
+                        <a class="btn primary xsmall" href="/2010-10-03-102000.html">more ...</a>
                 </div>
         </div>
         <hr />
@@ -262,6 +395,11 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
+<a href="/category/bash.html">
+    <i class="icon-folder-open icon-large"></i>bash
+</a>
+</li>
+<li>
 <a href="/category/pelican.html">
     <i class="icon-folder-open icon-large"></i>pelican
 </a>
@@ -278,19 +416,14 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-2">
+    <a href="/tag/quickrun.html">
+        <i class="icon-tag icon-large"></i>quickrun
+    </a>
+</li>
 <li class="tag-4">
     <a href="/tag/thats.html">
         <i class="icon-tag icon-large"></i>thats
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/awesome.html">
-        <i class="icon-tag icon-large"></i>awesome
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/quickrun.html">
-        <i class="icon-tag icon-large"></i>quickrun
     </a>
 </li>
 <li class="tag-1">
@@ -298,9 +431,24 @@ nnoremap <span class="o">[</span>Quickrun<span class="o">]</span>m :QuickRun mak
         <i class="icon-tag icon-large"></i>pelican
     </a>
 </li>
-<li class="tag-1">
+<li class="tag-4">
+    <a href="/tag/encoding.html">
+        <i class="icon-tag icon-large"></i>encoding
+    </a>
+</li>
+<li class="tag-2">
     <a href="/tag/vim.html">
         <i class="icon-tag icon-large"></i>vim
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/awesome.html">
+        <i class="icon-tag icon-large"></i>awesome
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/bash.html">
+        <i class="icon-tag icon-large"></i>bash
     </a>
 </li>
 

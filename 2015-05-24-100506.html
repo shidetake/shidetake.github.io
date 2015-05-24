@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>debulog - yeah</title>
+    <title>Pelicanで公開した記事のURLをカスタマイズ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="shidetake">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>bash
 					</a>
                   </li>
-                  <li >
+                  <li class="active">
                     <a href="/category/pelican.html">
 						<i class="icon-folder-open icon-large"></i>pelican
 					</a>
@@ -79,7 +79,7 @@
 						<i class="icon-folder-open icon-large"></i>vim
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/yeah.html">
 						<i class="icon-folder-open icon-large"></i>yeah
 					</a>
@@ -99,30 +99,94 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="/2010-10-03-102000.html">My super title</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Pelicanで公開した記事のURLをカスタマイズ">
+                                        Pelicanで公開した記事のURLをカスタマイズ
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2010-10-03T10:20:00+02:00">
-        <i class="icon-calendar"></i>日 03 10月 2010
+<abbr class="published" title="2015-05-24T10:05:06+02:00">
+        <i class="icon-calendar"></i>日 24 5月 2015
 </abbr>
 <span class="label">By</span>
 <a href="/author/shidetake.html"><i class="icon-user"></i>shidetake</a>
 <span class="label">Category</span>
-<a href="/category/yeah.html"><i class="icon-folder-open"></i>yeah</a>.
+<a href="/category/pelican.html"><i class="icon-folder-open"></i>pelican</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/thats.html"><i class="icon-tag"></i>thats</a>
-	<a href="/tag/awesome.html"><i class="icon-tag"></i>awesome</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p class="first last">Short version for index and feeds</p>
+	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+</footer><!-- /.post-info -->                </div>
+                <div class="line-block">
+<div class="line">デフォルトではslugがURLに使われるが、</div>
+<div class="line">重複できないためslugを毎回考えるのが面倒</div>
+</div>
+<div class="section" id="yyyy-mm-dd-hhmmss">
+<h2>yyyy-mm-dd-HHMMSS形式にする</h2>
+<ul class="simple">
+<li>fromとtoのオプションで文字コードを指定する。</li>
+</ul>
+<pre class="code bash literal-block">
+iconv -f SHIFT_JIS -t UTF-8 hoge.txt
+</pre>
+<ul class="simple">
+<li>上書きはできないので、以下の書き方はNG<ul>
+<li>エラーは出ず、中身が消えるという仕様なので注意。</li>
+</ul>
+</li>
+</ul>
+<pre class="code bash literal-block">
+iconv -f SHIFT_JIS -t UTF-8 hoge.txt &gt; hoge.txt
+</pre>
+</div>
+<div class="section" id="id1">
+<h2>エイリアス</h2>
+<ul class="simple">
+<li>いちいちオプション書くのが面倒なのでエイリアスを作る。</li>
+<li>~/.bashrcに以下を追記</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nb">alias </span><span class="nv">sjis2utf</span><span class="o">=</span><span class="s1">'iconv -f SHIFT_JIS -t UTF-8'</span>
+<span class="nb">alias </span><span class="nv">utf2sjis</span><span class="o">=</span><span class="s1">'iconv -f UTF-8 -t SHIFT_JIS'</span>
+</pre>
+<ul class="simple">
+<li>使い方</li>
+</ul>
+<pre class="code bash literal-block">
+sjis2utf hoge.txt
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>スクリプト化</h2>
+<ul class="simple">
+<li>ここまででも十分に使えるんだけど、ファイルの数だけ実行しないといけないのが面倒</li>
+<li>sjis2utfAll.shというシェルスクリプトを書いて、フォルダ内の全ファイルに実行できるようにした</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="k">for</span> F in *<span class="p">;</span>
+<span class="k">do</span> iconv -f SHIFT_JIS -t UTF-8 <span class="nv">$F</span> &gt; <span class="si">${</span><span class="nv">F</span><span class="si">}</span>_tmp<span class="p">;</span>
+mv <span class="si">${</span><span class="nv">F</span><span class="si">}</span>_tmp <span class="nv">$F</span><span class="p">;</span>
+<span class="k">done</span><span class="p">;</span>
+</pre>
+<ul class="simple">
+<li>Fに書くファイル名が格納されて、for文でぐるぐる回す</li>
+<li>一旦&quot;ファイル名_tmp&quot;なファイルに書き出して、元のファイル名に上書き</li>
+<li>せっかくエイリアス作ったけど、シェルスクリプトの中ではエイリアスは使えないみたい</li>
+</ul>
+</div>
 
-                        <a class="btn primary xsmall" href="/2010-10-03-102000.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
