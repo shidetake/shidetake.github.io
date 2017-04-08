@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://shidetake.com/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Mar 2017 23:30:11 +0900</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>cheat_sheet</title>
+      <link>http://shidetake.com/playground/cheat_sheet/</link>
+      <pubDate>Thu, 30 Mar 2017 23:30:11 +0900</pubDate>
+      
+      <guid>http://shidetake.com/playground/cheat_sheet/</guid>
+      <description> 見出し 小見出し 画像 from google photo </description>
+    </item>
+    
+  </channel>
+</rss>
