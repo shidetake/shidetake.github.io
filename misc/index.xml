@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>http://shidetake.com/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>Miscs on My New Hugo Site</title>
+    <link>http://shidetake.com/misc/</link>
+    <description>Recent content in Miscs on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 17 Apr 2017 23:11:57 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://shidetake.com/misc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,15 +17,6 @@
       
       <guid>http://shidetake.com/misc/line_push/</guid>
       <description>登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!</description>
-    </item>
-    
-    <item>
-      <title>cheat_sheet</title>
-      <link>http://shidetake.com/playground/cheat_sheet/</link>
-      <pubDate>Thu, 30 Mar 2017 23:30:11 +0900</pubDate>
-      
-      <guid>http://shidetake.com/playground/cheat_sheet/</guid>
-      <description> 見出し 小見出し 画像 from google photo </description>
     </item>
     
   </channel>

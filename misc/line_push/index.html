@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/playground/cheat_sheet/">
+<link rel="canonical" href="http://shidetake.com/misc/line_push/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>cheat_sheet - My New Hugo Site</title>
+    <title>LINE BOTでPUSH通知する - My New Hugo Site</title>
     
-<meta name="description" content=" 見出し 小見出し 画像 from google photo ">
+<meta name="description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
 
-<meta property="og:title" content="cheat_sheet - My New Hugo Site">
+<meta property="og:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/playground/cheat_sheet/">
+<meta property="og:url" content="http://shidetake.com/misc/line_push/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content=" 見出し 小見出し 画像 from google photo ">
+<meta property="og:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/playground/cheat_sheet/">
-<meta name="twitter:title" content="cheat_sheet - My New Hugo Site">
-<meta name="twitter:description" content=" 見出し 小見出し 画像 from google photo ">
+<meta name="twitter:url" content="http://shidetake.com/misc/line_push/">
+<meta name="twitter:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
+<meta name="twitter:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "cheat_sheet - My New Hugo Site",
+    "headline": "LINE BOTでPUSH通知する - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-03-30T23:30:11JST",
-    "dateModified": "2017-03-30T23:30:11JST",
+    "datePublished": "2017-04-17T23:11:57JST",
+    "dateModified": "2017-04-17T23:11:57JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,7 +71,7 @@
         "height": 60
       }
     },
-    "description": " 見出し 小見出し 画像 from google photo "
+    "description": "登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN'; function doPost(e) { Logger.log('doPost') var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H 'Content-Type:application/json' \ -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \ -d '{ &quot;to&quot;: &quot;userid&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!"
   }
 </script>
 
@@ -106,37 +106,84 @@
       <ol>
         <li><a href="http://shidetake.com/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/playground/" itemprop="url"><span itemprop="title">playground</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">cheat_sheet</li>
+        <li class="active">LINE BOTでPUSH通知する</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">cheat_sheet</h1>
+    <h1 class="title">LINE BOTでPUSH通知する</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-03-30T23:30:11JST">Mar 30, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/playground/">playground</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T23:11:57JST">Apr 17, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<h1 id="見出し">見出し</h1>
+<h2 id="登録">登録</h2>
 
-<h2 id="小見出し">小見出し</h2>
+<ul>
+<li>PUSH通知する場合はDeveloper Trialで登録</li>
+</ul>
 
-<h1 id="画像">画像</h1>
+<h2 id="google-apps-scriptでユーザid取得">Google Apps ScriptでユーザID取得</h2>
 
-<h2 id="from-google-photo">from google photo</h2>
+<ul>
+<li>友達に追加したユーザのIDを登録したメールアドレスにメールする</li>
+<li>以下のコードでウェブアプリケーションとして導入する
 
-<p><img src="https://lh3.googleusercontent.com/IrDV2v9sWU8odajHY3Eq6aHccBAlaRC_UKYmddPmc_cg_mxY-2EB5Ud3jvL9djBI74haJHvI-wKsHzfUjDIRNbfbO2a5p6OKRrxA5i8wzJLQJ7OR-uelob5foqV1LWU2FaL76nAco16z_w0lihhyjeSsoQMcvRSmNI4REfVNmasj0MIV5TO5TEA7evE9P-lJMCHRWQIViuQc7SeoZK79NOXlkPSmudl2yCPOGDz8OsPRd4i0oOxAhUZ8F4WPMvKGSbdDk-wl9UjsmwN9UmY_d4E7XRFDXMRId4kEe_BvGi_8j0hHTn9x_f1w0lYKK8g3dwLGw28QDiL0Djp7w_56FshJ5JsIy3fY2iEEVpDdPMzIBdssE3-fk_BvvZ3rO4mRqlnQSGmm1XeaYSTQl-jsUBJG_NsWPjPHO3oNU2wgdP0uQAZ4YW9cik2hmlkTbwuRHoNUvzeWeL9PTpSlI3f7Zu1frVoYkI4co8FmDpKzaaQH2akc40HhL4Pyi06UjXfimRo1DYEIabxEeNiHfY97bGRDVsyf6eX_7WS7Pb0vTtSzaauLCsqVqBd5NRJSoxGtfvbKd9Je56N8ofiSMIc9BqpOCX7PLTc_30t2wTQt_3ZtcugvUEeSpw=w510-h679-no" alt="image" /></p>
+<ul>
+<li>CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる</li>
+<li>example@gmail.comは任意のgmailアドレス</li>
+<li>アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）</li>
+</ul></li>
+</ul>
 
-<p><img src="https://goo.gl/sWqbQI" alt="image" /></p>
+<pre><code class="language-js">var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN';
+
+function doPost(e) {
+  Logger.log('doPost')
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &quot;follow&quot;) { mailUserId(event); }
+  });
+}
+
+function mailUserId(e) {
+  MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId);
+}
+</code></pre>
+
+<h2 id="curlでmessaging-apiのpush通知を使う">curlでMessaging APIのPUSH通知を使う</h2>
+
+<ul>
+<li>CHANNEL_ACCESS_TOKENは上で使ったものと同じ</li>
+<li>useridはプッシュ先
+
+<ul>
+<li>今回は上で取得した自分のuseridを使う</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-bash">curl -X POST \
+-H 'Content-Type:application/json' \
+-H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \
+-d '{
+    &quot;to&quot;: &quot;userid&quot;,
+    &quot;messages&quot;:[
+        {
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;text&quot;: &quot;Hello, world!&quot;
+        }
+    ]
+}' https://api.line.me/v2/bot/message/push
+</code></pre>
 </div>
   </div>
 
@@ -145,11 +192,11 @@
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f&title=cheat_sheet" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f&t=cheat_sheet" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f&text=cheat_sheet&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?cheat_sheet http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&title=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&t=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&text=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -158,9 +205,9 @@
         <ol>
           <li><a href="http://shidetake.com/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
           
-          <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/playground/" itemprop="url"><span itemprop="title">playground</span></a></li>
+          <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">cheat_sheet</li>
+          <li class="active">LINE BOTでPUSH通知する</li>
         </ol>
       </nav>
 
