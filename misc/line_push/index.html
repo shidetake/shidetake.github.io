@@ -22,21 +22,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
     <title>LINE BOTでPUSH通知する - My New Hugo Site</title>
     
-<meta name="description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta name="description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
 
 <meta property="og:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://shidetake.com/misc/line_push/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta property="og:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
 <meta name="twitter:url" content="http://shidetake.com/misc/line_push/">
 <meta name="twitter:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
-<meta name="twitter:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;userid&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta name="twitter:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -71,7 +71,7 @@
         "height": 60
       }
     },
-    "description": "登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN'; function doPost(e) { Logger.log('doPost') var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ useridはプッシュ先  今回は上で取得した自分のuseridを使う   curl -X POST \ -H 'Content-Type:application/json' \ -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \ -d '{ &quot;to&quot;: &quot;userid&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!"
+    "description": "登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN'; function doPost(e) { Logger.log('doPost') var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H 'Content-Type:application/json' \ -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \ -d '{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!"
   }
 </script>
 
@@ -164,10 +164,10 @@ function mailUserId(e) {
 
 <ul>
 <li>CHANNEL_ACCESS_TOKENは上で使ったものと同じ</li>
-<li>useridはプッシュ先
+<li>USERIDはプッシュ先
 
 <ul>
-<li>今回は上で取得した自分のuseridを使う</li>
+<li>今回は上で取得した自分のユーザIDを使う</li>
 </ul></li>
 </ul>
 
@@ -175,7 +175,7 @@ function mailUserId(e) {
 -H 'Content-Type:application/json' \
 -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \
 -d '{
-    &quot;to&quot;: &quot;userid&quot;,
+    &quot;to&quot;: &quot;USERID&quot;,
     &quot;messages&quot;:[
         {
             &quot;type&quot;: &quot;text&quot;,
@@ -184,6 +184,10 @@ function mailUserId(e) {
     ]
 }' https://api.line.me/v2/bot/message/push
 </code></pre>
+
+<h2 id="関連ポスト">関連ポスト</h2>
+
+<p><a href="../dash_button/">Amazon Dash ButtonからLINE通知</a></p>
 </div>
   </div>
 
