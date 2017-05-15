@@ -5,10 +5,26 @@
     <link>http://shidetake.com/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 May 2017 22:31:20 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 14 May 2017 21:01:17 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Time Machineの容量制限</title>
+      <link>http://shidetake.com/misc/time_capsule/</link>
+      <pubDate>Sun, 14 May 2017 21:01:17 +0900</pubDate>
+      
+      <guid>http://shidetake.com/misc/time_capsule/</guid>
+      <description> Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
+パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
+そこで、別の方法を採用した。
+ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
+1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
+ダミーファイルの作成は以下のコマンドを使った。
+dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
+cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  </description>
+    </item>
     
     <item>
       <title>Amazon Dash ButtonからLINE通知</title>

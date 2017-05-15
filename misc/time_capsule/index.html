@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/misc/line_push/">
+<link rel="canonical" href="http://shidetake.com/misc/time_capsule/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>LINE BOTでPUSH通知する - My New Hugo Site</title>
+    <title>Time Machineの容量制限 - My New Hugo Site</title>
     
-<meta name="description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta name="description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。そこで、別の方法を採用した。ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。ダミーファイルの作成は以下のコマンドを使った。dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
 
-<meta property="og:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
+<meta property="og:title" content="Time Machineの容量制限 - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/misc/line_push/">
+<meta property="og:url" content="http://shidetake.com/misc/time_capsule/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta property="og:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。そこで、別の方法を採用した。ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。ダミーファイルの作成は以下のコマンドを使った。dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/misc/line_push/">
-<meta name="twitter:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
-<meta name="twitter:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta name="twitter:url" content="http://shidetake.com/misc/time_capsule/">
+<meta name="twitter:title" content="Time Machineの容量制限 - My New Hugo Site">
+<meta name="twitter:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。そこで、別の方法を採用した。ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。ダミーファイルの作成は以下のコマンドを使った。dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "LINE BOTでPUSH通知する - My New Hugo Site",
+    "headline": "Time Machineの容量制限 - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-04-17T23:11:57JST",
-    "dateModified": "2017-04-17T23:11:57JST",
+    "datePublished": "2017-05-14T21:01:17JST",
+    "dateModified": "2017-05-14T21:01:17JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,7 +71,14 @@
         "height": 60
       }
     },
-    "description": "登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN'; function doPost(e) { Logger.log('doPost') var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H 'Content-Type:application/json' \ -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \ -d '{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!"
+    "description": " Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
+パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
+そこで、別の方法を採用した。
+ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
+1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
+ダミーファイルの作成は以下のコマンドを使った。
+dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
+cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  "
   }
 </script>
 
@@ -108,86 +115,53 @@
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">LINE BOTでPUSH通知する</li>
+        <li class="active">Time Machineの容量制限</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">LINE BOTでPUSH通知する</h1>
+    <h1 class="title">Time Machineの容量制限</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T23:11:57JST">Apr 17, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-14T21:01:17JST">May 14, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<h2 id="登録">登録</h2>
+<p>Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
+Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
+何らかの方法で容量を制限する必要がある。</p>
 
-<ul>
-<li>PUSH通知する場合はDeveloper Trialで登録</li>
-</ul>
+<p>パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。
+ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。</p>
 
-<h2 id="google-apps-scriptでユーザid取得">Google Apps ScriptでユーザID取得</h2>
+<p>そこで、別の方法を採用した。</p>
 
-<ul>
-<li>友達に追加したユーザのIDを登録したメールアドレスにメールする</li>
-<li>以下のコードでウェブアプリケーションとして導入する
+<h2 id="ダミーファイルを置く">ダミーファイルを置く</h2>
 
-<ul>
-<li>CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる</li>
-<li>example@gmail.comは任意のgmailアドレス</li>
-<li>アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）</li>
-</ul></li>
-</ul>
+<p>ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。
+新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。</p>
 
-<pre><code class="language-js">var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN';
+<p>1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、
+計200GB分のデータ領域を確保することにした。</p>
 
-function doPost(e) {
-  Logger.log('doPost')
-  var events = JSON.parse(e.postData.contents).events;
-  events.forEach (function(event) {
-    if (event.type == &quot;follow&quot;) { mailUserId(event); }
-  });
-}
+<p>ダミーファイルの作成は以下のコマンドを使った。</p>
 
-function mailUserId(e) {
-  MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId);
-}
+<pre><code class="language-bash">dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000
 </code></pre>
 
-<h2 id="curlでmessaging-apiのpush通知を使う">curlでMessaging APIのPUSH通知を使う</h2>
+<p>実際にはfor文で以下のように使う。
+ネットワーク越しなのでかなり時間がかかることに注意。</p>
 
-<ul>
-<li>CHANNEL_ACCESS_TOKENは上で使ったものと同じ</li>
-<li>USERIDはプッシュ先
-
-<ul>
-<li>今回は上で取得した自分のユーザIDを使う</li>
-</ul></li>
-</ul>
-
-<pre><code class="language-bash">curl -X POST \
--H 'Content-Type:application/json' \
--H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \
--d '{
-    &quot;to&quot;: &quot;USERID&quot;,
-    &quot;messages&quot;:[
-        {
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;text&quot;: &quot;Hello, world!&quot;
-        }
-    ]
-}' https://api.line.me/v2/bot/message/push
+<pre><code class="language-bash">cd /Volumes/TimeCapsule
+for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done
+for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done
 </code></pre>
-
-<h2 id="関連ポスト">関連ポスト</h2>
-
-<p><a href="../dash_button/">Amazon Dash ButtonからLINE通知</a></p>
 </div>
   </div>
 
@@ -196,11 +170,11 @@ function mailUserId(e) {
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&title=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&t=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&text=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f&title=Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f&t=Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f&text=Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90 http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -211,14 +185,36 @@ function mailUserId(e) {
           
           <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">LINE BOTでPUSH通知する</li>
+          <li class="active">Time Machineの容量制限</li>
         </ol>
       </nav>
 
       
       
       
+      <section class="article-footer">
+        <header>
+          <a href="http://shidetake.com/categories/">CATEGORIES</a>
+        </header>
+        <div>
+          <ul class="p-terms inline">
+            
+          </ul>
+        </div>
+      </section>
       
+      
+      
+      <section class="article-footer">
+        <header>
+          <a href="http://shidetake.com/tags/">TAGS</a>
+        </header>
+        <div>
+          <ul class="p-terms inline">
+            
+          </ul>
+        </div>
+      </section>
       
       
     </div>

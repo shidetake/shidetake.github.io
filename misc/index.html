@@ -57,6 +57,30 @@
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://shidetake.com/misc/time_capsule/">Time Machineの容量制限</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-14T21:01:17JST">May 14, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+      
+    </ul>
+
+    <div class="summary"> Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
+パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
+そこで、別の方法を採用した。
+ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
+1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
+ダミーファイルの作成は以下のコマンドを使った。
+dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
+cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  </div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://shidetake.com/misc/dash_button/">Amazon Dash ButtonからLINE通知</a></h2>
@@ -75,7 +99,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -92,7 +116,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
     </div>
 
@@ -108,6 +132,20 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
       <div class="row">
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
+  <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
+  <header>
+    <div class="title"><a href="http://shidetake.com/misc/time_capsule/">Time Machineの容量制限</a></div>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-14T21:01:17JST">May 14, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+    </ul>
+  </header>
+</article>
+</div>
+        
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
   <header>
     <div class="title"><a href="http://shidetake.com/misc/dash_button/">Amazon Dash ButtonからLINE通知</a></div>
@@ -119,7 +157,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -133,7 +171,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
@@ -147,9 +185,6 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
-        
-        <div class="col-md-12 col-sm-6 col-xs-12"></div>
         <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"></div>
@@ -163,6 +198,9 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
         
         <div class="col-md-12 col-sm-6 col-xs-12"></div>
         <div class="col-sm-12"></div>
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"></div>
+        
         
       </div>
     </div>
