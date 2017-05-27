@@ -5,10 +5,22 @@
     <link>http://shidetake.com/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 14 May 2017 21:01:17 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 27 May 2017 13:08:32 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する</title>
+      <link>http://shidetake.com/misc/line_highlights_1/</link>
+      <pubDate>Sat, 27 May 2017 13:08:32 +0900</pubDate>
+      
+      <guid>http://shidetake.com/misc/line_highlights_1/</guid>
+      <description>読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.</description>
+    </item>
     
     <item>
       <title>Time Machineの容量制限</title>

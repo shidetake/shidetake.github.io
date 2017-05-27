@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/misc/line_push/">
+<link rel="canonical" href="http://shidetake.com/misc/line_highlights_1/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>LINE BOTでPUSH通知する - My New Hugo Site</title>
+    <title>KindleのハイライトをLINEに通知する - My New Hugo Site</title>
     
-<meta name="description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta name="description" content="読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。クローラー作成 RubyのCapybaraを使った。動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.">
 
-<meta property="og:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
+<meta property="og:title" content="KindleのハイライトをLINEに通知する - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/misc/line_push/">
+<meta property="og:url" content="http://shidetake.com/misc/line_highlights_1/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta property="og:description" content="読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。クローラー作成 RubyのCapybaraを使った。動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/misc/line_push/">
-<meta name="twitter:title" content="LINE BOTでPUSH通知する - My New Hugo Site">
-<meta name="twitter:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!">
+<meta name="twitter:url" content="http://shidetake.com/misc/line_highlights_1/">
+<meta name="twitter:title" content="KindleのハイライトをLINEに通知する - My New Hugo Site">
+<meta name="twitter:description" content="読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。クローラー作成 RubyのCapybaraを使った。動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "LINE BOTでPUSH通知する - My New Hugo Site",
+    "headline": "KindleのハイライトをLINEに通知する - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-04-17T23:11:57JST",
-    "dateModified": "2017-04-17T23:11:57JST",
+    "datePublished": "2017-05-27T13:08:32JST",
+    "dateModified": "2017-05-27T13:08:32JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,7 +71,10 @@
         "height": 60
       }
     },
-    "description": "登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN'; function doPost(e) { Logger.log('doPost') var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H 'Content-Type:application/json' \ -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \ -d '{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!"
+    "description": "読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require 'capybara' require 'capybara/dsl' require 'capybara/poltergeist' require 'selenium-webdriver' class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = 'your@email' KINDLE_PASSWORD = 'your_password' CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM."
   }
 </script>
 
@@ -108,86 +111,133 @@
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">LINE BOTでPUSH通知する</li>
+        <li class="active">KindleのハイライトをLINEに通知する</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">LINE BOTでPUSH通知する</h1>
+    <h1 class="title">KindleのハイライトをLINEに通知する</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T23:11:57JST">Apr 17, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-27T13:08:32JST">May 27, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<h2 id="登録">登録</h2>
+<p>読書メモのためにハイライトした文章をコピペできる形にしたい。
+KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。</p>
 
-<ul>
-<li>PUSH通知する場合はDeveloper Trialで登録</li>
-</ul>
+<p>ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。</p>
 
-<h2 id="google-apps-scriptでユーザid取得">Google Apps ScriptでユーザID取得</h2>
+<h2 id="クローラー作成">クローラー作成</h2>
 
-<ul>
-<li>友達に追加したユーザのIDを登録したメールアドレスにメールする</li>
-<li>以下のコードでウェブアプリケーションとして導入する
+<p>RubyのCapybaraを使った。</p>
 
-<ul>
-<li>CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる</li>
-<li>example@gmail.comは任意のgmailアドレス</li>
-<li>アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）</li>
-</ul></li>
-</ul>
+<h3 id="動作環境">動作環境</h3>
 
-<pre><code class="language-js">var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN';
-
-function doPost(e) {
-  Logger.log('doPost')
-  var events = JSON.parse(e.postData.contents).events;
-  events.forEach (function(event) {
-    if (event.type == &quot;follow&quot;) { mailUserId(event); }
-  });
-}
-
-function mailUserId(e) {
-  MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId);
-}
+<pre><code class="language-bash">ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15]
+selenium-webdriver (2.53.0, 2.52.0)
+capybara (2.14.0)
 </code></pre>
 
-<h2 id="curlでmessaging-apiのpush通知を使う">curlでMessaging APIのPUSH通知を使う</h2>
+<h3 id="ソースコード">ソースコード</h3>
 
-<ul>
-<li>CHANNEL_ACCESS_TOKENは上で使ったものと同じ</li>
-<li>USERIDはプッシュ先
+<pre><code class="language-ruby"># coding: utf-8
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+require 'selenium-webdriver'
 
-<ul>
-<li>今回は上で取得した自分のユーザIDを使う</li>
-</ul></li>
-</ul>
+class LineKindleHighlights
+  include Capybara::DSL
 
-<pre><code class="language-bash">curl -X POST \
--H 'Content-Type:application/json' \
--H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \
--d '{
-    &quot;to&quot;: &quot;USERID&quot;,
-    &quot;messages&quot;:[
-        {
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;text&quot;: &quot;Hello, world!&quot;
-        }
-    ]
-}' https://api.line.me/v2/bot/message/push
+  KINDLE_EMAIL    = 'your@email'
+  KINDLE_PASSWORD = 'your_password'
+  CRAWL_PAGE_NUM = 2
+
+  def initialize
+    Capybara.current_driver = :selenium
+    Capybara.javascript_driver = :selenium
+    Capybara.app_host = 'https://kindle.amazon.co.jp'
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :selenium do |app|
+      # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+      Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome)
+    end
+  end
+
+  def scrape
+    login
+
+    # ページ読み込み待ち
+    sleep 5
+
+    go_to_highlights
+
+    CRAWL_PAGE_NUM.times do
+      all('.title').each do |element|
+        p element.text
+      end
+
+      all('.highlight').each do |element|
+        p element.text
+      end
+
+      next_page
+    end
+  end
+
+  private
+
+  # Kindleのマイページにアクセスしログインする
+  def login
+    visit('')
+    click_link 'sign in'
+    fill_in 'ap_email',
+      :with =&gt; KINDLE_EMAIL
+    fill_in 'password',
+      :with =&gt; KINDLE_PASSWORD
+    click_on 'signInSubmit'
+  end
+
+  # Your Hightlightsのページに遷移する
+  # @note ログイン直後のページで使う
+  def go_to_highlights
+    click_link 'Your Highlights'
+  end
+
+  # 次のページに遷移
+  # @note Your Hightlightsのページで使うことで次の本のハイライトページに遷移する
+  def next_page
+    visit(find_by_id('nextBookLink', visible: false)[:href])
+  end
+end
+
+crawler = LineKindleHighlights.new
+crawler.scrape
 </code></pre>
 
-<h2 id="関連ポスト">関連ポスト</h2>
+<ul>
+<li><code>KINDLE_EMAIL</code>と<code>KINDLE_PASSWORD</code>だけ設定すれば動く</li>
+<li><code>CRAWL_PAGE_NUM</code>は実質的には取得するハイライトの本の数になる (1ページに1冊分の情報が出る）</li>
+<li>次のページへの遷移で少しハマった。hiddenなクラスのリンクを取得するには<code>visible: false</code>する必要があるらしい</li>
+</ul>
 
-<p><a href="../dash_button/">Amazon Dash ButtonからLINE通知</a></p>
+<p>とりあえず今回はここまで。</p>
+
+<h2 id="todo">TODO</h2>
+
+<ul class="task-list">
+<li><input type="checkbox" checked disabled class="task-list-item"> クローラー作成</li>
+<li><input type="checkbox" disabled class="task-list-item"> LINE通知機能</li>
+<li><input type="checkbox" disabled class="task-list-item"> 通知済みハイライトを通知しない</li>
+<li><input type="checkbox" disabled class="task-list-item"> サーバ上で動作</li>
+</ul>
 </div>
   </div>
 
@@ -196,11 +246,11 @@ function mailUserId(e) {
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&title=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&t=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f&text=LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?LINE%20BOT%e3%81%a7PUSH%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b http%3a%2f%2fshidetake.com%2fmisc%2fline_push%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_1%2f&title=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_1%2f&t=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_1%2f&text=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_1%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_1%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -211,14 +261,36 @@ function mailUserId(e) {
           
           <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">LINE BOTでPUSH通知する</li>
+          <li class="active">KindleのハイライトをLINEに通知する</li>
         </ol>
       </nav>
 
       
       
       
+      <section class="article-footer">
+        <header>
+          <a href="http://shidetake.com/categories/">CATEGORIES</a>
+        </header>
+        <div>
+          <ul class="p-terms inline">
+            
+          </ul>
+        </div>
+      </section>
       
+      
+      
+      <section class="article-footer">
+        <header>
+          <a href="http://shidetake.com/tags/">TAGS</a>
+        </header>
+        <div>
+          <ul class="p-terms inline">
+            
+          </ul>
+        </div>
+      </section>
       
       
     </div>
