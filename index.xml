@@ -5,13 +5,26 @@
     <link>http://shidetake.com/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 27 May 2017 13:08:32 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 04 Jun 2017 22:44:34 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>KindleのハイライトをLINEに通知する</title>
+      <title>KindleのハイライトをLINEに通知する 2</title>
+      <link>http://shidetake.com/misc/line_highlights_2/</link>
+      <pubDate>Sun, 04 Jun 2017 22:44:34 +0900</pubDate>
+      
+      <guid>http://shidetake.com/misc/line_highlights_2/</guid>
+      <description>前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
+サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
+def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end + page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
+これでサーバ（今回はUbuntuを使った）で動作するようになった。
+LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</description>
+    </item>
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する 1</title>
       <link>http://shidetake.com/misc/line_highlights_1/</link>
       <pubDate>Sat, 27 May 2017 13:08:32 +0900</pubDate>
       

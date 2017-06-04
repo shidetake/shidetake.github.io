@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/playground/cheat_sheet/">
+<link rel="canonical" href="http://shidetake.com/misc/line_highlights_2/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>cheat_sheet - My New Hugo Site</title>
+    <title>KindleのハイライトをLINEに通知する 2 - My New Hugo Site</title>
     
-<meta name="description" content="&lt;p&gt;要約&lt;br /&gt;チートシート&lt;/p&gt;&lt;p&gt;&lt;/p&gt;">
+<meta name="description" content="前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。def initialize - Capybara.current_driver = :selenium &#43; Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium &#43; Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| &#43; Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) &#43; Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end &#43; page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。これでサーバ（今回はUbuntuを使った）で動作するようになった。LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。">
 
-<meta property="og:title" content="cheat_sheet - My New Hugo Site">
+<meta property="og:title" content="KindleのハイライトをLINEに通知する 2 - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/playground/cheat_sheet/">
+<meta property="og:url" content="http://shidetake.com/misc/line_highlights_2/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="&lt;p&gt;要約&lt;br /&gt;チートシート&lt;/p&gt;&lt;p&gt;&lt;/p&gt;">
+<meta property="og:description" content="前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。def initialize - Capybara.current_driver = :selenium &#43; Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium &#43; Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| &#43; Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) &#43; Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end &#43; page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。これでサーバ（今回はUbuntuを使った）で動作するようになった。LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/playground/cheat_sheet/">
-<meta name="twitter:title" content="cheat_sheet - My New Hugo Site">
-<meta name="twitter:description" content="&lt;p&gt;要約&lt;br /&gt;チートシート&lt;/p&gt;&lt;p&gt;&lt;/p&gt;">
+<meta name="twitter:url" content="http://shidetake.com/misc/line_highlights_2/">
+<meta name="twitter:title" content="KindleのハイライトをLINEに通知する 2 - My New Hugo Site">
+<meta name="twitter:description" content="前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。def initialize - Capybara.current_driver = :selenium &#43; Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium &#43; Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| &#43; Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) &#43; Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end &#43; page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。これでサーバ（今回はUbuntuを使った）で動作するようになった。LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "cheat_sheet - My New Hugo Site",
+    "headline": "KindleのハイライトをLINEに通知する 2 - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-03-30T23:30:11JST",
-    "dateModified": "2017-03-30T23:30:11JST",
+    "datePublished": "2017-06-04T22:44:34JST",
+    "dateModified": "2017-06-04T22:44:34JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,10 +71,11 @@
         "height": 60
       }
     },
-    "description": "<p>要約<br />
-チートシート</p>
-
-<p></p>"
+    "description": "前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
+サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
+def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
+これでサーバ（今回はUbuntuを使った）で動作するようになった。
+LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。"
   }
 </script>
 
@@ -109,73 +110,88 @@
       <ol>
         <li><a href="http://shidetake.com/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/playground/" itemprop="url"><span itemprop="title">playground</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">cheat_sheet</li>
+        <li class="active">KindleのハイライトをLINEに通知する 2</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">cheat_sheet</h1>
+    <h1 class="title">KindleのハイライトをLINEに通知する 2</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-03-30T23:30:11JST">Mar 30, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/playground/">playground</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-04T22:44:34JST">Jun 4, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
-    <div class="article-body"><p>要約<br />
-チートシート</p>
+    <div class="article-body">
 
-<p></p>
+<p><a href="../line_highlights_1/">前回</a>はクローラーを作成してハイライトを取得するところまでだった。
+今回はサーバで起動してLINE通知するところまでを作る。</p>
 
-<p>かなり癖がある。
-恐らく、moreより上に見出し、もしくは小見出しがある場合、
-そこまでが要約となり、moreより上にあっても通常の文章は表示されない。
-見出しがない場合は、moreより上が全て要約となる。<br />
-バグな気もするが、詳細は不明。</p>
+<h2 id="サーバで起動">サーバで起動</h2>
 
-<h1 id="見出し">見出し</h1>
+<p>前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
+POLTERGEISTを使う。</p>
 
-<h2 id="小見出し">小見出し</h2>
-
-<h1 id="改行">改行</h1>
-
-<p>文末に半角スペース2つ<br />
-で改行。</p>
-
-<h1 id="画像">画像</h1>
-
-<h2 id="from-google-photo">from google photo</h2>
-
-<p><img src="https://lh3.googleusercontent.com/IrDV2v9sWU8odajHY3Eq6aHccBAlaRC_UKYmddPmc_cg_mxY-2EB5Ud3jvL9djBI74haJHvI-wKsHzfUjDIRNbfbO2a5p6OKRrxA5i8wzJLQJ7OR-uelob5foqV1LWU2FaL76nAco16z_w0lihhyjeSsoQMcvRSmNI4REfVNmasj0MIV5TO5TEA7evE9P-lJMCHRWQIViuQc7SeoZK79NOXlkPSmudl2yCPOGDz8OsPRd4i0oOxAhUZ8F4WPMvKGSbdDk-wl9UjsmwN9UmY_d4E7XRFDXMRId4kEe_BvGi_8j0hHTn9x_f1w0lYKK8g3dwLGw28QDiL0Djp7w_56FshJ5JsIy3fY2iEEVpDdPMzIBdssE3-fk_BvvZ3rO4mRqlnQSGmm1XeaYSTQl-jsUBJG_NsWPjPHO3oNU2wgdP0uQAZ4YW9cik2hmlkTbwuRHoNUvzeWeL9PTpSlI3f7Zu1frVoYkI4co8FmDpKzaaQH2akc40HhL4Pyi06UjXfimRo1DYEIabxEeNiHfY97bGRDVsyf6eX_7WS7Pb0vTtSzaauLCsqVqBd5NRJSoxGtfvbKd9Je56N8ofiSMIc9BqpOCX7PLTc_30t2wTQt_3ZtcugvUEeSpw=w510-h679-no" alt="image" /></p>
-
-<p><img src="https://goo.gl/sWqbQI" alt="image" /></p>
-
-<h1 id="リンク">リンク</h1>
-
-<h2 id="絶対パス">絶対パス</h2>
-
-<p><a href="http://google.com">Google</a><br />
-<a href="http://google.com">http://google.com</a></p>
-
-<h2 id="相対パス">相対パス</h2>
-
-<p><a href="../../misc/line_push/">LINE BOTでPUSH通知する</a></p>
-
-<h1 id="シンタックスハイライト">シンタックスハイライト</h1>
-
-<h2 id="ブロック">ブロック</h2>
-
-<pre><code class="language-ruby">p hello
+<pre><code class="language-diff">  def initialize
+-   Capybara.current_driver = :selenium
++   Capybara.current_driver = :poltergeist
+-   Capybara.javascript_driver = :selenium
++   Capybara.javascript_driver = :poltergeist
+    Capybara.app_host = 'https://kindle.amazon.co.jp'
+    Capybara.default_max_wait_time = 5
+-   Capybara.register_driver :selenium do |app|
++   Capybara.register_driver :poltergeist do |app|
+-     # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+-     Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome)
++     Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false})
+    end
++   page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'}
+  end
 </code></pre>
 
-<h2 id="インライン">インライン</h2>
+<p>Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。</p>
 
-<p>文章の途中で<code>p hello</code>こんな感じ</p></div>
+<p>これでサーバ（今回はUbuntuを使った）で動作するようになった。</p>
+
+<h2 id="line通知">LINE通知</h2>
+
+<p>line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</p>
+
+<pre><code class="language-diff">  def initialize(driver)
+    Capybara.current_driver = :poltergeist
+    Capybara.javascript_driver = :poltergeist
+    Capybara.app_host = 'https://kindle.amazon.co.jp'
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :poltergeist do |app|
+      Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false})
+    end
+    page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} if driver == POLTERGEIST
+
++   @line = Line::Bot::Client.new do |config|
++     config.channel_secret = ''
++     config.channel_token  = ''
++   end
+
++   @user_id = ''
+  end
+
++ def push_highlight(highlight)
++   message = {
++     type: 'text',
++     text: highlight
++   }
+
++   @line.push_message(@user_id, message)
++ end
+</code></pre>
+</div>
   </div>
 
   <footer class="article-footer">
@@ -183,11 +199,11 @@
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f&title=cheat_sheet" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f&t=cheat_sheet" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f&text=cheat_sheet&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?cheat_sheet http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f&title=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f&t=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f&text=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202 http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -196,16 +212,38 @@
         <ol>
           <li><a href="http://shidetake.com/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
           
-          <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/playground/" itemprop="url"><span itemprop="title">playground</span></a></li>
+          <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">cheat_sheet</li>
+          <li class="active">KindleのハイライトをLINEに通知する 2</li>
         </ol>
       </nav>
 
       
       
       
+      <section class="article-footer">
+        <header>
+          <a href="http://shidetake.com/categories/">CATEGORIES</a>
+        </header>
+        <div>
+          <ul class="p-terms inline">
+            
+          </ul>
+        </div>
+      </section>
       
+      
+      
+      <section class="article-footer">
+        <header>
+          <a href="http://shidetake.com/tags/">TAGS</a>
+        </header>
+        <div>
+          <ul class="p-terms inline">
+            
+          </ul>
+        </div>
+      </section>
       
       
     </div>

@@ -53,9 +53,30 @@
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_2/">KindleのハイライトをLINEに通知する 2</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-04T22:44:34JST">Jun 4, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+      
+    </ul>
+
+    <div class="summary">前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
+サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
+def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
+これでサーバ（今回はUbuntuを使った）で動作するようになった。
+LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
   <div class="content-inner thin">
-    <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_1/">KindleのハイライトをLINEに通知する</a></h2>
+    <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_1/">KindleのハイライトをLINEに通知する 1</a></h2>
 
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-27T13:08:32JST">May 27, 2017</time></li>
@@ -70,7 +91,7 @@
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -94,7 +115,7 @@ cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./du
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -115,7 +136,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -132,7 +153,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
@@ -152,7 +173,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
     </div>
 
@@ -168,9 +189,23 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
       <div class="row">
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
+  <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
+  <header>
+    <div class="title"><a href="http://shidetake.com/misc/line_highlights_2/">KindleのハイライトをLINEに通知する 2</a></div>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-04T22:44:34JST">Jun 4, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+    </ul>
+  </header>
+</article>
+</div>
+        
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
   <header>
-    <div class="title"><a href="http://shidetake.com/misc/line_highlights_1/">KindleのハイライトをLINEに通知する</a></div>
+    <div class="title"><a href="http://shidetake.com/misc/line_highlights_1/">KindleのハイライトをLINEに通知する 1</a></div>
 
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-27T13:08:32JST">May 27, 2017</time></li>
@@ -179,7 +214,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -193,7 +228,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -207,7 +242,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -221,7 +256,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
@@ -235,9 +270,6 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
-        
-        <div class="col-md-12 col-sm-6 col-xs-12"></div>
         <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"></div>
