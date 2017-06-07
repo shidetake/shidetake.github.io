@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/misc/line_highlights_2/">
+<link rel="canonical" href="http://shidetake.com/misc/line_highlights_3/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>KindleのハイライトをLINEに通知する 2 - My New Hugo Site</title>
+    <title>KindleのハイライトをLINEに通知する 3 - My New Hugo Site</title>
     
-<meta name="description" content="前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。def initialize - Capybara.current_driver = :selenium &#43; Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium &#43; Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| &#43; Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) &#43; Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end &#43; page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。これでサーバ（今回はUbuntuを使った）で動作するようになった。LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。">
+<meta name="description" content="前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。流れ 以下のような流れで起動要求を伝達する。LINEで起動要求↓LINEからGoogle Apps Scriptのスクリプト実行↓ソケット通信でスクレイピング開始要求実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。&#43;require &#39;socket&#39; &#43;gs = TCPServer.open(12345) &#43;addr = gs.addr &#43;addr.shift &#43;printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;)) crawler = LineKindleHighlights.new &#43;loop do &#43; s = gs.accept &#43; print(s, &amp;quot; is accepted\n&amp;quot;) &#43; crawler.scrape &#43; &#43; print(s, &amp;quot; is gone\n&amp;quot;) &#43; s.close &#43;end  これでポート12345番でアクセスされると1度だけ動作するようになる。つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.">
 
-<meta property="og:title" content="KindleのハイライトをLINEに通知する 2 - My New Hugo Site">
+<meta property="og:title" content="KindleのハイライトをLINEに通知する 3 - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/misc/line_highlights_2/">
+<meta property="og:url" content="http://shidetake.com/misc/line_highlights_3/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。def initialize - Capybara.current_driver = :selenium &#43; Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium &#43; Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| &#43; Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) &#43; Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end &#43; page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。これでサーバ（今回はUbuntuを使った）で動作するようになった。LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。">
+<meta property="og:description" content="前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。流れ 以下のような流れで起動要求を伝達する。LINEで起動要求↓LINEからGoogle Apps Scriptのスクリプト実行↓ソケット通信でスクレイピング開始要求実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。&#43;require &#39;socket&#39; &#43;gs = TCPServer.open(12345) &#43;addr = gs.addr &#43;addr.shift &#43;printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;)) crawler = LineKindleHighlights.new &#43;loop do &#43; s = gs.accept &#43; print(s, &amp;quot; is accepted\n&amp;quot;) &#43; crawler.scrape &#43; &#43; print(s, &amp;quot; is gone\n&amp;quot;) &#43; s.close &#43;end  これでポート12345番でアクセスされると1度だけ動作するようになる。つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/misc/line_highlights_2/">
-<meta name="twitter:title" content="KindleのハイライトをLINEに通知する 2 - My New Hugo Site">
-<meta name="twitter:description" content="前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。def initialize - Capybara.current_driver = :selenium &#43; Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium &#43; Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| &#43; Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) &#43; Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end &#43; page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。これでサーバ（今回はUbuntuを使った）で動作するようになった。LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。">
+<meta name="twitter:url" content="http://shidetake.com/misc/line_highlights_3/">
+<meta name="twitter:title" content="KindleのハイライトをLINEに通知する 3 - My New Hugo Site">
+<meta name="twitter:description" content="前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。流れ 以下のような流れで起動要求を伝達する。LINEで起動要求↓LINEからGoogle Apps Scriptのスクリプト実行↓ソケット通信でスクレイピング開始要求実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。&#43;require &#39;socket&#39; &#43;gs = TCPServer.open(12345) &#43;addr = gs.addr &#43;addr.shift &#43;printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;)) crawler = LineKindleHighlights.new &#43;loop do &#43; s = gs.accept &#43; print(s, &amp;quot; is accepted\n&amp;quot;) &#43; crawler.scrape &#43; &#43; print(s, &amp;quot; is gone\n&amp;quot;) &#43; s.close &#43;end  これでポート12345番でアクセスされると1度だけ動作するようになる。つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "KindleのハイライトをLINEに通知する 2 - My New Hugo Site",
+    "headline": "KindleのハイライトをLINEに通知する 3 - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-06-04T22:44:34JST",
-    "dateModified": "2017-06-04T22:44:34JST",
+    "datePublished": "2017-06-07T22:27:01JST",
+    "dateModified": "2017-06-07T22:27:01JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,11 +71,20 @@
         "height": 60
       }
     },
-    "description": "前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
-サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
-def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
-これでサーバ（今回はUbuntuを使った）で動作するようになった。
-LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。"
+    "description": "前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
+起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
+LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
+妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
+流れ 以下のような流れで起動要求を伝達する。
+LINEで起動要求
+↓
+LINEからGoogle Apps Scriptのスクリプト実行
+↓
+ソケット通信でスクレイピング開始要求
+実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
++require 'socket' +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &quot; is accepted\n&quot;) + crawler.scrape + + print(s, &quot; is gone\n&quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
+つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
+function doPost(e) { Logger.log('doPost') var events = JSON."
   }
 </script>
 
@@ -112,85 +121,89 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">KindleのハイライトをLINEに通知する 2</li>
+        <li class="active">KindleのハイライトをLINEに通知する 3</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">KindleのハイライトをLINEに通知する 2</h1>
+    <h1 class="title">KindleのハイライトをLINEに通知する 3</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-04T22:44:34JST">Jun 4, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-07T22:27:01JST">Jun 7, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<p><a href="../line_highlights_1/">前回</a>はクローラーを作成してハイライトを取得するところまでだった。
-今回はサーバで起動してLINE通知するところまでを作る。</p>
+<p><a href="../line_highlights_2/">前回</a>はサーバで起動してLINE通知するところまで。
+このままだとサーバ側で手動で起動しないといけない。これを解決する。</p>
 
-<h2 id="サーバで起動">サーバで起動</h2>
+<h2 id="起動タイミング">起動タイミング</h2>
 
-<p>前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
-POLTERGEISTを使う。</p>
+<h3 id="仕様">仕様</h3>
 
-<pre><code class="language-diff">  def initialize
--   Capybara.current_driver = :selenium
-+   Capybara.current_driver = :poltergeist
--   Capybara.javascript_driver = :selenium
-+   Capybara.javascript_driver = :poltergeist
-    Capybara.app_host = 'https://kindle.amazon.co.jp'
-    Capybara.default_max_wait_time = 5
--   Capybara.register_driver :selenium do |app|
-+   Capybara.register_driver :poltergeist do |app|
--     # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
--     Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome)
-+     Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false})
-    end
-+   page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'}
-  end
+<p>cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、
+結局は手動で合図したタイミングで1度だけ起動する仕様にした。</p>
+
+<p>LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。</p>
+
+<p>妥協案とも言える仕様だが、この仕様にした一番の理由は、
+頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。
+これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。</p>
+
+<h3 id="流れ">流れ</h3>
+
+<p>以下のような流れで起動要求を伝達する。</p>
+
+<p>LINEで起動要求<br />
+↓<br />
+LINEからGoogle Apps Scriptのスクリプト実行<br />
+↓<br />
+ソケット通信でスクレイピング開始要求</p>
+
+<h3 id="実装">実装</h3>
+
+<p>まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。</p>
+
+<pre><code class="language-diff">+require 'socket'
+
++gs = TCPServer.open(12345)
++addr = gs.addr
++addr.shift
++printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;))
+
+ crawler = LineKindleHighlights.new
+
++loop do
++  s = gs.accept
++  print(s, &quot; is accepted\n&quot;)
++
+   crawler.scrape
++
++  print(s, &quot; is gone\n&quot;)
++  s.close
++end
 </code></pre>
 
-<p>Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。</p>
+<p>これでポート12345番でアクセスされると1度だけ動作するようになる。</p>
 
-<p>これでサーバ（今回はUbuntuを使った）で動作するようになった。</p>
+<p>つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。</p>
 
-<h2 id="line通知">LINE通知</h2>
-
-<p>line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
-push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</p>
-
-<pre><code class="language-diff">  def initialize(driver)
-    Capybara.current_driver = :poltergeist
-    Capybara.javascript_driver = :poltergeist
-    Capybara.app_host = 'https://kindle.amazon.co.jp'
-    Capybara.default_max_wait_time = 5
-    Capybara.register_driver :poltergeist do |app|
-      Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false})
-    end
-    page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} if driver == POLTERGEIST
-
-+   @line = Line::Bot::Client.new do |config|
-+     config.channel_secret = ''
-+     config.channel_token  = ''
-+   end
-
-+   @user_id = ''
-  end
-
-+ def push_highlight(highlight)
-+   message = {
-+     type: 'text',
-+     text: highlight
-+   }
-
-+   @line.push_message(@user_id, message)
-+ end
+<pre><code class="language-js">function doPost(e) {
+  Logger.log('doPost')
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &quot;message&quot;) { UrlFetchApp.fetch(&quot;http://your_server_address.com:12345&quot;); }
+  });
+}
 </code></pre>
+
+<p>こんな感じでウェブアプリケーションとして導入して、LINE側のWebhookアドレスに紐付けると、
+BOTに話しかけたタイミングでソケット通信が飛ぶようになる。</p>
 </div>
   </div>
 
@@ -199,11 +212,11 @@ push_highlightメソッドを使って、前回標準出力していた文字列
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f&title=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f&t=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f&text=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%202 http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_2%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_3%2f&title=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%203" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_3%2f&t=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%203" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_3%2f&text=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%203&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_3%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%203 http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_3%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -214,7 +227,7 @@ push_highlightメソッドを使って、前回標準出力していた文字列
           
           <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">KindleのハイライトをLINEに通知する 2</li>
+          <li class="active">KindleのハイライトをLINEに通知する 3</li>
         </ol>
       </nav>
 

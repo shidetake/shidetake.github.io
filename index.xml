@@ -5,10 +5,32 @@
     <link>http://shidetake.com/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 04 Jun 2017 22:44:34 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jun 2017 22:27:01 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する 3</title>
+      <link>http://shidetake.com/misc/line_highlights_3/</link>
+      <pubDate>Wed, 07 Jun 2017 22:27:01 +0900</pubDate>
+      
+      <guid>http://shidetake.com/misc/line_highlights_3/</guid>
+      <description>前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
+起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
+LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
+妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
+流れ 以下のような流れで起動要求を伝達する。
+LINEで起動要求
+↓
+LINEからGoogle Apps Scriptのスクリプト実行
+↓
+ソケット通信でスクレイピング開始要求
+実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
++require &#39;socket&#39; +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &amp;quot; is accepted\n&amp;quot;) + crawler.scrape + + print(s, &amp;quot; is gone\n&amp;quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
+つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
+function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.</description>
+    </item>
     
     <item>
       <title>KindleのハイライトをLINEに通知する 2</title>

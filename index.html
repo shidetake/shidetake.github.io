@@ -53,6 +53,36 @@
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_3/">KindleのハイライトをLINEに通知する 3</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-07T22:27:01JST">Jun 7, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+      
+    </ul>
+
+    <div class="summary">前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
+起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
+LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
+妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
+流れ 以下のような流れで起動要求を伝達する。
+LINEで起動要求
+↓
+LINEからGoogle Apps Scriptのスクリプト実行
+↓
+ソケット通信でスクレイピング開始要求
+実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
++require 'socket' +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &quot; is accepted\n&quot;) + crawler.scrape + + print(s, &quot; is gone\n&quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
+つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
+function doPost(e) { Logger.log('doPost') var events = JSON.</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_2/">KindleのハイライトをLINEに通知する 2</a></h2>
@@ -71,7 +101,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -91,7 +121,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -115,7 +145,7 @@ cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./du
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -136,7 +166,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -153,7 +183,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
@@ -173,7 +203,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
     </div>
 
@@ -189,6 +219,20 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
       <div class="row">
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
+  <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
+  <header>
+    <div class="title"><a href="http://shidetake.com/misc/line_highlights_3/">KindleのハイライトをLINEに通知する 3</a></div>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-07T22:27:01JST">Jun 7, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+    </ul>
+  </header>
+</article>
+</div>
+        
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
   <header>
     <div class="title"><a href="http://shidetake.com/misc/line_highlights_2/">KindleのハイライトをLINEに通知する 2</a></div>
@@ -200,7 +244,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -214,7 +258,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -228,7 +272,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -242,7 +286,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -256,7 +300,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
@@ -270,9 +314,6 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
-        
-        <div class="col-md-12 col-sm-6 col-xs-12"></div>
         
         
         <div class="col-md-12 col-sm-6 col-xs-12"></div>
