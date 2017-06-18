@@ -67,6 +67,30 @@ ga('send', 'pageview');
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://shidetake.com/misc/line_highlights_4/" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_4/">KindleのハイライトをLINEに通知する 4</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-18T14:33:41JST">Jun 18, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+      
+    </ul>
+
+    <div class="summary">前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。
+今回でこのシリーズは最後。
+方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。
+記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。
+JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 'json'を忘れずにrequireすること。
+# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, 'w') do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。
+# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, 'r') do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。
+全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://shidetake.com/misc/line_highlights_3/">KindleのハイライトをLINEに通知する 3</a></h2>
@@ -94,7 +118,7 @@ function doPost(e) { Logger.log('doPost') var events = JSON.</div>
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
@@ -115,7 +139,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -135,7 +159,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -159,7 +183,7 @@ cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./du
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -180,7 +204,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -197,7 +221,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
     </div>
 
@@ -213,6 +237,20 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
       <div class="row">
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
+  <a href="http://shidetake.com/misc/line_highlights_4/" class="thumb"></a>
+  <header>
+    <div class="title"><a href="http://shidetake.com/misc/line_highlights_4/">KindleのハイライトをLINEに通知する 4</a></div>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-18T14:33:41JST">Jun 18, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+    </ul>
+  </header>
+</article>
+</div>
+        
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
   <header>
     <div class="title"><a href="http://shidetake.com/misc/line_highlights_3/">KindleのハイライトをLINEに通知する 3</a></div>
@@ -224,7 +262,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
@@ -238,7 +276,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -252,7 +290,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -266,7 +304,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -280,7 +318,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -294,7 +332,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
@@ -308,9 +346,6 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
-        
-        <div class="col-md-12 col-sm-6 col-xs-12"></div>
         <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"></div>
