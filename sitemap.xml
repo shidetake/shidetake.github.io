@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shidetake.com/misc/gmail_api_1/</loc>
+    <lastmod>2017-06-20T22:55:21+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/misc/line_highlights_4/</loc>
     <lastmod>2017-06-18T14:33:41+09:00</lastmod>
   </url>
@@ -48,13 +53,13 @@
   
   <url>
     <loc>http://shidetake.com/misc/</loc>
-    <lastmod>2017-06-18T14:33:41+09:00</lastmod>
+    <lastmod>2017-06-20T22:55:21+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2017-06-18T14:33:41+09:00</lastmod>
+    <lastmod>2017-06-20T22:55:21+09:00</lastmod>
     <priority>0</priority>
   </url>
   
