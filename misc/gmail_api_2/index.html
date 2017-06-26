@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/misc/time_capsule/">
+<link rel="canonical" href="http://shidetake.com/misc/gmail_api_2/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Time Machineの容量制限 - My New Hugo Site</title>
+    <title>RubyでGmail本文を取得する 2 - My New Hugo Site</title>
     
-<meta name="description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。そこで、別の方法を採用した。ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。ダミーファイルの作成は以下のコマンドを使った。dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+<meta name="description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。リフレッシュトークンを使ったメールの取得 前回からの差分require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.">
 
-<meta property="og:title" content="Time Machineの容量制限 - My New Hugo Site">
+<meta property="og:title" content="RubyでGmail本文を取得する 2 - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/misc/time_capsule/">
+<meta property="og:url" content="http://shidetake.com/misc/gmail_api_2/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。そこで、別の方法を採用した。ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。ダミーファイルの作成は以下のコマンドを使った。dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+<meta property="og:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。リフレッシュトークンを使ったメールの取得 前回からの差分require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/misc/time_capsule/">
-<meta name="twitter:title" content="Time Machineの容量制限 - My New Hugo Site">
-<meta name="twitter:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。そこで、別の方法を採用した。ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。ダミーファイルの作成は以下のコマンドを使った。dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+<meta name="twitter:url" content="http://shidetake.com/misc/gmail_api_2/">
+<meta name="twitter:title" content="RubyでGmail本文を取得する 2 - My New Hugo Site">
+<meta name="twitter:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。リフレッシュトークンを使ったメールの取得 前回からの差分require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "Time Machineの容量制限 - My New Hugo Site",
+    "headline": "RubyでGmail本文を取得する 2 - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-05-14T21:01:17JST",
-    "dateModified": "2017-05-14T21:01:17JST",
+    "datePublished": "2017-06-26T22:44:57JST",
+    "dateModified": "2017-06-26T22:44:57JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,14 +71,10 @@
         "height": 60
       }
     },
-    "description": " Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  "
+    "description": "前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
+リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
+リフレッシュトークンを使ったメールの取得 前回からの差分
+require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CLIENT_ID = 'YourClientID' +CLIENT_SECRET = 'YourClientSecret' +REFRESH_TOKEN = 'YourRefreshToken' APPLICATION_NAME = 'YourApplicationName' # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: 'https://accounts.google.com/o/oauth2/token', + audience: 'https://accounts.google.com/o/oauth2/token', + scope: ['https://www.googleapis.com/auth/drive.file'], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api('gmail') # query res = client.execute( api_method: gmail.users.messages.list, parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon."
   }
 </script>
 
@@ -125,53 +121,82 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">Time Machineの容量制限</li>
+        <li class="active">RubyでGmail本文を取得する 2</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/gmail_api_2/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">Time Machineの容量制限</h1>
+    <h1 class="title">RubyでGmail本文を取得する 2</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-14T21:01:17JST">May 14, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-26T22:44:57JST">Jun 26, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<p>Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
-Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
-何らかの方法で容量を制限する必要がある。</p>
+<p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。</p>
 
-<p>パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。
-ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。</p>
+<h2 id="リフレッシュトークンの取得">リフレッシュトークンの取得</h2>
 
-<p>そこで、別の方法を採用した。</p>
+<p>前回のアクセストークン取得の項に記載の通り。</p>
 
-<h2 id="ダミーファイルを置く">ダミーファイルを置く</h2>
+<h2 id="リフレッシュトークンを使ったメールの取得">リフレッシュトークンを使ったメールの取得</h2>
 
-<p>ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。
-新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。</p>
+<p>前回からの差分</p>
 
-<p>1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、
-計200GB分のデータ領域を確保することにした。</p>
+<pre><code class="language-diff">require 'google/api_client'
+require 'json'
 
-<p>ダミーファイルの作成は以下のコマンドを使った。</p>
+-ACCESS_TOKEN     = 'YourAccessToken'
++CLIENT_ID        = 'YourClientID'
++CLIENT_SECRET    = 'YourClientSecret'
++REFRESH_TOKEN    = 'YourRefreshToken'
+APPLICATION_NAME = 'YourApplicationName'
 
-<pre><code class="language-bash">dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000
+# APIクライアントの準備
+client = Google::APIClient.new(application_name: APPLICATION_NAME)
+-client.authorization.access_token = ACCESS_TOKEN
++client.authorization = Signet::OAuth2::Client.new(
++  token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
++  audience:             'https://accounts.google.com/o/oauth2/token',
++  scope:                ['https://www.googleapis.com/auth/drive.file'],
++  client_id:     CLIENT_ID,
++  client_secret: CLIENT_SECRET,
++  refresh_token: REFRESH_TOKEN,
++)
++
++client.authorization.refresh!
+gmail = client.discovered_api('gmail')
+
+# query
+res = client.execute(
+  api_method: gmail.users.messages.list,
+  parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon.co.jp'},
+)
+
+# parse
+if res.status == 200
+  json = JSON.parse(res.body)
+  json['messages'].each do |mail_ids|
+    mail = client.execute(
+      api_method: gmail.users.messages.get,
+      parameters: {'userId' =&gt; 'me', 'id'=&gt;mail_ids['id']},
+    )
+    p mail.body
+  end
+else
+  puts 'error'
+end
 </code></pre>
 
-<p>実際にはfor文で以下のように使う。
-ネットワーク越しなのでかなり時間がかかることに注意。</p>
-
-<pre><code class="language-bash">cd /Volumes/TimeCapsule
-for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done
-for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done
-</code></pre>
+<p>これでこのシリーズは終わり。</p>
 </div>
   </div>
 
@@ -180,11 +205,11 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f&title=Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f&t=Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f&text=Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?Time%20Machine%e3%81%ae%e5%ae%b9%e9%87%8f%e5%88%b6%e9%99%90 http%3a%2f%2fshidetake.com%2fmisc%2ftime_capsule%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f&title=Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f&t=Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f&text=Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202 http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -195,7 +220,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
           
           <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">Time Machineの容量制限</li>
+          <li class="active">RubyでGmail本文を取得する 2</li>
         </ol>
       </nav>
 

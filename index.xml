@@ -5,10 +5,22 @@
     <link>http://shidetake.com/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 20 Jun 2017 22:55:21 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 26 Jun 2017 22:44:57 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RubyでGmail本文を取得する 2</title>
+      <link>http://shidetake.com/misc/gmail_api_2/</link>
+      <pubDate>Mon, 26 Jun 2017 22:44:57 +0900</pubDate>
+      
+      <guid>http://shidetake.com/misc/gmail_api_2/</guid>
+      <description>前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
+リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
+リフレッシュトークンを使ったメールの取得 前回からの差分
+require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; +CLIENT_ID = &#39;YourClientID&#39; +CLIENT_SECRET = &#39;YourClientSecret&#39; +REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, + audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, + scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.</description>
+    </item>
     
     <item>
       <title>RubyでGmail本文を取得する 1</title>
