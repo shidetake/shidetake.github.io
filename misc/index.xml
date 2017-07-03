@@ -5,10 +5,30 @@
     <link>http://shidetake.com/misc/</link>
     <description>Recent content in Miscs on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 26 Jun 2017 22:44:57 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jul 2017 22:08:55 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/misc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 1</title>
+      <link>http://shidetake.com/misc/ripping_1/</link>
+      <pubDate>Mon, 03 Jul 2017 22:08:55 +0900</pubDate>
+      
+      <guid>http://shidetake.com/misc/ripping_1/</guid>
+      <description>DVDのリッピングというのは、設定が異常に多い。
+まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。
+と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。
+そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。
+HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。
+ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。
+HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。
+もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。
+HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使って
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。
+お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。</description>
+    </item>
     
     <item>
       <title>RubyでGmail本文を取得する 2</title>

@@ -63,6 +63,34 @@ ga('send', 'pageview');
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://shidetake.com/misc/ripping_1/" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://shidetake.com/misc/ripping_1/">HandBrakeCLIによるDVDリッピング 1</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-07-03T22:08:55JST">Jul 3, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+      
+    </ul>
+
+    <div class="summary">DVDのリッピングというのは、設定が異常に多い。
+まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。
+と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。
+そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。
+HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。
+ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。
+HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。
+もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。
+HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。
+HandBrakeCLI -Z 'H.265 MKV 1080p30' -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使って
+HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。
+お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/gmail_api_2/" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://shidetake.com/misc/gmail_api_2/">RubyでGmail本文を取得する 2</a></h2>
@@ -80,7 +108,7 @@ require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CL
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/gmail_api_1/" class="thumb"></a>
@@ -101,7 +129,7 @@ require 'net/http' require 'uri' require 'oauth2' require 'launchy' CLIENT_ID = 
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_4/" class="thumb"></a>
@@ -125,7 +153,7 @@ JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
@@ -155,7 +183,7 @@ function doPost(e) { Logger.log('doPost') var events = JSON.</div>
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
@@ -176,7 +204,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -196,7 +224,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -220,7 +248,7 @@ cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./du
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -241,7 +269,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -258,31 +286,19 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </div>
 </article>
 </div>
-      
-      
-      <div class="col-sm-6 col-xs-12"><article class="li">
-  <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
-  <div class="content-inner thin">
-    <h2 class="title"><a href="http://shidetake.com/playground/cheat_sheet/">cheat_sheet</a></h2>
-
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-03-30T23:30:11JST">Mar 30, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/playground/">playground</a></li>
-      
-    </ul>
-
-    <div class="summary"><p>要約<br />
-チートシート</p>
-
-<p></p></div>
-  </div>
-</article>
-</div>
       <div class="col-sm-12"></div>
       
     </div>
 
     
+<nav class="p-paging">
+  
+
+  
+  <a href="/page/2/" rel="next" class="next">Next</a>
+  
+</nav>
+
 
   </div>
   <div class="col-md-4">
@@ -292,6 +308,20 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
     <header>latests</header>
     <div>
       <div class="row">
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
+  <a href="http://shidetake.com/misc/ripping_1/" class="thumb"></a>
+  <header>
+    <div class="title"><a href="http://shidetake.com/misc/ripping_1/">HandBrakeCLIによるDVDリッピング 1</a></div>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-07-03T22:08:55JST">Jul 3, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+    </ul>
+  </header>
+</article>
+</div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/gmail_api_2/" class="thumb"></a>
@@ -305,7 +335,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/gmail_api_1/" class="thumb"></a>
@@ -319,7 +349,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_4/" class="thumb"></a>
@@ -333,7 +363,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
@@ -347,7 +377,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
@@ -361,7 +391,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -375,7 +405,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -389,7 +419,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -403,7 +433,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
@@ -413,20 +443,6 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T23:11:57JST">Apr 17, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
-    </ul>
-  </header>
-</article>
-</div>
-        
-        
-        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
-  <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
-  <header>
-    <div class="title"><a href="http://shidetake.com/playground/cheat_sheet/">cheat_sheet</a></div>
-
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-03-30T23:30:11JST">Mar 30, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/playground/">playground</a></li>
     </ul>
   </header>
 </article>

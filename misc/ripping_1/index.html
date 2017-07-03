@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/misc/gmail_api_2/">
+<link rel="canonical" href="http://shidetake.com/misc/ripping_1/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>RubyでGmail本文を取得する 2 - My New Hugo Site</title>
+    <title>HandBrakeCLIによるDVDリッピング 1 - My New Hugo Site</title>
     
-<meta name="description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。リフレッシュトークンを使ったメールの取得 前回からの差分require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.">
+<meta name="description" content="DVDのリッピングというのは、設定が異常に多い。まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使ってHandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。">
 
-<meta property="og:title" content="RubyでGmail本文を取得する 2 - My New Hugo Site">
+<meta property="og:title" content="HandBrakeCLIによるDVDリッピング 1 - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/misc/gmail_api_2/">
+<meta property="og:url" content="http://shidetake.com/misc/ripping_1/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。リフレッシュトークンを使ったメールの取得 前回からの差分require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.">
+<meta property="og:description" content="DVDのリッピングというのは、設定が異常に多い。まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使ってHandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/misc/gmail_api_2/">
-<meta name="twitter:title" content="RubyでGmail本文を取得する 2 - My New Hugo Site">
-<meta name="twitter:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。リフレッシュトークンを使ったメールの取得 前回からの差分require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.">
+<meta name="twitter:url" content="http://shidetake.com/misc/ripping_1/">
+<meta name="twitter:title" content="HandBrakeCLIによるDVDリッピング 1 - My New Hugo Site">
+<meta name="twitter:description" content="DVDのリッピングというのは、設定が異常に多い。まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使ってHandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "RubyでGmail本文を取得する 2 - My New Hugo Site",
+    "headline": "HandBrakeCLIによるDVDリッピング 1 - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-06-26T22:44:57JST",
-    "dateModified": "2017-06-26T22:44:57JST",
+    "datePublished": "2017-07-03T22:08:55JST",
+    "dateModified": "2017-07-03T22:08:55JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,10 +71,18 @@
         "height": 60
       }
     },
-    "description": "前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CLIENT_ID = 'YourClientID' +CLIENT_SECRET = 'YourClientSecret' +REFRESH_TOKEN = 'YourRefreshToken' APPLICATION_NAME = 'YourApplicationName' # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: 'https://accounts.google.com/o/oauth2/token', + audience: 'https://accounts.google.com/o/oauth2/token', + scope: ['https://www.googleapis.com/auth/drive.file'], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api('gmail') # query res = client.execute( api_method: gmail.users.messages.list, parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon."
+    "description": "DVDのリッピングというのは、設定が異常に多い。
+まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。
+と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。
+そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。
+HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。
+ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。
+HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。
+もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。
+HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。
+HandBrakeCLI -Z 'H.265 MKV 1080p30' -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使って
+HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。
+お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。"
   }
 </script>
 
@@ -121,82 +129,75 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">RubyでGmail本文を取得する 2</li>
+        <li class="active">HandBrakeCLIによるDVDリッピング 1</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/misc/gmail_api_2/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/ripping_1/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">RubyでGmail本文を取得する 2</h1>
+    <h1 class="title">HandBrakeCLIによるDVDリッピング 1</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-26T22:44:57JST">Jun 26, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-07-03T22:08:55JST">Jul 3, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。</p>
+<p>DVDのリッピングというのは、設定が異常に多い。</p>
 
-<h2 id="リフレッシュトークンの取得">リフレッシュトークンの取得</h2>
+<p>まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。
+コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。
+フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。</p>
 
-<p>前回のアクセストークン取得の項に記載の通り。</p>
+<p>と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。
+しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。</p>
 
-<h2 id="リフレッシュトークンを使ったメールの取得">リフレッシュトークンを使ったメールの取得</h2>
+<p>そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。</p>
 
-<p>前回からの差分</p>
+<h2 id="handbrakecli">HandBrakeCLI</h2>
 
-<pre><code class="language-diff">require 'google/api_client'
-require 'json'
+<p>今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。
+Homebrewにはなかったので公式サイトからダウンロードしてインストールする。</p>
 
--ACCESS_TOKEN     = 'YourAccessToken'
-+CLIENT_ID        = 'YourClientID'
-+CLIENT_SECRET    = 'YourClientSecret'
-+REFRESH_TOKEN    = 'YourRefreshToken'
-APPLICATION_NAME = 'YourApplicationName'
+<h2 id="isoイメージからの変換">ISOイメージからの変換</h2>
 
-# APIクライアントの準備
-client = Google::APIClient.new(application_name: APPLICATION_NAME)
--client.authorization.access_token = ACCESS_TOKEN
-+client.authorization = Signet::OAuth2::Client.new(
-+  token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
-+  audience:             'https://accounts.google.com/o/oauth2/token',
-+  scope:                ['https://www.googleapis.com/auth/drive.file'],
-+  client_id:     CLIENT_ID,
-+  client_secret: CLIENT_SECRET,
-+  refresh_token: REFRESH_TOKEN,
-+)
-+
-+client.authorization.refresh!
-gmail = client.discovered_api('gmail')
+<p>まずはISOイメージから適当な設定で変換する。</p>
 
-# query
-res = client.execute(
-  api_method: gmail.users.messages.list,
-  parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon.co.jp'},
-)
-
-# parse
-if res.status == 200
-  json = JSON.parse(res.body)
-  json['messages'].each do |mail_ids|
-    mail = client.execute(
-      api_method: gmail.users.messages.get,
-      parameters: {'userId' =&gt; 'me', 'id'=&gt;mail_ids['id']},
-    )
-    p mail.body
-  end
-else
-  puts 'error'
-end
+<pre><code class="language-bash">HandBrakeCLI -i hoge.iso -o hoge.mkv
 </code></pre>
 
-<p>これでこのシリーズは終わり。</p>
+<p>こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。</p>
+
+<h2 id="もう少しちゃんとした変換">もう少しちゃんとした変換</h2>
+
+<p>完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。
+以下のコマンドで、プリセットオプションの一覧が出てくる。</p>
+
+<pre><code class="language-bash">HandBrakeCLI -z
+</code></pre>
+
+<p>画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。</p>
+
+<pre><code class="language-bash">HandBrakeCLI -Z 'H.265 MKV 1080p30' -i hoge.iso -o hoge.mkv
+</code></pre>
+
+<p>せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、
+<code>--all-audio</code>オプションと<code>-s</code>オプションを使って</p>
+
+<pre><code class="language-bash">HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -i hoge.iso -o hoge.mkv
+</code></pre>
+
+<p>こんな感じ。
+DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。</p>
+
+<h2 id="お約束">お約束</h2>
+
+<p>違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたDVDをリッピングするのはダメ。ぜったい。</p>
 </div>
   </div>
 
@@ -205,11 +206,11 @@ end
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f&title=Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f&t=Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f&text=Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?Ruby%e3%81%a7Gmail%e6%9c%ac%e6%96%87%e3%82%92%e5%8f%96%e5%be%97%e3%81%99%e3%82%8b%202 http%3a%2f%2fshidetake.com%2fmisc%2fgmail_api_2%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fripping_1%2f&title=HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%201" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fripping_1%2f&t=HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%201" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fripping_1%2f&text=HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%201&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fripping_1%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%201 http%3a%2f%2fshidetake.com%2fmisc%2fripping_1%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -220,7 +221,7 @@ end
           
           <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">RubyでGmail本文を取得する 2</li>
+          <li class="active">HandBrakeCLIによるDVDリッピング 1</li>
         </ol>
       </nav>
 
