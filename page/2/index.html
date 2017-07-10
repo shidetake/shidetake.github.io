@@ -63,6 +63,23 @@ ga('send', 'pageview');
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://shidetake.com/misc/line_push/">LINE BOTでPUSH通知する</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T23:11:57JST">Apr 17, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+      
+    </ul>
+
+    <div class="summary">登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN'; function doPost(e) { Logger.log('doPost') var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H 'Content-Type:application/json' \ -H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \ -d '{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://shidetake.com/playground/cheat_sheet/" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://shidetake.com/playground/cheat_sheet/">cheat_sheet</a></h2>
@@ -80,7 +97,7 @@ ga('send', 'pageview');
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
     </div>
 
@@ -104,6 +121,20 @@ ga('send', 'pageview');
       <div class="row">
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
+  <a href="http://shidetake.com/misc/ripping_2/" class="thumb"></a>
+  <header>
+    <div class="title"><a href="http://shidetake.com/misc/ripping_2/">HandBrakeCLIによるDVDリッピング 2</a></div>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-07-10T22:41:58JST">Jul 10, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
+    </ul>
+  </header>
+</article>
+</div>
+        
+        
+        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/ripping_1/" class="thumb"></a>
   <header>
     <div class="title"><a href="http://shidetake.com/misc/ripping_1/">HandBrakeCLIによるDVDリッピング 1</a></div>
@@ -115,7 +146,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/gmail_api_2/" class="thumb"></a>
@@ -129,7 +160,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/gmail_api_1/" class="thumb"></a>
@@ -143,7 +174,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_4/" class="thumb"></a>
@@ -157,7 +188,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_3/" class="thumb"></a>
@@ -171,7 +202,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_2/" class="thumb"></a>
@@ -185,7 +216,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/line_highlights_1/" class="thumb"></a>
@@ -199,7 +230,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        
+        <div class="col-sm-12"></div>
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/time_capsule/" class="thumb"></a>
@@ -213,7 +244,7 @@ ga('send', 'pageview');
   </header>
 </article>
 </div>
-        <div class="col-sm-12"></div>
+        
         
         <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
   <a href="http://shidetake.com/misc/dash_button/" class="thumb"></a>
@@ -222,20 +253,6 @@ ga('send', 'pageview');
 
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-11T22:31:20JST">May 11, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
-    </ul>
-  </header>
-</article>
-</div>
-        
-        
-        <div class="col-md-12 col-sm-6 col-xs-12"><article class="li sm">
-  <a href="http://shidetake.com/misc/line_push/" class="thumb"></a>
-  <header>
-    <div class="title"><a href="http://shidetake.com/misc/line_push/">LINE BOTでPUSH通知する</a></div>
-
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T23:11:57JST">Apr 17, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
     </ul>
   </header>

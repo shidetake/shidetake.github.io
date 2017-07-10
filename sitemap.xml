@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shidetake.com/misc/ripping_2/</loc>
+    <lastmod>2017-07-10T22:41:58+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/misc/ripping_1/</loc>
     <lastmod>2017-07-03T22:08:55+09:00</lastmod>
   </url>
@@ -63,13 +68,13 @@
   
   <url>
     <loc>http://shidetake.com/misc/</loc>
-    <lastmod>2017-07-03T22:08:55+09:00</lastmod>
+    <lastmod>2017-07-10T22:41:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2017-07-03T22:08:55+09:00</lastmod>
+    <lastmod>2017-07-10T22:41:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
