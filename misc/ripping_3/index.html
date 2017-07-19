@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="http://shidetake.com/images/logo.png">
 
 
-<link rel="canonical" href="http://shidetake.com/misc/line_highlights_4/">
+<link rel="canonical" href="http://shidetake.com/misc/ripping_3/">
 
 
     
@@ -20,23 +20,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>KindleのハイライトをLINEに通知する 4 - My New Hugo Site</title>
+    <title>HandBrakeCLIによるDVDリッピング 3 - My New Hugo Site</title>
     
-<meta name="description" content="前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。今回でこのシリーズは最後。方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 &#39;json&#39;を忘れずにrequireすること。# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, &#39;w&#39;) do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, &#39;r&#39;) do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights">
+<meta name="description" content="前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;` for ((i = 1; i &amp;lt;= $chapter_num; i&#43;&#43;)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).">
 
-<meta property="og:title" content="KindleのハイライトをLINEに通知する 4 - My New Hugo Site">
+<meta property="og:title" content="HandBrakeCLIによるDVDリッピング 3 - My New Hugo Site">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://shidetake.com/misc/line_highlights_4/">
+<meta property="og:url" content="http://shidetake.com/misc/ripping_3/">
 <meta property="og:image" content="http://shidetake.com/images/default.png">
 <meta property="og:site_name" content="My New Hugo Site">
-<meta property="og:description" content="前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。今回でこのシリーズは最後。方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 &#39;json&#39;を忘れずにrequireすること。# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, &#39;w&#39;) do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, &#39;r&#39;) do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights">
+<meta property="og:description" content="前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;` for ((i = 1; i &amp;lt;= $chapter_num; i&#43;&#43;)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="My New Hugo Site">
-<meta name="twitter:url" content="http://shidetake.com/misc/line_highlights_4/">
-<meta name="twitter:title" content="KindleのハイライトをLINEに通知する 4 - My New Hugo Site">
-<meta name="twitter:description" content="前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。今回でこのシリーズは最後。方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 &#39;json&#39;を忘れずにrequireすること。# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, &#39;w&#39;) do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, &#39;r&#39;) do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights">
+<meta name="twitter:url" content="http://shidetake.com/misc/ripping_3/">
+<meta name="twitter:title" content="HandBrakeCLIによるDVDリッピング 3 - My New Hugo Site">
+<meta name="twitter:description" content="前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;` for ((i = 1; i &amp;lt;= $chapter_num; i&#43;&#43;)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).">
 <meta name="twitter:image" content="http://shidetake.com/images/default.png">
 
 
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"http://shidetake.com/"
     },
-    "headline": "KindleのハイライトをLINEに通知する 4 - My New Hugo Site",
+    "headline": "HandBrakeCLIによるDVDリッピング 3 - My New Hugo Site",
     "image": {
       "@type": "ImageObject",
       "url": "http://shidetake.com/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-06-18T14:33:41JST",
-    "dateModified": "2017-06-18T14:33:41JST",
+    "datePublished": "2017-07-19T22:36:23JST",
+    "dateModified": "2017-07-19T22:36:23JST",
     "author": {
       "@type": "Person",
       "name": "My New Hugo Site"
@@ -71,14 +71,12 @@
         "height": 60
       }
     },
-    "description": "前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。
-今回でこのシリーズは最後。
-方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。
-記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。
-JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 'json'を忘れずにrequireすること。
-# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, 'w') do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。
-# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, 'r') do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。
-全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights"
+    "description": "前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
+diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
+/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
+HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
+chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i)."
   }
 </script>
 
@@ -125,73 +123,65 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
         
-        <li class="active">KindleのハイライトをLINEに通知する 4</li>
+        <li class="active">HandBrakeCLIによるDVDリッピング 3</li>
       </ol>
     </nav>
 
     <article class="single">
 
-  <a href="http://shidetake.com/misc/line_highlights_4/" class="thumb"></a>
+  <a href="http://shidetake.com/misc/ripping_3/" class="thumb"></a>
   <div class="content-inner">
-    <h1 class="title">KindleのハイライトをLINEに通知する 4</h1>
+    <h1 class="title">HandBrakeCLIによるDVDリッピング 3</h1>
 
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-18T14:33:41JST">Jun 18, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-07-19T22:36:23JST">Jul 19, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://shidetake.com/misc/">misc</a></li>
       
     </ul>
 
     <div class="article-body">
 
-<p><a href="../line_highlights_3/">前回</a>はLINEのBOTにメッセージを送ることで、
-ハイライトを取得して返信してくれるようにした。
-現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、
-何度も同じハイライトが送られてきてしまう。
-今回は最新のハイライトだけを返信するようにする。</p>
+<p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
 
-<p>今回でこのシリーズは最後。</p>
+<h2 id="dvdドライブのパスを取得">DVDドライブのパスを取得</h2>
 
-<h2 id="方針">方針</h2>
+<p><code>diskutil</code>コマンドを使う（たぶんmacOSでしか使えない）。
+DVDをドライブに入れた状態で、</p>
 
-<p>今まで取得したハイライトを記録しておいて、
-差分だけを返信するという単純な仕様にした。</p>
-
-<p>記録する方法は、これまた単純に外部ファイルに保存するだけ。
-容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、
-とりあえず問題になるまでは単純な実装にする。</p>
-
-<h2 id="json形式で保存">JSON形式で保存</h2>
-
-<p>以下のメソッドで<code>@highlights</code>という配列をJSON形式にして保存する。
-<code>'json'</code>を忘れずに<code>require</code>すること。</p>
-
-<pre><code class="language-ruby">  # ハイライトをJSON形式にして外部ファイルに保存する
-  def store_highlights
-    File.open(JSON_FILE_NAME, 'w') do |file|
-      JSON.dump(@highlights, file)
-    end
-  end
+<pre><code class="language-bash">diskutil list
 </code></pre>
 
-<h2 id="json形式のファイルを読み出し">JSON形式のファイルを読み出し</h2>
+<p>すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。
+NAMEの部分に入れたDVDの名前が表示されているのがあるはず。
+例えば以下のような感じ。</p>
 
-<p>以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから<code>@highlights</code>配列にデータを読み出す。</p>
-
-<pre><code class="language-ruby">  # 外部ファイルから既に取得しているハイライトを読み出す
-  def restore_highlights
-    return unless File.exist?(JSON_FILE_NAME)
-    File.open(JSON_FILE_NAME, 'r') do |file|
-      @highlights = JSON.load(file)
-    end
-  end
+<pre><code class="language-bash">/dev/disk2 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:                            VIBY_521               *2.0 GB     disk2
 </code></pre>
 
-<p>あとは、<code>@highlights</code>に存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。</p>
+<p>この場合、<code>/dev/disk2</code>を入力として指定することでDVDから直接リッピングが可能になる。</p>
 
-<h2 id="全ソース">全ソース</h2>
+<pre><code class="language-bash">HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv
+</code></pre>
 
-<p>githubに全ソースをあげた。
-<a href="https://github.com/shidetake/line_kindle_highlights">https://github.com/shidetake/line_kindle_highlights</a></p>
+<p>前回の最後のスクリプトと組み合わせて、</p>
+
+<pre><code class="language-bash">chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'`
+for ((i = 1; i &lt;= $chapter_num; i++)); do
+  HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv
+done
+</code></pre>
+
+<p>ここまでで、かなり形になったので今回でラストとする。
+ただ、実はこれだけだと使えないタイプのDVDがある。
+そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。</p>
+
+<h2 id="お約束">お約束</h2>
+
+<p>違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたDVDをリッピングするのはダメ。ぜったい。</p>
 </div>
   </div>
 
@@ -200,11 +190,11 @@ ga('send', 'pageview');
 
       <aside class="p-share">
   <div class="share-inner">
-    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_4%2f&title=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%204" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_4%2f&t=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%204" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_4%2f&text=Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%204&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_4%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-    <a href="http://line.me/R/msg/text/?Kindle%e3%81%ae%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%82%92LINE%e3%81%ab%e9%80%9a%e7%9f%a5%e3%81%99%e3%82%8b%204 http%3a%2f%2fshidetake.com%2fmisc%2fline_highlights_4%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+    <a href="http://b.hatena.ne.jp/add?mode=confirm&url=http%3a%2f%2fshidetake.com%2fmisc%2fripping_3%2f&title=HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%203" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
+    <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fshidetake.com%2fmisc%2fripping_3%2f&t=HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%203" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
+    <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2fshidetake.com%2fmisc%2fripping_3%2f&text=HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%203&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fmisc%2fripping_3%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
+    <a href="http://line.me/R/msg/text/?HandBrakeCLI%e3%81%ab%e3%82%88%e3%82%8bDVD%e3%83%aa%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%203 http%3a%2f%2fshidetake.com%2fmisc%2fripping_3%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
   </div>
 </aside>
 
@@ -215,7 +205,7 @@ ga('send', 'pageview');
           
           <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://shidetake.com/misc/" itemprop="url"><span itemprop="title">misc</span></a></li>
           
-          <li class="active">KindleのハイライトをLINEに通知する 4</li>
+          <li class="active">HandBrakeCLIによるDVDリッピング 3</li>
         </ol>
       </nav>
 
