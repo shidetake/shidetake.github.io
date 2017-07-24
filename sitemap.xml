@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shidetake.com/misc/ripping_3/</loc>
+    <loc>http://shidetake.com/ripping_3/</loc>
     <lastmod>2017-07-19T22:36:23+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/ripping_2/</loc>
+    <loc>http://shidetake.com/ripping_2/</loc>
     <lastmod>2017-07-10T22:41:58+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/ripping_1/</loc>
+    <loc>http://shidetake.com/ripping_1/</loc>
     <lastmod>2017-07-03T22:08:55+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/gmail_api_2/</loc>
+    <loc>http://shidetake.com/gmail_api_2/</loc>
     <lastmod>2017-06-26T22:44:57+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/gmail_api_1/</loc>
+    <loc>http://shidetake.com/gmail_api_1/</loc>
     <lastmod>2017-06-20T22:55:21+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/line_highlights_4/</loc>
+    <loc>http://shidetake.com/line_highlights_4/</loc>
     <lastmod>2017-06-18T14:33:41+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/line_highlights_3/</loc>
+    <loc>http://shidetake.com/line_highlights_3/</loc>
     <lastmod>2017-06-07T22:27:01+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/line_highlights_2/</loc>
+    <loc>http://shidetake.com/line_highlights_2/</loc>
     <lastmod>2017-06-04T22:44:34+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/line_highlights_1/</loc>
+    <loc>http://shidetake.com/line_highlights_1/</loc>
     <lastmod>2017-05-27T13:08:32+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/time_capsule/</loc>
+    <loc>http://shidetake.com/time_capsule/</loc>
     <lastmod>2017-05-14T21:01:17+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/dash_button/</loc>
+    <loc>http://shidetake.com/dash_button/</loc>
     <lastmod>2017-05-11T22:31:20+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://shidetake.com/misc/line_push/</loc>
+    <loc>http://shidetake.com/line_push/</loc>
     <lastmod>2017-04-17T23:11:57+09:00</lastmod>
   </url>
   
@@ -67,19 +67,12 @@
   </url>
   
   <url>
+    <loc>http://shidetake.com/archives/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://shidetake.com/misc/</loc>
-    <lastmod>2017-07-19T22:36:23+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://shidetake.com/</loc>
-    <lastmod>2017-07-19T22:36:23+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -90,7 +83,19 @@
   </url>
   
   <url>
+    <loc>http://shidetake.com/post/</loc>
+    <lastmod>2017-07-19T22:36:23+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/</loc>
+    <lastmod>2017-07-19T22:36:23+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,7 +1,5 @@
 
 
-  
-
 
   
 
@@ -21,32 +19,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>cheat_sheet</title>
+    <title>Posts</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/post/index.xml">
+    
 
     
-    <meta name="description" content="要約
-チートシート
-
-">
-    <meta property="og:description" content="要約
-チートシート
-
-">
+    <meta name="description" content="Hugo tranquilpeak theme demo">
+    <meta property="og:description" content="Hugo tranquilpeak theme demo">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="cheat_sheet">
-    <meta property="og:url" content="/playground/cheat_sheet/">
+    <meta property="og:title" content="Posts">
+    <meta property="og:url" content="/post/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="要約
-チートシート
-
-">
+    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
     
     
 
@@ -212,20 +203,35 @@ ga('send', 'pageview');
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <section class="postShorten-group main-content-wrap">
           
           
-            <div class="post-header main-content-wrap text-left">
+            
   
-    <h1 class="post-title" itemprop="headline">
-      cheat_sheet
-    </h1>
-  
-  <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-03-30T23:30:11&#43;09:00">
+    
       
-  March 30, 2017
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/line_highlights_2/">
+          KindleのハイライトをLINEに通知する 2
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-04T22:44:34&#43;09:00">
+      
+  June 4, 2017
 
     </time>
   
@@ -233,139 +239,244 @@ ga('send', 'pageview');
 
 </div>
 
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
+サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
+def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {&lsquo;User-Agent&rsquo; =&gt; &lsquo;Mac Safari&rsquo;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
+これでサーバ（今回はUbuntuを使った）で動作するようになった。
+LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。
+        <br>
+        <a href="http://shidetake.com/line_highlights_2/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/line_highlights_1/">
+          KindleのハイライトをLINEに通知する 1
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-05-27T13:08:32&#43;09:00">
+      
+  May 27, 2017
+
+    </time>
+  
+  
+
 </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &lsquo;capybara&rsquo; require &lsquo;capybara/dsl&rsquo; require &lsquo;capybara/poltergeist&rsquo; require &lsquo;selenium-webdriver&rsquo; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &lsquo;your@email&rsquo; KINDLE_PASSWORD = &lsquo;your_password&rsquo; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.
+        <br>
+        <a href="http://shidetake.com/line_highlights_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
           
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <p>要約<br />
-チートシート</p>
-
-<p></p>
-
-<p>かなり癖がある。
-恐らく、moreより上に見出し、もしくは小見出しがある場合、
-そこまでが要約となり、moreより上にあっても通常の文章は表示されない。
-見出しがない場合は、moreより上が全て要約となる。<br />
-バグな気もするが、詳細は不明。</p>
-
-<h1 id="見出し">見出し</h1>
-
-<h2 id="小見出し">小見出し</h2>
-
-<h1 id="改行">改行</h1>
-
-<p>文末に半角スペース2つ<br />
-で改行。</p>
-
-<h1 id="画像">画像</h1>
-
-<h2 id="from-google-photo">from google photo</h2>
-
-<p><img src="https://lh3.googleusercontent.com/IrDV2v9sWU8odajHY3Eq6aHccBAlaRC_UKYmddPmc_cg_mxY-2EB5Ud3jvL9djBI74haJHvI-wKsHzfUjDIRNbfbO2a5p6OKRrxA5i8wzJLQJ7OR-uelob5foqV1LWU2FaL76nAco16z_w0lihhyjeSsoQMcvRSmNI4REfVNmasj0MIV5TO5TEA7evE9P-lJMCHRWQIViuQc7SeoZK79NOXlkPSmudl2yCPOGDz8OsPRd4i0oOxAhUZ8F4WPMvKGSbdDk-wl9UjsmwN9UmY_d4E7XRFDXMRId4kEe_BvGi_8j0hHTn9x_f1w0lYKK8g3dwLGw28QDiL0Djp7w_56FshJ5JsIy3fY2iEEVpDdPMzIBdssE3-fk_BvvZ3rO4mRqlnQSGmm1XeaYSTQl-jsUBJG_NsWPjPHO3oNU2wgdP0uQAZ4YW9cik2hmlkTbwuRHoNUvzeWeL9PTpSlI3f7Zu1frVoYkI4co8FmDpKzaaQH2akc40HhL4Pyi06UjXfimRo1DYEIabxEeNiHfY97bGRDVsyf6eX_7WS7Pb0vTtSzaauLCsqVqBd5NRJSoxGtfvbKd9Je56N8ofiSMIc9BqpOCX7PLTc_30t2wTQt_3ZtcugvUEeSpw=w510-h679-no" alt="image" /></p>
-
-<p><img src="https://goo.gl/sWqbQI" alt="image" /></p>
-
-<h1 id="リンク">リンク</h1>
-
-<h2 id="絶対パス">絶対パス</h2>
-
-<p><a href="http://google.com">Google</a><br />
-<a href="http://google.com">http://google.com</a></p>
-
-<h2 id="相対パス">相対パス</h2>
-
-<p><a href="../../misc/line_push/">LINE BOTでPUSH通知する</a></p>
-
-<h1 id="シンタックスハイライト">シンタックスハイライト</h1>
-
-<h2 id="ブロック">ブロック</h2>
-
-<pre><code class="language-ruby">p hello
-</code></pre>
-
-<h2 id="インライン">インライン</h2>
-
-<p>文章の途中で<code>p hello</code>こんな感じ</p>
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
             
-              
-            
-            <div class="post-actions-wrap">
-  <nav>
-    <ul class="post-actions post-action-nav">
+  
+    
       
-        <li class="post-action">
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/time_capsule/">
+          Time Machineの容量制限
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-05-14T21:01:17&#43;09:00">
+      
+  May 14, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
+パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
+そこで、別の方法を採用した。
+ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
+1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
+ダミーファイルの作成は以下のコマンドを使った。
+dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
+cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy<em>1GB</em>$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy<em>10GB</em>$i bs=1000000 count=10000; done
+        <br>
+        <a href="http://shidetake.com/time_capsule/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
           
-            <a class="post-action-btn btn btn--disabled">
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/dash_button/">
+          Amazon Dash ButtonからLINE通知
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-05-11T22:31:20&#43;09:00">
+      
+  May 11, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        dasher導入 他の人が詳しく書いているので割愛。
+個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
+LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
+CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
+{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;<a href="https://api.line.me/v2/bot/message/push&quot;">https://api.line.me/v2/bot/message/push&quot;</a>, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]}
+        <br>
+        <a href="http://shidetake.com/dash_button/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
           
-            <i class="fa fa-angle-left"></i>
-            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/line_push/">
+          LINE BOTでPUSH通知する
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-04-17T23:11:57&#43;09:00">
+      
+  April 17, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &lsquo;CHANNEL_ACCESS_TOKEN&rsquo;; function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&lsquo;example@gmail.com&rsquo;, &lsquo;mailId&rsquo;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &lsquo;Content-Type:application/json&rsquo; \ -H &lsquo;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&rsquo; \ -d &lsquo;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!
+        <br>
+        <a href="http://shidetake.com/line_push/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+          
+  <div class="pagination-bar">
+    <ul class="pagination">
+      
+        <li class="pagination-prev">
+          <a class="btn btn--default btn--small" href="http://shidetake.com/post/">
+            <i class="fa fa-angle-left text-base icon-mr"></i>
+            <span>NEWER POSTS</span>
           </a>
         </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--disabled">
-          
-            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
       
+      
+      <li class="pagination-number">page 2 of 2</li>
     </ul>
-  </nav>
-  <ul class="post-actions post-action-share">
-    
-      <li class="post-action hide-lg hide-md hide-sm">
-        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-          <i class="fa fa-share-alt"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-          <i class="fa fa-google-plus"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-          <i class="fa fa-facebook-official"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </li>
-    
-    
-      <li class="post-action">
-        <a class="post-action-btn btn btn--default" href="#disqus_thread">
-          <i class="fa fa-comment-o"></i>
-        </a>
-      </li>
-    
-    <li class="post-action">
-      
-        <a class="post-action-btn btn btn--default" href="#">
-      
-        <i class="fa fa-list"></i>
-      </a>
-    </li>
-  </ul>
-</div>
+  </div>
 
 
-            
-              
-                <div id="disqus_thread">
-  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-              
-            
-          </div>
-        </article>
+        </section>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 shidetake. All Rights Reserved
@@ -373,92 +484,6 @@ ga('send', 'pageview');
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
-        <div class="post-actions-wrap">
-  <nav>
-    <ul class="post-actions post-action-nav">
-      
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--disabled">
-          
-            <i class="fa fa-angle-left"></i>
-            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-          </a>
-        </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--disabled">
-          
-            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-      
-    </ul>
-  </nav>
-  <ul class="post-actions post-action-share">
-    
-      <li class="post-action hide-lg hide-md hide-sm">
-        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-          <i class="fa fa-share-alt"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-          <i class="fa fa-google-plus"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-          <i class="fa fa-facebook-official"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </li>
-    
-    
-      <li class="post-action">
-        <a class="post-action-btn btn btn--default" href="#disqus_thread">
-          <i class="fa fa-comment-o"></i>
-        </a>
-      </li>
-    
-    <li class="post-action">
-      
-        <a class="post-action-btn btn btn--default" href="#">
-      
-        <i class="fa fa-list"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
-  <ul class="share-options">
-    <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-        <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
-      </a>
-    </li>
-    <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-        <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
-      </a>
-    </li>
-    <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
-        <i class="fa fa-twitter"></i><span>Share on Twitter</span>
-      </a>
-    </li>
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -785,32 +810,6 @@ $(document).ready(function() {
   });
 });
 </script>
-
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/playground\/cheat_sheet\/';
-          
-            this.page.identifier = '\/playground\/cheat_sheet\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'hugo-tranquilpeak-theme';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-    
-  
 
 
 

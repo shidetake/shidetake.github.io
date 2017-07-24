@@ -1,6 +1,8 @@
 
 
   
+    
+  
 
 
   
@@ -21,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>cheat_sheet</title>
+    <title>Amazon Dash ButtonからLINE通知</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -29,24 +31,27 @@
     
 
     
-    <meta name="description" content="要約
-チートシート
-
-">
-    <meta property="og:description" content="要約
-チートシート
-
-">
+    <meta name="description" content=" dasher導入 他の人が詳しく書いているので割愛。
+個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
+LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
+CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
+{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;https://api.line.me/v2/bot/message/push&quot;, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]}  ">
+    <meta property="og:description" content=" dasher導入 他の人が詳しく書いているので割愛。
+個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
+LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
+CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
+{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;https://api.line.me/v2/bot/message/push&quot;, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]}  ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="cheat_sheet">
-    <meta property="og:url" content="/playground/cheat_sheet/">
+    <meta property="og:title" content="Amazon Dash ButtonからLINE通知">
+    <meta property="og:url" content="/dash_button/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="要約
-チートシート
-
-">
+    <meta name="twitter:description" content=" dasher導入 他の人が詳しく書いているので割愛。
+個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
+LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
+CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
+{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;https://api.line.me/v2/bot/message/push&quot;, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]}  ">
     
     
 
@@ -91,7 +96,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -111,7 +116,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,7 +213,7 @@ ga('send', 'pageview');
 
       
 
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
@@ -218,14 +223,14 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      cheat_sheet
+      Amazon Dash ButtonからLINE通知
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-03-30T23:30:11&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-05-11T22:31:20&#43;09:00">
       
-  March 30, 2017
+  May 11, 2017
 
     </time>
   
@@ -237,55 +242,43 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>要約<br />
-チートシート</p>
+              
 
-<p></p>
+<h2 id="dasher導入">dasher導入</h2>
 
-<p>かなり癖がある。
-恐らく、moreより上に見出し、もしくは小見出しがある場合、
-そこまでが要約となり、moreより上にあっても通常の文章は表示されない。
-見出しがない場合は、moreより上が全て要約となる。<br />
-バグな気もするが、詳細は不明。</p>
+<p>他の人が詳しく書いているので割愛。<br />
+個人的には<a href="http://kakts-tec.hatenablog.com/entry/2016/12/10/231205">Amazon Dash Button と slackを連携させる</a>という記事がとても参考になった。</p>
 
-<h1 id="見出し">見出し</h1>
+<h2 id="lineへのpush通知設定">LINEへのPUSH通知設定</h2>
 
-<h2 id="小見出し">小見出し</h2>
+<p>LINE側の設定は<a href="../line_push/">LINE BOTでPUSH通知する</a>を参照。</p>
 
-<h1 id="改行">改行</h1>
+<p>CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。
+MAC_ADDRESSはdasher導入時に取得したものを書くこと。</p>
 
-<p>文末に半角スペース2つ<br />
-で改行。</p>
-
-<h1 id="画像">画像</h1>
-
-<h2 id="from-google-photo">from google photo</h2>
-
-<p><img src="https://lh3.googleusercontent.com/IrDV2v9sWU8odajHY3Eq6aHccBAlaRC_UKYmddPmc_cg_mxY-2EB5Ud3jvL9djBI74haJHvI-wKsHzfUjDIRNbfbO2a5p6OKRrxA5i8wzJLQJ7OR-uelob5foqV1LWU2FaL76nAco16z_w0lihhyjeSsoQMcvRSmNI4REfVNmasj0MIV5TO5TEA7evE9P-lJMCHRWQIViuQc7SeoZK79NOXlkPSmudl2yCPOGDz8OsPRd4i0oOxAhUZ8F4WPMvKGSbdDk-wl9UjsmwN9UmY_d4E7XRFDXMRId4kEe_BvGi_8j0hHTn9x_f1w0lYKK8g3dwLGw28QDiL0Djp7w_56FshJ5JsIy3fY2iEEVpDdPMzIBdssE3-fk_BvvZ3rO4mRqlnQSGmm1XeaYSTQl-jsUBJG_NsWPjPHO3oNU2wgdP0uQAZ4YW9cik2hmlkTbwuRHoNUvzeWeL9PTpSlI3f7Zu1frVoYkI4co8FmDpKzaaQH2akc40HhL4Pyi06UjXfimRo1DYEIabxEeNiHfY97bGRDVsyf6eX_7WS7Pb0vTtSzaauLCsqVqBd5NRJSoxGtfvbKd9Je56N8ofiSMIc9BqpOCX7PLTc_30t2wTQt_3ZtcugvUEeSpw=w510-h679-no" alt="image" /></p>
-
-<p><img src="https://goo.gl/sWqbQI" alt="image" /></p>
-
-<h1 id="リンク">リンク</h1>
-
-<h2 id="絶対パス">絶対パス</h2>
-
-<p><a href="http://google.com">Google</a><br />
-<a href="http://google.com">http://google.com</a></p>
-
-<h2 id="相対パス">相対パス</h2>
-
-<p><a href="../../misc/line_push/">LINE BOTでPUSH通知する</a></p>
-
-<h1 id="シンタックスハイライト">シンタックスハイライト</h1>
-
-<h2 id="ブロック">ブロック</h2>
-
-<pre><code class="language-ruby">p hello
+<pre><code class="language-json">{&quot;buttons&quot;: [
+  {
+    &quot;name&quot;: &quot;joy&quot;,
+    &quot;address&quot;: &quot;MAC_ADDRESS&quot;,
+    &quot;url&quot;: &quot;https://api.line.me/v2/bot/message/push&quot;,
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;headers&quot;: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;},
+    &quot;json&quot;: true,
+    &quot;body&quot;: {
+      &quot;to&quot;: &quot;USERID&quot;,
+      &quot;messages&quot;: [
+        {
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;text&quot;: &quot;JOY!&quot;
+        }
+      ]
+    }
+  }
+]}
 </code></pre>
 
-<h2 id="インライン">インライン</h2>
-
-<p>文章の途中で<code>p hello</code>こんな感じ</p>
               
             </div>
           </div>
@@ -299,7 +292,7 @@ ga('send', 'pageview');
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/time_capsule/" data-tooltip="Time Machineの容量制限">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -307,7 +300,7 @@ ga('send', 'pageview');
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_push/" data-tooltip="LINE BOTでPUSH通知する">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -324,17 +317,17 @@ ga('send', 'pageview');
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fdash_button%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fdash_button%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fdash_button%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -373,14 +366,14 @@ ga('send', 'pageview');
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
         <div class="post-actions-wrap">
   <nav>
     <ul class="post-actions post-action-nav">
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/time_capsule/" data-tooltip="Time Machineの容量制限">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -388,7 +381,7 @@ ga('send', 'pageview');
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_push/" data-tooltip="LINE BOTでPUSH通知する">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -405,17 +398,17 @@ ga('send', 'pageview');
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fdash_button%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fdash_button%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fdash_button%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -439,20 +432,20 @@ ga('send', 'pageview');
 
 
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fdash_button%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fdash_button%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fdash_button%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -790,9 +783,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/playground\/cheat_sheet\/';
+          this.page.url = 'http:\/\/shidetake.com\/dash_button\/';
           
-            this.page.identifier = '\/playground\/cheat_sheet\/'
+            this.page.identifier = '\/dash_button\/'
           
         };
         (function() {

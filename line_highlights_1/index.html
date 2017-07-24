@@ -1,6 +1,8 @@
 
 
   
+    
+  
 
 
   
@@ -21,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>cheat_sheet</title>
+    <title>KindleのハイライトをLINEに通知する 1</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -29,24 +31,24 @@
     
 
     
-    <meta name="description" content="要約
-チートシート
-
-">
-    <meta property="og:description" content="要約
-チートシート
-
-">
+    <meta name="description" content="読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.">
+    <meta property="og:description" content="読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="cheat_sheet">
-    <meta property="og:url" content="/playground/cheat_sheet/">
+    <meta property="og:title" content="KindleのハイライトをLINEに通知する 1">
+    <meta property="og:url" content="/line_highlights_1/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="要約
-チートシート
-
-">
+    <meta name="twitter:description" content="読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.">
     
     
 
@@ -91,7 +93,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -111,7 +113,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,7 +210,7 @@ ga('send', 'pageview');
 
       
 
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
@@ -218,14 +220,14 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      cheat_sheet
+      KindleのハイライトをLINEに通知する 1
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-03-30T23:30:11&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-05-27T13:08:32&#43;09:00">
       
-  March 30, 2017
+  May 27, 2017
 
     </time>
   
@@ -237,55 +239,120 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>要約<br />
-チートシート</p>
+              
 
-<p></p>
+<p>読書メモのためにハイライトした文章をコピペできる形にしたい。
+KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。</p>
 
-<p>かなり癖がある。
-恐らく、moreより上に見出し、もしくは小見出しがある場合、
-そこまでが要約となり、moreより上にあっても通常の文章は表示されない。
-見出しがない場合は、moreより上が全て要約となる。<br />
-バグな気もするが、詳細は不明。</p>
+<p>ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。</p>
 
-<h1 id="見出し">見出し</h1>
+<h2 id="クローラー作成">クローラー作成</h2>
 
-<h2 id="小見出し">小見出し</h2>
+<p>RubyのCapybaraを使った。</p>
 
-<h1 id="改行">改行</h1>
+<h3 id="動作環境">動作環境</h3>
 
-<p>文末に半角スペース2つ<br />
-で改行。</p>
-
-<h1 id="画像">画像</h1>
-
-<h2 id="from-google-photo">from google photo</h2>
-
-<p><img src="https://lh3.googleusercontent.com/IrDV2v9sWU8odajHY3Eq6aHccBAlaRC_UKYmddPmc_cg_mxY-2EB5Ud3jvL9djBI74haJHvI-wKsHzfUjDIRNbfbO2a5p6OKRrxA5i8wzJLQJ7OR-uelob5foqV1LWU2FaL76nAco16z_w0lihhyjeSsoQMcvRSmNI4REfVNmasj0MIV5TO5TEA7evE9P-lJMCHRWQIViuQc7SeoZK79NOXlkPSmudl2yCPOGDz8OsPRd4i0oOxAhUZ8F4WPMvKGSbdDk-wl9UjsmwN9UmY_d4E7XRFDXMRId4kEe_BvGi_8j0hHTn9x_f1w0lYKK8g3dwLGw28QDiL0Djp7w_56FshJ5JsIy3fY2iEEVpDdPMzIBdssE3-fk_BvvZ3rO4mRqlnQSGmm1XeaYSTQl-jsUBJG_NsWPjPHO3oNU2wgdP0uQAZ4YW9cik2hmlkTbwuRHoNUvzeWeL9PTpSlI3f7Zu1frVoYkI4co8FmDpKzaaQH2akc40HhL4Pyi06UjXfimRo1DYEIabxEeNiHfY97bGRDVsyf6eX_7WS7Pb0vTtSzaauLCsqVqBd5NRJSoxGtfvbKd9Je56N8ofiSMIc9BqpOCX7PLTc_30t2wTQt_3ZtcugvUEeSpw=w510-h679-no" alt="image" /></p>
-
-<p><img src="https://goo.gl/sWqbQI" alt="image" /></p>
-
-<h1 id="リンク">リンク</h1>
-
-<h2 id="絶対パス">絶対パス</h2>
-
-<p><a href="http://google.com">Google</a><br />
-<a href="http://google.com">http://google.com</a></p>
-
-<h2 id="相対パス">相対パス</h2>
-
-<p><a href="../../misc/line_push/">LINE BOTでPUSH通知する</a></p>
-
-<h1 id="シンタックスハイライト">シンタックスハイライト</h1>
-
-<h2 id="ブロック">ブロック</h2>
-
-<pre><code class="language-ruby">p hello
+<pre><code class="language-bash">ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15]
+selenium-webdriver (2.53.0, 2.52.0)
+capybara (2.14.0)
 </code></pre>
 
-<h2 id="インライン">インライン</h2>
+<h3 id="ソースコード">ソースコード</h3>
 
-<p>文章の途中で<code>p hello</code>こんな感じ</p>
+<pre><code class="language-ruby"># coding: utf-8
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+require 'selenium-webdriver'
+
+class LineKindleHighlights
+  include Capybara::DSL
+
+  KINDLE_EMAIL    = 'your@email'
+  KINDLE_PASSWORD = 'your_password'
+  CRAWL_PAGE_NUM = 2
+
+  def initialize
+    Capybara.current_driver = :selenium
+    Capybara.javascript_driver = :selenium
+    Capybara.app_host = 'https://kindle.amazon.co.jp'
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :selenium do |app|
+      # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+      Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome)
+    end
+  end
+
+  def scrape
+    login
+
+    # ページ読み込み待ち
+    sleep 5
+
+    go_to_highlights
+
+    CRAWL_PAGE_NUM.times do
+      all('.title').each do |element|
+        p element.text
+      end
+
+      all('.highlight').each do |element|
+        p element.text
+      end
+
+      next_page
+    end
+  end
+
+  private
+
+  # Kindleのマイページにアクセスしログインする
+  def login
+    visit('')
+    click_link 'sign in'
+    fill_in 'ap_email',
+      :with =&gt; KINDLE_EMAIL
+    fill_in 'password',
+      :with =&gt; KINDLE_PASSWORD
+    click_on 'signInSubmit'
+  end
+
+  # Your Hightlightsのページに遷移する
+  # @note ログイン直後のページで使う
+  def go_to_highlights
+    click_link 'Your Highlights'
+  end
+
+  # 次のページに遷移
+  # @note Your Hightlightsのページで使うことで次の本のハイライトページに遷移する
+  def next_page
+    visit(find_by_id('nextBookLink', visible: false)[:href])
+  end
+end
+
+crawler = LineKindleHighlights.new
+crawler.scrape
+</code></pre>
+
+<ul>
+<li><code>KINDLE_EMAIL</code>と<code>KINDLE_PASSWORD</code>だけ設定すれば動く</li>
+<li><code>CRAWL_PAGE_NUM</code>は実質的には取得するハイライトの本の数になる (1ページに1冊分の情報が出る）</li>
+<li>次のページへの遷移で少しハマった。hiddenなクラスのリンクを取得するには<code>visible: false</code>する必要があるらしい</li>
+</ul>
+
+<p>とりあえず今回はここまで。</p>
+
+<p><a href="../line_highlights_2/">続きはこちら</a></p>
+
+<h2 id="todo">TODO</h2>
+
+<ul class="task-list">
+<li><input type="checkbox" checked disabled class="task-list-item"> クローラー作成</li>
+<li><input type="checkbox" disabled class="task-list-item"> LINE通知機能</li>
+<li><input type="checkbox" disabled class="task-list-item"> 通知済みハイライトを通知しない</li>
+<li><input type="checkbox" disabled class="task-list-item"> サーバ上で動作</li>
+</ul>
+
               
             </div>
           </div>
@@ -299,7 +366,7 @@ ga('send', 'pageview');
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_2/" data-tooltip="KindleのハイライトをLINEに通知する 2">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -307,7 +374,7 @@ ga('send', 'pageview');
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/time_capsule/" data-tooltip="Time Machineの容量制限">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -324,17 +391,17 @@ ga('send', 'pageview');
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -373,14 +440,14 @@ ga('send', 'pageview');
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
         <div class="post-actions-wrap">
   <nav>
     <ul class="post-actions post-action-nav">
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_2/" data-tooltip="KindleのハイライトをLINEに通知する 2">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -388,7 +455,7 @@ ga('send', 'pageview');
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/time_capsule/" data-tooltip="Time Machineの容量制限">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -405,17 +472,17 @@ ga('send', 'pageview');
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -439,20 +506,20 @@ ga('send', 'pageview');
 
 
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fplayground%2fcheat_sheet%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fline_highlights_1%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -790,9 +857,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/playground\/cheat_sheet\/';
+          this.page.url = 'http:\/\/shidetake.com\/line_highlights_1\/';
           
-            this.page.identifier = '\/playground\/cheat_sheet\/'
+            this.page.identifier = '\/line_highlights_1\/'
           
         };
         (function() {
