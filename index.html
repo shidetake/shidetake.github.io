@@ -223,6 +223,66 @@ ga('send', 'pageview');
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/google_photo_api_1/">
+          Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-30T22:56:40Z">
+      
+  July 30, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+
+        <br>
+        <a href="http://shidetake.com/google_photo_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/ripping_3/">
           HandBrakeCLIによるDVDリッピング 3
         </a>
@@ -524,66 +584,6 @@ JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形
 </article>
 
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/line_highlights_3/">
-          KindleのハイライトをLINEに通知する 3
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-06-07T22:27:01&#43;09:00">
-      
-  June 7, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
-起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
-LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
-妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
-流れ 以下のような流れで起動要求を伝達する。
-LINEで起動要求
-↓
-LINEからGoogle Apps Scriptのスクリプト実行
-↓
-ソケット通信でスクレイピング開始要求
-実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
-+require &lsquo;socket&rsquo; +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &quot; is accepted\n&quot;) + crawler.scrape + + print(s, &quot; is gone\n&quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
-つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
-function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.
-        <br>
-        <a href="http://shidetake.com/line_highlights_3/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
           
   <div class="pagination-bar">
     <ul class="pagination">
@@ -658,6 +658,26 @@ function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/google_photo_api_1/">
+                <h3 class="media-heading">Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -865,30 +885,6 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/time_capsule/">
-                <h3 class="media-heading">Time Machineの容量制限</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"> Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -896,7 +892,7 @@ cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./du
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         13 posts found
+         14 posts found
       </p>
     </div>
   </div>

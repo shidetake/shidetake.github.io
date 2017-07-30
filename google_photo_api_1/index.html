@@ -23,35 +23,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>RubyでGmail本文を取得する 1</title>
+    <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
     <meta name="author" content="shidetake">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="tech">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
 
     
-    <meta name="description" content="GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.">
-    <meta property="og:description" content="GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.">
+    <meta name="description" content="Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+">
+    <meta property="og:description" content="Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="RubyでGmail本文を取得する 1">
-    <meta property="og:url" content="/gmail_api_1/">
+    <meta property="og:title" content="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+    <meta property="og:url" content="/google_photo_api_1/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.">
+    <meta name="twitter:description" content="Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+">
     
     
 
@@ -223,18 +220,28 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      RubyでGmail本文を取得する 1
+      Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-06-20T22:55:21&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-07-30T22:56:40Z">
       
-  June 20, 2017
+  July 30, 2017
 
     </time>
   
   
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
 
 </div>
 
@@ -242,107 +249,72 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <p>Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+</p>
 
-<p>GmailのAPIをRubyで使う方法を何回かに分けて書く。</p>
+<p>ちなみにGoogle PhotoのAPIはまだ用意されておらず、Piacasa APIがその代替となっている。</p>
 
-<h2 id="api準備">API準備</h2>
+<h1 id="picasa-apiを使う">Picasa APIを使う</h1>
 
-<p>まずはAPIを使うための準備。<a href="https://console.developers.google.com/">https://console.developers.google.com/</a> にアクセスして、プロジェクトを作成する。
-それから、Gmail APIを有効にし、認証情報を追加する。</p>
+<h2 id="access-tokenの取得">Access tokenの取得</h2>
 
-<ul>
-<li>使用するAPI =&gt; Gmail API</li>
-<li>APIを呼び出す場所 =&gt; その他のUI</li>
-<li>アクセスするデータの種類 =&gt; ユーザーデータ</li>
-</ul>
+<p><a href="../gmail_api_1/">Gmailのとき</a>とは違い、PicasaのAPIを使うのは少しコツがいる。
+既にPicasaのサービスが終了しているためか、API MANAGERで検索してもPicasa APIが出てこない。</p>
 
-<p>あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。</p>
+<p>そこで、Access tokenを取得するために<a href="https://developers.google.com/oauthplayground/">OAuth 2.0 Playground</a>を使う。</p>
 
-<h2 id="access-tokenの取得">Access Tokenの取得</h2>
+<p>Select the scopeの一覧から、Picasa Web v2を選択して表示されるURLをクリックする。
+Authorize APIsボタンが有効になるので、それを押してAPIを有効にする許可を与える。</p>
 
-<p>取得したクライアントIDとクライアントシークレットから、
-以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。</p>
+<p>Authorization codeが取得できるので、続けてExchange authorization code for tokensボタンを押下。
+これでAccess tokenが得られる。</p>
 
-<pre><code class="language-ruby">require 'net/http'
-require 'uri'
-require 'oauth2'
-require 'launchy'
+<h2 id="access-tokenの確認">Access tokenの確認</h2>
 
-CLIENT_ID     = 'YourClientID'
-CLIENT_SECRET = 'YourClientSecret'
+<p>得られたAccess tokenの確認も兼ねて、簡単なAPIを使ってみる。</p>
 
-client = OAuth2::Client.new(
-  CLIENT_ID, CLIENT_SECRET,
-  :site =&gt; &quot;https://accounts.google.com&quot;,
-  :token_url =&gt; &quot;/o/oauth2/token&quot;,
-  :authorize_url =&gt; &quot;/o/oauth2/auth&quot;)
-auth_url = client.auth_code.authorize_url(
-  :redirect_uri =&gt; 'urn:ietf:wg:oauth:2.0:oob',
-  :scope =&gt; 'https://www.googleapis.com/auth/gmail.readonly')
- 
-# 表示されるURLをブラウザで開く
-Launchy.open auth_url
- 
-print &quot;authorization code:&quot;
-authorization_code = gets.chomp
+<p>まずはRubyでPicasa APIを簡単に使えるようにするgemをインストール。</p>
 
-res = Net::HTTP.post_form(URI.parse('https://accounts.google.com/o/oauth2/token'),
-                          {'client_id'     =&gt; CLIENT_ID,
-                           'client_secret' =&gt; CLIENT_SECRET,
-                           'redirect_uri'  =&gt; 'urn:ietf:wg:oauth:2.0:oob',
-                           'grant_type'    =&gt; 'authorization_code',
-                           'code'          =&gt; authorization_code})
-puts res.body
+<pre><code class="language-bash">gem install picasa
 </code></pre>
 
-<h2 id="メールの取得">メールの取得</h2>
+<p>あとは以下のようなスクリプトでアルバム名の一覧を取得する。</p>
 
-<p>取得したアクセストークンを以下のように使って、Gmail APIが使える。
-以下は、auto-confirm@amazon.co.jpからの受信メールを取得するスクリプト。</p>
+<pre><code class="language-ruby">require 'picasa'
 
-<pre><code class="language-ruby">require 'google/api_client'
-require 'json'
-
-ACCESS_TOKEN     = 'YourAccessToken'
-APPLICATION_NAME = 'YourApplicationName'
-
-# APIクライアントの準備
-client = Google::APIClient.new(application_name: APPLICATION_NAME)
-client.authorization.access_token = ACCESS_TOKEN
-gmail = client.discovered_api('gmail')
-
-# query
-res = client.execute(
-  api_method: gmail.users.messages.list,
-  parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon.co.jp'},
+client = Picasa::Client.new(
+  user_id: 'your@email',
+  access_token: 'your_access_token'
 )
 
-# parse
-if res.status == 200
-  json = JSON.parse(res.body)
-  json['messages'].each do |mail_ids|
-    mail = client.execute(
-      api_method: gmail.users.messages.get,
-      parameters: {'userId' =&gt; 'me', 'id'=&gt;mail_ids['id']},
-    )
-    p mail.body
-  end
-else
-  puts 'error'
-end
+albums = client.album.list.entries
+albums.each { |a| p a.title }
 </code></pre>
 
-<h2 id="今後">今後</h2>
+<p>your@emailとyour_access_tokenにはそれぞれ自分の（Access token取得時に許可を与えた）アカウントと、上で取得したAccess tokenを入れる。</p>
 
-<p>アクセストークンには期限があり、一定時間経過すると使えなくなってしまう。
-これを解決するのがリフレッシュトークンを使った方法。<a href="../gmail_api_2/">次回</a>はこれを使っていつでもAPIを利用できるようにする。</p>
+<p>Google Photoのアルバム名の一覧が表示されれば成功。Access tokenがちゃんと使えることがわかった。</p>
 
+<p>次回以降で写真の取得、Exif情報の取得あたりのやり方を書いていく。</p>
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag1/">tag1</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag2/">tag2</a>
+
+                  </div>
+                
               
             
             <div class="post-actions-wrap">
@@ -351,7 +323,7 @@ end
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/gmail_api_2/" data-tooltip="RubyでGmail本文を取得する 2">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -359,7 +331,7 @@ end
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_4/" data-tooltip="KindleのハイライトをLINEに通知する 4">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_3/" data-tooltip="HandBrakeCLIによるDVDリッピング 3">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -376,17 +348,17 @@ end
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -432,7 +404,7 @@ end
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/gmail_api_2/" data-tooltip="RubyでGmail本文を取得する 2">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -440,7 +412,7 @@ end
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_4/" data-tooltip="KindleのハイライトをLINEに通知する 4">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_3/" data-tooltip="HandBrakeCLIによるDVDリッピング 3">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -457,17 +429,17 @@ end
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -494,17 +466,17 @@ end
       <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgmail_api_1%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -838,9 +810,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/gmail_api_1\/';
+          this.page.url = 'http:\/\/shidetake.com\/google_photo_api_1\/';
           
-            this.page.identifier = '\/gmail_api_1\/'
+            this.page.identifier = '\/google_photo_api_1\/'
           
         };
         (function() {

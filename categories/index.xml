@@ -10,5 +10,23 @@
 	<atom:link href="http://shidetake.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Category</title>
+      <link>http://shidetake.com/categories/category/</link>
+      <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
+      
+      <guid>http://shidetake.com/categories/category/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Subcategory</title>
+      <link>http://shidetake.com/categories/subcategory/</link>
+      <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
+      
+      <guid>http://shidetake.com/categories/subcategory/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
