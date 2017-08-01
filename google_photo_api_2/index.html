@@ -23,44 +23,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Time Machineの容量制限</title>
+    <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
     <meta name="author" content="shidetake">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="tech">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
 
     
-    <meta name="description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
-    <meta property="og:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+    <meta name="description" content="前回の続き。
+今回は任意のアルバムから写真の情報を取得する。
+">
+    <meta property="og:description" content="前回の続き。
+今回は任意のアルバムから写真の情報を取得する。
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Time Machineの容量制限">
-    <meta property="og:url" content="/time_capsule/">
+    <meta property="og:title" content="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2">
+    <meta property="og:url" content="/google_photo_api_2/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+    <meta name="twitter:description" content="前回の続き。
+今回は任意のアルバムから写真の情報を取得する。
+">
     
     
 
@@ -232,18 +217,28 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Time Machineの容量制限
+      Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-05-14T21:01:17&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-08-01T22:41:29Z">
       
-  May 14, 2017
+  August 1, 2017
 
     </time>
   
   
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
 
 </div>
 
@@ -251,43 +246,73 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <p><a href="../google_photo_api_1/">前回</a>の続き。
+今回は任意のアルバムから写真の情報を取得する。
+</p>
 
-<p>Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
-Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
-何らかの方法で容量を制限する必要がある。</p>
+<h1 id="写真情報の取得">写真情報の取得</h1>
 
-<p>パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。
-ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。</p>
+<p>your_album_nameアルバムから取得する場合は以下のような感じ。</p>
 
-<p>そこで、別の方法を採用した。</p>
+<pre><code class="language-ruby">require 'picasa'
 
-<h2 id="ダミーファイルを置く">ダミーファイルを置く</h2>
+client = Picasa::Client.new(
+  user_id: 'your@email',
+  access_token: 'your_access_token'
+)
 
-<p>ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。
-新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。</p>
+albums = client.album.list.entries
+album = albums.find { |a| a.title == 'your_album_name' }
 
-<p>1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、
-計200GB分のデータ領域を確保することにした。</p>
+photos = client.album.show(album.id).entries
 
-<p>ダミーファイルの作成は以下のコマンドを使った。</p>
-
-<pre><code class="language-bash">dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000
+photos.each do |photo|
+  puts &quot;#{photo.id}, #{photo.exif.time}, #{photo.title}, #{photo.exif.model}&quot;
+end
 </code></pre>
 
-<p>実際にはfor文で以下のように使う。
-ネットワーク越しなのでかなり時間がかかることに注意。</p>
+<p>Exif情報から撮影機器のモデル名を取得することもできた。
+これで最初にやりたかったことはほぼできたが、
+このスクリプトだと1000枚しか処理できないという欠点があるのでもう少し続ける。</p>
 
-<pre><code class="language-bash">cd /Volumes/TimeCapsule
-for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done
-for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done
+<h1 id="大量の写真情報の取得">大量の写真情報の取得</h1>
+
+<p><code>start-index</code>オプションを使って以下のように書くことで、1000枚以上の写真を処理することができる。
+ただし、<code>start-index</code>の最大値は10001らしいので、この方法でも11000枚までしか処理できない。
+11000枚で十分事足りたので、この対処法までは調べていない。</p>
+
+<pre><code class="language-ruby">PAGE_NUM_MAX = 11
+
+page_num = [album.numphotos / 1000, PAGE_NUM_MAX].min
+
+page_num.times do |page|
+  opt = {}
+  opt['start-index'] = page * 1000 + 1
+  photos = client.album.show(album.id, opt).entries
+  photos.each do |photo|
+    puts &quot;#{photo.id}, #{photo.exif.time}, #{photo.title}, #{photo.exif.model}&quot;
+  end
+end
 </code></pre>
 
+<p>albumの指定まではこれまでと変わらないので省略した。</p>
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag1/">tag1</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag2/">tag2</a>
+
+                  </div>
+                
               
             
             <div class="post-actions-wrap">
@@ -296,7 +321,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_1/" data-tooltip="KindleのハイライトをLINEに通知する 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -304,7 +329,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dash_button/" data-tooltip="Amazon Dash ButtonからLINE通知">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -321,17 +346,17 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -377,7 +402,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_1/" data-tooltip="KindleのハイライトをLINEに通知する 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -385,7 +410,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dash_button/" data-tooltip="Amazon Dash ButtonからLINE通知">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -402,17 +427,17 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -439,17 +464,17 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
       <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_2%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -782,9 +807,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/time_capsule\/';
+          this.page.url = 'http:\/\/shidetake.com\/google_photo_api_2\/';
           
-            this.page.identifier = '\/time_capsule\/'
+            this.page.identifier = '\/google_photo_api_2\/'
           
         };
         (function() {

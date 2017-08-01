@@ -565,6 +565,25 @@ BOTに話しかけたタイミングでソケット通信が飛ぶようにな�
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/google_photo_api_2/">
+                <h3 class="media-heading">Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../google_photo_api_1/">前回</a>の続き。
+今回は任意のアルバムから写真の情報を取得する。
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/google_photo_api_1/">
                 <h3 class="media-heading">Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</h3>
               </a>
@@ -768,26 +787,6 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/line_highlights_1/">
-                <h3 class="media-heading">KindleのハイライトをLINEに通知する 1</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
-ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
-クローラー作成 RubyのCapybaraを使った。
-動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require 'capybara' require 'capybara/dsl' require 'capybara/poltergeist' require 'selenium-webdriver' class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = 'your@email' KINDLE_PASSWORD = 'your_password' CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -795,7 +794,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         14 posts found
+         15 posts found
       </p>
     </div>
   </div>
