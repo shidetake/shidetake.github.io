@@ -564,6 +564,35 @@ end
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/wireless_tv/">
+                <h3 class="media-heading">テレビのアンテナ線を無線化する</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
+マンションなのでアンテナ設置など大掛かりな方法は除いて、
+ざっと調べたところ、以下の方法がある。</p>
+
+<ul>
+<li>室内アンテナを設置する</li>
+<li>PS4とnasneを使う方法</li>
+<li>Apple TVとピクセラのワイヤレステレビチューナーを使う方法</li>
+</ul>
+
+<p>3つ目の案を採用することにした。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/google_photo_api_2/">
                 <h3 class="media-heading">Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</h3>
               </a>
@@ -765,27 +794,6 @@ function doPost(e) { Logger.log('doPost') var events = JSON.</div>
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/line_highlights_2/">
-                <h3 class="media-heading">KindleのハイライトをLINEに通知する 2</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
-サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
-def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
-これでサーバ（今回はUbuntuを使った）で動作するようになった。
-LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -793,7 +801,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         15 posts found
+         16 posts found
       </p>
     </div>
   </div>

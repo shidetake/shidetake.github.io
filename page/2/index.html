@@ -223,6 +223,57 @@ ga('send', 'pageview');
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/gmail_api_1/">
+          RubyでGmail本文を取得する 1
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-20T22:55:21&#43;09:00">
+      
+  June 20, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        GmailのAPIをRubyで使う方法を何回かに分けて書く。
+API準備 まずはAPIを使うための準備。<a href="https://console.developers.google.com/">https://console.developers.google.com/</a> にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
+ 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
+Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
+require &lsquo;net/http&rsquo; require &lsquo;uri&rsquo; require &lsquo;oauth2&rsquo; require &lsquo;launchy&rsquo; CLIENT_ID = &lsquo;YourClientID&rsquo; CLIENT_SECRET = &lsquo;YourClientSecret&rsquo; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;<a href="https://accounts.google.com&quot;">https://accounts.google.com&quot;</a>, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &lsquo;urn:ietf:wg:oauth:2.0:oob&rsquo;, :scope =&gt; &lsquo;<a href="https://www.googleapis.com/auth/gmail.readonly'">https://www.googleapis.com/auth/gmail.readonly'</a>) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.
+        <br>
+        <a href="http://shidetake.com/gmail_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/line_highlights_4/">
           KindleのハイライトをLINEに通知する 4
         </a>
@@ -529,53 +580,6 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
 </article>
 
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/line_push/">
-          LINE BOTでPUSH通知する
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-04-17T23:11:57&#43;09:00">
-      
-  April 17, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &lsquo;CHANNEL_ACCESS_TOKEN&rsquo;; function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&lsquo;example@gmail.com&rsquo;, &lsquo;mailId&rsquo;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &lsquo;Content-Type:application/json&rsquo; \ -H &lsquo;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&rsquo; \ -d &lsquo;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!
-        <br>
-        <a href="http://shidetake.com/line_push/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
           
   <div class="pagination-bar">
     <ul class="pagination">
@@ -588,7 +592,14 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
         </li>
       
       
-      <li class="pagination-number">page 2 of 2</li>
+        <li class="pagination-next">
+          <a class="btn btn--default btn--small" href="http://shidetake.com/page/3/">
+            <span>OLDER POSTS</span>
+            <i class="fa fa-angle-right text-base icon-ml"></i>
+          </a>
+        </li>
+      
+      <li class="pagination-number">page 2 of 3</li>
     </ul>
   </div>
 
@@ -650,6 +661,35 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/wireless_tv/">
+                <h3 class="media-heading">テレビのアンテナ線を無線化する</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
+マンションなのでアンテナ設置など大掛かりな方法は除いて、
+ざっと調べたところ、以下の方法がある。</p>
+
+<ul>
+<li>室内アンテナを設置する</li>
+<li>PS4とnasneを使う方法</li>
+<li>Apple TVとピクセラのワイヤレステレビチューナーを使う方法</li>
+</ul>
+
+<p>3つ目の案を採用することにした。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -855,27 +895,6 @@ function doPost(e) { Logger.log('doPost') var events = JSON.</div>
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/line_highlights_2/">
-                <h3 class="media-heading">KindleのハイライトをLINEに通知する 2</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
-サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
-def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = 'https://kindle.amazon.co.jp' Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
-これでサーバ（今回はUbuntuを使った）で動作するようになった。
-LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -883,7 +902,7 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         15 posts found
+         16 posts found
       </p>
     </div>
   </div>

@@ -6,10 +6,31 @@
     <description>Recent content in Posts on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Aug 2017 22:41:29 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Aug 2017 22:26:23 +0000</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>テレビのアンテナ線を無線化する</title>
+      <link>http://shidetake.com/wireless_tv/</link>
+      <pubDate>Thu, 10 Aug 2017 22:26:23 +0000</pubDate>
+      
+      <guid>http://shidetake.com/wireless_tv/</guid>
+      <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
+マンションなのでアンテナ設置など大掛かりな方法は除いて、
+ざっと調べたところ、以下の方法がある。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;室内アンテナを設置する&lt;/li&gt;
+&lt;li&gt;PS4とnasneを使う方法&lt;/li&gt;
+&lt;li&gt;Apple TVとピクセラのワイヤレステレビチューナーを使う方法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3つ目の案を採用することにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>

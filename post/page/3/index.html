@@ -19,21 +19,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Playgrounds</title>
+    <title>Posts</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/playground/index.xml">
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/post/index.xml">
     
 
     
     <meta name="description" content="Hugo tranquilpeak theme demo">
     <meta property="og:description" content="Hugo tranquilpeak theme demo">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Playgrounds">
-    <meta property="og:url" content="/playground/">
+    <meta property="og:title" content="Posts">
+    <meta property="og:url" content="/post/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
@@ -206,7 +206,69 @@ ga('send', 'pageview');
         <section class="postShorten-group main-content-wrap">
           
           
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/line_push/">
+          LINE BOTでPUSH通知する
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-04-17T23:11:57&#43;09:00">
+      
+  April 17, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &lsquo;CHANNEL_ACCESS_TOKEN&rsquo;; function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&lsquo;example@gmail.com&rsquo;, &lsquo;mailId&rsquo;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &lsquo;Content-Type:application/json&rsquo; \ -H &lsquo;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&rsquo; \ -d &lsquo;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!
+        <br>
+        <a href="http://shidetake.com/line_push/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
           
+          
+  <div class="pagination-bar">
+    <ul class="pagination">
+      
+        <li class="pagination-prev">
+          <a class="btn btn--default btn--small" href="http://shidetake.com/post/page/2/">
+            <i class="fa fa-angle-left text-base icon-mr"></i>
+            <span>NEWER POSTS</span>
+          </a>
+        </li>
+      
+      
+      <li class="pagination-number">page 3 of 3</li>
+    </ul>
+  </div>
+
 
         </section>
         <footer id="footer" class="main-content-wrap">
