@@ -6,10 +6,24 @@
     <description>Recent content in Subcategory on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Aug 2017 22:26:23 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Aug 2017 17:14:33 +0000</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/categories/subcategory/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>iPadをウェブカメラ化してiCamSourceと連携</title>
+      <link>http://shidetake.com/icam/</link>
+      <pubDate>Thu, 17 Aug 2017 17:14:33 +0000</pubDate>
+      
+      <guid>http://shidetake.com/icam/</guid>
+      <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
+ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。&lt;/p&gt;
+
+&lt;p&gt;使わなくなった古いiPhoneを使ってもよい。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>テレビのアンテナ線を無線化する</title>

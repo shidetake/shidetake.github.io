@@ -269,6 +269,28 @@ ga('send', 'pageview');
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/icam/">
+                <h3 class="media-heading">iPadをウェブカメラ化してiCamSourceと連携</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
+ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。</p>
+
+<p>使わなくなった古いiPhoneを使ってもよい。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/wireless_tv/">
                 <h3 class="media-heading">テレビのアンテナ線を無線化する</h3>
               </a>
@@ -469,36 +491,6 @@ JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/line_highlights_3/">
-                <h3 class="media-heading">KindleのハイライトをLINEに通知する 3</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
-起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
-LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
-妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
-流れ 以下のような流れで起動要求を伝達する。
-LINEで起動要求
-↓
-LINEからGoogle Apps Scriptのスクリプト実行
-↓
-ソケット通信でスクレイピング開始要求
-実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
-+require 'socket' +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &quot; is accepted\n&quot;) + crawler.scrape + + print(s, &quot; is gone\n&quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
-つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
-function doPost(e) { Logger.log('doPost') var events = JSON.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -506,7 +498,7 @@ function doPost(e) { Logger.log('doPost') var events = JSON.</div>
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         16 posts found
+         17 posts found
       </p>
     </div>
   </div>
