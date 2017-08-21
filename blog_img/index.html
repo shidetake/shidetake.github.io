@@ -23,23 +23,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>LINE BOTでPUSH通知する</title>
+    <title>IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</title>
     <meta name="author" content="shidetake">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="tech">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
 
     
-    <meta name="description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!">
-    <meta property="og:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!">
+    <meta name="description" content="ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。
+
+というわけで、Google Photoの画像を簡単に直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。
+
+">
+    <meta property="og:description" content="ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。
+
+というわけで、Google Photoの画像を簡単に直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="LINE BOTでPUSH通知する">
-    <meta property="og:url" content="/line_push/">
+    <meta property="og:title" content="IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる">
+    <meta property="og:url" content="/blog_img/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!">
+    <meta name="twitter:description" content="ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。
+
+というわけで、Google Photoの画像を簡単に直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。
+
+">
     
     
 
@@ -211,18 +232,28 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      LINE BOTでPUSH通知する
+      IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-04-17T23:11:57&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-08-21T22:44:54Z">
       
-  April 17, 2017
+  August 21, 2017
 
     </time>
   
   
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
 
 </div>
 
@@ -230,76 +261,98 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <p>ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。</p>
 
-<h2 id="登録">登録</h2>
+<p>というわけで、Google Photoの画像を<strong>簡単に</strong>直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。</p>
+
+<p></p>
+
+<h2 id="設定手順">設定手順</h2>
+
+<ol>
+<li>IFTTTでNew Appletボタンをクリック</li>
+<li>サービスはGoogle Photoを選択</li>
+<li>トリガはNew photo uploaded
 
 <ul>
-<li>PUSH通知する場合はDeveloper Trialで登録</li>
-</ul>
-
-<h2 id="google-apps-scriptでユーザid取得">Google Apps ScriptでユーザID取得</h2>
-
-<ul>
-<li>友達に追加したユーザのIDを登録したメールアドレスにメールする</li>
-<li>以下のコードでウェブアプリケーションとして導入する
+<li>現時点ではこれしか選べない</li>
+</ul></li>
+<li>アルバムは適当なものを選ぶ
 
 <ul>
-<li>CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる</li>
-<li>example@gmail.comは任意のgmailアドレス</li>
-<li>アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）</li>
+<li>共有アルバムは選べないので注意
+
+<ul>
+<li>恐らくPicasa APIの仕様</li>
+</ul></li>
+</ul></li>
+<li>アクションサービスはメールを選択
+
+<ul>
+<li>メールが嫌いならLINEでもよい</li>
+</ul></li>
+<li>アクションはSend me an email</li>
+<li>Subjectは適当に入れる
+
+<ul>
+<li>例: 画像URL {{CreatedAt}}
+
+<ul>
+<li>{{CreatedAt}}はトリガがかかった日時</li>
+</ul></li>
+</ul></li>
+<li>Bodyは{{PhotoUrl}}</li>
+<li>Create actionボタンを押して完了</li>
+</ol>
+
+<h2 id="実行手順">実行手順</h2>
+
+<ol>
+<li>トリガ用のアルバムに写真を放り込む</li>
+<li>1分程するとメールが届く</li>
+<li>開いてURLをコピーしてブログに貼り付ける</li>
+</ol>
+
+<h2 id="特徴">特徴</h2>
+
+<ul>
+<li>大きい画像をいい具合に縮小してくれる
+
+<ul>
+<li>細かい条件は不明だが、いい具合に縮小してくれる</li>
+<li>PicasaのAPIで取得できるURLだとこうなってしまう模様
+
+<ul>
+<li>Picasa APIの使い方は<a href="../google_photo_api_1/">こちら</a></li>
+</ul></li>
+</ul></li>
+<li>短縮URLにして送ってくれる
+
+<ul>
+<li>IFTTTの機能（設定が必要かも）</li>
+<li>オリジナルアドレスだと長過ぎてブログに貼り付けたくないので助かる</li>
 </ul></li>
 </ul>
-
-<pre><code class="language-js">var CHANNEL_ACCESS_TOKEN = 'CHANNEL_ACCESS_TOKEN';
-
-function doPost(e) {
-  Logger.log('doPost')
-  var events = JSON.parse(e.postData.contents).events;
-  events.forEach (function(event) {
-    if (event.type == &quot;follow&quot;) { mailUserId(event); }
-  });
-}
-
-function mailUserId(e) {
-  MailApp.sendEmail('example@gmail.com', 'mailId', e.source.userId);
-}
-</code></pre>
-
-<h2 id="curlでmessaging-apiのpush通知を使う">curlでMessaging APIのPUSH通知を使う</h2>
-
-<ul>
-<li>CHANNEL_ACCESS_TOKENは上で使ったものと同じ</li>
-<li>USERIDはプッシュ先
-
-<ul>
-<li>今回は上で取得した自分のユーザIDを使う</li>
-</ul></li>
-</ul>
-
-<pre><code class="language-bash">curl -X POST \
--H 'Content-Type:application/json' \
--H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \
--d '{
-    &quot;to&quot;: &quot;USERID&quot;,
-    &quot;messages&quot;:[
-        {
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;text&quot;: &quot;Hello, world!&quot;
-        }
-    ]
-}' https://api.line.me/v2/bot/message/push
-</code></pre>
-
-<h2 id="関連ポスト">関連ポスト</h2>
-
-<p><a href="../dash_button/">Amazon Dash ButtonからLINE通知</a></p>
-
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag1/">tag1</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag2/">tag2</a>
+
+                  </div>
+                
               
             
             <div class="post-actions-wrap">
@@ -308,7 +361,7 @@ function mailUserId(e) {
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dash_button/" data-tooltip="Amazon Dash ButtonからLINE通知">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -316,7 +369,7 @@ function mailUserId(e) {
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/icam/" data-tooltip="iPadをウェブカメラ化してiCamSourceと連携">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -333,17 +386,17 @@ function mailUserId(e) {
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fline_push%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fblog_img%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fline_push%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fblog_img%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fline_push%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fblog_img%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -389,7 +442,7 @@ function mailUserId(e) {
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dash_button/" data-tooltip="Amazon Dash ButtonからLINE通知">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -397,7 +450,7 @@ function mailUserId(e) {
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/icam/" data-tooltip="iPadをウェブカメラ化してiCamSourceと連携">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -414,17 +467,17 @@ function mailUserId(e) {
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fline_push%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fblog_img%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fline_push%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fblog_img%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fline_push%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fblog_img%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -451,17 +504,17 @@ function mailUserId(e) {
       <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fline_push%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fblog_img%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fline_push%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fblog_img%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fline_push%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fblog_img%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -794,9 +847,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/line_push\/';
+          this.page.url = 'http:\/\/shidetake.com\/blog_img\/';
           
-            this.page.identifier = '\/line_push\/'
+            this.page.identifier = '\/blog_img\/'
           
         };
         (function() {

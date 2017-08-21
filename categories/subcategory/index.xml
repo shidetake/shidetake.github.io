@@ -6,10 +6,26 @@
     <description>Recent content in Subcategory on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Aug 2017 17:14:33 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Aug 2017 22:44:54 +0000</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/categories/subcategory/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</title>
+      <link>http://shidetake.com/blog_img/</link>
+      <pubDate>Mon, 21 Aug 2017 22:44:54 +0000</pubDate>
+      
+      <guid>http://shidetake.com/blog_img/</guid>
+      <description>&lt;p&gt;ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。&lt;/p&gt;
+
+&lt;p&gt;というわけで、Google Photoの画像を&lt;strong&gt;簡単に&lt;/strong&gt;直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>iPadをウェブカメラ化してiCamSourceと連携</title>

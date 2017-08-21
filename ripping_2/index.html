@@ -524,6 +524,30 @@ done
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/blog_img/">
+                <h3 class="media-heading">IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。</p>
+
+<p>というわけで、Google Photoの画像を<strong>簡単に</strong>直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/icam/">
                 <h3 class="media-heading">iPadをウェブカメラ化してiCamSourceと連携</h3>
               </a>
@@ -722,30 +746,6 @@ require 'net/http' require 'uri' require 'oauth2' require 'launchy' CLIENT_ID = 
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/line_highlights_4/">
-                <h3 class="media-heading">KindleのハイライトをLINEに通知する 4</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。
-今回でこのシリーズは最後。
-方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。
-記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。
-JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 'json'を忘れずにrequireすること。
-# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, 'w') do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。
-# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, 'r') do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。
-全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -753,7 +753,7 @@ JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         17 posts found
+         18 posts found
       </p>
     </div>
   </div>
