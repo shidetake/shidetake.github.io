@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -19,25 +23,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Posts</title>
+    <title>IIJmioの追加クーポンをLINE botに買ってもらう</title>
     <meta name="author" content="shidetake">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="tech">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/post/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
+残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
+購入はブラウザから。
+
+不便なのでLINE botに買ってもらうことにした。
+
+">
+    <meta property="og:description" content="IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
+残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
+購入はブラウザから。
+
+不便なのでLINE botに買ってもらうことにした。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Posts">
-    <meta property="og:url" content="/post/">
+    <meta property="og:title" content="IIJmioの追加クーポンをLINE botに買ってもらう">
+    <meta property="og:url" content="/iij_coupon/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
+残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
+購入はブラウザから。
+
+不便なのでLINE botに買ってもらうことにした。
+
+">
     
     
 
@@ -82,7 +102,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -102,7 +122,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -199,233 +219,296 @@ ga('send', 'pageview');
 
       
 
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        <section class="postShorten-group main-content-wrap">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
           
-            
+            <div class="post-header main-content-wrap text-left">
   
-    
+    <h1 class="post-title" itemprop="headline">
+      IIJmioの追加クーポンをLINE botに買ってもらう
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-09-03T10:27:20Z">
       
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/line_highlights_1/">
-          KindleのハイライトをLINEに通知する 1
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-05-27T13:08:32&#43;09:00">
-      
-  May 27, 2017
+  September 3, 2017
 
     </time>
   
   
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
 
 </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
-ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。
-クローラー作成 RubyのCapybaraを使った。
-動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &lsquo;capybara&rsquo; require &lsquo;capybara/dsl&rsquo; require &lsquo;capybara/poltergeist&rsquo; require &lsquo;selenium-webdriver&rsquo; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &lsquo;your@email&rsquo; KINDLE_PASSWORD = &lsquo;your_password&rsquo; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.
-        <br>
-        <a href="http://shidetake.com/line_highlights_1/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
+</div>
           
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
+残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
+購入はブラウザから。</p>
+
+<p>不便なのでLINE botに買ってもらうことにした。</p>
+
+<p></p>
+
+<h2 id="実行画面">実行画面</h2>
+
+<p><img src="http://ift.tt/2iSCU12" alt="image" /> <img src="http://ift.tt/2wtX1rd" alt="image" /></p>
+
+<h2 id="構成">構成</h2>
+
+<ol>
+<li>LINEメッセージをMessaging APIが受けて、Google Apps Scriptを発動</li>
+<li>GASはソケット通信でVPS上のrubyスクリプトを起こす</li>
+<li>rubyスクリプト上でCapybaraさんがIIJmioのウェブページにクーポン購入を依頼する
+<img src="http://ift.tt/2vBgyXT" alt="image" /></li>
+</ol>
+
+<h2 id="クローラー作成">クローラー作成</h2>
+
+<p><a href="../line_highlights_1/">Kindleのハイライト通知</a>のときと同じような作り。
+動作環境も同じ。</p>
+
+<pre><code class="language-ruby"># coding: utf-8
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+require 'selenium-webdriver'
+
+class BuyIIJmioCoupon
+  include Capybara::DSL
+
+  SELENIUM = 0
+  POLTERGEIST = 1
+
+  USER_NAME = 'your_user_name'
+  PASSWORD  = 'your_password'
+
+  def initialize(driver)
+    Capybara.app_host = 'https://www.iijmio.jp/service/setup/hdd/charge/'
+    Capybara.default_max_wait_time = 5
+    case driver
+    when SELENIUM
+      Capybara.current_driver = :selenium
+      Capybara.javascript_driver = :selenium
+      Capybara.register_driver :selenium do |app|
+        Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome)
+      end
+
+    when POLTERGEIST
+      Capybara.current_driver = :poltergeist
+      Capybara.javascript_driver = :poltergeist
+      Capybara.register_driver :poltergeist do |app|
+        Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false})
+      end
+      page.driver.headers = {'User-Agent' =&gt; 'Mac Safari'}
+    end
+  end
+
+  def login
+    visit('')
+    fill_in 'j_username',
+      :with =&gt; USER_NAME
+    fill_in 'j_password',
+      :with =&gt; PASSWORD
+    click_button 'ログイン'
+  end
+
+  def buy
+    select '1枚（100MB）', from: 'selectList'
+    click_button '次へ'
+
+    check 'confirm'
+    click_button 'お申し込み'
+  end
+end
+
+crawler = BuyIIJmioCoupon.new(BuyIIJmioCoupon::POLTERGEIST)
+crawler.login
+crawler.buy
+</code></pre>
+
+<p>追加クーポン購入ページに直接アクセスして、ログインしたあとで、
+購入枚数を選択して購入ボタンをポチポチ押していくだけ。購入枚数は1枚で固定した。</p>
+
+<p>デバッグ用にSELENIUMで動作させることもできるようにしている。</p>
+
+<h2 id="vpsで待ち受ける">VPSで待ち受ける</h2>
+
+<p>これも<a href="../line_highlights_3/">Kindleのハイライト通知</a>と同じ。
+上のソースを少し変えて、以下のようにする。</p>
+
+<pre><code class="language-ruby"># coding: utf-8
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+require 'selenium-webdriver'
+require 'socket'
+
+class BuyIIJmioCoupon
+  # 上と同じなので省略
+end
+
+gs = TCPServer.open(23456)
+addr = gs.addr
+addr.shift
+printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;))
+
+crawler = BuyIIJmioCoupon.new(BuyIIJmioCoupon::POLTERGEIST)
+loop do
+  s = gs.accept
+  print(s, &quot; is accepted\n&quot;)
+
+  begin
+    crawler.login
+    crawler.buy
+  rescue
+    raise
+  end
+
+  print(s, &quot; is gone\n&quot;)
+  s.close
+end
+</code></pre>
+
+<h2 id="google-apps-script">Google Apps Script</h2>
+
+<p>LINE Messaging APIから以下のスクリプトを実行するように紐付ければ (<a href="../line_push/">参考</a>)、
+ソケット通信でVPS上のスクリプトを起こせる。</p>
+
+<p>こちらから送った文章にiijという文字列が含まれている場合にトリガがかかるようにした。
+なお、冒頭の実行画面ではLINE botからACKが返っているが、以下のソースでは省略している。</p>
+
+<pre><code class="language-js">var CHANNEL_ACCESS_TOKEN = 'your_line_channel_access_token';
+var SERVER_ADDRESS_IIJ = 'http://your_server_address.com:23456'
+
+function doPost(e) {
+  Logger.log('doPost')
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == 'message') { parseMessage(event); }
+  });
+}
+
+function parseMessage(e) {
+  if (e.message.text.match(/iij/)) {
+    buyIIJmioCoupon()
+  }
+}
+
+function buyIIJmioCoupon() {
+  UrlFetchApp.fetch(SERVER_ADDRESS_IIJ);
+}
+</code></pre>
+
+<p>以上。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
-  
-    
-      
-        
-      
-    
-  
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag1/">tag1</a>
 
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag2/">tag2</a>
 
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/time_capsule/">
-          Time Machineの容量制限
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-05-14T21:01:17&#43;09:00">
-      
-  May 14, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy<em>1GB</em>$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy<em>10GB</em>$i bs=1000000 count=10000; done
-        <br>
-        <a href="http://shidetake.com/time_capsule/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
+                  </div>
+                
+              
             
-  
-    
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
       
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/dash_button/">
-          Amazon Dash ButtonからLINE通知
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-05-11T22:31:20&#43;09:00">
-      
-  May 11, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        dasher導入 他の人が詳しく書いているので割愛。
-個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
-LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
-CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
-{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;<a href="https://api.line.me/v2/bot/message/push&quot;">https://api.line.me/v2/bot/message/push&quot;</a>, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]}
-        <br>
-        <a href="http://shidetake.com/dash_button/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
+        <li class="post-action">
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/line_push/">
-          LINE BOTでPUSH通知する
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-04-17T23:11:57&#43;09:00">
-      
-  April 17, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &lsquo;CHANNEL_ACCESS_TOKEN&rsquo;; function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&lsquo;example@gmail.com&rsquo;, &lsquo;mailId&rsquo;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &lsquo;Content-Type:application/json&rsquo; \ -H &lsquo;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&rsquo; \ -d &lsquo;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!
-        <br>
-        <a href="http://shidetake.com/line_push/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
+            <a class="post-action-btn btn btn--disabled">
           
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
           
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-        <li class="pagination-prev">
-          <a class="btn btn--default btn--small" href="http://shidetake.com/post/page/2/">
-            <i class="fa fa-angle-left text-base icon-mr"></i>
-            <span>NEWER POSTS</span>
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/blog_img/" data-tooltip="IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
           </a>
         </li>
       
-      
-      <li class="pagination-number">page 3 of 3</li>
     </ul>
-  </div>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
 
 
-        </section>
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 shidetake. All Rights Reserved
@@ -433,6 +516,92 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/blog_img/" data-tooltip="IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる">
+          
+            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <i class="fa fa-comment-o"></i>
+        </a>
+      </li>
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+        <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+        <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fiij_coupon%2f">
+        <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -756,6 +925,32 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/iij_coupon\/';
+          
+            this.page.identifier = '\/iij_coupon\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

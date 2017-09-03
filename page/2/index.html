@@ -223,6 +223,56 @@ ga('send', 'pageview');
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/ripping_2/">
+          HandBrakeCLIによるDVDリッピング 2
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-10T22:41:58&#43;09:00">
+      
+  July 10, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回からの続き。
+チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
+HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 3 -i hoge.iso -o hoge<em>3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
+for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c $i -i hoge.iso -o hoge</em>$(printf %02d $i).
+        <br>
+        <a href="http://shidetake.com/ripping_2/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/ripping_1/">
           HandBrakeCLIによるDVDリッピング 1
         </a>
@@ -533,56 +583,6 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
 </article>
 
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/line_highlights_1/">
-          KindleのハイライトをLINEに通知する 1
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-05-27T13:08:32&#43;09:00">
-      
-  May 27, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
-ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。
-クローラー作成 RubyのCapybaraを使った。
-動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &lsquo;capybara&rsquo; require &lsquo;capybara/dsl&rsquo; require &lsquo;capybara/poltergeist&rsquo; require &lsquo;selenium-webdriver&rsquo; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &lsquo;your@email&rsquo; KINDLE_PASSWORD = &lsquo;your_password&rsquo; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.
-        <br>
-        <a href="http://shidetake.com/line_highlights_1/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
           
   <div class="pagination-bar">
     <ul class="pagination">
@@ -664,6 +664,29 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/iij_coupon/">
+                <h3 class="media-heading">IIJmioの追加クーポンをLINE botに買ってもらう</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
+残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
+購入はブラウザから。</p>
+
+<p>不便なのでLINE botに買ってもらうことにした。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -869,27 +892,6 @@ require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CL
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/gmail_api_1/">
-                <h3 class="media-heading">RubyでGmail本文を取得する 1</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require 'net/http' require 'uri' require 'oauth2' require 'launchy' CLIENT_ID = 'YourClientID' CLIENT_SECRET = 'YourClientSecret' client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; 'urn:ietf:wg:oauth:2.0:oob', :scope =&gt; 'https://www.googleapis.com/auth/gmail.readonly') # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -897,7 +899,7 @@ require 'net/http' require 'uri' require 'oauth2' require 'launchy' CLIENT_ID = 
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         18 posts found
+         19 posts found
       </p>
     </div>
   </div>
@@ -905,7 +907,7 @@ require 'net/http' require 'uri' require 'oauth2' require 'launchy' CLIENT_ID = 
     
   
     
-    <div id="cover" style="background-image:url('http://shidetake.com/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('http://ift.tt/2vXumJj');"></div>
   
 
 
