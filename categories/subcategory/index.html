@@ -226,6 +226,70 @@ ga('send', 'pageview');
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/google_finance_api/">
+          Google Finance APIを使って株価チャートを作成
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-09-04T23:14:36Z">
+      
+  September 4, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。</p>
+
+<p>そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。</p>
+
+<p>
+        <br>
+        <a href="http://shidetake.com/google_finance_api/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/iij_coupon/">
           IIJmioの追加クーポンをLINE botに買ってもらう
         </a>
@@ -650,6 +714,30 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/google_finance_api/">
+                <h3 class="media-heading">Google Finance APIを使って株価チャートを作成</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。</p>
+
+<p>そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/iij_coupon/">
                 <h3 class="media-heading">IIJmioの追加クーポンをLINE botに買ってもらう</h3>
               </a>
@@ -854,26 +942,6 @@ HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -i hoge.iso -o 
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/gmail_api_2/">
-                <h3 class="media-heading">RubyでGmail本文を取得する 2</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CLIENT_ID = 'YourClientID' +CLIENT_SECRET = 'YourClientSecret' +REFRESH_TOKEN = 'YourRefreshToken' APPLICATION_NAME = 'YourApplicationName' # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: 'https://accounts.google.com/o/oauth2/token', + audience: 'https://accounts.google.com/o/oauth2/token', + scope: ['https://www.googleapis.com/auth/drive.file'], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api('gmail') # query res = client.execute( api_method: gmail.users.messages.list, parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -881,7 +949,7 @@ require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CL
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         19 posts found
+         20 posts found
       </p>
     </div>
   </div>

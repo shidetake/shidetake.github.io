@@ -23,44 +23,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Time Machineの容量制限</title>
+    <title>Google Finance APIを使って株価チャートを作成</title>
     <meta name="author" content="shidetake">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="tech">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
 
     
-    <meta name="description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
-    <meta property="og:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+    <meta name="description" content="株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。
+
+そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。
+
+">
+    <meta property="og:description" content="株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。
+
+そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Time Machineの容量制限">
-    <meta property="og:url" content="/time_capsule/">
+    <meta property="og:title" content="Google Finance APIを使って株価チャートを作成">
+    <meta property="og:url" content="/google_finance_api/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content=" Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i&#43;&#43;)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  ">
+    <meta name="twitter:description" content="株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。
+
+そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。
+
+">
     
     
 
@@ -232,18 +232,28 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Time Machineの容量制限
+      Google Finance APIを使って株価チャートを作成
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-05-14T21:01:17&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-09-04T23:14:36Z">
       
-  May 14, 2017
+  September 4, 2017
 
     </time>
   
   
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/category">category</a>, 
+    
+      <a class="category-link" href="http://shidetake.com/categories/subcategory">subcategory</a>
+    
+  
+
 
 </div>
 
@@ -251,43 +261,107 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <p>株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。</p>
 
-<p>Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
-Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
-何らかの方法で容量を制限する必要がある。</p>
+<p>そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。</p>
 
-<p>パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。
-ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。</p>
+<p></p>
 
-<p>そこで、別の方法を採用した。</p>
+<h2 id="google-finance-api">Google Finance API</h2>
 
-<h2 id="ダミーファイルを置く">ダミーファイルを置く</h2>
+<p>国内で株価を取得するためのAPIは（正規には）ないらしい。
+ただ、Google Finance APIという非公式のAPIがあり、使ってる人は使っているとか。</p>
 
-<p>ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。
-新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。</p>
+<p><a href="http://ymtttk.hatenablog.jp/entry/2017/02/18/192130">google financeのAPIのメモ</a>というサイトが参考になる。
+今回やりたいことのほとんどはここに書いてある。
+違いは、
+- Rubyを使う (Pythonのが需要ありそうだけど) - チャートを描く
+くらい。</p>
 
-<p>1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、
-計200GB分のデータ領域を確保することにした。</p>
+<p>まずは適当な銘柄の株価を以下のように取得する。
+ここではトヨタにした（丸パクリ）。</p>
 
-<p>ダミーファイルの作成は以下のコマンドを使った。</p>
+<pre><code class="language-ruby">require 'net/http'
 
-<pre><code class="language-bash">dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000
+class GoogleFinance
+
+  BASE_URL = 'https://www.google.com/finance/getprices?'
+
+  def initialize(issue)
+    @issue = issue
+  end
+
+  def stock(period = '1Y', interval_sec = 86400)
+    raw_data = Net::HTTP.get(URI.parse(BASE_URL + &quot;p=#{period}&amp;i=#{interval_sec}&amp;x=TYO&amp;q=#{@issue}&quot;))
+    data = []
+    raw_data.lines do |line|
+      data &lt;&lt; line[/^[0-9]*,([0-9]*)/, 1]
+    end
+    data.compact
+  end
+end
+
+google_finance = GoogleFinance.new(7203)
+stock_data = google_finance.stock
 </code></pre>
 
-<p>実際にはfor文で以下のように使う。
-ネットワーク越しなのでかなり時間がかかることに注意。</p>
+<p>取得したデータを1行ずつ取ってきて、<code>/^[0-9]*,([0-9]*)/, 1</code>という正規表現で終値を抜き出している。
+先頭に数値があり、カンマ挟んで次の数値を取得するという意味。</p>
 
-<pre><code class="language-bash">cd /Volumes/TimeCapsule
-for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done
-for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done
+<p>これを配列に突っ込んで、先頭の方にあるゴミ（抽出条件などが書かれている）をcompactで取り除くことで、
+この1年間のトヨタ株の終値の配列が完成。</p>
+
+<h2 id="チャート描画">チャート描画</h2>
+
+<p>これはgnuplotを使う。
+<a href="https://github.com/ruby-numo/gnuplot">Numo::Gnuplot</a>というgemが便利そうだったので、これを使った。</p>
+
+<pre><code class="language-bash">gem install numo-gnuplot
 </code></pre>
 
+<p>してから、
+（当然、gnuplotも入れる）</p>
+
+<pre><code class="language-ruby">require 'net/http'
+require 'numo/gnuplot'
+
+class GoogleFinance
+  # 省略
+end
+
+google_finance = GoogleFinance.new(7203)
+stock_data = google_finance.stock
+
+Numo.gnuplot do
+  set title:'TOYOTA'
+  plot stock_data, w:'lines'
+end
+</code></pre>
+
+<p>これだけ。GoogleFinanceクラスは変わらないので省略した。
+得られたチャートを貼って終わり。</p>
+
+<p><img src="http://ift.tt/2wAIcS7" alt="image" /></p>
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag1/">tag1</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/tag2/">tag2</a>
+
+                  </div>
+                
               
             
             <div class="post-actions-wrap">
@@ -296,7 +370,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_1/" data-tooltip="KindleのハイライトをLINEに通知する 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -304,7 +378,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dash_button/" data-tooltip="Amazon Dash ButtonからLINE通知">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/iij_coupon/" data-tooltip="IIJmioの追加クーポンをLINE botに買ってもらう">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -321,17 +395,17 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -377,7 +451,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/line_highlights_1/" data-tooltip="KindleのハイライトをLINEに通知する 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -385,7 +459,7 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dash_button/" data-tooltip="Amazon Dash ButtonからLINE通知">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/iij_coupon/" data-tooltip="IIJmioの追加クーポンをLINE botに買ってもらう">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -402,17 +476,17 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -439,17 +513,17 @@ for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 co
       <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2ftime_capsule%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_finance_api%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -788,9 +862,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/time_capsule\/';
+          this.page.url = 'http:\/\/shidetake.com\/google_finance_api\/';
           
-            this.page.identifier = '\/time_capsule\/'
+            this.page.identifier = '\/google_finance_api\/'
           
         };
         (function() {

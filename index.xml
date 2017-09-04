@@ -6,10 +6,26 @@
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Sep 2017 10:27:20 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Sep 2017 23:14:36 +0000</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Google Finance APIを使って株価チャートを作成</title>
+      <link>http://shidetake.com/google_finance_api/</link>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_finance_api/</guid>
+      <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。&lt;/p&gt;
+
+&lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>IIJmioの追加クーポンをLINE botに買ってもらう</title>

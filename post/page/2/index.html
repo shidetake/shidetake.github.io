@@ -223,6 +223,58 @@ ga('send', 'pageview');
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/ripping_3/">
+          HandBrakeCLIによるDVDリッピング 3
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-19T22:36:23&#43;09:00">
+      
+  July 19, 2017
+
+    </time>
+  
+  
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
+diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
+/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
+HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
+chapter_num=<code>lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&amp;quot;&amp;quot;); print $6}'</code> for ((i = 1; i &lt;= $chapter<em>num; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c $i -i /dev/disk2 -o hoge</em>$(printf %02d $i).
+        <br>
+        <a href="http://shidetake.com/ripping_3/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/ripping_2/">
           HandBrakeCLIによるDVDリッピング 2
         </a>
@@ -532,57 +584,6 @@ function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.
 </article>
 
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/line_highlights_2/">
-          KindleのハイライトをLINEに通知する 2
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-06-04T22:44:34&#43;09:00">
-      
-  June 4, 2017
-
-    </time>
-  
-  
-
-</div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
-サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
-def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {&lsquo;User-Agent&rsquo; =&gt; &lsquo;Mac Safari&rsquo;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
-これでサーバ（今回はUbuntuを使った）で動作するようになった。
-LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。
-        <br>
-        <a href="http://shidetake.com/line_highlights_2/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
           
   <div class="pagination-bar">
     <ul class="pagination">
@@ -664,6 +665,30 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/google_finance_api/">
+                <h3 class="media-heading">Google Finance APIを使って株価チャートを作成</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。</p>
+
+<p>そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -872,26 +897,6 @@ HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -i hoge.iso -o 
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/gmail_api_2/">
-                <h3 class="media-heading">RubyでGmail本文を取得する 2</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CLIENT_ID = 'YourClientID' +CLIENT_SECRET = 'YourClientSecret' +REFRESH_TOKEN = 'YourRefreshToken' APPLICATION_NAME = 'YourApplicationName' # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: 'https://accounts.google.com/o/oauth2/token', + audience: 'https://accounts.google.com/o/oauth2/token', + scope: ['https://www.googleapis.com/auth/drive.file'], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api('gmail') # query res = client.execute( api_method: gmail.users.messages.list, parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -899,7 +904,7 @@ require 'google/api_client' require 'json' -ACCESS_TOKEN = 'YourAccessToken' +CL
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         19 posts found
+         20 posts found
       </p>
     </div>
   </div>

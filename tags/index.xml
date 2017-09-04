@@ -6,7 +6,7 @@
     <description>Recent content in Tags on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Sep 2017 10:27:20 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Sep 2017 23:14:36 +0000</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Tag1</title>
       <link>http://shidetake.com/tags/tag1/</link>
-      <pubDate>Sun, 03 Sep 2017 10:27:20 +0000</pubDate>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
       
       <guid>http://shidetake.com/tags/tag1/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>Tag2</title>
       <link>http://shidetake.com/tags/tag2/</link>
-      <pubDate>Sun, 03 Sep 2017 10:27:20 +0000</pubDate>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
       
       <guid>http://shidetake.com/tags/tag2/</guid>
       <description></description>
