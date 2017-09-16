@@ -270,6 +270,12 @@ ga('send', 'pageview');
 
 <p></p>
 
+<p>2017.9.16追記<br />
+これを公開した直後にAPIのURLが変わった模様。</p>
+
+<p>元は<code>https://www.google.com/finance/getprices?</code>だったが、今は<code>https://finance.google.com/finance/getprices?</code>になっている。
+この記事のコードも修正したので、そのまま使えるはず。</p>
+
 <h2 id="google-finance-api">Google Finance API</h2>
 
 <p>国内で株価を取得するためのAPIは（正規には）ないらしい。
@@ -293,7 +299,7 @@ ga('send', 'pageview');
 
 class GoogleFinance
 
-  BASE_URL = 'https://www.google.com/finance/getprices?'
+  BASE_URL = 'https://finance.google.com/finance/getprices?'
 
   def initialize(issue)
     @issue = issue
