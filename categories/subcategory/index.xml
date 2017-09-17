@@ -6,10 +6,24 @@
     <description>Recent content in Subcategory on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Sep 2017 23:14:36 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/categories/subcategory/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>株価チャートからトレンドラインを引く 1</title>
+      <link>http://shidetake.com/stock_trendline_1/</link>
+      <pubDate>Sun, 17 Sep 2017 16:36:18 +0000</pubDate>
+      
+      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
+このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
+
+&lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>

@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shidetake.com/stock_trendline_1/</loc>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/google_finance_api/</loc>
     <lastmod>2017-09-04T23:14:36+00:00</lastmod>
   </url>
@@ -113,7 +118,7 @@
   
   <url>
     <loc>http://shidetake.com/categories/category/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -125,37 +130,37 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/categories/subcategory/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/tags/tag1/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/tags/tag2/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/tags/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2017-09-04T23:14:36+00:00</lastmod>
+    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
