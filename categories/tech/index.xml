@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tech on blog</title>
+    <link>http://shidetake.com/categories/tech/</link>
+    <description>Recent content in Tech on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>株価チャートからトレンドラインを引く 1</title>
+      <link>http://shidetake.com/stock_trendline_1/</link>
+      <pubDate>Sun, 17 Sep 2017 16:36:18 +0000</pubDate>
+      
+      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
+このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
+
+&lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Google Finance APIを使って株価チャートを作成</title>
+      <link>http://shidetake.com/google_finance_api/</link>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_finance_api/</guid>
+      <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。&lt;/p&gt;
+
+&lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>IIJmioの追加クーポンをLINE botに買ってもらう</title>
+      <link>http://shidetake.com/iij_coupon/</link>
+      <pubDate>Sun, 03 Sep 2017 10:27:20 +0000</pubDate>
+      
+      <guid>http://shidetake.com/iij_coupon/</guid>
+      <description>&lt;p&gt;IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
+残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
+購入はブラウザから。&lt;/p&gt;
+
+&lt;p&gt;不便なのでLINE botに買ってもらうことにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</title>
+      <link>http://shidetake.com/blog_img/</link>
+      <pubDate>Mon, 21 Aug 2017 22:44:54 +0000</pubDate>
+      
+      <guid>http://shidetake.com/blog_img/</guid>
+      <description>&lt;p&gt;ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。&lt;/p&gt;
+
+&lt;p&gt;というわけで、Google Photoの画像を&lt;strong&gt;簡単に&lt;/strong&gt;直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iPadをウェブカメラ化してiCamSourceと連携</title>
+      <link>http://shidetake.com/icam/</link>
+      <pubDate>Thu, 17 Aug 2017 17:14:33 +0000</pubDate>
+      
+      <guid>http://shidetake.com/icam/</guid>
+      <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
+ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。&lt;/p&gt;
+
+&lt;p&gt;使わなくなった古いiPhoneを使ってもよい。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>テレビのアンテナ線を無線化する</title>
+      <link>http://shidetake.com/wireless_tv/</link>
+      <pubDate>Thu, 10 Aug 2017 22:26:23 +0000</pubDate>
+      
+      <guid>http://shidetake.com/wireless_tv/</guid>
+      <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
+マンションなのでアンテナ設置など大掛かりな方法は除いて、
+ざっと調べたところ、以下の方法がある。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;室内アンテナを設置する&lt;/li&gt;
+&lt;li&gt;PS4とnasneを使う方法&lt;/li&gt;
+&lt;li&gt;Apple TVとピクセラのワイヤレステレビチューナーを使う方法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3つ目の案を採用することにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
+      <link>http://shidetake.com/google_photo_api_2/</link>
+      <pubDate>Tue, 01 Aug 2017 22:41:29 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_photo_api_2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
+今回は任意のアルバムから写真の情報を取得する。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
+      <link>http://shidetake.com/google_photo_api_1/</link>
+      <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_photo_api_1/</guid>
+      <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 3</title>
+      <link>http://shidetake.com/ripping_3/</link>
+      <pubDate>Wed, 19 Jul 2017 22:36:23 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ripping_3/</guid>
+      <description>前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
+diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
+/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
+chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;` for ((i = 1; i &amp;lt;= $chapter_num; i++)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</description>
+    </item>
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 2</title>
+      <link>http://shidetake.com/ripping_2/</link>
+      <pubDate>Mon, 10 Jul 2017 22:41:58 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ripping_2/</guid>
+      <description>前回からの続き。
+チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
+for ((i = 1; i &amp;lt;= 3; i++)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i hoge.iso -o hoge_$(printf %02d $i).</description>
+    </item>
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 1</title>
+      <link>http://shidetake.com/ripping_1/</link>
+      <pubDate>Mon, 03 Jul 2017 22:08:55 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ripping_1/</guid>
+      <description>DVDのリッピングというのは、設定が異常に多い。
+まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。
+と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。
+そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。
+HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。
+ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。
+HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。
+もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。
+HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 --all-audioオプションと-sオプションを使って
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。
+お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。</description>
+    </item>
+    
+    <item>
+      <title>RubyでGmail本文を取得する 2</title>
+      <link>http://shidetake.com/gmail_api_2/</link>
+      <pubDate>Mon, 26 Jun 2017 22:44:57 +0900</pubDate>
+      
+      <guid>http://shidetake.com/gmail_api_2/</guid>
+      <description>前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
+リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
+リフレッシュトークンを使ったメールの取得 前回からの差分
+require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; +CLIENT_ID = &#39;YourClientID&#39; +CLIENT_SECRET = &#39;YourClientSecret&#39; +REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, + audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, + scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.</description>
+    </item>
+    
+    <item>
+      <title>RubyでGmail本文を取得する 1</title>
+      <link>http://shidetake.com/gmail_api_1/</link>
+      <pubDate>Tue, 20 Jun 2017 22:55:21 +0900</pubDate>
+      
+      <guid>http://shidetake.com/gmail_api_1/</guid>
+      <description>GmailのAPIをRubyで使う方法を何回かに分けて書く。
+API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
+ 使用するAPI =&amp;gt; Gmail API APIを呼び出す場所 =&amp;gt; その他のUI アクセスするデータの種類 =&amp;gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
+Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
+require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&amp;gt; &amp;quot;https://accounts.google.com&amp;quot;, :token_url =&amp;gt; &amp;quot;/o/oauth2/token&amp;quot;, :authorize_url =&amp;gt; &amp;quot;/o/oauth2/auth&amp;quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&amp;gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&amp;gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &amp;quot;authorization code:&amp;quot; authorization_code = gets.</description>
+    </item>
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する 4</title>
+      <link>http://shidetake.com/line_highlights_4/</link>
+      <pubDate>Sun, 18 Jun 2017 14:33:41 +0900</pubDate>
+      
+      <guid>http://shidetake.com/line_highlights_4/</guid>
+      <description>前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。
+今回でこのシリーズは最後。
+方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。
+記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。
+JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 &#39;json&#39;を忘れずにrequireすること。
+# ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, &#39;w&#39;) do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。
+# 外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, &#39;r&#39;) do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。
+全ソース githubに全ソースをあげた。 https://github.com/shidetake/line_kindle_highlights</description>
+    </item>
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する 3</title>
+      <link>http://shidetake.com/line_highlights_3/</link>
+      <pubDate>Wed, 07 Jun 2017 22:27:01 +0900</pubDate>
+      
+      <guid>http://shidetake.com/line_highlights_3/</guid>
+      <description>前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
+起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
+LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
+妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
+流れ 以下のような流れで起動要求を伝達する。
+LINEで起動要求
+↓
+LINEからGoogle Apps Scriptのスクリプト実行
+↓
+ソケット通信でスクレイピング開始要求
+実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
++require &#39;socket&#39; +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &amp;quot; is accepted\n&amp;quot;) + crawler.scrape + + print(s, &amp;quot; is gone\n&amp;quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
+つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
+function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.</description>
+    </item>
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する 2</title>
+      <link>http://shidetake.com/line_highlights_2/</link>
+      <pubDate>Sun, 04 Jun 2017 22:44:34 +0900</pubDate>
+      
+      <guid>http://shidetake.com/line_highlights_2/</guid>
+      <description>前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
+サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
+def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false}) end + page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
+これでサーバ（今回はUbuntuを使った）で動作するようになった。
+LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。</description>
+    </item>
+    
+    <item>
+      <title>KindleのハイライトをLINEに通知する 1</title>
+      <link>http://shidetake.com/line_highlights_1/</link>
+      <pubDate>Sat, 27 May 2017 13:08:32 +0900</pubDate>
+      
+      <guid>http://shidetake.com/line_highlights_1/</guid>
+      <description>読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
+ハイライトした内容は https://kindle.amazon.co.jp/your_highlights で見えるので、これを取得して通知するクローラーを作ればよい。
+クローラー作成 RubyのCapybaraを使った。
+動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &#39;capybara&#39; require &#39;capybara/dsl&#39; require &#39;capybara/poltergeist&#39; require &#39;selenium-webdriver&#39; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &#39;your@email&#39; KINDLE_PASSWORD = &#39;your_password&#39; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39; Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.</description>
+    </item>
+    
+    <item>
+      <title>Time Machineの容量制限</title>
+      <link>http://shidetake.com/time_capsule/</link>
+      <pubDate>Sun, 14 May 2017 21:01:17 +0900</pubDate>
+      
+      <guid>http://shidetake.com/time_capsule/</guid>
+      <description> Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
+パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
+そこで、別の方法を採用した。
+ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
+1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
+ダミーファイルの作成は以下のコマンドを使った。
+dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
+cd /Volumes/TimeCapsule for ((i=0; i &amp;lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done for ((i=0; i &amp;lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done  </description>
+    </item>
+    
+    <item>
+      <title>Amazon Dash ButtonからLINE通知</title>
+      <link>http://shidetake.com/dash_button/</link>
+      <pubDate>Thu, 11 May 2017 22:31:20 +0900</pubDate>
+      
+      <guid>http://shidetake.com/dash_button/</guid>
+      <description> dasher導入 他の人が詳しく書いているので割愛。
+個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
+LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
+CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
+{&amp;quot;buttons&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;joy&amp;quot;, &amp;quot;address&amp;quot;: &amp;quot;MAC_ADDRESS&amp;quot;, &amp;quot;url&amp;quot;: &amp;quot;https://api.line.me/v2/bot/message/push&amp;quot;, &amp;quot;method&amp;quot;: &amp;quot;POST&amp;quot;, &amp;quot;headers&amp;quot;: { &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;, &amp;quot;Authorization&amp;quot;: &amp;quot;Bearer {CHANNEL_ACCESS_TOKEN}&amp;quot;}, &amp;quot;json&amp;quot;: true, &amp;quot;body&amp;quot;: { &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;: [ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;JOY!&amp;quot; } ] } } ]}  </description>
+    </item>
+    
+    <item>
+      <title>LINE BOTでPUSH通知する</title>
+      <link>http://shidetake.com/line_push/</link>
+      <pubDate>Mon, 17 Apr 2017 23:11:57 +0900</pubDate>
+      
+      <guid>http://shidetake.com/line_push/</guid>
+      <description>登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;; function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &#39;Content-Type:application/json&#39; \ -H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \ -d &#39;{ &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;, &amp;quot;messages&amp;quot;:[ { &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello, world!</description>
+    </item>
+    
+  </channel>
+</rss>

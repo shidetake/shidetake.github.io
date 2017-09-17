@@ -1,9 +1,5 @@
 
 
-  
-    
-  
-
 
   
 
@@ -23,32 +19,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
+    <title>Tech</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/categories/tech/index.xml">
+    
 
     
-    <meta name="description" content="Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
-あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-">
-    <meta property="og:description" content="Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
-あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-">
+    <meta name="description" content="Hugo tranquilpeak theme demo">
+    <meta property="og:description" content="Hugo tranquilpeak theme demo">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
-    <meta property="og:url" content="/google_photo_api_1/">
+    <meta property="og:title" content="Tech">
+    <meta property="og:url" content="/categories/tech/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
-あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-">
+    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
     
     
 
@@ -93,7 +82,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="5">
+      <header id="header" data-behavior="2">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -113,7 +102,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="5">
+      <nav id="sidebar" data-behavior="2">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -209,21 +198,39 @@ ga('send', 'pageview');
 </nav>
 
       
+        
 
-      <div id="main" data-behavior="5"
+      
+      <div id="main" data-behavior="2"
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
   
-    <h1 class="post-title" itemprop="headline">
-      Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1
-    </h1>
+    
+      
+        
+      
+    
   
-  <div class="postShorten-meta post-meta">
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/google_photo_api_1/">
+          Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
   
     <time itemprop="datePublished" datetime="2017-07-30T22:56:40Z">
       
@@ -243,151 +250,415 @@ ga('send', 'pageview');
 
 </div>
 
-</div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <p>Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
 PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-</p>
 
-<p>ちなみにGoogle PhotoのAPIはまだ用意されておらず、Piacasa APIがその代替となっている。</p>
+        <br>
+        <a href="http://shidetake.com/google_photo_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
 
-<h1 id="picasa-apiを使う">Picasa APIを使う</h1>
-
-<h2 id="access-tokenの取得">Access tokenの取得</h2>
-
-<p><a href="../gmail_api_1/">Gmailのとき</a>とは違い、PicasaのAPIを使うのは少しコツがいる。
-既にPicasaのサービスが終了しているためか、API MANAGERで検索してもPicasa APIが出てこない。</p>
-
-<p>そこで、Access tokenを取得するために<a href="https://developers.google.com/oauthplayground/">OAuth 2.0 Playground</a>を使う。</p>
-
-<p>Select the scopeの一覧から、Picasa Web v2を選択して表示されるURLをクリックする。
-Authorize APIsボタンが有効になるので、それを押してAPIを有効にする許可を与える。</p>
-
-<p>Authorization codeが取得できるので、続けてExchange authorization code for tokensボタンを押下。
-これでAccess tokenが得られる。</p>
-
-<h2 id="access-tokenの確認">Access tokenの確認</h2>
-
-<p>得られたAccess tokenの確認も兼ねて、簡単なAPIを使ってみる。</p>
-
-<p>まずはRubyでPicasa APIを簡単に使えるようにするgemをインストール。</p>
-
-<pre><code class="language-bash">gem install picasa
-</code></pre>
-
-<p>あとは以下のようなスクリプトでアルバム名の一覧を取得する。</p>
-
-<pre><code class="language-ruby">require 'picasa'
-
-client = Picasa::Client.new(
-  user_id: 'your@email',
-  access_token: 'your_access_token'
-)
-
-albums = client.album.list.entries
-albums.each { |a| p a.title }
-</code></pre>
-
-<p>your@emailとyour_access_tokenにはそれぞれ自分の（Access token取得時に許可を与えた）アカウントと、上で取得したAccess tokenを入れる。</p>
-
-<p>Google Photoのアルバム名の一覧が表示されれば成功。Access tokenがちゃんと使えることがわかった。</p>
-
-<p><a href="../google_photo_api_2/">次回</a>以降で写真の取得、Exif情報の取得あたりのやり方を書いていく。</p>
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
+  
+    
+      
+        
+      
+    
+  
 
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ruby/">Ruby</a>
 
-                  </div>
-                
-              
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/ripping_3/">
+          HandBrakeCLIによるDVDリッピング 3
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-19T22:36:23&#43;09:00">
+      
+  July 19, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
+diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
+/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
+HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
+chapter_num=<code>lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&amp;quot;&amp;quot;); print $6}'</code> for ((i = 1; i &lt;= $chapter<em>num; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c $i -i /dev/disk2 -o hoge</em>$(printf %02d $i).
+        <br>
+        <a href="http://shidetake.com/ripping_3/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
             
-            <div class="post-actions-wrap">
-  <nav>
-    <ul class="post-actions post-action-nav">
+              
+  
+    
       
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_2/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2">
-          
-            <i class="fa fa-angle-left"></i>
-            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/ripping_2/">
+          HandBrakeCLIによるDVDリッピング 2
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-10T22:41:58&#43;09:00">
+      
+  July 10, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回からの続き。
+チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
+HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 3 -i hoge.iso -o hoge<em>3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
+for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c $i -i hoge.iso -o hoge</em>$(printf %02d $i).
+        <br>
+        <a href="http://shidetake.com/ripping_2/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/ripping_1/">
+          HandBrakeCLIによるDVDリッピング 1
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-03T22:08:55&#43;09:00">
+      
+  July 3, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        DVDのリッピングというのは、設定が異常に多い。
+まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。
+と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。
+そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。
+HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。
+ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。
+HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。
+もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。
+HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。
+HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 &ndash;all-audioオプションと-sオプションを使って
+HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。
+お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。
+        <br>
+        <a href="http://shidetake.com/ripping_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/gmail_api_2/">
+          RubyでGmail本文を取得する 2
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-26T22:44:57&#43;09:00">
+      
+  June 26, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
+リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
+リフレッシュトークンを使ったメールの取得 前回からの差分
+require &lsquo;google/api_client&rsquo; require &lsquo;json&rsquo; -ACCESS_TOKEN = &lsquo;YourAccessToken&rsquo; +CLIENT_ID = &lsquo;YourClientID&rsquo; +CLIENT_SECRET = &lsquo;YourClientSecret&rsquo; +REFRESH_TOKEN = &lsquo;YourRefreshToken&rsquo; APPLICATION_NAME = &lsquo;YourApplicationName&rsquo; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: &lsquo;<a href="https://accounts.google.com/o/oauth2/token'">https://accounts.google.com/o/oauth2/token'</a>, + audience: &lsquo;<a href="https://accounts.google.com/o/oauth2/token'">https://accounts.google.com/o/oauth2/token'</a>, + scope: [&lsquo;<a href="https://www.googleapis.com/auth/drive.file'">https://www.googleapis.com/auth/drive.file'</a>], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api(&lsquo;gmail&rsquo;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&lsquo;userId&rsquo; =&gt; &lsquo;me&rsquo;, &lsquo;q&rsquo;=&gt;&lsquo;from:auto-confirm@amazon.
+        <br>
+        <a href="http://shidetake.com/gmail_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/gmail_api_1/">
+          RubyでGmail本文を取得する 1
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-20T22:55:21&#43;09:00">
+      
+  June 20, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        GmailのAPIをRubyで使う方法を何回かに分けて書く。
+API準備 まずはAPIを使うための準備。<a href="https://console.developers.google.com/">https://console.developers.google.com/</a> にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
+ 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
+Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
+require &lsquo;net/http&rsquo; require &lsquo;uri&rsquo; require &lsquo;oauth2&rsquo; require &lsquo;launchy&rsquo; CLIENT_ID = &lsquo;YourClientID&rsquo; CLIENT_SECRET = &lsquo;YourClientSecret&rsquo; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;<a href="https://accounts.google.com&quot;">https://accounts.google.com&quot;</a>, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &lsquo;urn:ietf:wg:oauth:2.0:oob&rsquo;, :scope =&gt; &lsquo;<a href="https://www.googleapis.com/auth/gmail.readonly'">https://www.googleapis.com/auth/gmail.readonly'</a>) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.
+        <br>
+        <a href="http://shidetake.com/gmail_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/line_highlights_4/">
+          KindleのハイライトをLINEに通知する 4
+        </a>
+      </h1>
+      <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-18T14:33:41&#43;09:00">
+      
+  June 18, 2017
+
+    </time>
+  
+  
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+</div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>
+        前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。
+今回でこのシリーズは最後。
+方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。
+記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。
+JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 &lsquo;json&rsquo;を忘れずにrequireすること。</p>
+
+<h1 id="ハイライトをjson形式にして外部ファイルに保存する-def-store-highlights-file-open-json-file-name-w-do-file-json-dump-highlights-file-end-end-json形式のファイルを読み出し-以下のメソッドでjson-file-nameというjson形式ファイルから-highlights配列にデータを読み出す">ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, &lsquo;w&rsquo;) do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。</h1>
+
+<h1 id="外部ファイルから既に取得しているハイライトを読み出す-def-restore-highlights-return-unless-file-exist-json-file-name-file-open-json-file-name-r-do-file-highlights-json-load-file-end-end-あとは-highlightsに存在しないハイライトだけをlineで送信し-外部ファイルに保存すればよい">外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, &lsquo;r&rsquo;) do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。</h1>
+
+<p>全ソース githubに全ソースをあげた。 <a href="https://github.com/shidetake/line_kindle_highlights">https://github.com/shidetake/line_kindle_highlights</a>
+        <br>
+        <a href="http://shidetake.com/line_highlights_4/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+            
+  <div class="pagination-bar">
+    <ul class="pagination">
+      
+        <li class="pagination-prev">
+          <a class="btn btn--default btn--small" href="http://shidetake.com/categories/tech/">
+            <i class="fa fa-angle-left text-base icon-mr"></i>
+            <span>NEWER POSTS</span>
           </a>
         </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_3/" data-tooltip="HandBrakeCLIによるDVDリッピング 3">
-          
-            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-            <i class="fa fa-angle-right"></i>
+      
+      
+        <li class="pagination-next">
+          <a class="btn btn--default btn--small" href="http://shidetake.com/categories/tech/page/3/">
+            <span>OLDER POSTS</span>
+            <i class="fa fa-angle-right text-base icon-ml"></i>
           </a>
         </li>
       
+      <li class="pagination-number">page 2 of 3</li>
     </ul>
-  </nav>
-  <ul class="post-actions post-action-share">
-    
-      <li class="post-action hide-lg hide-md hide-sm">
-        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-          <i class="fa fa-share-alt"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-          <i class="fa fa-google-plus"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-          <i class="fa fa-facebook-official"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </li>
-    
-    
-      <li class="post-action">
-        <a class="post-action-btn btn btn--default" href="#disqus_thread">
-          <i class="fa fa-comment-o"></i>
-        </a>
-      </li>
-    
-    <li class="post-action">
-      
-        <a class="post-action-btn btn btn--default" href="#">
-      
-        <i class="fa fa-list"></i>
-      </a>
-    </li>
-  </ul>
-</div>
+  </div>
 
 
-            
-              
-                <div id="disqus_thread">
-  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-              
-            
-          </div>
-        </article>
+          </section>
+        
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 shidetake. All Rights Reserved
@@ -395,92 +666,6 @@ albums.each { |a| p a.title }
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  <nav>
-    <ul class="post-actions post-action-nav">
-      
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_2/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2">
-          
-            <i class="fa fa-angle-left"></i>
-            <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-          </a>
-        </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_3/" data-tooltip="HandBrakeCLIによるDVDリッピング 3">
-          
-            <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-      
-    </ul>
-  </nav>
-  <ul class="post-actions post-action-share">
-    
-      <li class="post-action hide-lg hide-md hide-sm">
-        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-          <i class="fa fa-share-alt"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-          <i class="fa fa-google-plus"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-          <i class="fa fa-facebook-official"></i>
-        </a>
-      </li>
-      <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </li>
-    
-    
-      <li class="post-action">
-        <a class="post-action-btn btn btn--default" href="#disqus_thread">
-          <i class="fa fa-comment-o"></i>
-        </a>
-      </li>
-    
-    <li class="post-action">
-      
-        <a class="post-action-btn btn btn--default" href="#">
-      
-        <i class="fa fa-list"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <ul class="share-options">
-    <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-        <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
-      </a>
-    </li>
-    <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-        <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
-      </a>
-    </li>
-    <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgoogle_photo_api_1%2f">
-        <i class="fa fa-twitter"></i><span>Share on Twitter</span>
-      </a>
-    </li>
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -802,32 +987,6 @@ $(document).ready(function() {
   });
 });
 </script>
-
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/google_photo_api_1\/';
-          
-            this.page.identifier = '\/google_photo_api_1\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'shidetake-com';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-    
-  
 
 
 
