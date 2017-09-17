@@ -31,54 +31,24 @@
     
 
     
-    <meta name="description" content="前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
-起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
-LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
-妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
-流れ 以下のような流れで起動要求を伝達する。
-LINEで起動要求
-↓
-LINEからGoogle Apps Scriptのスクリプト実行
-↓
-ソケット通信でスクレイピング開始要求
-実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
-&#43;require &#39;socket&#39; &#43;gs = TCPServer.open(12345) &#43;addr = gs.addr &#43;addr.shift &#43;printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new &#43;loop do &#43; s = gs.accept &#43; print(s, &quot; is accepted\n&quot;) &#43; crawler.scrape &#43; &#43; print(s, &quot; is gone\n&quot;) &#43; s.close &#43;end  これでポート12345番でアクセスされると1度だけ動作するようになる。
-つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
-function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.">
-    <meta property="og:description" content="前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
-起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
-LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
-妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
-流れ 以下のような流れで起動要求を伝達する。
-LINEで起動要求
-↓
-LINEからGoogle Apps Scriptのスクリプト実行
-↓
-ソケット通信でスクレイピング開始要求
-実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
-&#43;require &#39;socket&#39; &#43;gs = TCPServer.open(12345) &#43;addr = gs.addr &#43;addr.shift &#43;printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new &#43;loop do &#43; s = gs.accept &#43; print(s, &quot; is accepted\n&quot;) &#43; crawler.scrape &#43; &#43; print(s, &quot; is gone\n&quot;) &#43; s.close &#43;end  これでポート12345番でアクセスされると1度だけ動作するようになる。
-つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
-function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.">
+    <meta name="description" content="前回はサーバで起動してLINE通知するところまで。
+このままだとサーバ側で手動で起動しないといけない。これを解決する。
+
+">
+    <meta property="og:description" content="前回はサーバで起動してLINE通知するところまで。
+このままだとサーバ側で手動で起動しないといけない。これを解決する。
+
+">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="KindleのハイライトをLINEに通知する 3">
     <meta property="og:url" content="/line_highlights_3/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
-起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
-LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
-妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
-流れ 以下のような流れで起動要求を伝達する。
-LINEで起動要求
-↓
-LINEからGoogle Apps Scriptのスクリプト実行
-↓
-ソケット通信でスクレイピング開始要求
-実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
-&#43;require &#39;socket&#39; &#43;gs = TCPServer.open(12345) &#43;addr = gs.addr &#43;addr.shift &#43;printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new &#43;loop do &#43; s = gs.accept &#43; print(s, &quot; is accepted\n&quot;) &#43; crawler.scrape &#43; &#43; print(s, &quot; is gone\n&quot;) &#43; s.close &#43;end  これでポート12345番でアクセスされると1度だけ動作するようになる。
-つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
-function doPost(e) { Logger.log(&#39;doPost&#39;) var events = JSON.">
+    <meta name="twitter:description" content="前回はサーバで起動してLINE通知するところまで。
+このままだとサーバ側で手動で起動しないといけない。これを解決する。
+
+">
     
     
 
@@ -277,10 +247,10 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
-
-<p><a href="../line_highlights_2/">前回</a>はサーバで起動してLINE通知するところまで。
+              <p><a href="../line_highlights_2/">前回</a>はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。</p>
+
+<p></p>
 
 <h2 id="起動タイミング">起動タイミング</h2>
 
@@ -346,7 +316,6 @@ LINEからGoogle Apps Scriptのスクリプト実行<br />
 BOTに話しかけたタイミングでソケット通信が飛ぶようになる。</p>
 
 <p><a href="../line_highlights_4/">続きはこちら</a></p>
-
               
             </div>
           </div>
@@ -780,12 +749,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -802,10 +769,9 @@ chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); pr
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i hoge.iso -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

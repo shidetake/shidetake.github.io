@@ -32,15 +32,11 @@
 
     
     <meta name="description" content="GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.">
+
+">
     <meta property="og:description" content="GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.">
+
+">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="RubyでGmail本文を取得する 1">
     <meta property="og:url" content="/gmail_api_1/">
@@ -48,10 +44,8 @@ require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; requir
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
     <meta name="twitter:description" content="GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。https://console.developers.google.com/ にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &#39;net/http&#39; require &#39;uri&#39; require &#39;oauth2&#39; require &#39;launchy&#39; CLIENT_ID = &#39;YourClientID&#39; CLIENT_SECRET = &#39;YourClientSecret&#39; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;https://accounts.google.com&quot;, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;, :scope =&gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.">
+
+">
     
     
 
@@ -250,9 +244,9 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <p>GmailのAPIをRubyで使う方法を何回かに分けて書く。</p>
 
-<p>GmailのAPIをRubyで使う方法を何回かに分けて書く。</p>
+<p></p>
 
 <h2 id="api準備">API準備</h2>
 
@@ -345,7 +339,6 @@ end
 
 <p>アクセストークンには期限があり、一定時間経過すると使えなくなってしまう。
 これを解決するのがリフレッシュトークンを使った方法。<a href="../gmail_api_2/">次回</a>はこれを使っていつでもAPIを利用できるようにする。</p>
-
               
             </div>
           </div>
@@ -775,12 +768,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -797,10 +788,9 @@ chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); pr
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i hoge.iso -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

@@ -785,12 +785,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -807,10 +805,9 @@ chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); pr
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i hoge.iso -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

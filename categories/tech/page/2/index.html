@@ -311,12 +311,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=<code>lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&amp;quot;&amp;quot;); print $6}'</code> for ((i = 1; i &lt;= $chapter<em>num; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c $i -i /dev/disk2 -o hoge</em>$(printf %02d $i).
+        <a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/ripping_3/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -371,10 +369,9 @@ chapter_num=<code>lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&amp;quot;&a
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c 3 -i hoge.iso -o hoge<em>3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -c $i -i hoge.iso -o hoge</em>$(printf %02d $i).
+        <a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/ripping_2/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -429,18 +426,18 @@ for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        DVDのリッピングというのは、設定が異常に多い。
-まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。 コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。 フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。
-と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。
-そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。
-HandBrakeCLI 今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。 Homebrewにはなかったので公式サイトからダウンロードしてインストールする。
-ISOイメージからの変換 まずはISOイメージから適当な設定で変換する。
-HandBrakeCLI -i hoge.iso -o hoge.mkv  こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。
-もう少しちゃんとした変換 完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。 以下のコマンドで、プリセットオプションの一覧が出てくる。
-HandBrakeCLI -z  画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。
-HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; -i hoge.iso -o hoge.mkv  せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、 &ndash;all-audioオプションと-sオプションを使って
-HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3,4,5,6&rsquo; -i hoge.iso -o hoge.mkv  こんな感じ。 DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は次回以降。
-お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。
+        DVDのリッピングというのは、設定が異常に多い。</p>
+
+<p>まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。
+コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。
+フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。</p>
+
+<p>と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。
+しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。</p>
+
+<p>そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/ripping_1/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -495,10 +492,11 @@ HandBrakeCLI -Z &lsquo;H.265 MKV 1080p30&rsquo; &ndash;all-audio -s &lsquo;1,2,3
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require &lsquo;google/api_client&rsquo; require &lsquo;json&rsquo; -ACCESS_TOKEN = &lsquo;YourAccessToken&rsquo; +CLIENT_ID = &lsquo;YourClientID&rsquo; +CLIENT_SECRET = &lsquo;YourClientSecret&rsquo; +REFRESH_TOKEN = &lsquo;YourRefreshToken&rsquo; APPLICATION_NAME = &lsquo;YourApplicationName&rsquo; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN +client.authorization = Signet::OAuth2::Client.new( + token_credential_uri: &lsquo;<a href="https://accounts.google.com/o/oauth2/token'">https://accounts.google.com/o/oauth2/token'</a>, + audience: &lsquo;<a href="https://accounts.google.com/o/oauth2/token'">https://accounts.google.com/o/oauth2/token'</a>, + scope: [&lsquo;<a href="https://www.googleapis.com/auth/drive.file'">https://www.googleapis.com/auth/drive.file'</a>], + client_id: CLIENT_ID, + client_secret: CLIENT_SECRET, + refresh_token: REFRESH_TOKEN, +) + +client.authorization.refresh! gmail = client.discovered_api(&lsquo;gmail&rsquo;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&lsquo;userId&rsquo; =&gt; &lsquo;me&rsquo;, &lsquo;q&rsquo;=&gt;&lsquo;from:auto-confirm@amazon.
+        <a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/gmail_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -553,11 +551,9 @@ require &lsquo;google/api_client&rsquo; require &lsquo;json&rsquo; -ACCESS_TOKEN
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        GmailのAPIをRubyで使う方法を何回かに分けて書く。
-API準備 まずはAPIを使うための準備。<a href="https://console.developers.google.com/">https://console.developers.google.com/</a> にアクセスして、プロジェクトを作成する。 それから、Gmail APIを有効にし、認証情報を追加する。
- 使用するAPI =&gt; Gmail API APIを呼び出す場所 =&gt; その他のUI アクセスするデータの種類 =&gt; ユーザーデータ  あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。
-Access Tokenの取得 取得したクライアントIDとクライアントシークレットから、 以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。
-require &lsquo;net/http&rsquo; require &lsquo;uri&rsquo; require &lsquo;oauth2&rsquo; require &lsquo;launchy&rsquo; CLIENT_ID = &lsquo;YourClientID&rsquo; CLIENT_SECRET = &lsquo;YourClientSecret&rsquo; client = OAuth2::Client.new( CLIENT_ID, CLIENT_SECRET, :site =&gt; &quot;<a href="https://accounts.google.com&quot;">https://accounts.google.com&quot;</a>, :token_url =&gt; &quot;/o/oauth2/token&quot;, :authorize_url =&gt; &quot;/o/oauth2/auth&quot;) auth_url = client.auth_code.authorize_url( :redirect_uri =&gt; &lsquo;urn:ietf:wg:oauth:2.0:oob&rsquo;, :scope =&gt; &lsquo;<a href="https://www.googleapis.com/auth/gmail.readonly'">https://www.googleapis.com/auth/gmail.readonly'</a>) # 表示されるURLをブラウザで開く Launchy.open auth_url print &quot;authorization code:&quot; authorization_code = gets.
+        GmailのAPIをRubyで使う方法を何回かに分けて書く。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/gmail_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -612,17 +608,15 @@ require &lsquo;net/http&rsquo; require &lsquo;uri&rsquo; require &lsquo;oauth2&r
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        前回はLINEのBOTにメッセージを送ることで、 ハイライトを取得して返信してくれるようにした。 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、 何度も同じハイライトが送られてきてしまう。 今回は最新のハイライトだけを返信するようにする。
-今回でこのシリーズは最後。
-方針 今まで取得したハイライトを記録しておいて、 差分だけを返信するという単純な仕様にした。
-記録する方法は、これまた単純に外部ファイルに保存するだけ。 容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、 とりあえず問題になるまでは単純な実装にする。
-JSON形式で保存 以下のメソッドで@highlightsという配列をJSON形式にして保存する。 &lsquo;json&rsquo;を忘れずにrequireすること。</p>
+        <a href="../line_highlights_3/">前回</a>はLINEのBOTにメッセージを送ることで、
+ハイライトを取得して返信してくれるようにした。
+現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、
+何度も同じハイライトが送られてきてしまう。
+今回は最新のハイライトだけを返信するようにする。</p>
 
-<h1 id="ハイライトをjson形式にして外部ファイルに保存する-def-store-highlights-file-open-json-file-name-w-do-file-json-dump-highlights-file-end-end-json形式のファイルを読み出し-以下のメソッドでjson-file-nameというjson形式ファイルから-highlights配列にデータを読み出す">ハイライトをJSON形式にして外部ファイルに保存する def store_highlights File.open(JSON_FILE_NAME, &lsquo;w&rsquo;) do |file| JSON.dump(@highlights, file) end end  JSON形式のファイルを読み出し 以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから@highlights配列にデータを読み出す。</h1>
+<p>今回でこのシリーズは最後。</p>
 
-<h1 id="外部ファイルから既に取得しているハイライトを読み出す-def-restore-highlights-return-unless-file-exist-json-file-name-file-open-json-file-name-r-do-file-highlights-json-load-file-end-end-あとは-highlightsに存在しないハイライトだけをlineで送信し-外部ファイルに保存すればよい">外部ファイルから既に取得しているハイライトを読み出す def restore_highlights return unless File.exist?(JSON_FILE_NAME) File.open(JSON_FILE_NAME, &lsquo;r&rsquo;) do |file| @highlights = JSON.load(file) end end  あとは、@highlightsに存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。</h1>
-
-<p>全ソース githubに全ソースをあげた。 <a href="https://github.com/shidetake/line_kindle_highlights">https://github.com/shidetake/line_kindle_highlights</a>
+<p>
         <br>
         <a href="http://shidetake.com/line_highlights_4/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -910,12 +904,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -932,10 +924,9 @@ chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); pr
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i hoge.iso -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

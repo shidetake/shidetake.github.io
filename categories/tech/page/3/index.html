@@ -253,20 +253,10 @@ ga('send', 'pageview');
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        前回はサーバで起動してLINE通知するところまで。 このままだとサーバ側で手動で起動しないといけない。これを解決する。
-起動タイミング 仕様 cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、 結局は手動で合図したタイミングで1度だけ起動する仕様にした。
-LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。
-妥協案とも言える仕様だが、この仕様にした一番の理由は、 頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。 これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。
-流れ 以下のような流れで起動要求を伝達する。
-LINEで起動要求
-↓
-LINEからGoogle Apps Scriptのスクリプト実行
-↓
-ソケット通信でスクレイピング開始要求
-実装 まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。
-+require &lsquo;socket&rsquo; +gs = TCPServer.open(12345) +addr = gs.addr +addr.shift +printf(&quot;server is on %s\n&quot;, addr.join(&quot;:&quot;)) crawler = LineKindleHighlights.new +loop do + s = gs.accept + print(s, &quot; is accepted\n&quot;) + crawler.scrape + + print(s, &quot; is gone\n&quot;) + s.close +end  これでポート12345番でアクセスされると1度だけ動作するようになる。
-つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。
-function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.
+        <a href="../line_highlights_2/">前回</a>はサーバで起動してLINE通知するところまで。
+このままだとサーバ側で手動で起動しないといけない。これを解決する。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/line_highlights_3/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -321,11 +311,10 @@ function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        前回はクローラーを作成してハイライトを取得するところまでだった。 今回はサーバで起動してLINE通知するところまでを作る。
-サーバで起動 前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、 POLTERGEISTを使う。
-def initialize - Capybara.current_driver = :selenium + Capybara.current_driver = :poltergeist - Capybara.javascript_driver = :selenium + Capybara.javascript_driver = :poltergeist Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 - Capybara.register_driver :selenium do |app| + Capybara.register_driver :poltergeist do |app| - # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う - Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) + Capybara::Poltergeist::Driver.new(app, {:timeout =&gt; 120, js_errors: false}) end + page.driver.headers = {&lsquo;User-Agent&rsquo; =&gt; &lsquo;Mac Safari&rsquo;} end  Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。
-これでサーバ（今回はUbuntuを使った）で動作するようになった。
-LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。
+        <a href="../line_highlights_1/">前回</a>はクローラーを作成してハイライトを取得するところまでだった。
+今回はサーバで起動してLINE通知するところまでを作る。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/line_highlights_2/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -380,10 +369,12 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        読書メモのためにハイライトした文章をコピペできる形にしたい。 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。
-ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。
-クローラー作成 RubyのCapybaraを使った。
-動作環境 ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15] selenium-webdriver (2.53.0, 2.52.0) capybara (2.14.0)  ソースコード # coding: utf-8 require &lsquo;capybara&rsquo; require &lsquo;capybara/dsl&rsquo; require &lsquo;capybara/poltergeist&rsquo; require &lsquo;selenium-webdriver&rsquo; class LineKindleHighlights include Capybara::DSL KINDLE_EMAIL = &lsquo;your@email&rsquo; KINDLE_PASSWORD = &lsquo;your_password&rsquo; CRAWL_PAGE_NUM = 2 def initialize Capybara.current_driver = :selenium Capybara.javascript_driver = :selenium Capybara.app_host = &lsquo;<a href="https://kindle.amazon.co.jp'">https://kindle.amazon.co.jp'</a> Capybara.default_max_wait_time = 5 Capybara.register_driver :selenium do |app| # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う Capybara::Selenium::Driver.new(app, :browser =&gt; :chrome) end end def scrape login # ページ読み込み待ち sleep 5 go_to_highlights CRAWL_PAGE_NUM.
+        読書メモのためにハイライトした文章をコピペできる形にしたい。
+KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。</p>
+
+<p>ハイライトした内容は <a href="https://kindle.amazon.co.jp/your_highlights">https://kindle.amazon.co.jp/your_highlights</a> で見えるので、これを取得して通知するクローラーを作ればよい。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/line_highlights_1/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -438,14 +429,16 @@ LINE通知 line-bot-apiを使った。だいたい以下のような感じ。Cha
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、 何らかの方法で容量を制限する必要がある。
-パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。 ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。
-そこで、別の方法を採用した。
-ダミーファイルを置く ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。 新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。
-1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、 計200GB分のデータ領域を確保することにした。
-ダミーファイルの作成は以下のコマンドを使った。
-dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000  実際にはfor文で以下のように使う。 ネットワーク越しなのでかなり時間がかかることに注意。
-cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./dummy<em>1GB</em>$i bs=1000000 count=1000; done for ((i=0; i &lt; 10; i++)); do dd if=/dev/zero of=./dummy<em>10GB</em>$i bs=1000000 count=10000; done
+        Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
+Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
+何らかの方法で容量を制限する必要がある。</p>
+
+<p>パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。
+ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。</p>
+
+<p>そこで、別の方法を採用した。</p>
+
+<p>
         <br>
         <a href="http://shidetake.com/time_capsule/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -500,11 +493,7 @@ cd /Volumes/TimeCapsule for ((i=0; i &lt; 100; i++)); do dd if=/dev/zero of=./du
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        dasher導入 他の人が詳しく書いているので割愛。
-個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
-LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
-CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
-{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;<a href="https://api.line.me/v2/bot/message/push&quot;">https://api.line.me/v2/bot/message/push&quot;</a>, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]}
+        
         <br>
         <a href="http://shidetake.com/dash_button/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -559,7 +548,7 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>
-        登録  PUSH通知する場合はDeveloper Trialで登録  Google Apps ScriptでユーザID取得  友達に追加したユーザのIDを登録したメールアドレスにメールする 以下のコードでウェブアプリケーションとして導入する  CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる example@gmail.comは任意のgmailアドレス アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）   var CHANNEL_ACCESS_TOKEN = &lsquo;CHANNEL_ACCESS_TOKEN&rsquo;; function doPost(e) { Logger.log(&lsquo;doPost&rsquo;) var events = JSON.parse(e.postData.contents).events; events.forEach (function(event) { if (event.type == &quot;follow&quot;) { mailUserId(event); } }); } function mailUserId(e) { MailApp.sendEmail(&lsquo;example@gmail.com&rsquo;, &lsquo;mailId&rsquo;, e.source.userId); }  curlでMessaging APIのPUSH通知を使う  CHANNEL_ACCESS_TOKENは上で使ったものと同じ USERIDはプッシュ先  今回は上で取得した自分のユーザIDを使う   curl -X POST \ -H &lsquo;Content-Type:application/json&rsquo; \ -H &lsquo;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&rsquo; \ -d &lsquo;{ &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;:[ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello, world!
+        
         <br>
         <a href="http://shidetake.com/line_push/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -840,12 +829,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -862,10 +849,9 @@ chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); pr
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i hoge.iso -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

@@ -31,24 +31,27 @@
     
 
     
-    <meta name="description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&gt; &#39;me&#39;, &#39;q&#39;=&gt;&#39;from:auto-confirm@amazon.">
-    <meta property="og:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&gt; &#39;me&#39;, &#39;q&#39;=&gt;&#39;from:auto-confirm@amazon.">
+    <meta name="description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。
+
+">
+    <meta property="og:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。
+
+">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="RubyでGmail本文を取得する 2">
     <meta property="og:url" content="/gmail_api_2/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。 ただしアクセストークンには期限があり、取得しなおさなくてはならない。 今回はリフレッシュトークンを使うことで、これを解決する。
-リフレッシュトークンの取得 前回のアクセストークン取得の項に記載の通り。
-リフレッシュトークンを使ったメールの取得 前回からの差分
-require &#39;google/api_client&#39; require &#39;json&#39; -ACCESS_TOKEN = &#39;YourAccessToken&#39; &#43;CLIENT_ID = &#39;YourClientID&#39; &#43;CLIENT_SECRET = &#39;YourClientSecret&#39; &#43;REFRESH_TOKEN = &#39;YourRefreshToken&#39; APPLICATION_NAME = &#39;YourApplicationName&#39; # APIクライアントの準備 client = Google::APIClient.new(application_name: APPLICATION_NAME) -client.authorization.access_token = ACCESS_TOKEN &#43;client.authorization = Signet::OAuth2::Client.new( &#43; token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; audience: &#39;https://accounts.google.com/o/oauth2/token&#39;, &#43; scope: [&#39;https://www.googleapis.com/auth/drive.file&#39;], &#43; client_id: CLIENT_ID, &#43; client_secret: CLIENT_SECRET, &#43; refresh_token: REFRESH_TOKEN, &#43;) &#43; &#43;client.authorization.refresh! gmail = client.discovered_api(&#39;gmail&#39;) # query res = client.execute( api_method: gmail.users.messages.list, parameters: {&#39;userId&#39; =&gt; &#39;me&#39;, &#39;q&#39;=&gt;&#39;from:auto-confirm@amazon.">
+    <meta name="twitter:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。
+
+">
     
     
 
@@ -247,11 +250,11 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
-
-<p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
+              <p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。</p>
+
+<p></p>
 
 <h2 id="リフレッシュトークンの取得">リフレッシュトークンの取得</h2>
 
@@ -307,7 +310,6 @@ end
 </code></pre>
 
 <p>これでこのシリーズは終わり。</p>
-
               
             </div>
           </div>
@@ -737,12 +739,10 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
-DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、
-diskutil list  すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。
-/dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2  この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv  前回の最後のスクリプトと組み合わせて、
-chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'` for ((i = 1; i &lt;= $chapter_num; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_2/">前回</a>からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -759,10 +759,9 @@ chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); pr
                   Jul 7, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">前回からの続き。
-チャプター分割 チャプター毎にファイルを分割してリッピングしたい場合は-cオプションを使って
-HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i hoge.iso -o hoge_1.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 2 -i hoge.iso -o hoge_2.mkv HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 3 -i hoge.iso -o hoge_3.mkv  いちいちチャプター数だけ繰り返すのはバカらしいので、 for文を使って以下のように書く。
-for ((i = 1; i &lt;= 3; i++)); do HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i hoge.iso -o hoge_$(printf %02d $i).</div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../ripping_1/">前回</a>からの続き。</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
