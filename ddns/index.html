@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>HandBrakeCLIによるDVDリッピング 3</title>
+    <title>DDNSでLANの外から自宅のRaspberry PiにSSH接続する</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -31,22 +31,34 @@
     
 
     
-    <meta name="description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta name="description" content="普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
+自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。
+
+かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。
+
+そこで、Dynamic DNS (DDNS) というサービスを利用することにする。
 
 ">
-    <meta property="og:description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta property="og:description" content="普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
+自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。
+
+かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。
+
+そこで、Dynamic DNS (DDNS) というサービスを利用することにする。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="HandBrakeCLIによるDVDリッピング 3">
-    <meta property="og:url" content="/ripping_3/">
+    <meta property="og:title" content="DDNSでLANの外から自宅のRaspberry PiにSSH接続する">
+    <meta property="og:url" content="/ddns/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta name="twitter:description" content="普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
+自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。
+
+かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。
+
+そこで、Dynamic DNS (DDNS) というサービスを利用することにする。
 
 ">
     
@@ -220,14 +232,14 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      HandBrakeCLIによるDVDリッピング 3
+      DDNSでLANの外から自宅のRaspberry PiにSSH接続する
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-07-19T22:36:23&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-09-18T21:51:18&#43;09:00">
       
-  July 19, 2017
+  September 18, 2017
 
     </time>
   
@@ -247,49 +259,112 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><a href="../ripping_2/">前回</a>からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+              <p>普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
+自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。</p>
+
+<p>かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。</p>
+
+<p>そこで、Dynamic DNS (DDNS) というサービスを利用することにする。</p>
 
 <p></p>
 
-<h2 id="dvdドライブのパスを取得">DVDドライブのパスを取得</h2>
+<h2 id="ddnsとは">DDNSとは</h2>
 
-<p><code>diskutil</code>コマンドを使う（たぶんmacOSでしか使えない）。
-DVDをドライブに入れた状態で、</p>
+<p>Domain Name System (DNS) は、ドメイン名とIPアドレスを紐付けるシステムのこと。
+サーバーへのアクセスは通常、IPアドレスによって対象サーバーを判別するが、
+IPアドレスは数値の羅列で人間には覚えにくいので、ドメイン名という覚えやすい名称に変換する。</p>
 
-<pre><code class="language-bash">diskutil list
+<p>Dynamic DNSというのは、その紐付けをDynamicに、つまり動的に行う。
+グローバルIPが変化しても、ドメイン名との紐付けを再度行うことで、ドメイン名の固定ができるというわけ。</p>
+
+<p>世の中にはこんな便利なサービスを無料で提供してくれる人たちがいる。</p>
+
+<h2 id="登録">登録</h2>
+
+<p>いくつか選択肢はあるが、今回は<a href="https://www.noip.com">no-ip</a>というサービスを使うことにした。
+なぜなら、<a href="http://portaltan.hatenablog.com/entry/2017/02/07/092205">raspberryPi にnoipでDDNSの設定をする方法</a>というサイトを参考にしたため。</p>
+
+<p>登録・設定から自動実行まで、ほぼほぼこの手順でいける。</p>
+
+<p>ただ、Dynamic Domain Update Client (DUC) の自動起動の設定だけは、少し好みではなかったのでアレンジした。</p>
+
+<h2 id="ducの自動起動設定">DUCの自動起動設定</h2>
+
+<p><code>/etc/init.d/noip2</code>を以下のように書き換えた。
+自動起動の設定を先頭に追加しただけ。これにより、わざわざrc.localに起動のためのコマンドを書かなくとも、
+自動で起動してくれる。</p>
+
+<pre><code class="language-bash">#! /bin/sh
+# /etc/init.d/noip2.sh
+### BEGIN INIT INFO
+# Provides:          noip2
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+### END INIT INFO
+
+# Supplied by no-ip.com
+# Modified for Debian GNU/Linux by Eivind L. Rygge &lt;eivind@rygge.org&gt;
+# corrected 1-17-2004 by Alex Docauer &lt;alex@docauer.net&gt;
+
+# . /etc/rc.d/init.d/functions  # uncomment/modify for your killproc
+
+DAEMON=/usr/local/bin/noip2
+NAME=noip2
+
+test -x $DAEMON || exit 0
+
+case &quot;$1&quot; in
+    start)
+    echo -n &quot;Starting dynamic address update: &quot;
+    start-stop-daemon --start --exec $DAEMON
+    echo &quot;noip2.&quot;
+    ;;
+    stop)
+    echo -n &quot;Shutting down dynamic address update:&quot;
+    start-stop-daemon --stop --oknodo --retry 30 --exec $DAEMON
+    echo &quot;noip2.&quot;
+    ;;
+
+    restart)
+    echo -n &quot;Restarting dynamic address update: &quot;
+    start-stop-daemon --stop --oknodo --retry 30 --exec $DAEMON
+    start-stop-daemon --start --exec $DAEMON
+    echo &quot;noip2.&quot;
+    ;;
+
+    *)
+    echo &quot;Usage: $0 {start|stop|restart}&quot;
+    exit 1
+esac
+exit 0
 </code></pre>
 
-<p>すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。
-NAMEの部分に入れたDVDの名前が表示されているのがあるはず。
-例えば以下のような感じ。</p>
+<h2 id="動作確認">動作確認</h2>
 
-<pre><code class="language-bash">/dev/disk2 (external, physical):
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:                            VIBY_521               *2.0 GB     disk2
+<p>自動起動するかどうか、実際に再起動して確かめる。</p>
+
+<pre><code class="language-bash">sudo reboot
 </code></pre>
 
-<p>この場合、<code>/dev/disk2</code>を入力として指定することでDVDから直接リッピングが可能になる。</p>
+<p>からの、</p>
 
-<pre><code class="language-bash">HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv
+<pre><code class="language-bash">sudo /usr/local/bin/noip2 -S
+
+Process 445, started as noip2, (version 2.1.9)
+Using configuration from /usr/local/etc/no-ip2.conf
+Last IP Address set 0.0.0.0
+Account hogehoge@gmail.com
+configured for:
+	host  hogehoge.ddns.net
+Updating every 30 minutes via /dev/wlan0 with NAT enabled.
 </code></pre>
 
-<p>前回の最後のスクリプトと組み合わせて、</p>
-
-<pre><code class="language-bash">chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'`
-for ((i = 1; i &lt;= $chapter_num; i++)); do
-  HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv
-done
-</code></pre>
-
-<p>ここまでで、かなり形になったので今回でラストとする。
-ただ、実はこれだけだと使えないタイプのDVDがある。
-そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。</p>
-
-<h2 id="お約束">お約束</h2>
-
-<p>違法なリッピングを推奨しているわけではないので注意。
-コピーガードされたDVDをリッピングするのはダメ。ぜったい。</p>
+<p>とすると、なんとIPアドレスが0になってしまっている。
+失敗か？と思ったが、特に問題なくつながる。
+30分後に再度確認したら正しいIPアドレスがセットされていた。どうやら起動後1発目のIPアドレスセットの内容は反映されないらしい。
+Last IP Addressとあるので、初回より前のアドレスを出そうとしているのだろうか。</p>
               
             </div>
           </div>
@@ -301,7 +376,7 @@ done
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ripping/">Ripping</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/raspberry-pi/">Raspberry Pi</a>
 
                   </div>
                 
@@ -313,7 +388,7 @@ done
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -321,7 +396,7 @@ done
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_2/" data-tooltip="HandBrakeCLIによるDVDリッピング 2">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/stock_trendline_1/" data-tooltip="株価チャートからトレンドラインを引く 1">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -338,17 +413,17 @@ done
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fddns%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fddns%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fddns%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -394,7 +469,7 @@ done
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -402,7 +477,7 @@ done
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_2/" data-tooltip="HandBrakeCLIによるDVDリッピング 2">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/stock_trendline_1/" data-tooltip="株価チャートからトレンドラインを引く 1">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -419,17 +494,17 @@ done
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fddns%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fddns%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fddns%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -456,17 +531,17 @@ done
       <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fddns%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fddns%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fripping_3%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fddns%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -801,9 +876,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/ripping_3\/';
+          this.page.url = 'http:\/\/shidetake.com\/ddns\/';
           
-            this.page.identifier = '\/ripping_3\/'
+            this.page.identifier = '\/ddns\/'
           
         };
         (function() {

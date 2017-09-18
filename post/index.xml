@@ -6,10 +6,26 @@
     <description>Recent content in Posts on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Sep 2017 21:51:18 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DDNSでLANの外から自宅のRaspberry PiにSSH接続する</title>
+      <link>http://shidetake.com/ddns/</link>
+      <pubDate>Mon, 18 Sep 2017 21:51:18 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ddns/</guid>
+      <description>&lt;p&gt;普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
+自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。&lt;/p&gt;
+
+&lt;p&gt;かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。&lt;/p&gt;
+
+&lt;p&gt;そこで、Dynamic DNS (DDNS) というサービスを利用することにする。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
