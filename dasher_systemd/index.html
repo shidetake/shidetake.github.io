@@ -360,7 +360,7 @@ network.targetの実体は、<code>/lib/systemd/system/network.target</code>に�
 <p>上の設定を
 <code>/etc/systemd/system/dasher.service</code>に置いて、</p>
 
-<pre><code class="language-bash">systemctl list-unit-files --type=service | dasher
+<pre><code class="language-bash">systemctl list-unit-files --type=service | grep dasher
 </code></pre>
 
 <p>すると、dasher.serviceがサービスとして認識されていることがわかる。
