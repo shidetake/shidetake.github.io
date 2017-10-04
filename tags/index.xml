@@ -110,5 +110,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Tag1</title>
+      <link>http://shidetake.com/tags/tag1/</link>
+      <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
+      
+      <guid>http://shidetake.com/tags/tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tag2</title>
+      <link>http://shidetake.com/tags/tag2/</link>
+      <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
+      
+      <guid>http://shidetake.com/tags/tag2/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
