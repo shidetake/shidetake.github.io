@@ -6,10 +6,26 @@
     <description>Recent content in Posts on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Oct 2017 22:27:25 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 16 Oct 2017 22:43:05 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>スピードテストを定期的に実行して回線速度の推移を見る</title>
+      <link>http://shidetake.com/speedtest/</link>
+      <pubDate>Mon, 16 Oct 2017 22:43:05 +0900</pubDate>
+      
+      <guid>http://shidetake.com/speedtest/</guid>
+      <description>&lt;p&gt;自宅の回線速度が遅いので、なんとか改善できないか考えている。
+まずは、現状把握ということで、スピードテストを実施した。
+常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
+cron定期的に実行してくれるようにした。&lt;/p&gt;
+
+&lt;p&gt;Raspberry Piで動作する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Ubuntu 16.04にmysqlをインストールする</title>

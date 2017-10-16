@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.1">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>RubyでGmail本文を取得する 2</title>
+    <title>スピードテストを定期的に実行して回線速度の推移を見る</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -31,25 +31,34 @@
     
 
     
-    <meta name="description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。
+    <meta name="description" content="自宅の回線速度が遅いので、なんとか改善できないか考えている。
+まずは、現状把握ということで、スピードテストを実施した。
+常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
+cron定期的に実行してくれるようにした。
+
+Raspberry Piで動作する。
 
 ">
-    <meta property="og:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。
+    <meta property="og:description" content="自宅の回線速度が遅いので、なんとか改善できないか考えている。
+まずは、現状把握ということで、スピードテストを実施した。
+常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
+cron定期的に実行してくれるようにした。
+
+Raspberry Piで動作する。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="RubyでGmail本文を取得する 2">
-    <meta property="og:url" content="/gmail_api_2/">
+    <meta property="og:title" content="スピードテストを定期的に実行して回線速度の推移を見る">
+    <meta property="og:url" content="/speedtest/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。
+    <meta name="twitter:description" content="自宅の回線速度が遅いので、なんとか改善できないか考えている。
+まずは、現状把握ということで、スピードテストを実施した。
+常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
+cron定期的に実行してくれるようにした。
+
+Raspberry Piで動作する。
 
 ">
     
@@ -223,14 +232,14 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      RubyでGmail本文を取得する 2
+      スピードテストを定期的に実行して回線速度の推移を見る
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-06-26T22:44:57&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-10-16T22:43:05&#43;09:00">
       
-  June 26, 2017
+  October 16, 2017
 
     </time>
   
@@ -250,66 +259,138 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。</p>
+              <p>自宅の回線速度が遅いので、なんとか改善できないか考えている。
+まずは、現状把握ということで、スピードテストを実施した。
+常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
+cron定期的に実行してくれるようにした。</p>
+
+<p>Raspberry Piで動作する。</p>
 
 <p></p>
 
-<h2 id="リフレッシュトークンの取得">リフレッシュトークンの取得</h2>
+<h2 id="実行結果">実行結果</h2>
 
-<p>前回のアクセストークン取得の項に記載の通り。</p>
+<p>まずは作成したスクリプトで取得したデータを載せる。
+csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行日時。</p>
 
-<h2 id="リフレッシュトークンを使ったメールの取得">リフレッシュトークンを使ったメールの取得</h2>
-
-<p>前回からの差分</p>
-
-<pre><code class="language-diff">require 'google/api_client'
-require 'json'
-
--ACCESS_TOKEN     = 'YourAccessToken'
-+CLIENT_ID        = 'YourClientID'
-+CLIENT_SECRET    = 'YourClientSecret'
-+REFRESH_TOKEN    = 'YourRefreshToken'
-APPLICATION_NAME = 'YourApplicationName'
-
-# APIクライアントの準備
-client = Google::APIClient.new(application_name: APPLICATION_NAME)
--client.authorization.access_token = ACCESS_TOKEN
-+client.authorization = Signet::OAuth2::Client.new(
-+  token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
-+  audience:             'https://accounts.google.com/o/oauth2/token',
-+  scope:                ['https://www.googleapis.com/auth/drive.file'],
-+  client_id:     CLIENT_ID,
-+  client_secret: CLIENT_SECRET,
-+  refresh_token: REFRESH_TOKEN,
-+)
-+
-+client.authorization.refresh!
-gmail = client.discovered_api('gmail')
-
-# query
-res = client.execute(
-  api_method: gmail.users.messages.list,
-  parameters: {'userId' =&gt; 'me', 'q'=&gt;'from:auto-confirm@amazon.co.jp'},
-)
-
-# parse
-if res.status == 200
-  json = JSON.parse(res.body)
-  json['messages'].each do |mail_ids|
-    mail = client.execute(
-      api_method: gmail.users.messages.get,
-      parameters: {'userId' =&gt; 'me', 'id'=&gt;mail_ids['id']},
-    )
-    p mail.body
-  end
-else
-  puts 'error'
-end
+<pre><code class="language-csv">167.908,2.23,5.37,2017/10/16 00:00:39
+129.306,7.82,5.82,2017/10/16 01:00:41
+88.187,18.31,19.27,2017/10/16 02:00:36
+87.879,24.88,21.74,2017/10/16 03:00:36
+156.129,26.47,16.25,2017/10/16 04:00:41
+75.103,25.61,21.42,2017/10/16 05:00:36
+94.37,26.99,21.17,2017/10/16 06:00:40
+76.879,24.55,21.35,2017/10/16 07:00:38
+71.107,24.72,21.67,2017/10/16 08:01:39
+254.614,19.98,16.24,2017/10/16 09:00:37
+81.341,23.46,18.63,2017/10/16 10:00:37
+89.473,23.30,17.17,2017/10/16 11:00:38
+275.777,23.40,10.58,2017/10/16 12:00:38
+110.481,22.26,17.16,2017/10/16 13:00:36
+149.522,25.06,18.38,2017/10/16 14:00:36
+82.292,17.59,8.26,2017/10/16 15:00:38
+202.99,17.83,4.05,2017/10/16 16:00:38
+102.178,17.50,4.52,2017/10/16 17:00:37
+114.628,14.78,16.30,2017/10/16 18:00:38
+102.745,12.89,13.11,2017/10/16 19:00:39
+1795.938,11.67,1.76,2017/10/16 20:00:51
+699.312,6.57,3.20,2017/10/16 21:00:52
+352.963,3.47,0.98,2017/10/16 22:00:47
+480.408,3.98,2.48,2017/10/16 23:00:47
 </code></pre>
 
-<p>これでこのシリーズは終わり。</p>
+<p>ついでにグラフ化。
+<img src="http://ift.tt/2ifbMt0" alt="image" /></p>
+
+<p>昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。</p>
+
+<h2 id="speedtest-cli">speedtest-cli</h2>
+
+<h3 id="インストール">インストール</h3>
+
+<p>スピードテストをCUIで行う場合は、恐らくspeedtest-cli一択。
+<code>pip</code>で入れるので、Pythonのインストールから。</p>
+
+<pre><code class="language-bash">sudo apt install python
+</code></pre>
+
+<p>続いて</p>
+
+<pre><code class="language-bash">pip install speedtest-cli
+</code></pre>
+
+<h3 id="使い方">使い方</h3>
+
+<p>一番シンプルなのは</p>
+
+<pre><code class="language-bash">speedtest
+</code></pre>
+
+<p>これだけ。<code>speedtest-cli</code>でも同じ結果が得られる。</p>
+
+<p>データ収集には不要な出力が多いのと、サーバーをping値で自動選択してしまうので、
+以下のように使うことにする。</p>
+
+<pre><code class="language-bash">speedtest --server 6476 --simple
+</code></pre>
+
+<h2 id="シェルスクリプト">シェルスクリプト</h2>
+
+<h3 id="1ライン化">1ライン化</h3>
+
+<p>上のコマンドをベースに、<code>cron</code>で実行するシェルスクリプトを作成する。
+1行にping, download, uploadをまとめたいので<code>tr</code>でカンマと置換する。
+また、速度以外は不要なので<code>awk</code>を使って、以下のように書く。</p>
+
+<pre><code class="language-bash">/usr/local/bin/speedtest --server 6476 --simple | awk '{print $2}' | tr '\n' ',' &gt;&gt; ~/tmp/speedtest.log
+</code></pre>
+
+<p><code>cron</code>ではコマンドを絶対パスで指定する必要があるので、絶対パスで書いている。</p>
+
+<h3 id="実行日時を追加">実行日時を追加</h3>
+
+<pre><code class="language-bash">date &quot;+%Y/%m/%d %H:%M:%S&quot; &gt;&gt; ~/tmp/speedtest.log
+</code></pre>
+
+<h3 id="リトライ機能を追加">リトライ機能を追加</h3>
+
+<p>ここまででほぼ完成だけど、結構な頻度で失敗してたのでリトライ機能を追加した。
+<code>cron</code>でリトライしてくれればいいのに。
+以下が完成形。</p>
+
+<pre><code class="language-bash">#!/bin/bash
+
+command=&quot;/usr/local/bin/speedtest --server 6476 --simple&quot;
+
+NEXT_WAIT_TIME=0
+until RET=`$command` || [ $NEXT_WAIT_TIME -eq 4 ]; do
+  sleep $(( (NEXT_WAIT_TIME++) * 60 ))
+done
+echo &quot;$RET&quot; | awk '{print $2}' | tr '\n' ',' &gt;&gt; ~/tmp/speedtest.log
+date &quot;+%Y/%m/%d %H:%M:%S&quot; &gt;&gt; ~/tmp/speedtest.log
+</code></pre>
+
+<p>4回までリトライする。リトライ間隔は、1分、2分、3分、4分と伸ばしていくようにした。</p>
+
+<h2 id="cron">cron</h2>
+
+<p>上のシェルスクリプトを<code>cron</code>に登録する。</p>
+
+<pre><code class="language-bash">crontab -e
+</code></pre>
+
+<p>すると、エディタが立ち上がる（もしくはエディタ選択画面になるので選ぶ）ので、
+以下のように1時間毎に実行するように設定する。</p>
+
+<pre><code class="language-bash">0 * * * * /usr/local/bin/speedtest_cron.sh
+</code></pre>
+
+<p>これで完成。</p>
+
+<h2 id="注意点">注意点</h2>
+
+<p>実行環境はRaspberry Piを想定しているが、場合によってはRaspberry Pi自体がボトルネックとなって、
+正しい速度が取れないので注意。うちの場合はMac Book Airを有線でつないで測定してもだいたい同じような値が取れることを確認している。</p>
               
             </div>
           </div>
@@ -321,9 +402,9 @@ end
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/cron/">cron</a>
 
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ruby/">Ruby</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/raspberry-pi/">Raspberry Pi</a>
 
                   </div>
                 
@@ -335,7 +416,7 @@ end
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_1/" data-tooltip="HandBrakeCLIによるDVDリッピング 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -343,7 +424,7 @@ end
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/gmail_api_1/" data-tooltip="RubyでGmail本文を取得する 1">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/mysql_install/" data-tooltip="Ubuntu 16.04にmysqlをインストールする">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -360,17 +441,17 @@ end
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -416,7 +497,7 @@ end
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_1/" data-tooltip="HandBrakeCLIによるDVDリッピング 1">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -424,7 +505,7 @@ end
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/gmail_api_1/" data-tooltip="RubyでGmail本文を取得する 1">
+            <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/mysql_install/" data-tooltip="Ubuntu 16.04にmysqlをインストールする">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -441,17 +522,17 @@ end
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -478,17 +559,17 @@ end
       <div id="share-options-bar" class="share-options-bar" data-behavior="5">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fgmail_api_2%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fshidetake.com%2fspeedtest%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -829,9 +910,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/gmail_api_2\/';
+          this.page.url = 'http:\/\/shidetake.com\/speedtest\/';
           
-            this.page.identifier = '\/gmail_api_2\/'
+            this.page.identifier = '\/speedtest\/'
           
         };
         (function() {
