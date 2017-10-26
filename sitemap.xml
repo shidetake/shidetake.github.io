@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://shidetake.com/git_difftool/</loc>
+    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+  </url>
   
   <url>
     <loc>http://shidetake.com/speedtest/</loc>
@@ -161,8 +167,20 @@
   </url>
   
   <url>
+    <loc>http://shidetake.com/tags/dotfile/</loc>
+    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/tags/fintech/</loc>
     <lastmod>2017-09-17T16:36:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/tags/git/</loc>
+    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -186,7 +204,7 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2017-10-16T22:43:05+09:00</lastmod>
+    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -240,13 +258,13 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2017-10-16T22:43:05+09:00</lastmod>
+    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2017-10-16T22:43:05+09:00</lastmod>
+    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
     <priority>0</priority>
   </url>
   

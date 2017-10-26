@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>iPadをウェブカメラ化してiCamSourceと連携</title>
+    <title>gitのdiffをvimdiffで見る</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -30,28 +30,31 @@
     
 
     
-    <meta name="description" content="iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
-ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。
+    <meta name="description" content="少し前まで、gitのdiffにvimdiffを使う場合、git_diff_wrapperなるファイルを用意して、
+.gitconfigの[diff]セクションにexternal = git_diff_wrapperとするのが主流だった（と思っている）。
 
-使わなくなった古いiPhoneを使ってもよい。
+今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
+今の主流はdifftoolを使うやり方のようなので、乗り換えた。
 
 ">
-    <meta property="og:description" content="iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
-ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。
+    <meta property="og:description" content="少し前まで、gitのdiffにvimdiffを使う場合、git_diff_wrapperなるファイルを用意して、
+.gitconfigの[diff]セクションにexternal = git_diff_wrapperとするのが主流だった（と思っている）。
 
-使わなくなった古いiPhoneを使ってもよい。
+今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
+今の主流はdifftoolを使うやり方のようなので、乗り換えた。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="iPadをウェブカメラ化してiCamSourceと連携">
-    <meta property="og:url" content="/icam/">
+    <meta property="og:title" content="gitのdiffをvimdiffで見る">
+    <meta property="og:url" content="/git_difftool/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
-ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。
+    <meta name="twitter:description" content="少し前まで、gitのdiffにvimdiffを使う場合、git_diff_wrapperなるファイルを用意して、
+.gitconfigの[diff]セクションにexternal = git_diff_wrapperとするのが主流だった（と思っている）。
 
-使わなくなった古いiPhoneを使ってもよい。
+今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
+今の主流はdifftoolを使うやり方のようなので、乗り換えた。
 
 ">
     
@@ -228,15 +231,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      iPadをウェブカメラ化してiCamSourceと連携
+      gitのdiffをvimdiffで見る
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-08-17T17:14:33Z">
+      <time itemprop="datePublished" datetime="2017-10-26T23:34:29&#43;09:00">
         
-  August 17, 2017
+  October 26, 2017
 
       </time>
     
@@ -256,59 +259,64 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
-ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。</p>
+              <p>少し前まで、<code>git</code>のdiffに<code>vimdiff</code>を使う場合、<code>git_diff_wrapper</code>なるファイルを用意して、
+<code>.gitconfig</code>の<code>[diff]</code>セクションに<code>external = git_diff_wrapper</code>とするのが主流だった（と思っている）。</p>
 
-<p>使わなくなった古いiPhoneを使ってもよい。</p>
+<p>今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
+今の主流は<code>difftool</code>を使うやり方のようなので、乗り換えた。</p>
 
 <p></p>
 
-<h2 id="必要なもの">必要なもの</h2>
+<h2 id="gitconfig">.gitconfig</h2>
 
-<ul>
-<li>PC (今回はMBA)
+<p>まず早速<code>.gitconfig</code>を示す。</p>
 
-<ul>
-<li>EpocCam Viewer Pro</li>
-<li>CamTwist</li>
-<li>iCamSource</li>
-</ul></li>
-<li>iPad
+<pre><code class="language-bash">[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+</code></pre>
 
-<ul>
-<li>EpocCam</li>
-</ul></li>
-<li>iPhone
+<p>これでOK。ただし、<code>difftool</code>を使うのでコマンドが変わる。
+<code>diff</code>のexternalを変える場合は、あくまで<code>git diff</code>が使うツールを変更するという意味になるのだが、
+<code>diff</code>のtoolオプションを変える場合は、<code>git difftool</code>が使うツールを指定するという意味になる。</p>
 
-<ul>
-<li>iCam</li>
-</ul></li>
-</ul>
+<h2 id="alias化">alias化</h2>
 
-<h2 id="構成">構成</h2>
+<p><code>git_diff_wrapper</code>手法では<code>git diff</code>でよかったのに、今回の方法では<code>git difftool</code>と打たないといけないはイマイチなので、
+エイリアスを用意する。</p>
 
-<p><img src="http://ift.tt/2vi1qtp" alt="image" /></p>
+<pre><code class="language-bash">[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[alias]
+    dt = difftool
+</code></pre>
 
-<h2 id="ipadのウェブカメラ化">iPadのウェブカメラ化</h2>
+<p>これでOK。本当は<code>diff = difftool</code>としたかったが、もともと用意されているコマンドを上書きするようなエイリアスは作れないらしい。</p>
 
-<p>EpocCamというアプリを使って、iPadのカメラ画像をMBAで受信する。
-これは特に設定もいらない簡単アプリ。同一LANである必要があるので、それだけ注意。</p>
+<h2 id="リードオンリー解除">リードオンリー解除</h2>
 
-<p>更に、それをCamTwistというアプリで受けることで、ウェブカメラの入力画像のように使えるようになる。</p>
+<p>さて、これで今までとだいたい同じになったが、カレントのファイルがリードオンリーで開かれるのだけが不満。
+diff見ながら手直しするというのはよくあるので、毎回<code>:set noro</code>なんて打ってられない。</p>
 
-<p><img src="http://ift.tt/2uYxTtD" alt="image" /></p>
+<p>なぜか以下のようにしたら解決した。これが完成形。</p>
 
-<p>EpocCamが繋がっている状態 (上図左下) で、CamTwistの設定をSyphonにして、Syphon ServerとしてEpocCam Viewer Proを選択する (上図上) 。
-CamTwistのPreviewにEpocCamと同じ映像が表示されれば成功 (上図右下) 。</p>
+<pre><code class="language-bash">[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[difftool &quot;vimdiff&quot;]
+    cmd = vimdiff $LOCAL $REMOTE
+[alias]
+    dt = difftool
+</code></pre>
 
-<h2 id="icamの設定">iCamの設定</h2>
+<p><code>[difftool &quot;vimdiff&quot;]</code>セクションで<code>cmd</code>オプションを指定することで、<code>difftool</code>で開くコマンドを指定できる。
+ここに編集可能な状態で開くオプションを指定すればいいかなと思っていたが、特になんの指定もなくできた。</p>
 
-<p>MBAにiCamSourceというアプリを入れて、VideoにCamTwist (2VUY)を選択する。
-idとパスワードは適当に入力して、右下のStartボタンを押して、EpocCamと同じ映像が表示されれば成功。</p>
-
-<p><img src="http://ift.tt/2vhuf9q" alt="image" /></p>
-
-<p>iPhoneに入れたiCamアプリにidとパスワードを入力するとiPadのカメラの映像を見ることができる。</p>
+<p><code>cmd</code>オプションのデフォルトがどうなってるか知らないけど、リードオンリーな状態で開くようなオプションが指定されているのかな。</p>
               
             </div>
           </div>
@@ -320,7 +328,9 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/smart-home/">Smart home</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/git/">git</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/dotfile/">dotfile</a>
 
                   </div>
                 
@@ -332,7 +342,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/blog_img/" data-tooltip="IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -340,7 +350,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/wireless_tv/" data-tooltip="テレビのアンテナ線を無線化する">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/speedtest/" data-tooltip="スピードテストを定期的に実行して回線速度の推移を見る">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -398,7 +408,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/blog_img/" data-tooltip="IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -406,7 +416,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/wireless_tv/" data-tooltip="テレビのアンテナ線を無線化する">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/speedtest/" data-tooltip="スピードテストを定期的に実行して回線速度の推移を見る">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -771,9 +781,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/icam\/';
+          this.page.url = 'http:\/\/shidetake.com\/git_difftool\/';
           
-            this.page.identifier = '\/icam\/'
+            this.page.identifier = '\/git_difftool\/'
           
         };
         (function() {

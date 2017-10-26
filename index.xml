@@ -6,10 +6,25 @@
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Oct 2017 22:43:05 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 26 Oct 2017 23:34:29 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>gitのdiffをvimdiffで見る</title>
+      <link>http://shidetake.com/git_difftool/</link>
+      <pubDate>Thu, 26 Oct 2017 23:34:29 +0900</pubDate>
+      
+      <guid>http://shidetake.com/git_difftool/</guid>
+      <description>&lt;p&gt;少し前まで、&lt;code&gt;git&lt;/code&gt;のdiffに&lt;code&gt;vimdiff&lt;/code&gt;を使う場合、&lt;code&gt;git_diff_wrapper&lt;/code&gt;なるファイルを用意して、
+&lt;code&gt;.gitconfig&lt;/code&gt;の&lt;code&gt;[diff]&lt;/code&gt;セクションに&lt;code&gt;external = git_diff_wrapper&lt;/code&gt;とするのが主流だった（と思っている）。&lt;/p&gt;
+
+&lt;p&gt;今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
+今の主流は&lt;code&gt;difftool&lt;/code&gt;を使うやり方のようなので、乗り換えた。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>スピードテストを定期的に実行して回線速度の推移を見る</title>
