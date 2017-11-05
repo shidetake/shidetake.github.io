@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/make_win/</loc>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/git_difftool/</loc>
     <lastmod>2017-10-26T23:34:29+09:00</lastmod>
   </url>
@@ -197,6 +202,18 @@
   </url>
   
   <url>
+    <loc>http://shidetake.com/tags/linux/</loc>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/tags/makefile/</loc>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/playground/</loc>
     <lastmod>2017-03-30T23:30:11+09:00</lastmod>
     <priority>0</priority>
@@ -204,7 +221,7 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -258,13 +275,19 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/tags/windows/</loc>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+    <lastmod>2017-11-05T08:38:17+09:00</lastmod>
     <priority>0</priority>
   </url>
   
