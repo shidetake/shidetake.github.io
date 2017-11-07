@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Api on blog</title>
+    <link>http://shidetake.com/tags/api/</link>
+    <description>Recent content in Api on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>株価チャートからトレンドラインを引く 1</title>
+      <link>http://shidetake.com/stock_trendline_1/</link>
+      <pubDate>Sun, 17 Sep 2017 16:36:18 +0000</pubDate>
+      
+      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
+このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
+
+&lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Google Finance APIを使って株価チャートを作成</title>
+      <link>http://shidetake.com/google_finance_api/</link>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_finance_api/</guid>
+      <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。&lt;/p&gt;
+
+&lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
+      <link>http://shidetake.com/google_photo_api_2/</link>
+      <pubDate>Tue, 01 Aug 2017 22:41:29 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_photo_api_2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
+今回は任意のアルバムから写真の情報を取得する。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
+      <link>http://shidetake.com/google_photo_api_1/</link>
+      <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_photo_api_1/</guid>
+      <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
+あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RubyでGmail本文を取得する 2</title>
+      <link>http://shidetake.com/gmail_api_2/</link>
+      <pubDate>Mon, 26 Jun 2017 22:44:57 +0900</pubDate>
+      
+      <guid>http://shidetake.com/gmail_api_2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;前回&lt;/a&gt;はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RubyでGmail本文を取得する 1</title>
+      <link>http://shidetake.com/gmail_api_1/</link>
+      <pubDate>Tue, 20 Jun 2017 22:55:21 +0900</pubDate>
+      
+      <guid>http://shidetake.com/gmail_api_1/</guid>
+      <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

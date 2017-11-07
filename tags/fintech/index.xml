@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fintech on blog</title>
+    <link>http://shidetake.com/tags/fintech/</link>
+    <description>Recent content in Fintech on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/fintech/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>株価チャートからトレンドラインを引く 1</title>
+      <link>http://shidetake.com/stock_trendline_1/</link>
+      <pubDate>Sun, 17 Sep 2017 16:36:18 +0000</pubDate>
+      
+      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
+このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
+
+&lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Google Finance APIを使って株価チャートを作成</title>
+      <link>http://shidetake.com/google_finance_api/</link>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
+      
+      <guid>http://shidetake.com/google_finance_api/</guid>
+      <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
+手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
+まずは普通の株価チャートを描いてみた。&lt;/p&gt;
+
+&lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
+色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

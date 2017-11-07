@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Makefile on blog</title>
+    <link>http://shidetake.com/tags/makefile/</link>
+    <description>Recent content in Makefile on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Nov 2017 08:38:17 +0900</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/makefile/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WindowsでもLinuxでも動くMakefileを書く</title>
+      <link>http://shidetake.com/make_win/</link>
+      <pubDate>Sun, 05 Nov 2017 08:38:17 +0900</pubDate>
+      
+      <guid>http://shidetake.com/make_win/</guid>
+      <description>&lt;p&gt;シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
+今回はシンボリックリンクを作成するコマンドを例にして説明する。&lt;/p&gt;
+
+&lt;p&gt;Windowsの&lt;code&gt;make&lt;/code&gt;はMinGWのものを想定している。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tag1 on blog</title>
+    <link>http://shidetake.com/tags/tag1/</link>
+    <description>Recent content in Tag1 on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Oct 2017 22:27:25 +0900</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 16.04にmysqlをインストールする</title>
+      <link>http://shidetake.com/mysql_install/</link>
+      <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
+      
+      <guid>http://shidetake.com/mysql_install/</guid>
+      <description>&lt;p&gt;aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

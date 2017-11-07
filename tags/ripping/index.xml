@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ripping on blog</title>
+    <link>http://shidetake.com/tags/ripping/</link>
+    <description>Recent content in Ripping on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Jul 2017 22:36:23 +0900</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/ripping/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 3</title>
+      <link>http://shidetake.com/ripping_3/</link>
+      <pubDate>Wed, 19 Jul 2017 22:36:23 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ripping_3/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;../ripping_2/&#34;&gt;前回&lt;/a&gt;からの続き。
+これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 2</title>
+      <link>http://shidetake.com/ripping_2/</link>
+      <pubDate>Mon, 10 Jul 2017 22:41:58 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ripping_2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;../ripping_1/&#34;&gt;前回&lt;/a&gt;からの続き。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HandBrakeCLIによるDVDリッピング 1</title>
+      <link>http://shidetake.com/ripping_1/</link>
+      <pubDate>Mon, 03 Jul 2017 22:08:55 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ripping_1/</guid>
+      <description>&lt;p&gt;DVDのリッピングというのは、設定が異常に多い。&lt;/p&gt;
+
+&lt;p&gt;まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。
+コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。
+フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。&lt;/p&gt;
+
+&lt;p&gt;と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。
+しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。&lt;/p&gt;
+
+&lt;p&gt;そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

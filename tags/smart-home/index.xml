@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Smart Home on blog</title>
+    <link>http://shidetake.com/tags/smart-home/</link>
+    <description>Recent content in Smart Home on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Aug 2017 17:14:33 +0000</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/smart-home/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iPadをウェブカメラ化してiCamSourceと連携</title>
+      <link>http://shidetake.com/icam/</link>
+      <pubDate>Thu, 17 Aug 2017 17:14:33 +0000</pubDate>
+      
+      <guid>http://shidetake.com/icam/</guid>
+      <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
+ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。&lt;/p&gt;
+
+&lt;p&gt;使わなくなった古いiPhoneを使ってもよい。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>テレビのアンテナ線を無線化する</title>
+      <link>http://shidetake.com/wireless_tv/</link>
+      <pubDate>Thu, 10 Aug 2017 22:26:23 +0000</pubDate>
+      
+      <guid>http://shidetake.com/wireless_tv/</guid>
+      <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
+マンションなのでアンテナ設置など大掛かりな方法は除いて、
+ざっと調べたところ、以下の方法がある。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;室内アンテナを設置する&lt;/li&gt;
+&lt;li&gt;PS4とnasneを使う方法&lt;/li&gt;
+&lt;li&gt;Apple TVとピクセラのワイヤレステレビチューナーを使う方法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3つ目の案を採用することにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Time Machineの容量制限</title>
+      <link>http://shidetake.com/time_capsule/</link>
+      <pubDate>Sun, 14 May 2017 21:01:17 +0900</pubDate>
+      
+      <guid>http://shidetake.com/time_capsule/</guid>
+      <description>&lt;p&gt;Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
+Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
+何らかの方法で容量を制限する必要がある。&lt;/p&gt;
+
+&lt;p&gt;パーティションを切って、バックアップ領域とデータ領域に分けるという方法が主流のようだ。
+ただ、裏ワザ的な使い方のためあまり推奨しないという意見も多い。&lt;/p&gt;
+
+&lt;p&gt;そこで、別の方法を採用した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
