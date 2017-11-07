@@ -25,5 +25,16 @@
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Ubuntu 16.04にmysqlをインストールする</title>
+      <link>http://shidetake.com/mysql_install/</link>
+      <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
+      
+      <guid>http://shidetake.com/mysql_install/</guid>
+      <description>&lt;p&gt;aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

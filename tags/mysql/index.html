@@ -1,9 +1,5 @@
 
 
-  
-    
-  
-
 
   
 
@@ -22,29 +18,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Ubuntu 16.04にmysqlをインストールする</title>
+    <title>Mysql</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/tags/mysql/index.xml">
+    
 
     
-    <meta name="description" content="aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。
-
-">
-    <meta property="og:description" content="aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。
-
-">
+    <meta name="description" content="Hugo tranquilpeak theme demo">
+    <meta property="og:description" content="Hugo tranquilpeak theme demo">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Ubuntu 16.04にmysqlをインストールする">
-    <meta property="og:url" content="/mysql_install/">
+    <meta property="og:title" content="Mysql">
+    <meta property="og:url" content="/tags/mysql/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。
-
-">
+    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
     
     
 
@@ -89,7 +81,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="5">
+      <header id="header" data-behavior="2">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -109,7 +101,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="5">
+      <nav id="sidebar" data-behavior="2">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,21 +200,39 @@ ga('send', 'pageview');
 </nav>
 
       
+        
 
-      <div id="main" data-behavior="5"
+      
+      <div id="main" data-behavior="2"
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
   
-    <h1 class="post-title" itemprop="headline">
-      Ubuntu 16.04にmysqlをインストールする
-    </h1>
+    
+      
+        
+      
+    
   
+
+
   
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/mysql_install/">
+          Ubuntu 16.04にmysqlをインストールする
+        </a>
+      </h1>
+      
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2017-10-01T22:27:25&#43;09:00">
@@ -243,129 +253,25 @@ ga('send', 'pageview');
 
   </div>
 
-</div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <p>aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。</p>
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。</p>
 
 <p></p>
-
-<h2 id="install">install</h2>
-
-<p>ここは簡単。</p>
-
-<pre><code class="language-bash">sudo apt install mysql-server mysql-client
-</code></pre>
-
-<p>こんだけ。ただ、既に別のバージョンのものが入っていたりするので、キレイにしたい場合は、
-先に以下のコマンドを送る。別バージョンのmysqlを削除することで、色々動かなくなる可能性もあるので注意。</p>
-
-<pre><code class="language-bash">sudo dpkg -l | grep mysql
-</code></pre>
-
-<p>でインストール済みのmysqlを確認して、</p>
-
-<pre><code class="language-bash">sudo apt remove --purge mysql*
-</code></pre>
-
-<p>こんな感じで、消していく。<code>--purge</code>オプションは、関連する設定ファイルも一緒に削除するのもので、
-この後の再インストール後に悪さしないためにも指定しておいたほうがよい。</p>
-
-<h2 id="rootパスワード設定">rootパスワード設定</h2>
-
-<pre><code class="language-bash">mysql -uroot
-</code></pre>
-
-<p>で入ろうとしたら、<code>ERROR 1698 (28000): Access denied for user 'root'@'localhost'</code>と怒られた。
-初期パスワードは無かったと思ってたが、仕様が変わったらしい。</p>
-
-<p>で色々やってみたんだけど、実はやっぱり初期パスワードは設定されていなくて、<code>sudo</code>つければいいだけだった。
-ということで、改めて</p>
-
-<pre><code class="language-bash">sudo mysql -uroot
-</code></pre>
-
-<p>これでOK。</p>
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
-            
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ubuntu/">Ubuntu</a>
-
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/linux/">Linux</a>
-
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/mysql/">mysql</a>
-
-                  </div>
-                
-              
-            
-            
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/speedtest/" data-tooltip="スピードテストを定期的に実行して回線速度の推移を見る">
-              
-                <i class="fa fa-angle-left"></i>
-                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-              </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dasher_systemd/" data-tooltip="Raspberry PiでSystemdを使ってdasherをサービス化">
-              
-                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
+      <p>
+        <a href="http://shidetake.com/mysql_install/" class="postShorten-excerpt_link link">Continue reading</a>
         
-      
-      
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
-            <i class="fa fa-comment-o"></i>
-          </a>
-        </li>
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
+      </p>
+    </div>
   </div>
-
+  
+</article>
 
             
-              
-                <div id="disqus_thread">
-  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-              
             
-          </div>
-        </article>
+
+          </section>
+        
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 shidetake. All Rights Reserved
@@ -373,64 +279,6 @@ ga('send', 'pageview');
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/speedtest/" data-tooltip="スピードテストを定期的に実行して回線速度の推移を見る">
-              
-                <i class="fa fa-angle-left"></i>
-                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-              </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/dasher_systemd/" data-tooltip="Raspberry PiでSystemdを使ってdasherをサービス化">
-              
-                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
-        
-      
-      
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
-            <i class="fa fa-comment-o"></i>
-          </a>
-        </li>
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
-  <ul class="share-options">
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -748,32 +596,6 @@ $(document).ready(function() {
   });
 });
 </script>
-
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/mysql_install\/';
-          
-            this.page.identifier = '\/mysql_install\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'shidetake-com';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-    
-  
 
 
 
