@@ -6,10 +6,22 @@
     <description>Recent content in Posts on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Nov 2017 08:38:17 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 15 Nov 2017 23:11:02 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>マンション付属の光回線が早くなった話</title>
+      <link>http://shidetake.com/ebroad/</link>
+      <pubDate>Wed, 15 Nov 2017 23:11:02 +0900</pubDate>
+      
+      <guid>http://shidetake.com/ebroad/</guid>
+      <description>&lt;p&gt;自宅の光回線が遅くて、&lt;a href=&#34;../speedtest/&#34;&gt;スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事&lt;/a&gt;を書いた。
+その後の話。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>WindowsでもLinuxでも動くMakefileを書く</title>
