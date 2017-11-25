@@ -6,10 +6,22 @@
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2017 23:11:02 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 25 Nov 2017 20:45:30 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>git showの差分をvimdiffで見る</title>
+      <link>http://shidetake.com/git_showtool/</link>
+      <pubDate>Sat, 25 Nov 2017 20:45:30 +0900</pubDate>
+      
+      <guid>http://shidetake.com/git_showtool/</guid>
+      <description>&lt;p&gt;以前、&lt;a href=&#34;../git_difftool/&#34;&gt;git diffをvimdiffで見る方法&lt;/a&gt;を紹介した。
+今回は&lt;code&gt;git show&lt;/code&gt;を&lt;code&gt;vimdiff&lt;/code&gt;で見る方法を紹介する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>マンション付属の光回線が早くなった話</title>

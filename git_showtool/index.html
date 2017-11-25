@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Makefile</title>
+    <title>git showの差分をvimdiffで見る</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/tags/makefile/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="以前、git diffをvimdiffで見る方法を紹介した。
+今回はgit showをvimdiffで見る方法を紹介する。
+
+">
+    <meta property="og:description" content="以前、git diffをvimdiffで見る方法を紹介した。
+今回はgit showをvimdiffで見る方法を紹介する。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Makefile">
-    <meta property="og:url" content="/tags/makefile/">
+    <meta property="og:title" content="git showの差分をvimdiffで見る">
+    <meta property="og:url" content="/git_showtool/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="以前、git diffをvimdiffで見る方法を紹介した。
+今回はgit showをvimdiffで見る方法を紹介する。
+
+">
     
     
 
@@ -81,7 +92,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -101,7 +112,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -200,44 +211,26 @@ ga('send', 'pageview');
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      git showの差分をvimdiffで見る
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/make_win/">
-          WindowsでもLinuxでも動くMakefileを書く
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-05T08:38:17&#43;09:00">
+      <time itemprop="datePublished" datetime="2017-11-25T20:45:30&#43;09:00">
         
-  November 5, 2017
+  November 25, 2017
 
       </time>
     
@@ -253,28 +246,133 @@ ga('send', 'pageview');
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。</p>
-
-<p>Windowsの<code>make</code>はMinGWのものを想定している。</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>以前、<a href="../git_difftool/">git diffをvimdiffで見る方法</a>を紹介した。
+今回は<code>git show</code>を<code>vimdiff</code>で見る方法を紹介する。</p>
 
 <p></p>
-      <p>
-        <a href="http://shidetake.com/make_win/" class="postShorten-excerpt_link link">Continue reading</a>
+
+<h2 id="git-show">git show</h2>
+
+<p>あるコミットの詳細を表示するコマンド。<code>diff</code>も表示してくれる。
+<code>git diff</code>程使う機会は少ないかもしれないが、個人的にはかなりよく使うコマンド。</p>
+
+<p>コードレビューや不具合解析なんかで、過去のコミットでの修正内容を確認するのに便利なんだけど、
+クラシックな<code>diff</code>で表示されるのが気に入らなかったので<code>vimdiff</code>で表示する方法を探していた。</p>
+
+<h2 id="エイリアス">エイリアス</h2>
+
+<p>結論から言うと、<code>git show</code>で<code>vimdiff</code>を使う方法はわからなかった。
+環境変数<code>GIT_EXTERNAL_DIFF</code>にうまいこと設定できればできそうな気もするが、情報が少ない。</p>
+
+<p>今回はエイリアスを使った方法にした。
+<code>git show</code>と言いつつ、裏では<code>git diff</code>を使っている。実際、<code>git show</code>したときの<code>diff</code>は<code>git diff</code>を使っているのだから問題ない。</p>
+
+<pre><code class="language-bash">[alias]
+    showtool = &quot;!sh -c 'git difftool &quot;${0}&quot;~ &quot;${0}&quot;'&quot;
+</code></pre>
+
+<p>チルダを使って1世代前のコミットからの差分を見るような形にしている。
+<code>sh -c</code>を使って<code>git</code>を呼び出すような冗長な書き方は、ハッシュやブランチ名を引数として渡すため。</p>
+
+<p>このエイリアスだと引数がないと動かない。
+オリジナルの<code>git show</code>の場合、引数を指定しないときはHEADを指定したときの動作をするので、これと揃えるために以下のように変更した。</p>
+
+<pre><code class="language-bash">[alias]
+    showtool = &quot;!sh -c 'if [ &quot;sh&quot; == &quot;${0}&quot; ]; then REVISION=&quot;HEAD&quot;; else REVISION=&quot;${0}&quot;; fi; git difftool $REVISION~ $REVISION'&quot;
+</code></pre>
+
+<h2 id="おまけ">おまけ</h2>
+
+<p>差分ファイルが大量にあると、全ファイルの差分を表示するので非常にめんどくさいことになる。
+そこで、<code>peco</code>を使って選択的に差分ファイルを見れるようにしている。これが完成形。</p>
+
+<pre><code class="language-bash">[alias]
+    showtool = &quot;!sh -c 'if [ &quot;sh&quot; == &quot;${0}&quot; ]; then REVISION=&quot;HEAD&quot;; else REVISION=&quot;${0}&quot;; fi;\
+        git log -1 --stat-width=800 $REVISION | grep \&quot;|\&quot; | awk \&quot; {print \\$1}\&quot; | peco | xargs -o git difftool $REVISION~ $REVISION'&quot;
+</code></pre>
+
+<p>なかなかトリッキーなコマンドなので、解説はいつか余裕があるときに書くことにする。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/git/">git</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/dotfile/">dotfile</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ebroad/" data-tooltip="マンション付属の光回線が早くなった話">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 shidetake. All Rights Reserved
@@ -282,6 +380,64 @@ ga('send', 'pageview');
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ebroad/" data-tooltip="マンション付属の光回線が早くなった話">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -592,6 +748,32 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/git_showtool\/';
+          
+            this.page.identifier = '\/git_showtool\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

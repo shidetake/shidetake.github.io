@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/git_showtool/</loc>
+    <lastmod>2017-11-25T20:45:30+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/ebroad/</loc>
     <lastmod>2017-11-15T23:11:02+09:00</lastmod>
   </url>
@@ -178,7 +183,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/dotfile/</loc>
-    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+    <lastmod>2017-11-25T20:45:30+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -190,7 +195,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/git/</loc>
-    <lastmod>2017-10-26T23:34:29+09:00</lastmod>
+    <lastmod>2017-11-25T20:45:30+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -238,7 +243,7 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2017-11-15T23:11:02+09:00</lastmod>
+    <lastmod>2017-11-25T20:45:30+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -280,7 +285,7 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2017-11-15T23:11:02+09:00</lastmod>
+    <lastmod>2017-11-25T20:45:30+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -298,7 +303,7 @@
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2017-11-15T23:11:02+09:00</lastmod>
+    <lastmod>2017-11-25T20:45:30+09:00</lastmod>
     <priority>0</priority>
   </url>
   
