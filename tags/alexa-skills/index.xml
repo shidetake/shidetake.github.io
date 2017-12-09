@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alexa Skills on blog</title>
+    <link>http://shidetake.com/tags/alexa-skills/</link>
+    <description>Recent content in Alexa Skills on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Dec 2017 22:44:29 +0900</lastBuildDate>
+    
+	<atom:link href="http://shidetake.com/tags/alexa-skills/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Alexa SkillsでHello worldする</title>
+      <link>http://shidetake.com/alexa_skill_1/</link>
+      <pubDate>Mon, 04 Dec 2017 22:44:29 +0900</pubDate>
+      
+      <guid>http://shidetake.com/alexa_skill_1/</guid>
+      <description>&lt;p&gt;Amazon Echoが届いたので、早速スキルを作ってみることにした。
+やはり最初はHello world。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

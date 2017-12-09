@@ -6,10 +6,19 @@
     <description>Recent content in Tags on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Sep 2017 23:42:10 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 04 Dec 2017 22:44:29 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Alexa Skills</title>
+      <link>http://shidetake.com/tags/alexa-skills/</link>
+      <pubDate>Mon, 04 Dec 2017 22:44:29 +0900</pubDate>
+      
+      <guid>http://shidetake.com/tags/alexa-skills/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Amazon Dash Button</title>

@@ -1,0 +1,1005 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
+    <title>Alexa SkillsでHello worldする</title>
+    <meta name="author" content="shidetake">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="http://shidetake.com/favicon.png">
+    
+
+    
+    <meta name="description" content="Amazon Echoが届いたので、早速スキルを作ってみることにした。
+やはり最初はHello world。
+
+">
+    <meta property="og:description" content="Amazon Echoが届いたので、早速スキルを作ってみることにした。
+やはり最初はHello world。
+
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Alexa SkillsでHello worldする">
+    <meta property="og:url" content="/alexa_skill_1/">
+    <meta property="og:site_name" content="blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="blog">
+    <meta name="twitter:description" content="Amazon Echoが届いたので、早速スキルを作ってみることにした。
+やはり最初はHello world。
+
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="http://shidetake.com/css/style-fpbzgxsy0kgmdvyrj5ykkg6ratccrk3gocmaqn4xpcjywmv5dteilzucro4f.min.css" />
+    
+    
+
+    
+      
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-100589187-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://shidetake.com/">blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://shidetake.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://shidetake.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">shidetake</h4>
+        
+          <h5 class="sidebar-profile-bio">software engineer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/shidetake" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Alexa SkillsでHello worldする
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-12-04T22:44:29&#43;09:00">
+        
+  December 4, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Amazon Echoが届いたので、早速スキルを作ってみることにした。
+やはり最初はHello world。</p>
+
+<p></p>
+
+<h2 id="構成">構成</h2>
+
+<p><img src="http://ift.tt/2B4AsMG" alt="image" /></p>
+
+<p>Amazon Echoにスキルをインストールして、声でスキルを呼び出す。
+呼び出されたスキルは、登録されたAWS Lambdaの関数を呼び出して、処理を実行するという流れ。</p>
+
+<h2 id="手順">手順</h2>
+
+<p>ざっくり以下のような手順が必要</p>
+
+<ol>
+<li>AWS LambdaでAlexaに実行させる関数を作成</li>
+<li>Amazon DevelopperにてAlexaスキルを作成してAWS Lambda関数に紐付ける</li>
+<li>Amazon echoにインストール</li>
+</ol>
+
+<h2 id="aws-lamda">AWS Lamda</h2>
+
+<p>AWS登録して、ログインしたら、AWS Lamdaの設定画面に進む。
+右上にオハイオとか地名が書かれているので、東京にしておく。</p>
+
+<p>関数の作成ボタンを押して、設計図からalexa-skill-kit-sdk-factskillを選ぶ。
+基本的な情報は以下のように設定した。</p>
+
+<table>
+<thead>
+<tr>
+<th>設定項目</th>
+<th>設定</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>名前</td>
+<td>alexaHello</td>
+</tr>
+
+<tr>
+<td>ロール</td>
+<td>テンプレートから新しいロールを作成</td>
+</tr>
+
+<tr>
+<td>ロール名</td>
+<td>alexaHello</td>
+</tr>
+</tbody>
+</table>
+
+<p>Lambda関数のコードは以下のようにした。
+ちなみにこれは、<a href="https://github.com/alexa/skill-sample-nodejs-hello-world">alexa/skill-sample-nodejs-hello-world</a>に公開されているindex.jsから必要な部分だけを残した。</p>
+
+<pre><code class="language-js">'use strict';
+const Alexa = require(&quot;alexa-sdk&quot;);
+
+exports.handler = function(event, context, callback) {
+    const alexa = Alexa.handler(event, context);
+    alexa.registerHandlers(handlers);
+    alexa.execute();
+};
+
+const handlers = {
+    'LaunchRequest': function () {
+        this.emit('SayHello');
+    },
+    'HelloWorldIntent': function () {
+        this.emit('SayHello');
+    },
+    'SayHello': function () {
+        this.response.speak('Hello World!');
+        this.emit(':responseReady');
+    }
+};
+</code></pre>
+
+<p>関数の作成ボタンを押して、次の画面に進む。</p>
+
+<p>トリガーの設定画面が出るので、Alexa Skills Kitを選択して、保存すればAWS Lambda側の設定は完了。
+右上にARNが表示されている。スキルが関数を呼び出す際に使うので控えておく。</p>
+
+<h2 id="amazon-developper">Amazon Developper</h2>
+
+<p><a href="http://developer.amazon.com/">Amazon Developper Services and Technologies</a>にアクセスして、右上のサインインからアカウントを作成する。</p>
+
+<h2 id="スキル作成">スキル作成</h2>
+
+<p>アカウントを作ってログインしたら、amazon alexaのページに進み、左上のメニューから、
+&ldquo;Alexa Skills Kit (ASK) &gt; 始めてみよう&rdquo;を選ぶ。
+この辺のドキュメントは後で読むとして、&rdquo;スキル開発を始める&rdquo;。</p>
+
+<h3 id="スキル情報">スキル情報</h3>
+
+<p>スキル情報は以下の通り</p>
+
+<table>
+<thead>
+<tr>
+<th>設定項目</th>
+<th>設定</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>スキルの種類</td>
+<td>カスタム対話モデル</td>
+</tr>
+
+<tr>
+<td>言語</td>
+<td>Japanese</td>
+</tr>
+
+<tr>
+<td>スキル名</td>
+<td>hello world</td>
+</tr>
+
+<tr>
+<td>呼び出し名</td>
+<td>hello world</td>
+</tr>
+</tbody>
+</table>
+
+<p>この設定で保存して次へ。</p>
+
+<h3 id="対話モデル">対話モデル</h3>
+
+<p>インテントスキーマ</p>
+
+<pre><code>{
+  &quot;intents&quot;: [
+    {
+      &quot;intent&quot;: &quot;HelloWorldIntent&quot;
+    }
+  ]
+}
+</code></pre>
+
+<p>このインテントはAWS Lambdaで作った関数のfunction名と紐付ける。</p>
+
+<p>サンプル発話</p>
+
+<pre><code>HelloWorldIntent hello
+</code></pre>
+
+<h3 id="設定">設定</h3>
+
+<p>サービスエンドポイントのタイプにAWS LamdaのARNを指定して、
+デフォルト欄に、AWS Lambdaで作った関数のARNを入力する。
+<code>arn:aws:lambda:ap-northeast-1:xxxxxxxxxxxx:function:alexaHello</code>みたいな形式。</p>
+
+<h3 id="テスト">テスト</h3>
+
+<p>次の画面でテストできる。画面中ほどにあるサービスシミュレーターで、先ほど入力したARNが選択されていることを確認して、
+テキスト入力欄にhelloと書いてhello worldを呼び出す。</p>
+
+<p>サービスレスポンス側にある聴くというボタンを押すと、レスポンスが聴ける。ここでエラーが出ていなければ、スキルからAWS Lambdaの呼び出しは成功。</p>
+
+<h2 id="公開情報">公開情報</h2>
+
+<p>あとはインストールするための準備。Skills Beta Testingというテスト用のインストール機能があるのでこれを使う。
+これを使うためには、画面左上にある各種設定を完成させてオールグリーンにする必要がある。
+ここまで正しくできていれば、残りは&rdquo;公開情報&rdquo;と&rdquo;プライバシーとコンプライアンス&rdquo;だけのはず。</p>
+
+<p>基本的には全て適当に埋めれば良い。
+公開情報は以下のように書いた。</p>
+
+<table>
+<thead>
+<tr>
+<th>設定項目</th>
+<th>設定</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>カテゴリー</td>
+<td>Assistants</td>
+</tr>
+
+<tr>
+<td>テストの手順</td>
+<td>hello</td>
+</tr>
+
+<tr>
+<td>国と地域</td>
+<td>Amazonがスキルを配布するすべての国と地域</td>
+</tr>
+
+<tr>
+<td>スキルの簡単な説明</td>
+<td>hello</td>
+</tr>
+
+<tr>
+<td>スキルの詳細な説明</td>
+<td>hello</td>
+</tr>
+
+<tr>
+<td>サンプルフレーズ</td>
+<td>hello</td>
+</tr>
+</tbody>
+</table>
+
+<p>アイコン用の画像登録も必要。サイズ指定があるのでちゃんと正しいサイズの画像を用意すること。
+<code>imagemagick</code>があれば以下のコマンドで作れる。</p>
+
+<pre><code class="language-bash">convert -resize 108x108 original_icon.jpg icon_108.jpg
+convert -resize 512x512 original_icon.jpg icon_512.jpg
+</code></pre>
+
+<h2 id="プライバシーとコンプライアンス">プライバシーとコンプライアンス</h2>
+
+<table>
+<thead>
+<tr>
+<th>設定項目</th>
+<th>設定</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>このスキルを使って何かを購入したり、実際にお金を支払うことができますか？</td>
+<td>いいえ</td>
+</tr>
+
+<tr>
+<td>このスキルはユーザーの個人情報を収集しますか？</td>
+<td>いいえ</td>
+</tr>
+
+<tr>
+<td>このスキルは13歳未満の子供を対象にしていますか？</td>
+<td>いいえ</td>
+</tr>
+
+<tr>
+<td>輸出コンプライアンス</td>
+<td>チェック</td>
+</tr>
+
+<tr>
+<td>このスキルは広告を含みますか？</td>
+<td>いいえ</td>
+</tr>
+</tbody>
+</table>
+
+<p>これで保存を押すと、左側のSkills Beta Testingのステータスがアクティブになるので、テストの管理ボタンを押して設定画面に遷移する。</p>
+
+<h2 id="skills-beta-testing">Skills Beta Testing</h2>
+
+<p>テスターを追加ボタンから自分のメールアドレスを入力すると、テスター招待メールが届く。
+2つリンクがあるが、2つ目のリンクが日本人向けのもの。</p>
+
+<pre><code>JP customers: To get started, follow this link:  
+Enable Alexa skill &quot;hello world&quot;
+</code></pre>
+
+<p>これをクリックして、スキルを有効化すれば使えるようになる。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/alexa-skills/">Alexa Skills</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_showtool/" data-tooltip="git showの差分をvimdiffで見る">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 shidetake. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_showtool/" data-tooltip="git showの差分をvimdiffで見る">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">shidetake</h4>
+    
+      <div id="about-card-bio">software engineer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        software engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Japan
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/alexa_skill_1/">
+                <h3 class="media-heading">Alexa SkillsでHello worldする</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Amazon Echoが届いたので、早速スキルを作ってみることにした。
+やはり最初はHello world。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/git_showtool/">
+                <h3 class="media-heading">git showの差分をvimdiffで見る</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>以前、<a href="../git_difftool/">git diffをvimdiffで見る方法</a>を紹介した。
+今回は<code>git show</code>を<code>vimdiff</code>で見る方法を紹介する。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/ebroad/">
+                <h3 class="media-heading">マンション付属の光回線が早くなった話</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>自宅の光回線が遅くて、<a href="../speedtest/">スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事</a>を書いた。
+その後の話。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/make_win/">
+                <h3 class="media-heading">WindowsでもLinuxでも動くMakefileを書く</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
+今回はシンボリックリンクを作成するコマンドを例にして説明する。</p>
+
+<p>Windowsの<code>make</code>はMinGWのものを想定している。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/git_difftool/">
+                <h3 class="media-heading">gitのdiffをvimdiffで見る</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>少し前まで、<code>git</code>のdiffに<code>vimdiff</code>を使う場合、<code>git_diff_wrapper</code>なるファイルを用意して、
+<code>.gitconfig</code>の<code>[diff]</code>セクションに<code>external = git_diff_wrapper</code>とするのが主流だった（と思っている）。</p>
+
+<p>今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
+今の主流は<code>difftool</code>を使うやり方のようなので、乗り換えた。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/speedtest/">
+                <h3 class="media-heading">スピードテストを定期的に実行して回線速度の推移を見る</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>自宅の回線速度が遅いので、なんとか改善できないか考えている。
+まずは、現状把握ということで、スピードテストを実施した。
+常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
+cron定期的に実行してくれるようにした。</p>
+
+<p>Raspberry Piで動作する。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/mysql_install/">
+                <h3 class="media-heading">Ubuntu 16.04にmysqlをインストールする</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/dasher_systemd/">
+                <h3 class="media-heading">Raspberry PiでSystemdを使ってdasherをサービス化</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p><a href="../dash_button">Amazon Dash Buttonを使ってLINEに通知する方法</a>を以前書いた。
+記事には記載していないが、このときは、init.dを使って自動起動するように設定していた。</p>
+
+<p>最近はinit.dは古くて、Systemdが推奨されているようなので、これに書き換えることにした。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/ddns/">
+                <h3 class="media-heading">DDNSでLANの外から自宅のRaspberry PiにSSH接続する</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
+自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。</p>
+
+<p>かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。</p>
+
+<p>そこで、Dynamic DNS (DDNS) というサービスを利用することにする。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/stock_trendline_1/">
+                <h3 class="media-heading">株価チャートからトレンドラインを引く 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>以前、<a href="../google_finance_api/">Google Finance APIにより株価を取得する方法</a>を書いた。
+このデータからトレンドラインを引くスクリプトを作ろうと思う。</p>
+
+<p>まずは、トレンドラインを引くためのポイントを選択する。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         30 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://ift.tt/2vXumJj');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" integrity="sha256-IFHWFEbU2/+wNycDECKgjIRSirRNIDp2acEB5fvdVRU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js" integrity="sha256-+mpyNVJsNt4rVXCw0F+pAOiB3YxmHgrbJsx4ecPuUaI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js" integrity="sha256-vMxgR/7FtLovVA+IPrR7+xTgIgARH7y9VZQnmmi0HDI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js" integrity="sha256-N0qFUh7/9vLvia87dDndewmsgsyYoNkdA212tPc+2NI=" crossorigin="anonymous"></script>
+
+
+<script src="http://shidetake.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/alexa_skill_1\/';
+          
+            this.page.identifier = '\/alexa_skill_1\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+
