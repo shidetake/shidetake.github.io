@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Archives</title>
+    <title>Makefileでcronを登録する</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/archives/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="主に重複登録をしないようにするためのtipsを紹介する。
+
+">
+    <meta property="og:description" content="主に重複登録をしないようにするためのtipsを紹介する。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Archives">
-    <meta property="og:url" content="/archives/">
+    <meta property="og:title" content="Makefileでcronを登録する">
+    <meta property="og:url" content="/make_cron/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="主に重複登録をしないようにするためのtipsを紹介する。
+
+">
     
     
 
@@ -81,7 +89,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -101,7 +109,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -199,195 +207,231 @@ ga('send', 'pageview');
   </div>
 </nav>
 
-      <div id="main" data-behavior="2"
+      
+
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        <div id="archives" class="main-content-wrap">
-          <form id="filter-form" action="#">
-            <input name="date" type="text" class="form-control input--xlarge" placeholder="Search date (YYYY/MM/DD)" autofocus="autofocus">
-          </form>
-          <h5 class="archive-result text-color-base text-xlarge" data-message-zero="no post found" data-message-one="1 post found" data-message-other="{n} posts found"></h5>
-<section class="boxes">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
+    <h1 class="post-title" itemprop="headline">
+      Makefileでcronを登録する
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
     
-    <div class="archive archive-year box" data-date="2017">
-      <h4 class="archive-title" style="text-decoration: none;">2017</h4>
-      
-        <ul class="archive-posts archive-month" data-date="201712">
-          <h5 class="archive-title" style="text-decoration: none;">December</h5>
-          
-            <li class="archive-post archive-day" data-date="20171217">
-              <a class="archive-post-title" href="http://shidetake.com/make_cron/">Makefileでcronを登録する</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20171217">
-              <a class="archive-post-title" href="http://shidetake.com/post/">Posts</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20171204">
-              <a class="archive-post-title" href="http://shidetake.com/alexa_skill_1/">Alexa SkillsでHello worldする</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201711">
-          <h5 class="archive-title" style="text-decoration: none;">November</h5>
-          
-            <li class="archive-post archive-day" data-date="20171125">
-              <a class="archive-post-title" href="http://shidetake.com/git_showtool/">git showの差分をvimdiffで見る</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20171115">
-              <a class="archive-post-title" href="http://shidetake.com/ebroad/">マンション付属の光回線が早くなった話</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20171105">
-              <a class="archive-post-title" href="http://shidetake.com/make_win/">WindowsでもLinuxでも動くMakefileを書く</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201710">
-          <h5 class="archive-title" style="text-decoration: none;">October</h5>
-          
-            <li class="archive-post archive-day" data-date="20171026">
-              <a class="archive-post-title" href="http://shidetake.com/git_difftool/">gitのdiffをvimdiffで見る</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20171016">
-              <a class="archive-post-title" href="http://shidetake.com/speedtest/">スピードテストを定期的に実行して回線速度の推移を見る</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20171001">
-              <a class="archive-post-title" href="http://shidetake.com/mysql_install/">Ubuntu 16.04にmysqlをインストールする</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201709">
-          <h5 class="archive-title" style="text-decoration: none;">September</h5>
-          
-            <li class="archive-post archive-day" data-date="20170926">
-              <a class="archive-post-title" href="http://shidetake.com/dasher_systemd/">Raspberry PiでSystemdを使ってdasherをサービス化</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170918">
-              <a class="archive-post-title" href="http://shidetake.com/ddns/">DDNSでLANの外から自宅のRaspberry PiにSSH接続する</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170917">
-              <a class="archive-post-title" href="http://shidetake.com/stock_trendline_1/">株価チャートからトレンドラインを引く 1</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170904">
-              <a class="archive-post-title" href="http://shidetake.com/google_finance_api/">Google Finance APIを使って株価チャートを作成</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170903">
-              <a class="archive-post-title" href="http://shidetake.com/iij_coupon/">IIJmioの追加クーポンをLINE botに買ってもらう</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201708">
-          <h5 class="archive-title" style="text-decoration: none;">August</h5>
-          
-            <li class="archive-post archive-day" data-date="20170821">
-              <a class="archive-post-title" href="http://shidetake.com/blog_img/">IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170817">
-              <a class="archive-post-title" href="http://shidetake.com/icam/">iPadをウェブカメラ化してiCamSourceと連携</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170810">
-              <a class="archive-post-title" href="http://shidetake.com/wireless_tv/">テレビのアンテナ線を無線化する</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170801">
-              <a class="archive-post-title" href="http://shidetake.com/google_photo_api_2/">Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201707">
-          <h5 class="archive-title" style="text-decoration: none;">July</h5>
-          
-            <li class="archive-post archive-day" data-date="20170730">
-              <a class="archive-post-title" href="http://shidetake.com/google_photo_api_1/">Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170719">
-              <a class="archive-post-title" href="http://shidetake.com/ripping_3/">HandBrakeCLIによるDVDリッピング 3</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170710">
-              <a class="archive-post-title" href="http://shidetake.com/ripping_2/">HandBrakeCLIによるDVDリッピング 2</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170703">
-              <a class="archive-post-title" href="http://shidetake.com/ripping_1/">HandBrakeCLIによるDVDリッピング 1</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201706">
-          <h5 class="archive-title" style="text-decoration: none;">June</h5>
-          
-            <li class="archive-post archive-day" data-date="20170626">
-              <a class="archive-post-title" href="http://shidetake.com/gmail_api_2/">RubyでGmail本文を取得する 2</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170620">
-              <a class="archive-post-title" href="http://shidetake.com/gmail_api_1/">RubyでGmail本文を取得する 1</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170618">
-              <a class="archive-post-title" href="http://shidetake.com/line_highlights_4/">KindleのハイライトをLINEに通知する 4</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170607">
-              <a class="archive-post-title" href="http://shidetake.com/line_highlights_3/">KindleのハイライトをLINEに通知する 3</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170604">
-              <a class="archive-post-title" href="http://shidetake.com/line_highlights_2/">KindleのハイライトをLINEに通知する 2</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201705">
-          <h5 class="archive-title" style="text-decoration: none;">May</h5>
-          
-            <li class="archive-post archive-day" data-date="20170527">
-              <a class="archive-post-title" href="http://shidetake.com/line_highlights_1/">KindleのハイライトをLINEに通知する 1</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170514">
-              <a class="archive-post-title" href="http://shidetake.com/time_capsule/">Time Machineの容量制限</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20170511">
-              <a class="archive-post-title" href="http://shidetake.com/dash_button/">Amazon Dash ButtonからLINE通知</a>
-            </li>
-          
-        </ul>
-      
-        <ul class="archive-posts archive-month" data-date="201704">
-          <h5 class="archive-title" style="text-decoration: none;">April</h5>
-          
-            <li class="archive-post archive-day" data-date="20170417">
-              <a class="archive-post-title" href="http://shidetake.com/line_push/">LINE BOTでPUSH通知する</a>
-            </li>
-          
-        </ul>
-      
-    </div>
+      <time itemprop="datePublished" datetime="2017-12-17T11:18:31&#43;09:00">
+        
+  December 17, 2017
+
+      </time>
+    
+    
   
-</section>
-        </div>
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>主に重複登録をしないようにするためのtipsを紹介する。</p>
+
+<p></p>
+
+<h2 id="cron登録コマンド">cron登録コマンド</h2>
+
+<pre><code class="language-bash">echo &quot;0 9,18 * * * /usr/local/bin/example.sh&quot; | crontab
+</code></pre>
+
+<p>こんな感じ。とても簡単。
+ただ、これは設定を上書きするという非常に危険なコマンド。
+通常は以下のように使う。</p>
+
+<pre><code class="language-bash">(crontab -l; echo  &quot;0 9,18 * * * /usr/local/bin/example.sh&quot;) | crontab
+</code></pre>
+
+<h2 id="makefile化">Makefile化</h2>
+
+<pre><code class="language-make">install:
+    (crontab -l; echo  &quot;0 9,18 * * * /usr/local/bin/example.sh&quot;) | crontab
+</code></pre>
+
+<p>そのまんま。これで、<code>make install</code>すれば<code>cron</code> に登録される。
+これの問題点は、重複登録してしまうこと。</p>
+
+<p>以下のように書くことで、重複登録が防げる。</p>
+
+<pre><code class="language-make">install:
+	crontab -l | grep example.sh || \
+		(crontab -l; echo  &quot;0 9,18 * * * /usr/local/bin/example.sh&quot;) | crontab
+</code></pre>
+
+<p><code>||</code>でつなぐことで、最初のコマンドが失敗したときだけ、次のコマンドを実行するようになる。
+ここでは、既に登録されている<code>cron</code>を<code>grep</code>して、登録しようとしているスクリプトがあれば何もせず終了、
+なければ登録する。</p>
+
+<h2 id="uninstall">uninstall</h2>
+
+<p>おまけ。uninstallは以下のように書けば良い。</p>
+
+<pre><code class="language-make">uninstall:
+	crontab -l | grep -v example.sh | crontab
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/cron/">cron</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/makefile/">Makefile</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/alexa_skill_1/" data-tooltip="Alexa SkillsでHello worldする">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 shidetake. All Rights Reserved
+  </span>
+</footer>
+
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/alexa_skill_1/" data-tooltip="Alexa SkillsでHello worldする">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -691,6 +735,32 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/make_cron\/';
+          
+            this.page.identifier = '\/make_cron\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

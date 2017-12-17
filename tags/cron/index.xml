@@ -6,10 +6,21 @@
     <description>Recent content in Cron on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Oct 2017 22:43:05 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 17 Dec 2017 11:18:31 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/tags/cron/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Makefileでcronを登録する</title>
+      <link>http://shidetake.com/make_cron/</link>
+      <pubDate>Sun, 17 Dec 2017 11:18:31 +0900</pubDate>
+      
+      <guid>http://shidetake.com/make_cron/</guid>
+      <description>&lt;p&gt;主に重複登録をしないようにするためのtipsを紹介する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>スピードテストを定期的に実行して回線速度の推移を見る</title>
