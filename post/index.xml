@@ -6,13 +6,22 @@
     <description>Recent content in Posts on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Dec 2017 22:46:24 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>定期的なリマインダーをLINE BOTにやってもらう</title>
+      <title>Gmailに重要なメールが届いたらLINEに通知する</title>
+      <link>http://shidetake.com/gmail2line/</link>
+      <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
+      
+      <guid>http://shidetake.com/gmail2line/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>定期的なリマインドをLINE BOTにやってもらう</title>
       <link>http://shidetake.com/line_feeding/</link>
       <pubDate>Thu, 21 Dec 2017 22:46:24 +0900</pubDate>
       
