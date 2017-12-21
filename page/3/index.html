@@ -225,6 +225,68 @@ ga('send', 'pageview');
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/blog_img/">
+          IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-08-21T22:44:54Z">
+        
+  August 21, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>ブログに貼る画像置き場として、Google Photoを選んだ。
+github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
+容量制限はないものの、1GBまでを推奨しているらしいし。</p>
+
+<p>というわけで、Google Photoの画像を<strong>簡単に</strong>直接ブログに貼り付ける方法を模索していたが、
+IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。</p>
+
+<p></p>
+      <p>
+        <a href="http://shidetake.com/blog_img/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/icam/">
           iPadをウェブカメラ化してiCamSourceと連携
         </a>
@@ -565,72 +627,6 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 </article>
 
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/ripping_1/">
-          HandBrakeCLIによるDVDリッピング 1
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-07-03T22:08:55&#43;09:00">
-        
-  July 3, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>DVDのリッピングというのは、設定が異常に多い。</p>
-
-<p>まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。
-コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。
-フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。</p>
-
-<p>と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。
-しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。</p>
-
-<p>そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。</p>
-
-<p></p>
-      <p>
-        <a href="http://shidetake.com/ripping_1/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
           
   <div class="pagination-bar">
     <ul class="pagination">
@@ -712,6 +708,28 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/line_feeding/">
+                <h3 class="media-heading">定期的なリマインダーをLINE BOTにやってもらう</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>自分だけで完結するような定期処理は、適当なアラームアプリあたりに設定すれば良いが、
+他人にお願いしていることは、わざわざアラーム設定しておいてと頼むのも角が立つので、こちらからリマインドしたい。</p>
+
+<p>でも面倒なので、LINE BOTに頼むことにした。</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -902,30 +920,6 @@ cron定期的に実行してくれるようにした。</p>
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/ddns/">
-                <h3 class="media-heading">DDNSでLANの外から自宅のRaspberry PiにSSH接続する</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Sep 9, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
-自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。</p>
-
-<p>かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。</p>
-
-<p>そこで、Dynamic DNS (DDNS) というサービスを利用することにする。</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -933,7 +927,7 @@ cron定期的に実行してくれるようにした。</p>
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         31 posts found
+         32 posts found
       </p>
     </div>
   </div>

@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>HandBrakeCLIによるDVDリッピング 3</title>
+    <title>定期的なリマインダーをLINE BOTにやってもらう</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -30,22 +30,28 @@
     
 
     
-    <meta name="description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta name="description" content="自分だけで完結するような定期処理は、適当なアラームアプリあたりに設定すれば良いが、
+他人にお願いしていることは、わざわざアラーム設定しておいてと頼むのも角が立つので、こちらからリマインドしたい。
+
+でも面倒なので、LINE BOTに頼むことにした。
 
 ">
-    <meta property="og:description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta property="og:description" content="自分だけで完結するような定期処理は、適当なアラームアプリあたりに設定すれば良いが、
+他人にお願いしていることは、わざわざアラーム設定しておいてと頼むのも角が立つので、こちらからリマインドしたい。
+
+でも面倒なので、LINE BOTに頼むことにした。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="HandBrakeCLIによるDVDリッピング 3">
-    <meta property="og:url" content="/ripping_3/">
+    <meta property="og:title" content="定期的なリマインダーをLINE BOTにやってもらう">
+    <meta property="og:url" content="/line_feeding/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta name="twitter:description" content="自分だけで完結するような定期処理は、適当なアラームアプリあたりに設定すれば良いが、
+他人にお願いしていることは、わざわざアラーム設定しておいてと頼むのも角が立つので、こちらからリマインドしたい。
+
+でも面倒なので、LINE BOTに頼むことにした。
 
 ">
     
@@ -222,15 +228,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      HandBrakeCLIによるDVDリッピング 3
+      定期的なリマインダーをLINE BOTにやってもらう
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-07-19T22:36:23&#43;09:00">
+      <time itemprop="datePublished" datetime="2017-12-21T22:46:24&#43;09:00">
         
-  July 19, 2017
+  December 21, 2017
 
       </time>
     
@@ -250,49 +256,77 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><a href="../ripping_2/">前回</a>からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+              <p>自分だけで完結するような定期処理は、適当なアラームアプリあたりに設定すれば良いが、
+他人にお願いしていることは、わざわざアラーム設定しておいてと頼むのも角が立つので、こちらからリマインドしたい。</p>
+
+<p>でも面倒なので、LINE BOTに頼むことにした。</p>
 
 <p></p>
 
-<h2 id="dvdドライブのパスを取得">DVDドライブのパスを取得</h2>
+<h2 id="構成">構成</h2>
 
-<p><code>diskutil</code>コマンドを使う（たぶんmacOSでしか使えない）。
-DVDをドライブに入れた状態で、</p>
+<p><a href="../line_push/">LINE BOTでPUSH通知する</a>と<a href="../make_cron/">Makefileでcronを登録する</a>を組み合わせるだけ。</p>
 
-<pre><code class="language-bash">diskutil list
+<p>詳細はそれぞれの記事を読んでもらうとして、ソースを記載する。</p>
+
+<h2 id="スクリプト">スクリプト</h2>
+
+<pre><code class="language-bash">#!/bin/sh
+curl -X POST \
+-H 'Content-Type:application/json' \
+-H 'Authorization: Bearer {CHANNEL_ACCESS_TOKEN}' \
+-d '{
+    &quot;to&quot;: &quot;GROUPID&quot;,
+    &quot;messages&quot;:[
+        {
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;text&quot;: &quot;エサあげた？&quot;
+        }
+    ]
+}' https://api.line.me/v2/bot/message/push
 </code></pre>
 
-<p>すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。
-NAMEの部分に入れたDVDの名前が表示されているのがあるはず。
-例えば以下のような感じ。</p>
+<p>ここで、<code>CHANNEL_ACCESS_TOKEN</code>はLINE depelopersで取得するトークン。
+<code>GROUPID</code>は、LINEのグループを識別するためのID。
+これの取得方法は前の記事には書いてなかったので説明する。</p>
 
-<pre><code class="language-bash">/dev/disk2 (external, physical):
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:                            VIBY_521               *2.0 GB     disk2
+<h2 id="group-idの取得">GROUP IDの取得</h2>
+
+<p>以下のスクリプトをGoogle Apps Scriptでウェブアプリケーションとして導入し、
+LINE BOTのWebhook URLに紐付ける。</p>
+
+<p>その状態で、LINEグループにBOT招待すれば、example@gmailにGROUP IDが通知される。</p>
+
+<pre><code class="language-js">function doPost(e) {
+  Logger.log('doPost')
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &quot;join&quot;) { mailGroupId(event); }
+  });
+}
+
+function mailGroupId(e) {
+  MailApp.sendEmail('example@gmail.com', 'groupId', e.source.groupId);
+}
 </code></pre>
 
-<p>この場合、<code>/dev/disk2</code>を入力として指定することでDVDから直接リッピングが可能になる。</p>
+<h2 id="cron登録">cron登録</h2>
 
-<pre><code class="language-bash">HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv
+<p>以下のような<code>Makefile</code>を作って、<code>make install</code>すればよい。
+ここでは、毎日9時と18時に通知する。</p>
+
+<pre><code class="language-make">install:
+	crontab -l | grep line_feeding.sh || \
+		(crontab -l; echo  &quot;0 9,18 * * * /usr/local/bin/line_feeding.sh&quot;) | crontab
 </code></pre>
 
-<p>前回の最後のスクリプトと組み合わせて、</p>
+<h2 id="ユースケース">ユースケース</h2>
 
-<pre><code class="language-bash">chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'`
-for ((i = 1; i &lt;= $chapter_num; i++)); do
-  HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv
-done
-</code></pre>
+<p>今回の例は、犬を預かってもらう人にエサをちゃんとあげてくれるようにリマインドするケース。
+自分で聞くのは忘れそうだし、BOTに機械的に聞いてもらうことで角が立ちにくい（気がする）。</p>
 
-<p>ここまでで、かなり形になったので今回でラストとする。
-ただ、実はこれだけだと使えないタイプのDVDがある。
-そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。</p>
-
-<h2 id="お約束">お約束</h2>
-
-<p>違法なリッピングを推奨しているわけではないので注意。
-コピーガードされたDVDをリッピングするのはダメ。ぜったい。</p>
+<p>あとは、今回の例では個人に通知するのではなく、グループに通知する形にしている。
+これにより、相手が実行してくれたかどうか聞けるという利点もある（相手がBOTに返信してくれる人なら）。</p>
               
             </div>
           </div>
@@ -304,7 +338,9 @@ done
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ripping/">Ripping</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/line-bot/">LINE BOT</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/cron/">cron</a>
 
                   </div>
                 
@@ -316,7 +352,7 @@ done
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -324,7 +360,7 @@ done
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_2/" data-tooltip="HandBrakeCLIによるDVDリッピング 2">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/make_cron/" data-tooltip="Makefileでcronを登録する">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -382,7 +418,7 @@ done
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -390,7 +426,7 @@ done
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_2/" data-tooltip="HandBrakeCLIによるDVDリッピング 2">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/make_cron/" data-tooltip="Makefileでcronを登録する">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -739,9 +775,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/ripping_3\/';
+          this.page.url = 'http:\/\/shidetake.com\/line_feeding\/';
           
-            this.page.identifier = '\/ripping_3\/'
+            this.page.identifier = '\/line_feeding\/'
           
         };
         (function() {
