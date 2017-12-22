@@ -215,13 +215,19 @@
   
   <url>
     <loc>http://shidetake.com/tags/fintech/</loc>
-    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
+    <lastmod>2017-12-21T23:37:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://shidetake.com/tags/git/</loc>
     <lastmod>2017-11-25T20:45:30+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/tags/google-apps-script/</loc>
+    <lastmod>2017-12-21T23:37:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -300,12 +306,6 @@
   <url>
     <loc>http://shidetake.com/tags/smart-home/</loc>
     <lastmod>2017-08-17T17:14:33+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://shidetake.com/tags/tag2/</loc>
-    <lastmod>2017-12-21T23:37:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   

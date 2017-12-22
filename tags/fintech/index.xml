@@ -6,10 +6,28 @@
     <description>Recent content in Fintech on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/tags/fintech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gmailに重要なメールが届いたらLINEに通知する</title>
+      <link>http://shidetake.com/gmail2line/</link>
+      <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
+      
+      <guid>http://shidetake.com/gmail2line/</guid>
+      <description>&lt;p&gt;最近はめっきりメールを使わなくなった。iOSもメール機能なんかどうでもいいと思っているのか、
+いまいち使い勝手が悪い。Gmailのプッシュ通知に非対応ってどうなの。&lt;/p&gt;
+
+&lt;p&gt;それでもAmazonの注文メールやら、航空券の予約完了メールやら、色々な場面で送られてくるので、嫌々ながら使っている。
+中には緊急性のあるメールもあって、その筆頭が銀行引き落とし失敗メール。残高が足りずに引き落とされなかったときに送られてくる。
+早めに気づいて入金できれば、再度引き落としのタイミングがあって、なんとかカードを止められずにすむ。&lt;/p&gt;
+
+&lt;p&gt;今回は、引き落としに失敗した時にLINE通知してくれるシステムを構築する。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
