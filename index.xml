@@ -6,10 +6,24 @@
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jan 2018 22:28:20 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apple TVをRaspberry Piで操作</title>
+      <link>http://shidetake.com/pyatv/</link>
+      <pubDate>Fri, 26 Jan 2018 22:28:20 +0900</pubDate>
+      
+      <guid>http://shidetake.com/pyatv/</guid>
+      <description>&lt;p&gt;スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
+テレビはほとんどApple TVのために存在しているので、これを動かしてみた。&lt;/p&gt;
+
+&lt;p&gt;使ったのは、&lt;code&gt;pyatv&lt;/code&gt;というツール。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Gmailに重要なメールが届いたらLINEに通知する</title>

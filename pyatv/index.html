@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Windows</title>
+    <title>Apple TVをRaspberry Piで操作</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/tags/windows/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
+テレビはほとんどApple TVのために存在しているので、これを動かしてみた。
+
+使ったのは、pyatvというツール。
+
+">
+    <meta property="og:description" content="スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
+テレビはほとんどApple TVのために存在しているので、これを動かしてみた。
+
+使ったのは、pyatvというツール。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Windows">
-    <meta property="og:url" content="/tags/windows/">
+    <meta property="og:title" content="Apple TVをRaspberry Piで操作">
+    <meta property="og:url" content="/pyatv/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
+テレビはほとんどApple TVのために存在しているので、これを動かしてみた。
+
+使ったのは、pyatvというツール。
+
+">
     
     
 
@@ -81,7 +98,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -101,7 +118,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -200,44 +217,26 @@ ga('send', 'pageview');
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      Apple TVをRaspberry Piで操作
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/make_win/">
-          WindowsでもLinuxでも動くMakefileを書く
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-05T08:38:17&#43;09:00">
+      <time itemprop="datePublished" datetime="2018-01-26T22:28:20&#43;09:00">
         
-  November 5, 2017
+  January 26, 2018
 
       </time>
     
@@ -253,28 +252,116 @@ ga('send', 'pageview');
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
+テレビはほとんどApple TVのために存在しているので、これを動かしてみた。</p>
 
-<p>Windowsの<code>make</code>はMinGWのものを想定している。</p>
+<p>使ったのは、<code>pyatv</code>というツール。</p>
 
 <p></p>
-      <p>
-        <a href="http://shidetake.com/make_win/" class="postShorten-excerpt_link link">Continue reading</a>
+
+<p><a href="https://github.com/postlund/pyatv">postlund/pyatv</a>にインストール方法から使い方まで書いてあるが、
+一部わかりにくいところがあったので、そこだけ説明する。</p>
+
+<h2 id="初期設定">初期設定</h2>
+
+<p><code>pip install pyatv</code>したあと、ペアリングが必要。
+iTunesのホームシェアリングを有効にしている場合はいらないようだけど、
+無効の場合は、</p>
+
+<pre><code class="language-bash">atvremote pair
+</code></pre>
+
+<p>して、Apple TV側で、設定 &gt; リモコンとデバイス &gt; Remote Appとデバイス と進み、pyatvを選択して、pinに1234と入力すればよい。</p>
+
+<h2 id="動作確認">動作確認</h2>
+
+<pre><code class="language-bash">atvremote -a menu
+</code></pre>
+
+<p>これでMENUボタンを押したときと同じように動けばOK。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/apple-tv/">Apple TV</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/raspberry-pi/">Raspberry Pi</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/smart-home/">Smart home</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/gmail2line/" data-tooltip="Gmailに重要なメールが届いたらLINEに通知する">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 shidetake. All Rights Reserved
@@ -282,6 +369,64 @@ ga('send', 'pageview');
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/gmail2line/" data-tooltip="Gmailに重要なメールが届いたらLINEに通知する">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -590,6 +735,32 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/pyatv\/';
+          
+            this.page.identifier = '\/pyatv\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
