@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.1-BETA">
-    <title>マンション付属の光回線が早くなった話</title>
+    <title>AlexaとNode-REDを利用したスマートホームスキル作成時の注意</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -30,22 +30,22 @@
     
 
     
-    <meta name="description" content="自宅の光回線が遅くて、スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事を書いた。
-その後の話。
+    <meta name="description" content="最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
+前回のApple TVを操作するスクリプトもその一環だったのだが、うまく動かなかったのでその対処法を書く。
 
 ">
-    <meta property="og:description" content="自宅の光回線が遅くて、スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事を書いた。
-その後の話。
+    <meta property="og:description" content="最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
+前回のApple TVを操作するスクリプトもその一環だったのだが、うまく動かなかったのでその対処法を書く。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="マンション付属の光回線が早くなった話">
-    <meta property="og:url" content="/ebroad/">
+    <meta property="og:title" content="AlexaとNode-REDを利用したスマートホームスキル作成時の注意">
+    <meta property="og:url" content="/alexa_node_red1/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="自宅の光回線が遅くて、スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事を書いた。
-その後の話。
+    <meta name="twitter:description" content="最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
+前回のApple TVを操作するスクリプトもその一環だったのだが、うまく動かなかったのでその対処法を書く。
 
 ">
     
@@ -222,15 +222,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      マンション付属の光回線が早くなった話
+      AlexaとNode-REDを利用したスマートホームスキル作成時の注意
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-15T23:11:02&#43;09:00">
+      <time itemprop="datePublished" datetime="2018-01-28T07:56:05&#43;09:00">
         
-  November 15, 2017
+  January 28, 2018
 
       </time>
     
@@ -250,45 +250,51 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>自宅の光回線が遅くて、<a href="../speedtest/">スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事</a>を書いた。
-その後の話。</p>
+              <p>最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
+<a href="../pyatv/">前回のApple TVを操作するスクリプト</a>もその一環だったのだが、うまく動かなかったのでその対処法を書く。</p>
 
 <p></p>
 
-<h2 id="光回線についての調査">光回線についての調査</h2>
+<h2 id="alexaとnode-redの連携">AlexaとNode-REDの連携</h2>
 
-<p>マンション付属の光回線で、壁についているLANポートに繋ぐと何の手続きもせずに接続できるタイプのもの。
-当時の資料には書いてあったかもしれないが、この時点ではどんな会社の回線なのか不明だった。</p>
+<p><a href="https://qiita.com/kikuzo/items/753b5065dde9633bda18">Amazon Echoとラズパイで、音声で照明をon/offする</a>という記事を参考にした。</p>
 
-<p>マンションの管理会社に電話すれば一発だが、平日昼間に電話するのが難しいので、ひとまず調べられる範囲で調べてみた。
-まずはとりあえず<code>traceroute</code>してみた。
-するといくつかローカルっぽいIPアドレスを経て（恐らくマンションのルーター）、ap.yournet.ne.jpなんちゃらみたいな所につながっていた。
-このアドレスで検索してみると、どうやらfreebit系と呼ばれる悪名高いバックボーンであることがわかった。</p>
+<p>丁寧に書いてあって、補足する必要が全く無いので、連携についてはこちらの記事を読むといい。</p>
 
-<p>ざっと調べたところ、freebit系プロバイダというのは、フリービット株式会社のYourNet ISP Networkサービスというものを利用しているISPのことを言うらしい。
-プロバイダ機能を自前で持たないISPに対してその機能を提供するというサービスのようだ。</p>
+<h2 id="execにpyatvを設定">execにpyatvを設定</h2>
 
-<p>このあたりを調べている時に知ったのだが、
-<a href="https://env.b4iine.net">確認くん+</a>というウェブサイトにアクセスすると、<code>traceroute</code>などしなくても簡単にわかる。
-ここにアクセスして、お使いのプロバイダーがap.yournet.ne.jpならばfreebit系。</p>
+<p><img src="http://ift.tt/2Eg7OHK" alt="" /></p>
 
-<h2 id="プロバイダに確認">プロバイダに確認</h2>
+<p>こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
+よく見ると、<code>atvremote</code>コマンドが見つからないというエラーが出ていた。</p>
 
-<p>マンションの管理会社に聞くと、イーブロードというプロバイダが管理しているとのことだったので、
-電話して状況を確認してみることにした。</p>
+<p>systemdで起動しているサービスは、ユーザーの環境変数を読み込まないらしい。
+systemdについては<a href="../dasher_systemd/">前にも書いた</a>が、絶対パスで書かないといけないとか、いろいろ作法があって面倒くさい。</p>
 
-<p>週末に電話すると、サポートにはつながるけど、少し専門的な話になると対応できないようで、
-平日に専門部署から折り返すとの返事。
-平日の昼間は電話に出れない可能性が高いので、バックボーンをfreebitから変更することはできないか知りたいので結果を留守電に入れて欲しいと伝えた。</p>
+<h2 id="systemdの設定変更">systemdの設定変更</h2>
 
-<h2 id="あっけない結末">あっけない結末</h2>
+<p><code>pyenv</code>を使って導入したソフトをsystemdで使う場合の注意点は<a href="https://github.com/pyenv/pyenv/wiki/Deploying-with-pyenv"><code>pyenv</code>の公式に記載があった</a>のでこれを参考にした。</p>
 
-<p>その後、すぐに留守電が入ったが、折り返し電話して欲しいという内容だけだった。
-留守電に内容を入れてくれよと脱力して、しばらく放置していると、いつの間にか回線速度が速くなった。</p>
+<p>まず以下のコマンドでNode-REDのサービスファイルの場所を調べる。</p>
 
-<p>確認くん+で見てみると、プロバイダがOCNになっていた。どうやらバックボーンを変えたらしい。
-数年前も同じくらいの速度が出ていたので、理由は不明だが、ときどきバックボーンが変わるのだと思う。
-電話が効いたのかどうか知らないが、速くなったのでこれ以上の追求はやめた。</p>
+<pre><code>sudo systemctl status nodered
+</code></pre>
+
+<p>たぶん <code>/lib/systemd/system/nodered.service</code>にある。
+これを書き換える。</p>
+
+<pre><code class="language-bash">Environment=&quot;PI_NODE_OPTIONS=--max_old_space_size=256&quot;
+Environment=&quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+</code></pre>
+
+<p><code>PI_NODE_OPTIONS</code>という環境変数を設定しているところの下に、<code>PATH</code>の設定を追加する。
+デフォルトでは、<code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</code>が<code>PATH</code>に設定されているようなので、
+そこに追加する形。</p>
+
+<p>ちなみに環境変数の展開もできないので、こんな書き方はNG。ホントに面倒くさい。</p>
+
+<pre><code class="language-bash">Environment=&quot;PATH=/home/user_name/.pyenv/shims:$PATH&quot;
+</code></pre>
               
             </div>
           </div>
@@ -300,7 +306,11 @@ ga('send', 'pageview');
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/network/">network</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/smart-home/">Smart home</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/apple-tv/">Apple TV</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/systemd/">systemd</a>
 
                   </div>
                 
@@ -312,7 +322,7 @@ ga('send', 'pageview');
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_showtool/" data-tooltip="git showの差分をvimdiffで見る">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -320,7 +330,7 @@ ga('send', 'pageview');
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/make_win/" data-tooltip="WindowsでもLinuxでも動くMakefileを書く">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/pyatv/" data-tooltip="Apple TVをRaspberry Piで操作">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -378,7 +388,7 @@ ga('send', 'pageview');
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_showtool/" data-tooltip="git showの差分をvimdiffで見る">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -386,7 +396,7 @@ ga('send', 'pageview');
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/make_win/" data-tooltip="WindowsでもLinuxでも動くMakefileを書く">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/pyatv/" data-tooltip="Apple TVをRaspberry Piで操作">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -738,9 +748,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/ebroad\/';
+          this.page.url = 'http:\/\/shidetake.com\/alexa_node_red1\/';
           
-            this.page.identifier = '\/ebroad\/'
+            this.page.identifier = '\/alexa_node_red1\/'
           
         };
         (function() {

@@ -6,10 +6,22 @@
     <description>Recent content in Tech on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Jan 2018 22:28:20 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jan 2018 07:56:05 +0900</lastBuildDate>
     
 	<atom:link href="http://shidetake.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AlexaとNode-REDを利用したスマートホームスキル作成時の注意</title>
+      <link>http://shidetake.com/alexa_node_red1/</link>
+      <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
+      
+      <guid>http://shidetake.com/alexa_node_red1/</guid>
+      <description>&lt;p&gt;最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
+&lt;a href=&#34;../pyatv/&#34;&gt;前回のApple TVを操作するスクリプト&lt;/a&gt;もその一環だったのだが、うまく動かなかったのでその対処法を書く。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Apple TVをRaspberry Piで操作</title>

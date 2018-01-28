@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/alexa_node_red1/</loc>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/pyatv/</loc>
     <lastmod>2018-01-26T22:28:20+09:00</lastmod>
   </url>
@@ -192,7 +197,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/apple-tv/</loc>
-    <lastmod>2018-01-26T22:28:20+09:00</lastmod>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -286,7 +291,7 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2018-01-26T22:28:20+09:00</lastmod>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -316,7 +321,13 @@
   
   <url>
     <loc>http://shidetake.com/tags/smart-home/</loc>
-    <lastmod>2018-01-26T22:28:20+09:00</lastmod>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/tags/systemd/</loc>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -328,7 +339,7 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2018-01-26T22:28:20+09:00</lastmod>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -346,7 +357,7 @@
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2018-01-26T22:28:20+09:00</lastmod>
+    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
     <priority>0</priority>
   </url>
   
