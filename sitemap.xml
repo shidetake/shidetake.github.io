@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/index.js</loc>
+    <lastmod>2018-02-18T22:50:07+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/alexa_node_red1/</loc>
     <lastmod>2018-01-28T07:56:05+09:00</lastmod>
   </url>
@@ -320,6 +325,16 @@
   </url>
   
   <url>
+    <loc>http://shidetake.com/search.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/search/</loc>
+    <lastmod>2018-02-18T22:50:07+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/tags/smart-home/</loc>
     <lastmod>2018-01-28T07:56:05+09:00</lastmod>
     <priority>0</priority>
@@ -357,7 +372,7 @@
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2018-01-28T07:56:05+09:00</lastmod>
+    <lastmod>2018-02-18T22:50:07+09:00</lastmod>
     <priority>0</priority>
   </url>
   

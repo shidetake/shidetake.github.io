@@ -6,10 +6,19 @@
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Jan 2018 07:56:05 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 18 Feb 2018 22:50:07 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title></title>
+      <link>http://shidetake.com/index.js</link>
+      <pubDate>Sun, 18 Feb 2018 22:50:07 +0900</pubDate>
+      
+      <guid>http://shidetake.com/index.js</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>AlexaとNode-REDを利用したスマートホームスキル作成時の注意</title>
@@ -3105,6 +3114,15 @@ rubyとRubyとか。現時点ではざっくり以下のタグわけ
 &lt;h2 id=&#34;テキストと画像&#34;&gt;テキストと画像&lt;/h2&gt;
 
 &lt;iframe style=&#34;width:120px;height:240px;&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; frameborder=&#34;0&#34; src=&#34;//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=shidetake0e-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B00QJDOM6U&amp;linkId=05fa0e9ef8fc667966c6780e891940c1&#34;&gt;&lt;/iframe&gt;</description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>http://shidetake.com/search.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://shidetake.com/search.html</guid>
+      <description></description>
     </item>
     
   </channel>
