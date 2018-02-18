@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/google-apps-script/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/google-apps-script/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -26,7 +26,100 @@
 
 &lt;p&gt;今回は、引き落としに失敗した時にLINE通知してくれるシステムを構築する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;参考サイト&#34;&gt;参考サイト&lt;/h2&gt;
+
+&lt;p&gt;先に白状しておくと、この記事は
+&lt;a href=&#34;https://asatte.biz/gmail-line/&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;Google Apps ScriptとLINE Messaging APIを組み合わせて使う。
+IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
+Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2BkAaOM&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;LINE Messaging APIを使えるようにしておく(&lt;a href=&#34;../line_push/&#34;&gt;別記事参照&lt;/a&gt;)。&lt;/li&gt;
+&lt;li&gt;Gmailにtreatedラベルを作る
+
+&lt;ul&gt;
+&lt;li&gt;1度処理したメールを再度処理しないようにするためのラベル&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;google-apps-script&#34;&gt;Google Apps Script&lt;/h2&gt;
+
+&lt;p&gt;以下のようなスクリプトを作る。&lt;/p&gt;
+
+&lt;p&gt;Gmailから&lt;code&gt;QUERY&lt;/code&gt;にマッチするメールを取得して、メールの数だけLINEにメッセージを送る。
+処理したメールはtreatedラベルを付けて、再度処理しないようにしている。（そのために&lt;code&gt;QUERY&lt;/code&gt;で&lt;code&gt;-label:treated&lt;/code&gt;している）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var CHANNEL_ACCESS_TOKEN = &#39;YOUR_CHANNEL_ACCESS_TOKEN&#39;;
+var LINE_USER_ID = &#39;YOUR_LINE_USER_ID&#39;;
+var QUERY = &#39;-label:treated subject:未済&#39;;
+
+function main() {
+  var threads = GmailApp.search(QUERY, 0, 10); 
+  var messages = GmailApp.getMessagesForThreads(threads);
+  
+  for (var i in messages) {
+    for (var j in messages[i]) {
+      line_push(&#39;MUFJからの引き落とし失敗してるよ&#39;);
+    }
+  }
+  
+  // add label:treated
+  var label_treated = GmailApp.getUserLabelByName(&#39;treated&#39;);
+  for (var i in threads) {
+    threads[i].addLabel(label_treated);    
+  }
+}
+
+// LINEにプッシュ通知する
+function line_push(message) {
+  var postData = {
+    &amp;quot;to&amp;quot;: LINE_USER_ID,
+    &amp;quot;messages&amp;quot; : [
+      {
+        &amp;quot;type&amp;quot; : &amp;quot;text&amp;quot;,
+        &amp;quot;text&amp;quot; : message
+      }
+    ]
+  };
+  
+  var options = {
+    &amp;quot;method&amp;quot; : &amp;quot;post&amp;quot;,
+    &amp;quot;headers&amp;quot; : {
+      &amp;quot;Content-Type&amp;quot; : &amp;quot;application/json&amp;quot;,
+      &amp;quot;Authorization&amp;quot; : &amp;quot;Bearer &amp;quot; + CHANNEL_ACCESS_TOKEN
+    },
+    &amp;quot;payload&amp;quot; : JSON.stringify(postData)
+  };
+  
+  UrlFetchApp.fetch(&amp;quot;https://api.line.me/v2/bot/message/push&amp;quot;, options);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;トリガの設定&#34;&gt;トリガの設定&lt;/h2&gt;
+
+&lt;p&gt;Google Apps Scriptのスクリプト編集画面で、編集 &amp;gt; 現在のプロジェクトのトリガーを選択する。
+ここで、main関数を任意の時間間隔で実行するように設定できる。
+最短は1分なのでとりあえず1分にしておいた。&lt;/p&gt;
+
+&lt;h2 id=&#34;おまけ&#34;&gt;おまけ&lt;/h2&gt;
+
+&lt;p&gt;読めばわかると思うが、今回の例は三菱東京UFJ銀行の口座からの引き落としに失敗したときのケース。
+このメールが届くようにするには、三菱東京UFJダイレクトで設定する必要がある（設定したのはだいぶ前なので詳細は忘れた）。&lt;/p&gt;
+
+&lt;p&gt;で、みずほ銀行も使っているのでこっちも同じようにしようと思ったら、みずほは通知メールサービスが無いらしい。
+結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
+
+&lt;p&gt;サブバンクをみずほから新生銀行あたりに乗り換えようかなと思った。&lt;/p&gt;</description>
     </item>
     
   </channel>

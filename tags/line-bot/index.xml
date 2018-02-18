@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/line-bot/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/line-bot/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -26,7 +26,100 @@
 
 &lt;p&gt;今回は、引き落としに失敗した時にLINE通知してくれるシステムを構築する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;参考サイト&#34;&gt;参考サイト&lt;/h2&gt;
+
+&lt;p&gt;先に白状しておくと、この記事は
+&lt;a href=&#34;https://asatte.biz/gmail-line/&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;Google Apps ScriptとLINE Messaging APIを組み合わせて使う。
+IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
+Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2BkAaOM&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;LINE Messaging APIを使えるようにしておく(&lt;a href=&#34;../line_push/&#34;&gt;別記事参照&lt;/a&gt;)。&lt;/li&gt;
+&lt;li&gt;Gmailにtreatedラベルを作る
+
+&lt;ul&gt;
+&lt;li&gt;1度処理したメールを再度処理しないようにするためのラベル&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;google-apps-script&#34;&gt;Google Apps Script&lt;/h2&gt;
+
+&lt;p&gt;以下のようなスクリプトを作る。&lt;/p&gt;
+
+&lt;p&gt;Gmailから&lt;code&gt;QUERY&lt;/code&gt;にマッチするメールを取得して、メールの数だけLINEにメッセージを送る。
+処理したメールはtreatedラベルを付けて、再度処理しないようにしている。（そのために&lt;code&gt;QUERY&lt;/code&gt;で&lt;code&gt;-label:treated&lt;/code&gt;している）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var CHANNEL_ACCESS_TOKEN = &#39;YOUR_CHANNEL_ACCESS_TOKEN&#39;;
+var LINE_USER_ID = &#39;YOUR_LINE_USER_ID&#39;;
+var QUERY = &#39;-label:treated subject:未済&#39;;
+
+function main() {
+  var threads = GmailApp.search(QUERY, 0, 10); 
+  var messages = GmailApp.getMessagesForThreads(threads);
+  
+  for (var i in messages) {
+    for (var j in messages[i]) {
+      line_push(&#39;MUFJからの引き落とし失敗してるよ&#39;);
+    }
+  }
+  
+  // add label:treated
+  var label_treated = GmailApp.getUserLabelByName(&#39;treated&#39;);
+  for (var i in threads) {
+    threads[i].addLabel(label_treated);    
+  }
+}
+
+// LINEにプッシュ通知する
+function line_push(message) {
+  var postData = {
+    &amp;quot;to&amp;quot;: LINE_USER_ID,
+    &amp;quot;messages&amp;quot; : [
+      {
+        &amp;quot;type&amp;quot; : &amp;quot;text&amp;quot;,
+        &amp;quot;text&amp;quot; : message
+      }
+    ]
+  };
+  
+  var options = {
+    &amp;quot;method&amp;quot; : &amp;quot;post&amp;quot;,
+    &amp;quot;headers&amp;quot; : {
+      &amp;quot;Content-Type&amp;quot; : &amp;quot;application/json&amp;quot;,
+      &amp;quot;Authorization&amp;quot; : &amp;quot;Bearer &amp;quot; + CHANNEL_ACCESS_TOKEN
+    },
+    &amp;quot;payload&amp;quot; : JSON.stringify(postData)
+  };
+  
+  UrlFetchApp.fetch(&amp;quot;https://api.line.me/v2/bot/message/push&amp;quot;, options);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;トリガの設定&#34;&gt;トリガの設定&lt;/h2&gt;
+
+&lt;p&gt;Google Apps Scriptのスクリプト編集画面で、編集 &amp;gt; 現在のプロジェクトのトリガーを選択する。
+ここで、main関数を任意の時間間隔で実行するように設定できる。
+最短は1分なのでとりあえず1分にしておいた。&lt;/p&gt;
+
+&lt;h2 id=&#34;おまけ&#34;&gt;おまけ&lt;/h2&gt;
+
+&lt;p&gt;読めばわかると思うが、今回の例は三菱東京UFJ銀行の口座からの引き落としに失敗したときのケース。
+このメールが届くようにするには、三菱東京UFJダイレクトで設定する必要がある（設定したのはだいぶ前なので詳細は忘れた）。&lt;/p&gt;
+
+&lt;p&gt;で、みずほ銀行も使っているのでこっちも同じようにしようと思ったら、みずほは通知メールサービスが無いらしい。
+結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
+
+&lt;p&gt;サブバンクをみずほから新生銀行あたりに乗り換えようかなと思った。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -40,7 +133,72 @@
 
 &lt;p&gt;でも面倒なので、LINE BOTに頼むことにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_push/&#34;&gt;LINE BOTでPUSH通知する&lt;/a&gt;と&lt;a href=&#34;../make_cron/&#34;&gt;Makefileでcronを登録する&lt;/a&gt;を組み合わせるだけ。&lt;/p&gt;
+
+&lt;p&gt;詳細はそれぞれの記事を読んでもらうとして、ソースを記載する。&lt;/p&gt;
+
+&lt;h2 id=&#34;スクリプト&#34;&gt;スクリプト&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+curl -X POST \
+-H &#39;Content-Type:application/json&#39; \
+-H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \
+-d &#39;{
+    &amp;quot;to&amp;quot;: &amp;quot;GROUPID&amp;quot;,
+    &amp;quot;messages&amp;quot;:[
+        {
+            &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;,
+            &amp;quot;text&amp;quot;: &amp;quot;エサあげた？&amp;quot;
+        }
+    ]
+}&#39; https://api.line.me/v2/bot/message/push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここで、&lt;code&gt;CHANNEL_ACCESS_TOKEN&lt;/code&gt;はLINE depelopersで取得するトークン。
+&lt;code&gt;GROUPID&lt;/code&gt;は、LINEのグループを識別するためのID。
+これの取得方法は前の記事には書いてなかったので説明する。&lt;/p&gt;
+
+&lt;h2 id=&#34;group-idの取得&#34;&gt;GROUP IDの取得&lt;/h2&gt;
+
+&lt;p&gt;以下のスクリプトをGoogle Apps Scriptでウェブアプリケーションとして導入し、
+LINE BOTのWebhook URLに紐付ける。&lt;/p&gt;
+
+&lt;p&gt;その状態で、LINEグループにBOT招待すれば、example@gmailにGROUP IDが通知される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function doPost(e) {
+  Logger.log(&#39;doPost&#39;)
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &amp;quot;join&amp;quot;) { mailGroupId(event); }
+  });
+}
+
+function mailGroupId(e) {
+  MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;groupId&#39;, e.source.groupId);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;cron登録&#34;&gt;cron登録&lt;/h2&gt;
+
+&lt;p&gt;以下のような&lt;code&gt;Makefile&lt;/code&gt;を作って、&lt;code&gt;make install&lt;/code&gt;すればよい。
+ここでは、毎日9時と18時に通知する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+	crontab -l | grep line_feeding.sh || \
+		(crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/line_feeding.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;ユースケース&#34;&gt;ユースケース&lt;/h2&gt;
+
+&lt;p&gt;今回の例は、犬を預かってもらう人にエサをちゃんとあげてくれるようにリマインドするケース。
+自分で聞くのは忘れそうだし、BOTに機械的に聞いてもらうことで角が立ちにくい（気がする）。&lt;/p&gt;
+
+&lt;p&gt;あとは、今回の例では個人に通知するのではなく、グループに通知する形にしている。
+これにより、相手が実行してくれたかどうか聞けるという利点もある（相手がBOTに返信してくれる人なら）。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -55,7 +213,159 @@
 
 &lt;p&gt;不便なのでLINE botに買ってもらうことにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;実行画面&#34;&gt;実行画面&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2iSCU12&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://ift.tt/2wtX1rd&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;LINEメッセージをMessaging APIが受けて、Google Apps Scriptを発動&lt;/li&gt;
+&lt;li&gt;GASはソケット通信でVPS上のrubyスクリプトを起こす&lt;/li&gt;
+&lt;li&gt;rubyスクリプト上でCapybaraさんがIIJmioのウェブページにクーポン購入を依頼する
+&lt;img src=&#34;http://ift.tt/2vBgyXT&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;Kindleのハイライト通知&lt;/a&gt;のときと同じような作り。
+動作環境も同じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# coding: utf-8
+require &#39;capybara&#39;
+require &#39;capybara/dsl&#39;
+require &#39;capybara/poltergeist&#39;
+require &#39;selenium-webdriver&#39;
+
+class BuyIIJmioCoupon
+  include Capybara::DSL
+
+  SELENIUM = 0
+  POLTERGEIST = 1
+
+  USER_NAME = &#39;your_user_name&#39;
+  PASSWORD  = &#39;your_password&#39;
+
+  def initialize(driver)
+    Capybara.app_host = &#39;https://www.iijmio.jp/service/setup/hdd/charge/&#39;
+    Capybara.default_max_wait_time = 5
+    case driver
+    when SELENIUM
+      Capybara.current_driver = :selenium
+      Capybara.javascript_driver = :selenium
+      Capybara.register_driver :selenium do |app|
+        Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome)
+      end
+
+    when POLTERGEIST
+      Capybara.current_driver = :poltergeist
+      Capybara.javascript_driver = :poltergeist
+      Capybara.register_driver :poltergeist do |app|
+        Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false})
+      end
+      page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;}
+    end
+  end
+
+  def login
+    visit(&#39;&#39;)
+    fill_in &#39;j_username&#39;,
+      :with =&amp;gt; USER_NAME
+    fill_in &#39;j_password&#39;,
+      :with =&amp;gt; PASSWORD
+    click_button &#39;ログイン&#39;
+  end
+
+  def buy
+    select &#39;1枚（100MB）&#39;, from: &#39;selectList&#39;
+    click_button &#39;次へ&#39;
+
+    check &#39;confirm&#39;
+    click_button &#39;お申し込み&#39;
+  end
+end
+
+crawler = BuyIIJmioCoupon.new(BuyIIJmioCoupon::POLTERGEIST)
+crawler.login
+crawler.buy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;追加クーポン購入ページに直接アクセスして、ログインしたあとで、
+購入枚数を選択して購入ボタンをポチポチ押していくだけ。購入枚数は1枚で固定した。&lt;/p&gt;
+
+&lt;p&gt;デバッグ用にSELENIUMで動作させることもできるようにしている。&lt;/p&gt;
+
+&lt;h2 id=&#34;vpsで待ち受ける&#34;&gt;VPSで待ち受ける&lt;/h2&gt;
+
+&lt;p&gt;これも&lt;a href=&#34;../line_highlights_3/&#34;&gt;Kindleのハイライト通知&lt;/a&gt;と同じ。
+上のソースを少し変えて、以下のようにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# coding: utf-8
+require &#39;capybara&#39;
+require &#39;capybara/dsl&#39;
+require &#39;capybara/poltergeist&#39;
+require &#39;selenium-webdriver&#39;
+require &#39;socket&#39;
+
+class BuyIIJmioCoupon
+  # 上と同じなので省略
+end
+
+gs = TCPServer.open(23456)
+addr = gs.addr
+addr.shift
+printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;))
+
+crawler = BuyIIJmioCoupon.new(BuyIIJmioCoupon::POLTERGEIST)
+loop do
+  s = gs.accept
+  print(s, &amp;quot; is accepted\n&amp;quot;)
+
+  begin
+    crawler.login
+    crawler.buy
+  rescue
+    raise
+  end
+
+  print(s, &amp;quot; is gone\n&amp;quot;)
+  s.close
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;google-apps-script&#34;&gt;Google Apps Script&lt;/h2&gt;
+
+&lt;p&gt;LINE Messaging APIから以下のスクリプトを実行するように紐付ければ (&lt;a href=&#34;../line_push/&#34;&gt;参考&lt;/a&gt;)、
+ソケット通信でVPS上のスクリプトを起こせる。&lt;/p&gt;
+
+&lt;p&gt;こちらから送った文章にiijという文字列が含まれている場合にトリガがかかるようにした。
+なお、冒頭の実行画面ではLINE botからACKが返っているが、以下のソースでは省略している。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var CHANNEL_ACCESS_TOKEN = &#39;your_line_channel_access_token&#39;;
+var SERVER_ADDRESS_IIJ = &#39;http://your_server_address.com:23456&#39;
+
+function doPost(e) {
+  Logger.log(&#39;doPost&#39;)
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &#39;message&#39;) { parseMessage(event); }
+  });
+}
+
+function parseMessage(e) {
+  if (e.message.text.match(/iij/)) {
+    buyIIJmioCoupon()
+  }
+}
+
+function buyIIJmioCoupon() {
+  UrlFetchApp.fetch(SERVER_ADDRESS_IIJ);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -72,7 +382,49 @@
 
 &lt;p&gt;今回でこのシリーズは最後。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;方針&#34;&gt;方針&lt;/h2&gt;
+
+&lt;p&gt;今まで取得したハイライトを記録しておいて、
+差分だけを返信するという単純な仕様にした。&lt;/p&gt;
+
+&lt;p&gt;記録する方法は、これまた単純に外部ファイルに保存するだけ。
+容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、
+とりあえず問題になるまでは単純な実装にする。&lt;/p&gt;
+
+&lt;h2 id=&#34;json形式で保存&#34;&gt;JSON形式で保存&lt;/h2&gt;
+
+&lt;p&gt;以下のメソッドで&lt;code&gt;@highlights&lt;/code&gt;という配列をJSON形式にして保存する。
+&lt;code&gt;&#39;json&#39;&lt;/code&gt;を忘れずに&lt;code&gt;require&lt;/code&gt;すること。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  # ハイライトをJSON形式にして外部ファイルに保存する
+  def store_highlights
+    File.open(JSON_FILE_NAME, &#39;w&#39;) do |file|
+      JSON.dump(@highlights, file)
+    end
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;json形式のファイルを読み出し&#34;&gt;JSON形式のファイルを読み出し&lt;/h2&gt;
+
+&lt;p&gt;以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから&lt;code&gt;@highlights&lt;/code&gt;配列にデータを読み出す。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  # 外部ファイルから既に取得しているハイライトを読み出す
+  def restore_highlights
+    return unless File.exist?(JSON_FILE_NAME)
+    File.open(JSON_FILE_NAME, &#39;r&#39;) do |file|
+      @highlights = JSON.load(file)
+    end
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとは、&lt;code&gt;@highlights&lt;/code&gt;に存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。&lt;/p&gt;
+
+&lt;h2 id=&#34;全ソース&#34;&gt;全ソース&lt;/h2&gt;
+
+&lt;p&gt;githubに全ソースをあげた。
+&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -84,7 +436,72 @@
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;起動タイミング&#34;&gt;起動タイミング&lt;/h2&gt;
+
+&lt;h3 id=&#34;仕様&#34;&gt;仕様&lt;/h3&gt;
+
+&lt;p&gt;cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、
+結局は手動で合図したタイミングで1度だけ起動する仕様にした。&lt;/p&gt;
+
+&lt;p&gt;LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。&lt;/p&gt;
+
+&lt;p&gt;妥協案とも言える仕様だが、この仕様にした一番の理由は、
+頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。
+これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。&lt;/p&gt;
+
+&lt;h3 id=&#34;流れ&#34;&gt;流れ&lt;/h3&gt;
+
+&lt;p&gt;以下のような流れで起動要求を伝達する。&lt;/p&gt;
+
+&lt;p&gt;LINEで起動要求&lt;br /&gt;
+↓&lt;br /&gt;
+LINEからGoogle Apps Scriptのスクリプト実行&lt;br /&gt;
+↓&lt;br /&gt;
+ソケット通信でスクレイピング開始要求&lt;/p&gt;
+
+&lt;h3 id=&#34;実装&#34;&gt;実装&lt;/h3&gt;
+
+&lt;p&gt;まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;+require &#39;socket&#39;
+
++gs = TCPServer.open(12345)
++addr = gs.addr
++addr.shift
++printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;))
+
+ crawler = LineKindleHighlights.new
+
++loop do
++  s = gs.accept
++  print(s, &amp;quot; is accepted\n&amp;quot;)
++
+   crawler.scrape
++
++  print(s, &amp;quot; is gone\n&amp;quot;)
++  s.close
++end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでポート12345番でアクセスされると1度だけ動作するようになる。&lt;/p&gt;
+
+&lt;p&gt;つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function doPost(e) {
+  Logger.log(&#39;doPost&#39;)
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &amp;quot;message&amp;quot;) { UrlFetchApp.fetch(&amp;quot;http://your_server_address.com:12345&amp;quot;); }
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じでウェブアプリケーションとして導入して、LINE側のWebhookアドレスに紐付けると、
+BOTに話しかけたタイミングでソケット通信が飛ぶようになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_4/&#34;&gt;続きはこちら&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -96,7 +513,68 @@
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;サーバで起動&#34;&gt;サーバで起動&lt;/h2&gt;
+
+&lt;p&gt;前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
+POLTERGEISTを使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize
+-   Capybara.current_driver = :selenium
++   Capybara.current_driver = :poltergeist
+-   Capybara.javascript_driver = :selenium
++   Capybara.javascript_driver = :poltergeist
+    Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39;
+    Capybara.default_max_wait_time = 5
+-   Capybara.register_driver :selenium do |app|
++   Capybara.register_driver :poltergeist do |app|
+-     # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+-     Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome)
++     Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false})
+    end
++   page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;}
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。&lt;/p&gt;
+
+&lt;p&gt;これでサーバ（今回はUbuntuを使った）で動作するようになった。&lt;/p&gt;
+
+&lt;h2 id=&#34;line通知&#34;&gt;LINE通知&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize(driver)
+    Capybara.current_driver = :poltergeist
+    Capybara.javascript_driver = :poltergeist
+    Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39;
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :poltergeist do |app|
+      Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false})
+    end
+    page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} if driver == POLTERGEIST
+
++   @line = Line::Bot::Client.new do |config|
++     config.channel_secret = &#39;&#39;
++     config.channel_token  = &#39;&#39;
++   end
+
++   @user_id = &#39;&#39;
+  end
+
++ def push_highlight(highlight)
++   message = {
++     type: &#39;text&#39;,
++     text: highlight
++   }
+
++   @line.push_message(@user_id, message)
++ end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_3/&#34;&gt;続きはこちら&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -110,7 +588,114 @@ KindleにはハイライトをメールやTwitterでシェアする機能があ�
 
 &lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
+
+&lt;p&gt;RubyのCapybaraを使った。&lt;/p&gt;
+
+&lt;h3 id=&#34;動作環境&#34;&gt;動作環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15]
+selenium-webdriver (2.53.0, 2.52.0)
+capybara (2.14.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;ソースコード&#34;&gt;ソースコード&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# coding: utf-8
+require &#39;capybara&#39;
+require &#39;capybara/dsl&#39;
+require &#39;capybara/poltergeist&#39;
+require &#39;selenium-webdriver&#39;
+
+class LineKindleHighlights
+  include Capybara::DSL
+
+  KINDLE_EMAIL    = &#39;your@email&#39;
+  KINDLE_PASSWORD = &#39;your_password&#39;
+  CRAWL_PAGE_NUM = 2
+
+  def initialize
+    Capybara.current_driver = :selenium
+    Capybara.javascript_driver = :selenium
+    Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39;
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :selenium do |app|
+      # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+      Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome)
+    end
+  end
+
+  def scrape
+    login
+
+    # ページ読み込み待ち
+    sleep 5
+
+    go_to_highlights
+
+    CRAWL_PAGE_NUM.times do
+      all(&#39;.title&#39;).each do |element|
+        p element.text
+      end
+
+      all(&#39;.highlight&#39;).each do |element|
+        p element.text
+      end
+
+      next_page
+    end
+  end
+
+  private
+
+  # Kindleのマイページにアクセスしログインする
+  def login
+    visit(&#39;&#39;)
+    click_link &#39;sign in&#39;
+    fill_in &#39;ap_email&#39;,
+      :with =&amp;gt; KINDLE_EMAIL
+    fill_in &#39;password&#39;,
+      :with =&amp;gt; KINDLE_PASSWORD
+    click_on &#39;signInSubmit&#39;
+  end
+
+  # Your Hightlightsのページに遷移する
+  # @note ログイン直後のページで使う
+  def go_to_highlights
+    click_link &#39;Your Highlights&#39;
+  end
+
+  # 次のページに遷移
+  # @note Your Hightlightsのページで使うことで次の本のハイライトページに遷移する
+  def next_page
+    visit(find_by_id(&#39;nextBookLink&#39;, visible: false)[:href])
+  end
+end
+
+crawler = LineKindleHighlights.new
+crawler.scrape
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;KINDLE_EMAIL&lt;/code&gt;と&lt;code&gt;KINDLE_PASSWORD&lt;/code&gt;だけ設定すれば動く&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CRAWL_PAGE_NUM&lt;/code&gt;は実質的には取得するハイライトの本の数になる (1ページに1冊分の情報が出る）&lt;/li&gt;
+&lt;li&gt;次のページへの遷移で少しハマった。hiddenなクラスのリンクを取得するには&lt;code&gt;visible: false&lt;/code&gt;する必要があるらしい&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;とりあえず今回はここまで。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;続きはこちら&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
+
+&lt;ul class=&#34;task-list&#34;&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; クローラー作成&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; LINE通知機能&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; 通知済みハイライトを通知しない&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; サーバ上で動作&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -119,7 +704,42 @@ KindleにはハイライトをメールやTwitterでシェアする機能があ�
       <pubDate>Thu, 11 May 2017 22:31:20 +0900</pubDate>
       
       <guid>http://shidetake.com/dash_button/</guid>
-      <description>&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
+
+&lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;
+個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;
+
+&lt;h2 id=&#34;lineへのpush通知設定&#34;&gt;LINEへのPUSH通知設定&lt;/h2&gt;
+
+&lt;p&gt;LINE側の設定は&lt;a href=&#34;../line_push/&#34;&gt;LINE BOTでPUSH通知する&lt;/a&gt;を参照。&lt;/p&gt;
+
+&lt;p&gt;CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。
+MAC_ADDRESSはdasher導入時に取得したものを書くこと。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;buttons&amp;quot;: [
+  {
+    &amp;quot;name&amp;quot;: &amp;quot;joy&amp;quot;,
+    &amp;quot;address&amp;quot;: &amp;quot;MAC_ADDRESS&amp;quot;,
+    &amp;quot;url&amp;quot;: &amp;quot;https://api.line.me/v2/bot/message/push&amp;quot;,
+    &amp;quot;method&amp;quot;: &amp;quot;POST&amp;quot;,
+    &amp;quot;headers&amp;quot;: {
+      &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
+      &amp;quot;Authorization&amp;quot;: &amp;quot;Bearer {CHANNEL_ACCESS_TOKEN}&amp;quot;},
+    &amp;quot;json&amp;quot;: true,
+    &amp;quot;body&amp;quot;: {
+      &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;,
+      &amp;quot;messages&amp;quot;: [
+        {
+          &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;,
+          &amp;quot;text&amp;quot;: &amp;quot;JOY!&amp;quot;
+        }
+      ]
+    }
+  }
+]}
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -128,7 +748,70 @@ KindleにはハイライトをメールやTwitterでシェアする機能があ�
       <pubDate>Mon, 17 Apr 2017 23:11:57 +0900</pubDate>
       
       <guid>http://shidetake.com/line_push/</guid>
-      <description>&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;登録&#34;&gt;登録&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PUSH通知する場合はDeveloper Trialで登録&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;google-apps-scriptでユーザid取得&#34;&gt;Google Apps ScriptでユーザID取得&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;友達に追加したユーザのIDを登録したメールアドレスにメールする&lt;/li&gt;
+&lt;li&gt;以下のコードでウェブアプリケーションとして導入する
+
+&lt;ul&gt;
+&lt;li&gt;CHANNEL_ACCESS_TOKENはLINE depelopersで取得できる&lt;/li&gt;
+&lt;li&gt;example@gmail.comは任意のgmailアドレス&lt;/li&gt;
+&lt;li&gt;アプリケーションにアクセスできるユーザーは全員（匿名ユーザーを含む）&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var CHANNEL_ACCESS_TOKEN = &#39;CHANNEL_ACCESS_TOKEN&#39;;
+
+function doPost(e) {
+  Logger.log(&#39;doPost&#39;)
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &amp;quot;follow&amp;quot;) { mailUserId(event); }
+  });
+}
+
+function mailUserId(e) {
+  MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;mailId&#39;, e.source.userId);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;curlでmessaging-apiのpush通知を使う&#34;&gt;curlでMessaging APIのPUSH通知を使う&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CHANNEL_ACCESS_TOKENは上で使ったものと同じ&lt;/li&gt;
+&lt;li&gt;USERIDはプッシュ先
+
+&lt;ul&gt;
+&lt;li&gt;今回は上で取得した自分のユーザIDを使う&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X POST \
+-H &#39;Content-Type:application/json&#39; \
+-H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \
+-d &#39;{
+    &amp;quot;to&amp;quot;: &amp;quot;USERID&amp;quot;,
+    &amp;quot;messages&amp;quot;:[
+        {
+            &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;,
+            &amp;quot;text&amp;quot;: &amp;quot;Hello, world!&amp;quot;
+        }
+    ]
+}&#39; https://api.line.me/v2/bot/message/push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;関連ポスト&#34;&gt;関連ポスト&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../dash_button/&#34;&gt;Amazon Dash ButtonからLINE通知&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 21 Aug 2017 22:44:54 +0000</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -24,7 +24,74 @@ github-pageでホスティングしているのだが、画像をアップする
 &lt;p&gt;というわけで、Google Photoの画像を&lt;strong&gt;簡単に&lt;/strong&gt;直接ブログに貼り付ける方法を模索していたが、
 IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;設定手順&#34;&gt;設定手順&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;IFTTTでNew Appletボタンをクリック&lt;/li&gt;
+&lt;li&gt;サービスはGoogle Photoを選択&lt;/li&gt;
+&lt;li&gt;トリガはNew photo uploaded
+
+&lt;ul&gt;
+&lt;li&gt;現時点ではこれしか選べない&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;アルバムは適当なものを選ぶ
+
+&lt;ul&gt;
+&lt;li&gt;共有アルバムは選べないので注意
+
+&lt;ul&gt;
+&lt;li&gt;恐らくPicasa APIの仕様&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;アクションサービスはメールを選択
+
+&lt;ul&gt;
+&lt;li&gt;メールが嫌いならLINEでもよい&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;アクションはSend me an email&lt;/li&gt;
+&lt;li&gt;Subjectは適当に入れる
+
+&lt;ul&gt;
+&lt;li&gt;例: 画像URL {{CreatedAt}}
+
+&lt;ul&gt;
+&lt;li&gt;{{CreatedAt}}はトリガがかかった日時&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Bodyは{{PhotoUrl}}&lt;/li&gt;
+&lt;li&gt;Create actionボタンを押して完了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;実行手順&#34;&gt;実行手順&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;トリガ用のアルバムに写真を放り込む&lt;/li&gt;
+&lt;li&gt;1分程するとメールが届く&lt;/li&gt;
+&lt;li&gt;開いてURLをコピーしてブログに貼り付ける&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;特徴&#34;&gt;特徴&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;大きい画像をいい具合に縮小してくれる
+
+&lt;ul&gt;
+&lt;li&gt;細かい条件は不明だが、いい具合に縮小してくれる&lt;/li&gt;
+&lt;li&gt;PicasaのAPIで取得できるURLだとこうなってしまう模様
+
+&lt;ul&gt;
+&lt;li&gt;Picasa APIの使い方は&lt;a href=&#34;../google_photo_api_1/&#34;&gt;こちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;短縮URLにして送ってくれる
+
+&lt;ul&gt;
+&lt;li&gt;IFTTTの機能（設定が必要かも）&lt;/li&gt;
+&lt;li&gt;オリジナルアドレスだと長過ぎてブログに貼り付けたくないので助かる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

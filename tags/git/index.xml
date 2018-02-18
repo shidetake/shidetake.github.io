@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 25 Nov 2017 20:45:30 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,7 +20,49 @@
       <description>&lt;p&gt;以前、&lt;a href=&#34;../git_difftool/&#34;&gt;git diffをvimdiffで見る方法&lt;/a&gt;を紹介した。
 今回は&lt;code&gt;git show&lt;/code&gt;を&lt;code&gt;vimdiff&lt;/code&gt;で見る方法を紹介する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;git-show&#34;&gt;git show&lt;/h2&gt;
+
+&lt;p&gt;あるコミットの詳細を表示するコマンド。&lt;code&gt;diff&lt;/code&gt;も表示してくれる。
+&lt;code&gt;git diff&lt;/code&gt;程使う機会は少ないかもしれないが、個人的にはかなりよく使うコマンド。&lt;/p&gt;
+
+&lt;p&gt;コードレビューや不具合解析なんかで、過去のコミットでの修正内容を確認するのに便利なんだけど、
+クラシックな&lt;code&gt;diff&lt;/code&gt;で表示されるのが気に入らなかったので&lt;code&gt;vimdiff&lt;/code&gt;で表示する方法を探していた。&lt;/p&gt;
+
+&lt;h2 id=&#34;エイリアス&#34;&gt;エイリアス&lt;/h2&gt;
+
+&lt;p&gt;結論から言うと、&lt;code&gt;git show&lt;/code&gt;で&lt;code&gt;vimdiff&lt;/code&gt;を使う方法はわからなかった。
+環境変数&lt;code&gt;GIT_EXTERNAL_DIFF&lt;/code&gt;にうまいこと設定できればできそうな気もするが、情報が少ない。&lt;/p&gt;
+
+&lt;p&gt;今回はエイリアスを使った方法にした。
+&lt;code&gt;git show&lt;/code&gt;と言いつつ、裏では&lt;code&gt;git diff&lt;/code&gt;を使っている。実際、&lt;code&gt;git show&lt;/code&gt;したときの&lt;code&gt;diff&lt;/code&gt;は&lt;code&gt;git diff&lt;/code&gt;を使っているのだから問題ない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[alias]
+    showtool = &amp;quot;!sh -c &#39;git difftool &amp;quot;${0}&amp;quot;~ &amp;quot;${0}&amp;quot;&#39;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;チルダを使って1世代前のコミットからの差分を見るような形にしている。
+&lt;code&gt;sh -c&lt;/code&gt;を使って&lt;code&gt;git&lt;/code&gt;を呼び出すような冗長な書き方は、ハッシュやブランチ名を引数として渡すため。&lt;/p&gt;
+
+&lt;p&gt;このエイリアスだと引数がないと動かない。
+オリジナルの&lt;code&gt;git show&lt;/code&gt;の場合、引数を指定しないときはHEADを指定したときの動作をするので、これと揃えるために以下のように変更した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[alias]
+    showtool = &amp;quot;!sh -c &#39;if [ &amp;quot;sh&amp;quot; == &amp;quot;${0}&amp;quot; ]; then REVISION=&amp;quot;HEAD&amp;quot;; else REVISION=&amp;quot;${0}&amp;quot;; fi; git difftool $REVISION~ $REVISION&#39;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;おまけ&#34;&gt;おまけ&lt;/h2&gt;
+
+&lt;p&gt;差分ファイルが大量にあると、全ファイルの差分を表示するので非常にめんどくさいことになる。
+そこで、&lt;code&gt;peco&lt;/code&gt;を使って選択的に差分ファイルを見れるようにしている。これが完成形。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[alias]
+    showtool = &amp;quot;!sh -c &#39;if [ &amp;quot;sh&amp;quot; == &amp;quot;${0}&amp;quot; ]; then REVISION=&amp;quot;HEAD&amp;quot;; else REVISION=&amp;quot;${0}&amp;quot;; fi;\
+        git log -1 --stat-width=800 $REVISION | grep \&amp;quot;|\&amp;quot; | awk \&amp;quot; {print \\$1}\&amp;quot; | peco | xargs -o git difftool $REVISION~ $REVISION&#39;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なかなかトリッキーなコマンドなので、解説はいつか余裕があるときに書くことにする。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -35,7 +77,64 @@
 &lt;p&gt;今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
 今の主流は&lt;code&gt;difftool&lt;/code&gt;を使うやり方のようなので、乗り換えた。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;gitconfig&#34;&gt;.gitconfig&lt;/h2&gt;
+
+&lt;p&gt;まず早速&lt;code&gt;.gitconfig&lt;/code&gt;を示す。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでOK。ただし、&lt;code&gt;difftool&lt;/code&gt;を使うのでコマンドが変わる。
+&lt;code&gt;diff&lt;/code&gt;のexternalを変える場合は、あくまで&lt;code&gt;git diff&lt;/code&gt;が使うツールを変更するという意味になるのだが、
+&lt;code&gt;diff&lt;/code&gt;のtoolオプションを変える場合は、&lt;code&gt;git difftool&lt;/code&gt;が使うツールを指定するという意味になる。&lt;/p&gt;
+
+&lt;h2 id=&#34;alias化&#34;&gt;alias化&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;git_diff_wrapper&lt;/code&gt;手法では&lt;code&gt;git diff&lt;/code&gt;でよかったのに、今回の方法では&lt;code&gt;git difftool&lt;/code&gt;と打たないといけないはイマイチなので、
+エイリアスを用意する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[alias]
+    dt = difftool
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでOK。本当は&lt;code&gt;diff = difftool&lt;/code&gt;としたかったが、もともと用意されているコマンドを上書きするようなエイリアスは作れないらしい。&lt;/p&gt;
+
+&lt;h2 id=&#34;リードオンリー解除&#34;&gt;リードオンリー解除&lt;/h2&gt;
+
+&lt;p&gt;さて、これで今までとだいたい同じになったが、カレントのファイルがリードオンリーで開かれるのだけが不満。
+diff見ながら手直しするというのはよくあるので、毎回&lt;code&gt;:set noro&lt;/code&gt;なんて打ってられない。&lt;/p&gt;
+
+&lt;p&gt;なぜか以下のようにしたら解決した。これが完成形。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[difftool &amp;quot;vimdiff&amp;quot;]
+    cmd = vimdiff $LOCAL $REMOTE
+[alias]
+    dt = difftool
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;[difftool &amp;quot;vimdiff&amp;quot;]&lt;/code&gt;セクションで&lt;code&gt;cmd&lt;/code&gt;オプションを指定することで、&lt;code&gt;difftool&lt;/code&gt;で開くコマンドを指定できる。
+ここに編集可能な状態で開くオプションを指定すればいいかなと思っていたが、特になんの指定もなくできた。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;cmd&lt;/code&gt;オプションのデフォルトがどうなってるか知らないけど、リードオンリーな状態で開くようなオプションが指定されているのかな。&lt;/p&gt;
+
+&lt;h2 id=&#34;関連ポスト&#34;&gt;関連ポスト&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../git_showtool/&#34;&gt;git showの差分をvimdiffで見る&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

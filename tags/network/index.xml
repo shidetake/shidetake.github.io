@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Nov 2017 23:11:02 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,7 +20,42 @@
       <description>&lt;p&gt;自宅の光回線が遅くて、&lt;a href=&#34;../speedtest/&#34;&gt;スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事&lt;/a&gt;を書いた。
 その後の話。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;光回線についての調査&#34;&gt;光回線についての調査&lt;/h2&gt;
+
+&lt;p&gt;マンション付属の光回線で、壁についているLANポートに繋ぐと何の手続きもせずに接続できるタイプのもの。
+当時の資料には書いてあったかもしれないが、この時点ではどんな会社の回線なのか不明だった。&lt;/p&gt;
+
+&lt;p&gt;マンションの管理会社に電話すれば一発だが、平日昼間に電話するのが難しいので、ひとまず調べられる範囲で調べてみた。
+まずはとりあえず&lt;code&gt;traceroute&lt;/code&gt;してみた。
+するといくつかローカルっぽいIPアドレスを経て（恐らくマンションのルーター）、ap.yournet.ne.jpなんちゃらみたいな所につながっていた。
+このアドレスで検索してみると、どうやらfreebit系と呼ばれる悪名高いバックボーンであることがわかった。&lt;/p&gt;
+
+&lt;p&gt;ざっと調べたところ、freebit系プロバイダというのは、フリービット株式会社のYourNet ISP Networkサービスというものを利用しているISPのことを言うらしい。
+プロバイダ機能を自前で持たないISPに対してその機能を提供するというサービスのようだ。&lt;/p&gt;
+
+&lt;p&gt;このあたりを調べている時に知ったのだが、
+&lt;a href=&#34;https://env.b4iine.net&#34;&gt;確認くん+&lt;/a&gt;というウェブサイトにアクセスすると、&lt;code&gt;traceroute&lt;/code&gt;などしなくても簡単にわかる。
+ここにアクセスして、お使いのプロバイダーがap.yournet.ne.jpならばfreebit系。&lt;/p&gt;
+
+&lt;h2 id=&#34;プロバイダに確認&#34;&gt;プロバイダに確認&lt;/h2&gt;
+
+&lt;p&gt;マンションの管理会社に聞くと、イーブロードというプロバイダが管理しているとのことだったので、
+電話して状況を確認してみることにした。&lt;/p&gt;
+
+&lt;p&gt;週末に電話すると、サポートにはつながるけど、少し専門的な話になると対応できないようで、
+平日に専門部署から折り返すとの返事。
+平日の昼間は電話に出れない可能性が高いので、バックボーンをfreebitから変更することはできないか知りたいので結果を留守電に入れて欲しいと伝えた。&lt;/p&gt;
+
+&lt;h2 id=&#34;あっけない結末&#34;&gt;あっけない結末&lt;/h2&gt;
+
+&lt;p&gt;その後、すぐに留守電が入ったが、折り返し電話して欲しいという内容だけだった。
+留守電に内容を入れてくれよと脱力して、しばらく放置していると、いつの間にか回線速度が速くなった。&lt;/p&gt;
+
+&lt;p&gt;確認くん+で見てみると、プロバイダがOCNになっていた。どうやらバックボーンを変えたらしい。
+数年前も同じくらいの速度が出ていたので、理由は不明だが、ときどきバックボーンが変わるのだと思う。
+電話が効いたのかどうか知らないが、速くなったのでこれ以上の追求はやめた。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,7 +71,135 @@ cron定期的に実行してくれるようにした。&lt;/p&gt;
 
 &lt;p&gt;Raspberry Piで動作する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;実行結果&#34;&gt;実行結果&lt;/h2&gt;
+
+&lt;p&gt;まずは作成したスクリプトで取得したデータを載せる。
+csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行日時。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csv&#34;&gt;167.908,2.23,5.37,2017/10/16 00:00:39
+129.306,7.82,5.82,2017/10/16 01:00:41
+88.187,18.31,19.27,2017/10/16 02:00:36
+87.879,24.88,21.74,2017/10/16 03:00:36
+156.129,26.47,16.25,2017/10/16 04:00:41
+75.103,25.61,21.42,2017/10/16 05:00:36
+94.37,26.99,21.17,2017/10/16 06:00:40
+76.879,24.55,21.35,2017/10/16 07:00:38
+71.107,24.72,21.67,2017/10/16 08:01:39
+254.614,19.98,16.24,2017/10/16 09:00:37
+81.341,23.46,18.63,2017/10/16 10:00:37
+89.473,23.30,17.17,2017/10/16 11:00:38
+275.777,23.40,10.58,2017/10/16 12:00:38
+110.481,22.26,17.16,2017/10/16 13:00:36
+149.522,25.06,18.38,2017/10/16 14:00:36
+82.292,17.59,8.26,2017/10/16 15:00:38
+202.99,17.83,4.05,2017/10/16 16:00:38
+102.178,17.50,4.52,2017/10/16 17:00:37
+114.628,14.78,16.30,2017/10/16 18:00:38
+102.745,12.89,13.11,2017/10/16 19:00:39
+1795.938,11.67,1.76,2017/10/16 20:00:51
+699.312,6.57,3.20,2017/10/16 21:00:52
+352.963,3.47,0.98,2017/10/16 22:00:47
+480.408,3.98,2.48,2017/10/16 23:00:47
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ついでにグラフ化。
+&lt;img src=&#34;http://ift.tt/2ifbMt0&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。&lt;/p&gt;
+
+&lt;h2 id=&#34;speedtest-cli&#34;&gt;speedtest-cli&lt;/h2&gt;
+
+&lt;h3 id=&#34;インストール&#34;&gt;インストール&lt;/h3&gt;
+
+&lt;p&gt;スピードテストをCUIで行う場合は、恐らくspeedtest-cli一択。
+&lt;code&gt;pip&lt;/code&gt;で入れるので、Pythonのインストールから。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install python
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;続いて&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install speedtest-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;使い方&#34;&gt;使い方&lt;/h3&gt;
+
+&lt;p&gt;一番シンプルなのは&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;speedtest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけ。&lt;code&gt;speedtest-cli&lt;/code&gt;でも同じ結果が得られる。&lt;/p&gt;
+
+&lt;p&gt;データ収集には不要な出力が多いのと、サーバーをping値で自動選択してしまうので、
+以下のように使うことにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;speedtest --server 6476 --simple
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;シェルスクリプト&#34;&gt;シェルスクリプト&lt;/h2&gt;
+
+&lt;h3 id=&#34;1ライン化&#34;&gt;1ライン化&lt;/h3&gt;
+
+&lt;p&gt;上のコマンドをベースに、&lt;code&gt;cron&lt;/code&gt;で実行するシェルスクリプトを作成する。
+1行にping, download, uploadをまとめたいので&lt;code&gt;tr&lt;/code&gt;でカンマと置換する。
+また、速度以外は不要なので&lt;code&gt;awk&lt;/code&gt;を使って、以下のように書く。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/usr/local/bin/speedtest --server 6476 --simple | awk &#39;{print $2}&#39; | tr &#39;\n&#39; &#39;,&#39; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;cron&lt;/code&gt;ではコマンドを絶対パスで指定する必要があるので、絶対パスで書いている。&lt;/p&gt;
+
+&lt;h3 id=&#34;実行日時を追加&#34;&gt;実行日時を追加&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;リトライ機能を追加&#34;&gt;リトライ機能を追加&lt;/h3&gt;
+
+&lt;p&gt;ここまででほぼ完成だけど、結構な頻度で失敗してたのでリトライ機能を追加した。
+&lt;code&gt;cron&lt;/code&gt;でリトライしてくれればいいのに。
+以下が完成形。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
+
+command=&amp;quot;/usr/local/bin/speedtest --server 6476 --simple&amp;quot;
+
+NEXT_WAIT_TIME=0
+until RET=`$command` || [ $NEXT_WAIT_TIME -eq 4 ]; do
+  sleep $(( (NEXT_WAIT_TIME++) * 60 ))
+done
+echo &amp;quot;$RET&amp;quot; | awk &#39;{print $2}&#39; | tr &#39;\n&#39; &#39;,&#39; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4回までリトライする。リトライ間隔は、1分、2分、3分、4分と伸ばしていくようにした。&lt;/p&gt;
+
+&lt;h2 id=&#34;cron&#34;&gt;cron&lt;/h2&gt;
+
+&lt;p&gt;上のシェルスクリプトを&lt;code&gt;cron&lt;/code&gt;に登録する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;crontab -e
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると、エディタが立ち上がる（もしくはエディタ選択画面になるので選ぶ）ので、
+以下のように1時間毎に実行するように設定する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;0 * * * * /usr/local/bin/speedtest_cron.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで完成。&lt;/p&gt;
+
+&lt;h2 id=&#34;注意点&#34;&gt;注意点&lt;/h2&gt;
+
+&lt;p&gt;実行環境はRaspberry Piを想定しているが、場合によってはRaspberry Pi自体がボトルネックとなって、
+正しい速度が取れないので注意。うちの場合はMac Book Airを有線でつないで測定してもだいたい同じような値が取れることを確認している。&lt;/p&gt;
+
+&lt;h2 id=&#34;関連ポスト&#34;&gt;関連ポスト&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../ebroad/&#34;&gt;マンション付属の光回線が早くなった話&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

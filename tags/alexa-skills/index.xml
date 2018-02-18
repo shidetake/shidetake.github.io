@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Dec 2017 22:44:29 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/alexa-skills/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/alexa-skills/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,7 +20,277 @@
       <description>&lt;p&gt;Amazon Echoが届いたので、早速スキルを作ってみることにした。
 やはり最初はHello world。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2B4AsMG&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Amazon Echoにスキルをインストールして、声でスキルを呼び出す。
+呼び出されたスキルは、登録されたAWS Lambdaの関数を呼び出して、処理を実行するという流れ。&lt;/p&gt;
+
+&lt;h2 id=&#34;手順&#34;&gt;手順&lt;/h2&gt;
+
+&lt;p&gt;ざっくり以下のような手順が必要&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;AWS LambdaでAlexaに実行させる関数を作成&lt;/li&gt;
+&lt;li&gt;Amazon DevelopperにてAlexaスキルを作成してAWS Lambda関数に紐付ける&lt;/li&gt;
+&lt;li&gt;Amazon echoにインストール&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;aws-lamda&#34;&gt;AWS Lamda&lt;/h2&gt;
+
+&lt;p&gt;AWS登録して、ログインしたら、AWS Lamdaの設定画面に進む。
+右上にオハイオとか地名が書かれているので、東京にしておく。&lt;/p&gt;
+
+&lt;p&gt;関数の作成ボタンを押して、設計図からalexa-skill-kit-sdk-factskillを選ぶ。
+基本的な情報は以下のように設定した。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;設定項目&lt;/th&gt;
+&lt;th&gt;設定&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;名前&lt;/td&gt;
+&lt;td&gt;alexaHello&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ロール&lt;/td&gt;
+&lt;td&gt;テンプレートから新しいロールを作成&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ロール名&lt;/td&gt;
+&lt;td&gt;alexaHello&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Lambda関数のコードは以下のようにした。
+ちなみにこれは、&lt;a href=&#34;https://github.com/alexa/skill-sample-nodejs-hello-world&#34;&gt;alexa/skill-sample-nodejs-hello-world&lt;/a&gt;に公開されているindex.jsから必要な部分だけを残した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;use strict&#39;;
+const Alexa = require(&amp;quot;alexa-sdk&amp;quot;);
+
+exports.handler = function(event, context, callback) {
+    const alexa = Alexa.handler(event, context);
+    alexa.registerHandlers(handlers);
+    alexa.execute();
+};
+
+const handlers = {
+    &#39;LaunchRequest&#39;: function () {
+        this.emit(&#39;SayHello&#39;);
+    },
+    &#39;HelloWorldIntent&#39;: function () {
+        this.emit(&#39;SayHello&#39;);
+    },
+    &#39;SayHello&#39;: function () {
+        this.response.speak(&#39;Hello World!&#39;);
+        this.emit(&#39;:responseReady&#39;);
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;関数の作成ボタンを押して、次の画面に進む。&lt;/p&gt;
+
+&lt;p&gt;トリガーの設定画面が出るので、Alexa Skills Kitを選択して、保存すればAWS Lambda側の設定は完了。
+右上にARNが表示されている。スキルが関数を呼び出す際に使うので控えておく。&lt;/p&gt;
+
+&lt;h2 id=&#34;amazon-developper&#34;&gt;Amazon Developper&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://developer.amazon.com/&#34;&gt;Amazon Developper Services and Technologies&lt;/a&gt;にアクセスして、右上のサインインからアカウントを作成する。&lt;/p&gt;
+
+&lt;h2 id=&#34;スキル作成&#34;&gt;スキル作成&lt;/h2&gt;
+
+&lt;p&gt;アカウントを作ってログインしたら、amazon alexaのページに進み、左上のメニューから、
+&amp;ldquo;Alexa Skills Kit (ASK) &amp;gt; 始めてみよう&amp;rdquo;を選ぶ。
+この辺のドキュメントは後で読むとして、&amp;rdquo;スキル開発を始める&amp;rdquo;。&lt;/p&gt;
+
+&lt;h3 id=&#34;スキル情報&#34;&gt;スキル情報&lt;/h3&gt;
+
+&lt;p&gt;スキル情報は以下の通り&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;設定項目&lt;/th&gt;
+&lt;th&gt;設定&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;スキルの種類&lt;/td&gt;
+&lt;td&gt;カスタム対話モデル&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;言語&lt;/td&gt;
+&lt;td&gt;Japanese&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;スキル名&lt;/td&gt;
+&lt;td&gt;hello world&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;呼び出し名&lt;/td&gt;
+&lt;td&gt;hello world&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;この設定で保存して次へ。&lt;/p&gt;
+
+&lt;h3 id=&#34;対話モデル&#34;&gt;対話モデル&lt;/h3&gt;
+
+&lt;p&gt;インテントスキーマ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;intents&amp;quot;: [
+    {
+      &amp;quot;intent&amp;quot;: &amp;quot;HelloWorldIntent&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このインテントはAWS Lambdaで作った関数のfunction名と紐付ける。&lt;/p&gt;
+
+&lt;p&gt;サンプル発話&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HelloWorldIntent hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;設定&#34;&gt;設定&lt;/h3&gt;
+
+&lt;p&gt;サービスエンドポイントのタイプにAWS LamdaのARNを指定して、
+デフォルト欄に、AWS Lambdaで作った関数のARNを入力する。
+&lt;code&gt;arn:aws:lambda:ap-northeast-1:xxxxxxxxxxxx:function:alexaHello&lt;/code&gt;みたいな形式。&lt;/p&gt;
+
+&lt;h3 id=&#34;テスト&#34;&gt;テスト&lt;/h3&gt;
+
+&lt;p&gt;次の画面でテストできる。画面中ほどにあるサービスシミュレーターで、先ほど入力したARNが選択されていることを確認して、
+テキスト入力欄にhelloと書いてhello worldを呼び出す。&lt;/p&gt;
+
+&lt;p&gt;サービスレスポンス側にある聴くというボタンを押すと、レスポンスが聴ける。ここでエラーが出ていなければ、スキルからAWS Lambdaの呼び出しは成功。&lt;/p&gt;
+
+&lt;h2 id=&#34;公開情報&#34;&gt;公開情報&lt;/h2&gt;
+
+&lt;p&gt;あとはインストールするための準備。Skills Beta Testingというテスト用のインストール機能があるのでこれを使う。
+これを使うためには、画面左上にある各種設定を完成させてオールグリーンにする必要がある。
+ここまで正しくできていれば、残りは&amp;rdquo;公開情報&amp;rdquo;と&amp;rdquo;プライバシーとコンプライアンス&amp;rdquo;だけのはず。&lt;/p&gt;
+
+&lt;p&gt;基本的には全て適当に埋めれば良い。
+公開情報は以下のように書いた。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;設定項目&lt;/th&gt;
+&lt;th&gt;設定&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;カテゴリー&lt;/td&gt;
+&lt;td&gt;Assistants&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;テストの手順&lt;/td&gt;
+&lt;td&gt;hello&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;国と地域&lt;/td&gt;
+&lt;td&gt;Amazonがスキルを配布するすべての国と地域&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;スキルの簡単な説明&lt;/td&gt;
+&lt;td&gt;hello&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;スキルの詳細な説明&lt;/td&gt;
+&lt;td&gt;hello&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;サンプルフレーズ&lt;/td&gt;
+&lt;td&gt;hello&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;アイコン用の画像登録も必要。サイズ指定があるのでちゃんと正しいサイズの画像を用意すること。
+&lt;code&gt;imagemagick&lt;/code&gt;があれば以下のコマンドで作れる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;convert -resize 108x108 original_icon.jpg icon_108.jpg
+convert -resize 512x512 original_icon.jpg icon_512.jpg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;プライバシーとコンプライアンス&#34;&gt;プライバシーとコンプライアンス&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;設定項目&lt;/th&gt;
+&lt;th&gt;設定&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;このスキルを使って何かを購入したり、実際にお金を支払うことができますか？&lt;/td&gt;
+&lt;td&gt;いいえ&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;このスキルはユーザーの個人情報を収集しますか？&lt;/td&gt;
+&lt;td&gt;いいえ&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;このスキルは13歳未満の子供を対象にしていますか？&lt;/td&gt;
+&lt;td&gt;いいえ&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;輸出コンプライアンス&lt;/td&gt;
+&lt;td&gt;チェック&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;このスキルは広告を含みますか？&lt;/td&gt;
+&lt;td&gt;いいえ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;これで保存を押すと、左側のSkills Beta Testingのステータスがアクティブになるので、テストの管理ボタンを押して設定画面に遷移する。&lt;/p&gt;
+
+&lt;h2 id=&#34;skills-beta-testing&#34;&gt;Skills Beta Testing&lt;/h2&gt;
+
+&lt;p&gt;テスターを追加ボタンから自分のメールアドレスを入力すると、テスター招待メールが届く。
+2つリンクがあるが、2つ目のリンクが日本人向けのもの。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;JP customers: To get started, follow this link:  
+Enable Alexa skill &amp;quot;hello world&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これをクリックして、スキルを有効化すれば使えるようになる。&lt;/p&gt;</description>
     </item>
     
   </channel>

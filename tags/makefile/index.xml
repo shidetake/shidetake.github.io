@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Dec 2017 11:18:31 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/makefile/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/makefile/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,7 +19,47 @@
       <guid>http://shidetake.com/make_cron/</guid>
       <description>&lt;p&gt;主に重複登録をしないようにするためのtipsを紹介する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;cron登録コマンド&#34;&gt;cron登録コマンド&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot; | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。とても簡単。
+ただ、これは設定を上書きするという非常に危険なコマンド。
+通常は以下のように使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;(crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;makefile化&#34;&gt;Makefile化&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+    (crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;そのまんま。これで、&lt;code&gt;make install&lt;/code&gt;すれば&lt;code&gt;cron&lt;/code&gt; に登録される。
+これの問題点は、重複登録してしまうこと。&lt;/p&gt;
+
+&lt;p&gt;以下のように書くことで、重複登録が防げる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+	crontab -l | grep example.sh || \
+		(crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;||&lt;/code&gt;でつなぐことで、最初のコマンドが失敗したときだけ、次のコマンドを実行するようになる。
+ここでは、既に登録されている&lt;code&gt;cron&lt;/code&gt;を&lt;code&gt;grep&lt;/code&gt;して、登録しようとしているスクリプトがあれば何もせず終了、
+なければ登録する。&lt;/p&gt;
+
+&lt;h2 id=&#34;uninstall&#34;&gt;uninstall&lt;/h2&gt;
+
+&lt;p&gt;おまけ。uninstallは以下のように書けば良い。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;uninstall:
+	crontab -l | grep -v example.sh | crontab
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -33,7 +73,91 @@
 
 &lt;p&gt;Windowsの&lt;code&gt;make&lt;/code&gt;はMinGWのものを想定している。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;linux専用&#34;&gt;Linux専用&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+    ln -s ~/dotfiles/.vimrc ~/.vimrc;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;シンボリックリンクを作るコマンドをそのまま書いただけ。&lt;/p&gt;
+
+&lt;h2 id=&#34;windows専用&#34;&gt;Windows専用&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+    cmd.exe /C mklink $(HOME)\.vimrc $(HOME)\dotfiles\.vimrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Windowsのコマンドを使う場合は、&lt;code&gt;cmd.exe /C&lt;/code&gt;を接頭語のように付ける。
+これで、&lt;code&gt;mklink&lt;/code&gt;コマンドが使えるようになる。&lt;/p&gt;
+
+&lt;p&gt;Linux用と比べて以下の点が異なっている&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sourceとtargetの順番が逆&lt;/li&gt;
+&lt;li&gt;パスのディレクトリ区切りがバックスラッシュ&lt;/li&gt;
+&lt;li&gt;ホームディレクトリの指定がチルダではなく&lt;code&gt;$(HOME)&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;環境変数&lt;code&gt;HOME&lt;/code&gt;をあらかじめ指定する必要があるかも&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;両対応版&#34;&gt;両対応版&lt;/h2&gt;
+
+&lt;p&gt;愚直に書くと以下のようになる。
+&lt;code&gt;ifeq ($(OS),Windows_NT)&lt;/code&gt;でWindowsかどうかを分岐させている。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+ifeq ($(OS),Windows_NT)
+    ln -s ~/dotfiles/.vimrc ~/.vimrc;
+else
+    cmd.exe /C mklink $(HOME)\.vimrc $(HOME)\dotfiles\.vimrc
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;この書き方だと、シンボリックリンクを張るファイルが増えると、Linux用とWindows用のそれぞれに追記する必要がある。
+以下のように書くとスマート。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+	make link SOURCE:=$(HOME)/dotfiles/.vimrc TARGET:=$(HOME)/.vimrc
+
+link:
+ifeq ($(OS),Windows_NT)
+    cmd.exe /C mklink $(subst /,\,$(TARGET)) $(subst /,\,$(SOURCE))
+else
+    ln -s $(SOURCE) $(TARGET)
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;link&lt;/code&gt;というターゲットを用意して、関数のように使っている。
+&lt;code&gt;link&lt;/code&gt;の中でOSを分岐させることで、それを呼び出す側を統一できるというわけ。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;subst&lt;/code&gt;というのは&lt;code&gt;make&lt;/code&gt;の文字列置換関数。スラッシュをバックスラッシュに置き換えるために使っている。&lt;/p&gt;
+
+&lt;h2 id=&#34;おまけ&#34;&gt;おまけ&lt;/h2&gt;
+
+&lt;p&gt;ここまででほぼ完成。&lt;/p&gt;
+
+&lt;p&gt;最後に鬱陶しい出力を抑えるために、&lt;code&gt;--no-print-directory&lt;/code&gt;したり、シンボリックリンクが既に存在している場合にはコマンドをスキップする仕組みを入れたものを載せる
+（解説は割愛）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;MAKEFLAGS += --no-print-directory
+
+install:
+	make link SOURCE:=$(HOME)/dotfiles/.vimrc TARGET:=$(HOME)/.vimrc
+
+link:
+ifeq ($(OS),Windows_NT)
+	@cmd.exe /C if not exist $(subst /,\,$(TARGET)) \
+		cmd.exe /C mklink $(subst /,\,$(TARGET)) $(subst /,\,$(SOURCE))
+else
+	@if [ ! -e $(TARGET) ]; then\
+		ln -s $(SOURCE) $(TARGET);\
+	fi
+endif
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

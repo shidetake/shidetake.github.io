@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Mar 2017 23:30:11 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/playground/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/playground/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,7 +20,170 @@
       <description>&lt;p&gt;要約&lt;br /&gt;
 チートシート&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;かなり癖がある。
+恐らく、moreより上に見出し、もしくは小見出しがある場合、
+そこまでが要約となり、moreより上にあっても通常の文章は表示されない。
+見出しがない場合は、moreより上が全て要約となる。&lt;br /&gt;
+バグな気もするが、詳細は不明。&lt;/p&gt;
+
+&lt;h1 id=&#34;見出し&#34;&gt;見出し&lt;/h1&gt;
+
+&lt;h2 id=&#34;小見出し&#34;&gt;小見出し&lt;/h2&gt;
+
+&lt;h1 id=&#34;改行&#34;&gt;改行&lt;/h1&gt;
+
+&lt;p&gt;文末に半角スペース2つ&lt;br /&gt;
+で改行。&lt;/p&gt;
+
+&lt;h1 id=&#34;画像&#34;&gt;画像&lt;/h1&gt;
+
+&lt;h2 id=&#34;from-google-photo&#34;&gt;from google photo&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://lh3.googleusercontent.com/IrDV2v9sWU8odajHY3Eq6aHccBAlaRC_UKYmddPmc_cg_mxY-2EB5Ud3jvL9djBI74haJHvI-wKsHzfUjDIRNbfbO2a5p6OKRrxA5i8wzJLQJ7OR-uelob5foqV1LWU2FaL76nAco16z_w0lihhyjeSsoQMcvRSmNI4REfVNmasj0MIV5TO5TEA7evE9P-lJMCHRWQIViuQc7SeoZK79NOXlkPSmudl2yCPOGDz8OsPRd4i0oOxAhUZ8F4WPMvKGSbdDk-wl9UjsmwN9UmY_d4E7XRFDXMRId4kEe_BvGi_8j0hHTn9x_f1w0lYKK8g3dwLGw28QDiL0Djp7w_56FshJ5JsIy3fY2iEEVpDdPMzIBdssE3-fk_BvvZ3rO4mRqlnQSGmm1XeaYSTQl-jsUBJG_NsWPjPHO3oNU2wgdP0uQAZ4YW9cik2hmlkTbwuRHoNUvzeWeL9PTpSlI3f7Zu1frVoYkI4co8FmDpKzaaQH2akc40HhL4Pyi06UjXfimRo1DYEIabxEeNiHfY97bGRDVsyf6eX_7WS7Pb0vTtSzaauLCsqVqBd5NRJSoxGtfvbKd9Je56N8ofiSMIc9BqpOCX7PLTc_30t2wTQt_3ZtcugvUEeSpw=w510-h679-no&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://goo.gl/sWqbQI&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;リンク&#34;&gt;リンク&lt;/h1&gt;
+
+&lt;h2 id=&#34;絶対パス&#34;&gt;絶対パス&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://google.com&#34;&gt;Google&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://google.com&#34;&gt;http://google.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;相対パス&#34;&gt;相対パス&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../../misc/line_push/&#34;&gt;LINE BOTでPUSH通知する&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;シンタックスハイライト&#34;&gt;シンタックスハイライト&lt;/h1&gt;
+
+&lt;h2 id=&#34;ブロック&#34;&gt;ブロック&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;p hello
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;インライン&#34;&gt;インライン&lt;/h2&gt;
+
+&lt;p&gt;文章の途中で&lt;code&gt;p hello&lt;/code&gt;こんな感じ&lt;/p&gt;
+
+&lt;h2 id=&#34;強調&#34;&gt;強調&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;強め&lt;/em&gt;
+&lt;em&gt;強め&lt;/em&gt;
+&lt;strong&gt;強い&lt;/strong&gt;
+&lt;strong&gt;強い&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;箇条書き&#34;&gt;箇条書き&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1段目1
+
+&lt;ul&gt;
+&lt;li&gt;2段目
+
+&lt;ul&gt;
+&lt;li&gt;3段目は3タブ&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1段目2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;表&#34;&gt;表&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;Left align&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Right align&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Center align&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;This&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;This&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;This&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;column&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;column&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;column&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;will&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;will&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;will&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;be&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;be&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;be&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;left&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;right&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;center&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;aligned&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;aligned&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;aligned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;category&#34;&gt;Category&lt;/h1&gt;
+
+&lt;p&gt;タグとの使い分けが難しい。イメージ的には、完全に分離できるものがカテゴリーで、重複を許すのがタグ。
+例えば、テック系か日常の日記のような記事かはカテゴリーで分ける。
+Rubyの話かPythonの話かはタグで分ける。
+ソフトかFPGAかは難しいところ。&lt;/p&gt;
+
+&lt;p&gt;結局のところ、このブログではテック系の話しかしないので、カテゴリーわけはせずに、タグだけ付ける形がいい気がする。&lt;/p&gt;
+
+&lt;h1 id=&#34;tag&#34;&gt;Tag&lt;/h1&gt;
+
+&lt;p&gt;タグは重複を許すので、いくつでもつければ良い。あまり注意はしなくていいが、表記ゆれだけは気をつけたい。
+rubyとRubyとか。現時点ではざっくり以下のタグわけ
+- Ruby
+- LINE BOT
+- Raspberry Pi
+- Scraping
+- Fintech
+- Blog
+- Smart Home
+- API
+- Ripping
+- Kindle
+- Amazon Dash Button&lt;/p&gt;
+
+&lt;h1 id=&#34;amazonアソシエイト&#34;&gt;Amazonアソシエイト&lt;/h1&gt;
+
+&lt;h2 id=&#34;テキスト&#34;&gt;テキスト&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://amzn.to/2CuC9Qc&#34;&gt;任意のテキスト&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;画像-1&#34;&gt;画像&lt;/h2&gt;
+
+&lt;p&gt;小
+&lt;a href=&#34;https://www.amazon.co.jp/Kindle-Paperwhite-%E9%9B%BB%E5%AD%90%E6%9B%B8%E7%B1%8D%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC-Wi-Fi-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF/dp/B00QJDOM6U/ref=as_li_ss_il?ie=UTF8&amp;qid=1518946008&amp;sr=8-2&amp;keywords=kindle&amp;linkCode=li1&amp;tag=shidetake0e-22&amp;linkId=06cf4657a1480646e915ff34bda84373&#34; target=&#34;_blank&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=B00QJDOM6U&amp;Format=_SL110_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=shidetake0e-22&#34; &gt;&lt;/a&gt;&lt;img src=&#34;https://ir-jp.amazon-adsystem.com/e/ir?t=shidetake0e-22&amp;l=li1&amp;o=9&amp;a=B00QJDOM6U&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;中
+&lt;a href=&#34;https://www.amazon.co.jp/Kindle-Paperwhite-%E9%9B%BB%E5%AD%90%E6%9B%B8%E7%B1%8D%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC-Wi-Fi-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF/dp/B00QJDOM6U/ref=as_li_ss_il?ie=UTF8&amp;qid=1518946008&amp;sr=8-2&amp;keywords=kindle&amp;linkCode=li2&amp;tag=shidetake0e-22&amp;linkId=0eca241f7fe8e004ca2cb53345f74ef4&#34; target=&#34;_blank&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=B00QJDOM6U&amp;Format=_SL160_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=shidetake0e-22&#34; &gt;&lt;/a&gt;&lt;img src=&#34;https://ir-jp.amazon-adsystem.com/e/ir?t=shidetake0e-22&amp;l=li2&amp;o=9&amp;a=B00QJDOM6U&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;大
+&lt;a href=&#34;https://www.amazon.co.jp/Kindle-Paperwhite-%E9%9B%BB%E5%AD%90%E6%9B%B8%E7%B1%8D%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC-Wi-Fi-%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF/dp/B00QJDOM6U/ref=as_li_ss_il?ie=UTF8&amp;qid=1518946008&amp;sr=8-2&amp;keywords=kindle&amp;linkCode=li3&amp;tag=shidetake0e-22&amp;linkId=d4b4280270aa00c819d5a99ba50aae18&#34; target=&#34;_blank&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=B00QJDOM6U&amp;Format=_SL250_&amp;ID=AsinImage&amp;MarketPlace=JP&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=shidetake0e-22&#34; &gt;&lt;/a&gt;&lt;img src=&#34;https://ir-jp.amazon-adsystem.com/e/ir?t=shidetake0e-22&amp;l=li3&amp;o=9&amp;a=B00QJDOM6U&#34; width=&#34;1&#34; height=&#34;1&#34; border=&#34;0&#34; alt=&#34;&#34; style=&#34;border:none !important; margin:0px !important;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;テキストと画像&#34;&gt;テキストと画像&lt;/h2&gt;
+
+&lt;iframe style=&#34;width:120px;height:240px;&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; frameborder=&#34;0&#34; src=&#34;//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=shidetake0e-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B00QJDOM6U&amp;linkId=05fa0e9ef8fc667966c6780e891940c1&#34;&gt;&lt;/iframe&gt;</description>
     </item>
     
   </channel>

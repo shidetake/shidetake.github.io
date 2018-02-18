@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Jan 2018 07:56:05 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/smart-home/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/smart-home/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,7 +20,48 @@
       <description>&lt;p&gt;最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
 &lt;a href=&#34;../pyatv/&#34;&gt;前回のApple TVを操作するスクリプト&lt;/a&gt;もその一環だったのだが、うまく動かなかったのでその対処法を書く。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;alexaとnode-redの連携&#34;&gt;AlexaとNode-REDの連携&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://qiita.com/kikuzo/items/753b5065dde9633bda18&#34;&gt;Amazon Echoとラズパイで、音声で照明をon/offする&lt;/a&gt;という記事を参考にした。&lt;/p&gt;
+
+&lt;p&gt;丁寧に書いてあって、補足する必要が全く無いので、連携についてはこちらの記事を読むといい。&lt;/p&gt;
+
+&lt;h2 id=&#34;execにpyatvを設定&#34;&gt;execにpyatvを設定&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2Eg7OHK&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
+よく見ると、&lt;code&gt;atvremote&lt;/code&gt;コマンドが見つからないというエラーが出ていた。&lt;/p&gt;
+
+&lt;p&gt;systemdで起動しているサービスは、ユーザーの環境変数を読み込まないらしい。
+systemdについては&lt;a href=&#34;../dasher_systemd/&#34;&gt;前にも書いた&lt;/a&gt;が、絶対パスで書かないといけないとか、いろいろ作法があって面倒くさい。&lt;/p&gt;
+
+&lt;h2 id=&#34;systemdの設定変更&#34;&gt;systemdの設定変更&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;pyenv&lt;/code&gt;を使って導入したソフトをsystemdで使う場合の注意点は&lt;a href=&#34;https://github.com/pyenv/pyenv/wiki/Deploying-with-pyenv&#34;&gt;&lt;code&gt;pyenv&lt;/code&gt;の公式に記載があった&lt;/a&gt;のでこれを参考にした。&lt;/p&gt;
+
+&lt;p&gt;まず以下のコマンドでNode-REDのサービスファイルの場所を調べる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo systemctl status nodered
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;たぶん &lt;code&gt;/lib/systemd/system/nodered.service&lt;/code&gt;にある。
+これを書き換える。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Environment=&amp;quot;PI_NODE_OPTIONS=--max_old_space_size=256&amp;quot;
+Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;PI_NODE_OPTIONS&lt;/code&gt;という環境変数を設定しているところの下に、&lt;code&gt;PATH&lt;/code&gt;の設定を追加する。
+デフォルトでは、&lt;code&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&lt;/code&gt;が&lt;code&gt;PATH&lt;/code&gt;に設定されているようなので、
+そこに追加する形。&lt;/p&gt;
+
+&lt;p&gt;ちなみに環境変数の展開もできないので、こんな書き方はNG。ホントに面倒くさい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:$PATH&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -34,7 +75,28 @@
 
 &lt;p&gt;使ったのは、&lt;code&gt;pyatv&lt;/code&gt;というツール。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
+一部わかりにくいところがあったので、そこだけ説明する。&lt;/p&gt;
+
+&lt;h2 id=&#34;初期設定&#34;&gt;初期設定&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;pip install pyatv&lt;/code&gt;したあと、ペアリングが必要。
+iTunesのホームシェアリングを有効にしている場合はいらないようだけど、
+無効の場合は、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;atvremote pair
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;して、Apple TV側で、設定 &amp;gt; リモコンとデバイス &amp;gt; Remote Appとデバイス と進み、pyatvを選択して、pinに1234と入力すればよい。&lt;/p&gt;
+
+&lt;h2 id=&#34;動作確認&#34;&gt;動作確認&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;atvremote -a menu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでMENUボタンを押したときと同じように動けばOK。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -48,7 +110,54 @@
 
 &lt;p&gt;使わなくなった古いiPhoneを使ってもよい。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;必要なもの&#34;&gt;必要なもの&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PC (今回はMBA)
+
+&lt;ul&gt;
+&lt;li&gt;EpocCam Viewer Pro&lt;/li&gt;
+&lt;li&gt;CamTwist&lt;/li&gt;
+&lt;li&gt;iCamSource&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;iPad
+
+&lt;ul&gt;
+&lt;li&gt;EpocCam&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;iPhone
+
+&lt;ul&gt;
+&lt;li&gt;iCam&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2vi1qtp&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;ipadのウェブカメラ化&#34;&gt;iPadのウェブカメラ化&lt;/h2&gt;
+
+&lt;p&gt;EpocCamというアプリを使って、iPadのカメラ画像をMBAで受信する。
+これは特に設定もいらない簡単アプリ。同一LANである必要があるので、それだけ注意。&lt;/p&gt;
+
+&lt;p&gt;更に、それをCamTwistというアプリで受けることで、ウェブカメラの入力画像のように使えるようになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2uYxTtD&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;EpocCamが繋がっている状態 (上図左下) で、CamTwistの設定をSyphonにして、Syphon ServerとしてEpocCam Viewer Proを選択する (上図上) 。
+CamTwistのPreviewにEpocCamと同じ映像が表示されれば成功 (上図右下) 。&lt;/p&gt;
+
+&lt;h2 id=&#34;icamの設定&#34;&gt;iCamの設定&lt;/h2&gt;
+
+&lt;p&gt;MBAにiCamSourceというアプリを入れて、VideoにCamTwist (2VUY)を選択する。
+idとパスワードは適当に入力して、右下のStartボタンを押して、EpocCamと同じ映像が表示されれば成功。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2vhuf9q&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;iPhoneに入れたiCamアプリにidとパスワードを入力するとiPadのカメラの映像を見ることができる。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -69,7 +178,76 @@
 
 &lt;p&gt;3つ目の案を採用することにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;理由はApple TVを持っているから。
+もし何も持っていなければ、PS4案にしたと思う。PS4の方が圧倒的にUIが洗練されているし、
+何よりピクセラのアプリの評判の悪さがすごい（実際、使ってみてイマイチと感じる）。&lt;/p&gt;
+
+&lt;p&gt;それでも有線の頃に比べればかなり良くなった。&lt;/p&gt;
+
+&lt;h2 id=&#34;必要なもの&#34;&gt;必要なもの&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Apple TV (第4世代)&lt;/li&gt;
+&lt;li&gt;ピクセラのワイヤレステレビチューナー PIX-BR310L&lt;/li&gt;
+&lt;li&gt;無線LAN中継器 BUFFALO WEX-733D&lt;/li&gt;
+&lt;li&gt;無線LANルーター 親機&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2uZ3rzy&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;環境構築手順&#34;&gt;環境構築手順&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;無線LAN環境を構築
+
+&lt;ul&gt;
+&lt;li&gt;11acで組んだほうが良い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;テレビ端子近くに無線LAN中継器を設置し、有線に変換&lt;/li&gt;
+&lt;li&gt;ピクセラチューナーをテレビ端子と有線LANに接続&lt;/li&gt;
+&lt;li&gt;Apple TVとテレビをHDMIケーブルで接続
+
+&lt;ul&gt;
+&lt;li&gt;Apple TVは当然無線LANに接続&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Apple TVにピクセラのStation TVアプリをインストール&lt;/li&gt;
+&lt;li&gt;アプリでテレビの映像が受信できれば成功&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;メリット-デメリット&#34;&gt;メリット／デメリット&lt;/h2&gt;
+
+&lt;p&gt;これで終わりだと味気ないのでこの構成のメリット／デメリットを少しだけ。&lt;/p&gt;
+
+&lt;h3 id=&#34;アンテナ線が不要なので配線がスッキリする&#34;&gt;アンテナ線が不要なので配線がスッキリする&lt;/h3&gt;
+
+&lt;p&gt;これが一番のメリット。ただしPS4案や室内アンテナ案でも実現可能。&lt;/p&gt;
+
+&lt;h3 id=&#34;全てがapple-tvで完結するので-入力切替が不要になる&#34;&gt;全てがApple TVで完結するので、入力切替が不要になる&lt;/h3&gt;
+
+&lt;p&gt;我が家ではApple TVでHuluを観たり、NASに入れた動画を観たりとApple TVをヘビーに使っている。
+有線のときは、テレビとApple TVの入力切替が必要で、結構煩わしかった。&lt;/p&gt;
+
+&lt;p&gt;Apple TVのスリープ時にテレビの電源を落とす設定と、Apple TVリモコンによる音量変更設定 (外部スピーカーの設定)
+をすると、テレビのリモコンも不要になる。&lt;/p&gt;
+
+&lt;p&gt;これが、PS4案よりも優れている唯一のポイントだと思う。&lt;/p&gt;
+
+&lt;h3 id=&#34;がんばれば外出先でスマホでテレビが見れる&#34;&gt;がんばれば外出先でスマホでテレビが見れる&lt;/h3&gt;
+
+&lt;p&gt;iPhoneアプリもあるので、家のLANに接続できれば外でも使える。
+VPNを張る必要があるのでハードルは高め。いつか記事にするかも。&lt;/p&gt;
+
+&lt;h3 id=&#34;録画は諦めたほうがいい&#34;&gt;録画は諦めたほうがいい&lt;/h3&gt;
+
+&lt;p&gt;ピクセラチューナーに外付けHDDを接続すると録画もできるが、UIがクソなので使ってない。
+録画予約もできない。Windowsのアプリなんかではできるのかもしれないが、よく知らない。
+Mac用のアプリを2500円も出して買ったが起動すらしないクソアプリだったのでMacでは無理。&lt;/p&gt;
+
+&lt;p&gt;アプリの開発もたぶん止まっているので、今後の改善も期待できない。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -87,7 +265,28 @@ Time Machineを使うと、容量がいっぱいになるまでバックアッ�
 
 &lt;p&gt;そこで、別の方法を採用した。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;ダミーファイルを置く&#34;&gt;ダミーファイルを置く&lt;/h2&gt;
+
+&lt;p&gt;ダミーファイルを置くことで、パーティションを切ることなく、Time Machineの侵食を逃れる。
+新しくデータを置きたい場合は、ダミーファイルの一部をデータと置き換えればよい。&lt;/p&gt;
+
+&lt;p&gt;1GBのダミーファイルを100個と、10GBのダミーファイルを10個用意して、
+計200GB分のデータ領域を確保することにした。&lt;/p&gt;
+
+&lt;p&gt;ダミーファイルの作成は以下のコマンドを使った。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;dd if=/dev/zero of=./dummy_10GB bs=1000000 count=10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;実際にはfor文で以下のように使う。
+ネットワーク越しなのでかなり時間がかかることに注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /Volumes/TimeCapsule
+for ((i=0; i &amp;lt; 100; i++)); do dd if=/dev/zero of=./dummy_1GB_$i bs=1000000 count=1000; done
+for ((i=0; i &amp;lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=1000000 count=10000; done
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

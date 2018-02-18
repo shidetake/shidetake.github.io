@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Dec 2017 22:46:24 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/cron/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/cron/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,7 +22,72 @@
 
 &lt;p&gt;でも面倒なので、LINE BOTに頼むことにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_push/&#34;&gt;LINE BOTでPUSH通知する&lt;/a&gt;と&lt;a href=&#34;../make_cron/&#34;&gt;Makefileでcronを登録する&lt;/a&gt;を組み合わせるだけ。&lt;/p&gt;
+
+&lt;p&gt;詳細はそれぞれの記事を読んでもらうとして、ソースを記載する。&lt;/p&gt;
+
+&lt;h2 id=&#34;スクリプト&#34;&gt;スクリプト&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+curl -X POST \
+-H &#39;Content-Type:application/json&#39; \
+-H &#39;Authorization: Bearer {CHANNEL_ACCESS_TOKEN}&#39; \
+-d &#39;{
+    &amp;quot;to&amp;quot;: &amp;quot;GROUPID&amp;quot;,
+    &amp;quot;messages&amp;quot;:[
+        {
+            &amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;,
+            &amp;quot;text&amp;quot;: &amp;quot;エサあげた？&amp;quot;
+        }
+    ]
+}&#39; https://api.line.me/v2/bot/message/push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここで、&lt;code&gt;CHANNEL_ACCESS_TOKEN&lt;/code&gt;はLINE depelopersで取得するトークン。
+&lt;code&gt;GROUPID&lt;/code&gt;は、LINEのグループを識別するためのID。
+これの取得方法は前の記事には書いてなかったので説明する。&lt;/p&gt;
+
+&lt;h2 id=&#34;group-idの取得&#34;&gt;GROUP IDの取得&lt;/h2&gt;
+
+&lt;p&gt;以下のスクリプトをGoogle Apps Scriptでウェブアプリケーションとして導入し、
+LINE BOTのWebhook URLに紐付ける。&lt;/p&gt;
+
+&lt;p&gt;その状態で、LINEグループにBOT招待すれば、example@gmailにGROUP IDが通知される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function doPost(e) {
+  Logger.log(&#39;doPost&#39;)
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &amp;quot;join&amp;quot;) { mailGroupId(event); }
+  });
+}
+
+function mailGroupId(e) {
+  MailApp.sendEmail(&#39;example@gmail.com&#39;, &#39;groupId&#39;, e.source.groupId);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;cron登録&#34;&gt;cron登録&lt;/h2&gt;
+
+&lt;p&gt;以下のような&lt;code&gt;Makefile&lt;/code&gt;を作って、&lt;code&gt;make install&lt;/code&gt;すればよい。
+ここでは、毎日9時と18時に通知する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+	crontab -l | grep line_feeding.sh || \
+		(crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/line_feeding.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;ユースケース&#34;&gt;ユースケース&lt;/h2&gt;
+
+&lt;p&gt;今回の例は、犬を預かってもらう人にエサをちゃんとあげてくれるようにリマインドするケース。
+自分で聞くのは忘れそうだし、BOTに機械的に聞いてもらうことで角が立ちにくい（気がする）。&lt;/p&gt;
+
+&lt;p&gt;あとは、今回の例では個人に通知するのではなく、グループに通知する形にしている。
+これにより、相手が実行してくれたかどうか聞けるという利点もある（相手がBOTに返信してくれる人なら）。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -33,7 +98,47 @@
       <guid>http://shidetake.com/make_cron/</guid>
       <description>&lt;p&gt;主に重複登録をしないようにするためのtipsを紹介する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;cron登録コマンド&#34;&gt;cron登録コマンド&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot; | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。とても簡単。
+ただ、これは設定を上書きするという非常に危険なコマンド。
+通常は以下のように使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;(crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;makefile化&#34;&gt;Makefile化&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+    (crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;そのまんま。これで、&lt;code&gt;make install&lt;/code&gt;すれば&lt;code&gt;cron&lt;/code&gt; に登録される。
+これの問題点は、重複登録してしまうこと。&lt;/p&gt;
+
+&lt;p&gt;以下のように書くことで、重複登録が防げる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
+	crontab -l | grep example.sh || \
+		(crontab -l; echo  &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot;) | crontab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;||&lt;/code&gt;でつなぐことで、最初のコマンドが失敗したときだけ、次のコマンドを実行するようになる。
+ここでは、既に登録されている&lt;code&gt;cron&lt;/code&gt;を&lt;code&gt;grep&lt;/code&gt;して、登録しようとしているスクリプトがあれば何もせず終了、
+なければ登録する。&lt;/p&gt;
+
+&lt;h2 id=&#34;uninstall&#34;&gt;uninstall&lt;/h2&gt;
+
+&lt;p&gt;おまけ。uninstallは以下のように書けば良い。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;uninstall:
+	crontab -l | grep -v example.sh | crontab
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -49,7 +154,135 @@ cron定期的に実行してくれるようにした。&lt;/p&gt;
 
 &lt;p&gt;Raspberry Piで動作する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;実行結果&#34;&gt;実行結果&lt;/h2&gt;
+
+&lt;p&gt;まずは作成したスクリプトで取得したデータを載せる。
+csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行日時。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csv&#34;&gt;167.908,2.23,5.37,2017/10/16 00:00:39
+129.306,7.82,5.82,2017/10/16 01:00:41
+88.187,18.31,19.27,2017/10/16 02:00:36
+87.879,24.88,21.74,2017/10/16 03:00:36
+156.129,26.47,16.25,2017/10/16 04:00:41
+75.103,25.61,21.42,2017/10/16 05:00:36
+94.37,26.99,21.17,2017/10/16 06:00:40
+76.879,24.55,21.35,2017/10/16 07:00:38
+71.107,24.72,21.67,2017/10/16 08:01:39
+254.614,19.98,16.24,2017/10/16 09:00:37
+81.341,23.46,18.63,2017/10/16 10:00:37
+89.473,23.30,17.17,2017/10/16 11:00:38
+275.777,23.40,10.58,2017/10/16 12:00:38
+110.481,22.26,17.16,2017/10/16 13:00:36
+149.522,25.06,18.38,2017/10/16 14:00:36
+82.292,17.59,8.26,2017/10/16 15:00:38
+202.99,17.83,4.05,2017/10/16 16:00:38
+102.178,17.50,4.52,2017/10/16 17:00:37
+114.628,14.78,16.30,2017/10/16 18:00:38
+102.745,12.89,13.11,2017/10/16 19:00:39
+1795.938,11.67,1.76,2017/10/16 20:00:51
+699.312,6.57,3.20,2017/10/16 21:00:52
+352.963,3.47,0.98,2017/10/16 22:00:47
+480.408,3.98,2.48,2017/10/16 23:00:47
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ついでにグラフ化。
+&lt;img src=&#34;http://ift.tt/2ifbMt0&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。&lt;/p&gt;
+
+&lt;h2 id=&#34;speedtest-cli&#34;&gt;speedtest-cli&lt;/h2&gt;
+
+&lt;h3 id=&#34;インストール&#34;&gt;インストール&lt;/h3&gt;
+
+&lt;p&gt;スピードテストをCUIで行う場合は、恐らくspeedtest-cli一択。
+&lt;code&gt;pip&lt;/code&gt;で入れるので、Pythonのインストールから。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install python
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;続いて&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install speedtest-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;使い方&#34;&gt;使い方&lt;/h3&gt;
+
+&lt;p&gt;一番シンプルなのは&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;speedtest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけ。&lt;code&gt;speedtest-cli&lt;/code&gt;でも同じ結果が得られる。&lt;/p&gt;
+
+&lt;p&gt;データ収集には不要な出力が多いのと、サーバーをping値で自動選択してしまうので、
+以下のように使うことにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;speedtest --server 6476 --simple
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;シェルスクリプト&#34;&gt;シェルスクリプト&lt;/h2&gt;
+
+&lt;h3 id=&#34;1ライン化&#34;&gt;1ライン化&lt;/h3&gt;
+
+&lt;p&gt;上のコマンドをベースに、&lt;code&gt;cron&lt;/code&gt;で実行するシェルスクリプトを作成する。
+1行にping, download, uploadをまとめたいので&lt;code&gt;tr&lt;/code&gt;でカンマと置換する。
+また、速度以外は不要なので&lt;code&gt;awk&lt;/code&gt;を使って、以下のように書く。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/usr/local/bin/speedtest --server 6476 --simple | awk &#39;{print $2}&#39; | tr &#39;\n&#39; &#39;,&#39; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;cron&lt;/code&gt;ではコマンドを絶対パスで指定する必要があるので、絶対パスで書いている。&lt;/p&gt;
+
+&lt;h3 id=&#34;実行日時を追加&#34;&gt;実行日時を追加&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;リトライ機能を追加&#34;&gt;リトライ機能を追加&lt;/h3&gt;
+
+&lt;p&gt;ここまででほぼ完成だけど、結構な頻度で失敗してたのでリトライ機能を追加した。
+&lt;code&gt;cron&lt;/code&gt;でリトライしてくれればいいのに。
+以下が完成形。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
+
+command=&amp;quot;/usr/local/bin/speedtest --server 6476 --simple&amp;quot;
+
+NEXT_WAIT_TIME=0
+until RET=`$command` || [ $NEXT_WAIT_TIME -eq 4 ]; do
+  sleep $(( (NEXT_WAIT_TIME++) * 60 ))
+done
+echo &amp;quot;$RET&amp;quot; | awk &#39;{print $2}&#39; | tr &#39;\n&#39; &#39;,&#39; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4回までリトライする。リトライ間隔は、1分、2分、3分、4分と伸ばしていくようにした。&lt;/p&gt;
+
+&lt;h2 id=&#34;cron&#34;&gt;cron&lt;/h2&gt;
+
+&lt;p&gt;上のシェルスクリプトを&lt;code&gt;cron&lt;/code&gt;に登録する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;crontab -e
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると、エディタが立ち上がる（もしくはエディタ選択画面になるので選ぶ）ので、
+以下のように1時間毎に実行するように設定する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;0 * * * * /usr/local/bin/speedtest_cron.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで完成。&lt;/p&gt;
+
+&lt;h2 id=&#34;注意点&#34;&gt;注意点&lt;/h2&gt;
+
+&lt;p&gt;実行環境はRaspberry Piを想定しているが、場合によってはRaspberry Pi自体がボトルネックとなって、
+正しい速度が取れないので注意。うちの場合はMac Book Airを有線でつないで測定してもだいたい同じような値が取れることを確認している。&lt;/p&gt;
+
+&lt;h2 id=&#34;関連ポスト&#34;&gt;関連ポスト&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../ebroad/&#34;&gt;マンション付属の光回線が早くなった話&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

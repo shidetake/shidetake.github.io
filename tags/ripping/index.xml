@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 19 Jul 2017 22:36:23 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/ripping/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/ripping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,7 +20,46 @@
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_2/&#34;&gt;前回&lt;/a&gt;からの続き。
 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;dvdドライブのパスを取得&#34;&gt;DVDドライブのパスを取得&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;diskutil&lt;/code&gt;コマンドを使う（たぶんmacOSでしか使えない）。
+DVDをドライブに入れた状態で、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;diskutil list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。
+NAMEの部分に入れたDVDの名前が表示されているのがあるはず。
+例えば以下のような感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/dev/disk2 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:                            VIBY_521               *2.0 GB     disk2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;この場合、&lt;code&gt;/dev/disk2&lt;/code&gt;を入力として指定することでDVDから直接リッピングが可能になる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;前回の最後のスクリプトと組み合わせて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;`
+for ((i = 1; i &amp;lt;= $chapter_num; i++)); do
+  HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここまでで、かなり形になったので今回でラストとする。
+ただ、実はこれだけだと使えないタイプのDVDがある。
+そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。&lt;/p&gt;
+
+&lt;h2 id=&#34;お約束&#34;&gt;お約束&lt;/h2&gt;
+
+&lt;p&gt;違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたDVDをリッピングするのはダメ。ぜったい。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,7 +70,62 @@
       <guid>http://shidetake.com/ripping_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_1/&#34;&gt;前回&lt;/a&gt;からの続き。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;チャプター分割&#34;&gt;チャプター分割&lt;/h2&gt;
+
+&lt;p&gt;チャプター毎にファイルを分割してリッピングしたい場合は&lt;code&gt;-c&lt;/code&gt;オプションを使って&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i hoge.iso -o hoge_1.mkv
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 2 -i hoge.iso -o hoge_2.mkv
+HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 3 -i hoge.iso -o hoge_3.mkv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;いちいちチャプター数だけ繰り返すのはバカらしいので、
+for文を使って以下のように書く。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;for ((i = 1; i &amp;lt;= 3; i++)); do
+  HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i hoge.iso -o hoge_$(printf %02d $i).mkv
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3の部分を変数にして、引数として渡してやれば、任意のチャプター数に対応できる。&lt;/p&gt;
+
+&lt;h2 id=&#34;チャプター数の取得&#34;&gt;チャプター数の取得&lt;/h2&gt;
+
+&lt;p&gt;いちいち、チャプター数を指定するのは面倒なので、
+&lt;code&gt;lsdvd&lt;/code&gt;を使ってチャプター数を取得する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install lsdvd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;からの&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsdvd hoge.iso
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでチャプター数を含む標準出力が得られる。
+あとは適当に文字列を抜き出して使えば良い。
+以下に&lt;code&gt;awk&lt;/code&gt;を使った例を示す。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsdvd hoge.iso | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;先ほどのfor文と組み合わせて&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;chapter_num=`lsdvd hoge.iso | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;`
+for ((i = 1; i &amp;lt;= $chapter_num; i++)); do
+  HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i hoge.iso -o hoge_$(printf %02d $i).mkv
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;長くなってきたので、いったんここまで。
+&lt;a href=&#34;../ripping_3/&#34;&gt;次回&lt;/a&gt;はisoファイルではなく、DVDドライブから直接mkvに変換する方法。&lt;/p&gt;
+
+&lt;h2 id=&#34;お約束&#34;&gt;お約束&lt;/h2&gt;
+
+&lt;p&gt;違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたDVDをリッピングするのはダメ。ぜったい。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -51,7 +145,48 @@
 
 &lt;p&gt;そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;handbrakecli&#34;&gt;HandBrakeCLI&lt;/h2&gt;
+
+&lt;p&gt;今回使ったのは、有名なリッピングソフトであるHandBrakeのCUIバージョンであるHandBrakeCLI。
+Homebrewにはなかったので公式サイトからダウンロードしてインストールする。&lt;/p&gt;
+
+&lt;h2 id=&#34;isoイメージからの変換&#34;&gt;ISOイメージからの変換&lt;/h2&gt;
+
+&lt;p&gt;まずはISOイメージから適当な設定で変換する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HandBrakeCLI -i hoge.iso -o hoge.mkv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。デフォルトのオプションがどうなってるかはhelpに書いてあるとは思うが長すぎて読んでられない。&lt;/p&gt;
+
+&lt;h2 id=&#34;もう少しちゃんとした変換&#34;&gt;もう少しちゃんとした変換&lt;/h2&gt;
+
+&lt;p&gt;完全にマニュアルでオプションを設定するより、プリセットオプションと組み合わせたほうがよい。
+以下のコマンドで、プリセットオプションの一覧が出てくる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HandBrakeCLI -z
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;画質重視＋音声や字幕の切り替えがしたいのでmkv形式のH.265 MKV 1080p30にしてみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; -i hoge.iso -o hoge.mkv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;せっかく音声と字幕の切り替えができるmkv形式にしたのに、このままでは1種類しか取り込んでくれないので、
+&lt;code&gt;--all-audio&lt;/code&gt;オプションと&lt;code&gt;-s&lt;/code&gt;オプションを使って&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -i hoge.iso -o hoge.mkv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。
+DVDからの取り込みやチャプター分割など、もう少し突っ込んだ内容は&lt;a href=&#34;../ripping_2&#34;&gt;次回&lt;/a&gt;以降。&lt;/p&gt;
+
+&lt;h2 id=&#34;お約束&#34;&gt;お約束&lt;/h2&gt;
+
+&lt;p&gt;違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたDVDをリッピングするのはダメ。ぜったい。&lt;/p&gt;</description>
     </item>
     
   </channel>

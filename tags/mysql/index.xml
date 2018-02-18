@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Oct 2017 22:27:25 +0900</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,7 +19,44 @@
       <guid>http://shidetake.com/mysql_install/</guid>
       <description>&lt;p&gt;aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;install&#34;&gt;install&lt;/h2&gt;
+
+&lt;p&gt;ここは簡単。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install mysql-server mysql-client
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんだけ。ただ、既に別のバージョンのものが入っていたりするので、キレイにしたい場合は、
+先に以下のコマンドを送る。別バージョンのmysqlを削除することで、色々動かなくなる可能性もあるので注意。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo dpkg -l | grep mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;でインストール済みのmysqlを確認して、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt remove --purge mysql*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じで、消していく。&lt;code&gt;--purge&lt;/code&gt;オプションは、関連する設定ファイルも一緒に削除するのもので、
+この後の再インストール後に悪さしないためにも指定しておいたほうがよい。&lt;/p&gt;
+
+&lt;h2 id=&#34;rootパスワード設定&#34;&gt;rootパスワード設定&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で入ろうとしたら、&lt;code&gt;ERROR 1698 (28000): Access denied for user &#39;root&#39;@&#39;localhost&#39;&lt;/code&gt;と怒られた。
+初期パスワードは無かったと思ってたが、仕様が変わったらしい。&lt;/p&gt;
+
+&lt;p&gt;で色々やってみたんだけど、実はやっぱり初期パスワードは設定されていなくて、&lt;code&gt;sudo&lt;/code&gt;つければいいだけだった。
+ということで、改めて&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでOK。&lt;/p&gt;</description>
     </item>
     
   </channel>

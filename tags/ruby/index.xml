@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Sep 2017 16:36:18 +0000</lastBuildDate>
     
-	<atom:link href="http://shidetake.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://shidetake.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,7 +22,140 @@
 
 &lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;移動平均&#34;&gt;移動平均&lt;/h2&gt;
+
+&lt;p&gt;取得した生データだと、エッジが立ちすぎていてトレンドラインのためのポイント選択には不向きなので、
+とりあえず移動平均してみた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;net/http&#39;
+require &#39;numo/gnuplot&#39;
+
+class GoogleFinance
+
+  BASE_URL = &#39;https://finance.google.com/finance/getprices?&#39;
+
+  def initialize(issue)
+    @issue = issue
+  end
+
+  # 終値を取得する
+  # param [String] 期間
+  # param [String] 間隔 [秒]
+  def fetch_close(period = &#39;1Y&#39;, interval_sec = 86400)
+    raw_data = Net::HTTP.get(URI.parse(BASE_URL + &amp;quot;p=#{period}&amp;amp;i=#{interval_sec}&amp;amp;x=TYO&amp;amp;q=#{@issue}&amp;quot;))
+    @close = []
+    raw_data.lines do |line|
+      @close &amp;lt;&amp;lt; line[/^[0-9]*,([0-9]*)/, 1]
+    end
+    @close.compact!.map!(&amp;amp;:to_i)
+  end
+
+  # 移動平均を求める
+  # @param [Fixnum] 期間
+  # @note 終値が取得できている前提
+  def calc_move_average(term)
+    # 移動平均のために端のデータを引き伸ばす
+    tmp = @close[0..0] * (term / 2) + @close + @close[-1..-1] * (term / 2)
+
+    @move_average =
+      tmp.each_cons(term).map do |window|
+        window.inject(:+) / term.to_f
+      end
+  end
+end
+
+ISSUE_TOYOTA = 7203 # TOYOTAの証券コード
+MOVE_AVERAGE_TERM = 10 # 移動平均の期間
+
+google_finance = GoogleFinance.new(ISSUE_TOYOTA)
+close = google_finance.fetch_close
+move_average_close = google_finance.calc_move_average(MOVE_AVERAGE_TERM)
+
+Numo.gnuplot do
+  set title: &#39;TOYOTA&#39;
+  plot [close, w: &#39;lines&#39;, t: &#39;close&#39;],
+       [move_average_close, w: &#39;lines&#39;, t: &#39;move\_average&#39;]
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。前回の記事からメソッド名など少し変えているので注意。&lt;/p&gt;
+
+&lt;p&gt;移動平均を求める方法はググったらいくらでも出てくるのであまり書かないが、
+データの端の扱いだけは注意が必要。今回は端のデータを引き伸ばすことにした。
+0で埋めるとか色々あるが、簡単にできて誤差が少ないのが特徴。&lt;/p&gt;
+
+&lt;p&gt;移動平均の期間をどう決めるかが難しいところだが、いったん10日とした。あとで調整する。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2jAdPbn&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;極値&#34;&gt;極値&lt;/h2&gt;
+
+&lt;p&gt;移動平均から極値を求める。
+今回は、となりの値との差分を計算して、その差分の正負が入れ替わる瞬間を極値とする。
+ただ、激しく値動きしていると、極値が多くなりすぎるので、少し計算期間を長くすることでフィルタする。
+例えば計算期間を5とすると、その差分が正 =&amp;gt; 正 =&amp;gt; 負 =&amp;gt; 負ならば極大値、負 =&amp;gt; 負 =&amp;gt; 正 =&amp;gt; 正ならば極小値。&lt;/p&gt;
+
+&lt;p&gt;この期間も移動平均の期間同様、どうやって決めるかが難しい。今回は7とした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;net/http&#39;
+require &#39;numo/gnuplot&#39;
+
+class GoogleFinance
+  # 省略
+
+  # 極値を求める
+  # @param [Fixnum] 期間 大きいほど微小な変動を無視する
+  # @note move_averageが求まっている前提
+  # @note 定めた期間の中央まで単調増加し、残りが単調減少していれば極小値とする
+  # @note 定めた期間の中央まで単調減少し、残りが単調増加していれば極大値とする
+  def calc_extremum(term)
+    local_min = { x: [], y: [] }
+    local_max = { x: [], y: [] }
+    @move_average.each_cons(term).with_index do |window, i|
+      mid_index = i + term / 2 # windowの中央
+      diff = window.each_cons(2).map { |arr| arr[1] - arr[0] }
+      if diff[0..(term / 2 - 1)].all? { |elm| elm &amp;lt; 0 } and
+         diff[(term / 2)..-1].all? { |elm| 0 &amp;lt; elm }
+        # 負 =&amp;gt; 正
+        local_min[:x] &amp;lt;&amp;lt; mid_index
+        local_min[:y] &amp;lt;&amp;lt; @close[mid_index]
+      elsif diff[0..(term / 2 - 1)].all? { |elm| 0 &amp;lt; elm } and
+         diff[(term / 2)..-1].all? { |elm| elm &amp;lt; 0 }
+        # 正 =&amp;gt; 負
+        local_max[:x] &amp;lt;&amp;lt; mid_index
+        local_max[:y] &amp;lt;&amp;lt; @close[mid_index]
+      end
+    end
+    return local_min, local_max
+  end
+end
+
+ISSUE_TOYOTA = 7203 # TOYOTAの証券コード
+MOVE_AVERAGE_TERM = 10 # 移動平均の期間
+LOCAL_SIZE = 7 # 極値計算の範囲
+
+google_finance = GoogleFinance.new(ISSUE_TOYOTA)
+close = google_finance.fetch_close
+move_average_close = google_finance.calc_move_average(MOVE_AVERAGE_TERM)
+local_min, local_max = google_finance.calc_extremum(LOCAL_SIZE)
+
+Numo.gnuplot do
+  set title: &#39;TOYOTA&#39;
+  plot [close, w: &#39;lines&#39;, t: &#39;close&#39;],
+       [move_average_close, w: &#39;lines&#39;, t: &#39;move\_average&#39;],
+       [local_min[:x], local_min[:y], w: &#39;points&#39;, t: &#39;local\_min&#39;],
+       [local_max[:x], local_max[:y], w: &#39;points&#39;, t: &#39;local\_max&#39;]
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2wy0emn&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
+実際に線を引くのは次回。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -38,7 +171,94 @@
 &lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
 色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;2017.9.16追記&lt;br /&gt;
+これを公開した直後にAPIのURLが変わった模様。&lt;/p&gt;
+
+&lt;p&gt;元は&lt;code&gt;https://www.google.com/finance/getprices?&lt;/code&gt;だったが、今は&lt;code&gt;https://finance.google.com/finance/getprices?&lt;/code&gt;になっている。
+この記事のコードも修正したので、そのまま使えるはず。&lt;/p&gt;
+
+&lt;h2 id=&#34;google-finance-api&#34;&gt;Google Finance API&lt;/h2&gt;
+
+&lt;p&gt;国内で株価を取得するためのAPIは（正規には）ないらしい。
+ただ、Google Finance APIという非公式のAPIがあり、使ってる人は使っているとか。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
+今回やりたいことのほとんどはここに書いてある。
+違いは、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rubyを使う (Pythonのが需要ありそうだけど)&lt;/li&gt;
+&lt;li&gt;チャートを描く&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;くらい。&lt;/p&gt;
+
+&lt;p&gt;まずは適当な銘柄の株価を以下のように取得する。
+ここではトヨタにした（丸パクリ）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;net/http&#39;
+
+class GoogleFinance
+
+  BASE_URL = &#39;https://finance.google.com/finance/getprices?&#39;
+
+  def initialize(issue)
+    @issue = issue
+  end
+
+  def stock(period = &#39;1Y&#39;, interval_sec = 86400)
+    raw_data = Net::HTTP.get(URI.parse(BASE_URL + &amp;quot;p=#{period}&amp;amp;i=#{interval_sec}&amp;amp;x=TYO&amp;amp;q=#{@issue}&amp;quot;))
+    data = []
+    raw_data.lines do |line|
+      data &amp;lt;&amp;lt; line[/^[0-9]*,([0-9]*)/, 1]
+    end
+    data.compact
+  end
+end
+
+google_finance = GoogleFinance.new(7203)
+stock_data = google_finance.stock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;取得したデータを1行ずつ取ってきて、&lt;code&gt;/^[0-9]*,([0-9]*)/, 1&lt;/code&gt;という正規表現で終値を抜き出している。
+先頭に数値があり、カンマ挟んで次の数値を取得するという意味。&lt;/p&gt;
+
+&lt;p&gt;これを配列に突っ込んで、先頭の方にあるゴミ（抽出条件などが書かれている）をcompactで取り除くことで、
+この1年間のトヨタ株の終値の配列が完成。&lt;/p&gt;
+
+&lt;h2 id=&#34;チャート描画&#34;&gt;チャート描画&lt;/h2&gt;
+
+&lt;p&gt;これはgnuplotを使う。
+&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install numo-gnuplot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;してから、
+（当然、gnuplotも入れる）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;net/http&#39;
+require &#39;numo/gnuplot&#39;
+
+class GoogleFinance
+  # 省略
+end
+
+google_finance = GoogleFinance.new(7203)
+stock_data = google_finance.stock
+
+Numo.gnuplot do
+  set title:&#39;TOYOTA&#39;
+  plot stock_data, w:&#39;lines&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
+得られたチャートを貼って終わり。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ift.tt/2wAIcS7&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -49,7 +269,54 @@
       <guid>http://shidetake.com/google_photo_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
 今回は任意のアルバムから写真の情報を取得する。
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;h1 id=&#34;写真情報の取得&#34;&gt;写真情報の取得&lt;/h1&gt;
+
+&lt;p&gt;your_album_nameアルバムから取得する場合は以下のような感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;picasa&#39;
+
+client = Picasa::Client.new(
+  user_id: &#39;your@email&#39;,
+  access_token: &#39;your_access_token&#39;
+)
+
+albums = client.album.list.entries
+album = albums.find { |a| a.title == &#39;your_album_name&#39; }
+
+photos = client.album.show(album.id).entries
+
+photos.each do |photo|
+  puts &amp;quot;#{photo.id}, #{photo.exif.time}, #{photo.title}, #{photo.exif.model}&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Exif情報から撮影機器のモデル名を取得することもできた。
+これで最初にやりたかったことはほぼできたが、
+このスクリプトだと1000枚しか処理できないという欠点があるのでもう少し続ける。&lt;/p&gt;
+
+&lt;h1 id=&#34;大量の写真情報の取得&#34;&gt;大量の写真情報の取得&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;start-index&lt;/code&gt;オプションを使って以下のように書くことで、1000枚以上の写真を処理することができる。
+ただし、&lt;code&gt;start-index&lt;/code&gt;の最大値は10001らしいので、この方法でも11000枚までしか処理できない。
+11000枚で十分事足りたので、この対処法までは調べていない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;PAGE_NUM_MAX = 11
+
+page_num = [album.numphotos / 1000, PAGE_NUM_MAX].min
+
+page_num.times do |page|
+  opt = {}
+  opt[&#39;start-index&#39;] = page * 1000 + 1
+  photos = client.album.show(album.id, opt).entries
+  photos.each do |photo|
+    puts &amp;quot;#{photo.id}, #{photo.exif.time}, #{photo.title}, #{photo.exif.model}&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;albumの指定まではこれまでと変わらないので省略した。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -61,7 +328,52 @@
       <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
 PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;p&gt;ちなみにGoogle PhotoのAPIはまだ用意されておらず、Piacasa APIがその代替となっている。&lt;/p&gt;
+
+&lt;h1 id=&#34;picasa-apiを使う&#34;&gt;Picasa APIを使う&lt;/h1&gt;
+
+&lt;h2 id=&#34;access-tokenの取得&#34;&gt;Access tokenの取得&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;Gmailのとき&lt;/a&gt;とは違い、PicasaのAPIを使うのは少しコツがいる。
+既にPicasaのサービスが終了しているためか、API MANAGERで検索してもPicasa APIが出てこない。&lt;/p&gt;
+
+&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
+
+&lt;p&gt;Select the scopeの一覧から、Picasa Web v2を選択して表示されるURLをクリックする。
+Authorize APIsボタンが有効になるので、それを押してAPIを有効にする許可を与える。&lt;/p&gt;
+
+&lt;p&gt;Authorization codeが取得できるので、続けてExchange authorization code for tokensボタンを押下。
+これでAccess tokenが得られる。&lt;/p&gt;
+
+&lt;h2 id=&#34;access-tokenの確認&#34;&gt;Access tokenの確認&lt;/h2&gt;
+
+&lt;p&gt;得られたAccess tokenの確認も兼ねて、簡単なAPIを使ってみる。&lt;/p&gt;
+
+&lt;p&gt;まずはRubyでPicasa APIを簡単に使えるようにするgemをインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install picasa
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとは以下のようなスクリプトでアルバム名の一覧を取得する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;picasa&#39;
+
+client = Picasa::Client.new(
+  user_id: &#39;your@email&#39;,
+  access_token: &#39;your_access_token&#39;
+)
+
+albums = client.album.list.entries
+albums.each { |a| p a.title }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;your@emailとyour_access_tokenにはそれぞれ自分の（Access token取得時に許可を与えた）アカウントと、上で取得したAccess tokenを入れる。&lt;/p&gt;
+
+&lt;p&gt;Google Photoのアルバム名の一覧が表示されれば成功。Access tokenがちゃんと使えることがわかった。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../google_photo_api_2/&#34;&gt;次回&lt;/a&gt;以降で写真の取得、Exif情報の取得あたりのやり方を書いていく。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -74,7 +386,62 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;リフレッシュトークンの取得&#34;&gt;リフレッシュトークンの取得&lt;/h2&gt;
+
+&lt;p&gt;前回のアクセストークン取得の項に記載の通り。&lt;/p&gt;
+
+&lt;h2 id=&#34;リフレッシュトークンを使ったメールの取得&#34;&gt;リフレッシュトークンを使ったメールの取得&lt;/h2&gt;
+
+&lt;p&gt;前回からの差分&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;require &#39;google/api_client&#39;
+require &#39;json&#39;
+
+-ACCESS_TOKEN     = &#39;YourAccessToken&#39;
++CLIENT_ID        = &#39;YourClientID&#39;
++CLIENT_SECRET    = &#39;YourClientSecret&#39;
++REFRESH_TOKEN    = &#39;YourRefreshToken&#39;
+APPLICATION_NAME = &#39;YourApplicationName&#39;
+
+# APIクライアントの準備
+client = Google::APIClient.new(application_name: APPLICATION_NAME)
+-client.authorization.access_token = ACCESS_TOKEN
++client.authorization = Signet::OAuth2::Client.new(
++  token_credential_uri: &#39;https://accounts.google.com/o/oauth2/token&#39;,
++  audience:             &#39;https://accounts.google.com/o/oauth2/token&#39;,
++  scope:                [&#39;https://www.googleapis.com/auth/drive.file&#39;],
++  client_id:     CLIENT_ID,
++  client_secret: CLIENT_SECRET,
++  refresh_token: REFRESH_TOKEN,
++)
++
++client.authorization.refresh!
+gmail = client.discovered_api(&#39;gmail&#39;)
+
+# query
+res = client.execute(
+  api_method: gmail.users.messages.list,
+  parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.co.jp&#39;},
+)
+
+# parse
+if res.status == 200
+  json = JSON.parse(res.body)
+  json[&#39;messages&#39;].each do |mail_ids|
+    mail = client.execute(
+      api_method: gmail.users.messages.get,
+      parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;id&#39;=&amp;gt;mail_ids[&#39;id&#39;]},
+    )
+    p mail.body
+  end
+else
+  puts &#39;error&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでこのシリーズは終わり。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -85,7 +452,99 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
       <guid>http://shidetake.com/gmail_api_1/</guid>
       <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
+
+&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
+それから、Gmail APIを有効にし、認証情報を追加する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用するAPI =&amp;gt; Gmail API&lt;/li&gt;
+&lt;li&gt;APIを呼び出す場所 =&amp;gt; その他のUI&lt;/li&gt;
+&lt;li&gt;アクセスするデータの種類 =&amp;gt; ユーザーデータ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あとは適当に選んで進めると、クライントIDとクライアントシークレットが取得できる。&lt;/p&gt;
+
+&lt;h2 id=&#34;access-tokenの取得&#34;&gt;Access Tokenの取得&lt;/h2&gt;
+
+&lt;p&gt;取得したクライアントIDとクライアントシークレットから、
+以下のスクリプトでアクセストークンとリフレッシュトークンを取得できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;net/http&#39;
+require &#39;uri&#39;
+require &#39;oauth2&#39;
+require &#39;launchy&#39;
+
+CLIENT_ID     = &#39;YourClientID&#39;
+CLIENT_SECRET = &#39;YourClientSecret&#39;
+
+client = OAuth2::Client.new(
+  CLIENT_ID, CLIENT_SECRET,
+  :site =&amp;gt; &amp;quot;https://accounts.google.com&amp;quot;,
+  :token_url =&amp;gt; &amp;quot;/o/oauth2/token&amp;quot;,
+  :authorize_url =&amp;gt; &amp;quot;/o/oauth2/auth&amp;quot;)
+auth_url = client.auth_code.authorize_url(
+  :redirect_uri =&amp;gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;,
+  :scope =&amp;gt; &#39;https://www.googleapis.com/auth/gmail.readonly&#39;)
+ 
+# 表示されるURLをブラウザで開く
+Launchy.open auth_url
+ 
+print &amp;quot;authorization code:&amp;quot;
+authorization_code = gets.chomp
+
+res = Net::HTTP.post_form(URI.parse(&#39;https://accounts.google.com/o/oauth2/token&#39;),
+                          {&#39;client_id&#39;     =&amp;gt; CLIENT_ID,
+                           &#39;client_secret&#39; =&amp;gt; CLIENT_SECRET,
+                           &#39;redirect_uri&#39;  =&amp;gt; &#39;urn:ietf:wg:oauth:2.0:oob&#39;,
+                           &#39;grant_type&#39;    =&amp;gt; &#39;authorization_code&#39;,
+                           &#39;code&#39;          =&amp;gt; authorization_code})
+puts res.body
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;メールの取得&#34;&gt;メールの取得&lt;/h2&gt;
+
+&lt;p&gt;取得したアクセストークンを以下のように使って、Gmail APIが使える。
+以下は、auto-confirm@amazon.co.jpからの受信メールを取得するスクリプト。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;google/api_client&#39;
+require &#39;json&#39;
+
+ACCESS_TOKEN     = &#39;YourAccessToken&#39;
+APPLICATION_NAME = &#39;YourApplicationName&#39;
+
+# APIクライアントの準備
+client = Google::APIClient.new(application_name: APPLICATION_NAME)
+client.authorization.access_token = ACCESS_TOKEN
+gmail = client.discovered_api(&#39;gmail&#39;)
+
+# query
+res = client.execute(
+  api_method: gmail.users.messages.list,
+  parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;q&#39;=&amp;gt;&#39;from:auto-confirm@amazon.co.jp&#39;},
+)
+
+# parse
+if res.status == 200
+  json = JSON.parse(res.body)
+  json[&#39;messages&#39;].each do |mail_ids|
+    mail = client.execute(
+      api_method: gmail.users.messages.get,
+      parameters: {&#39;userId&#39; =&amp;gt; &#39;me&#39;, &#39;id&#39;=&amp;gt;mail_ids[&#39;id&#39;]},
+    )
+    p mail.body
+  end
+else
+  puts &#39;error&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;今後&#34;&gt;今後&lt;/h2&gt;
+
+&lt;p&gt;アクセストークンには期限があり、一定時間経過すると使えなくなってしまう。
+これを解決するのがリフレッシュトークンを使った方法。&lt;a href=&#34;../gmail_api_2/&#34;&gt;次回&lt;/a&gt;はこれを使っていつでもAPIを利用できるようにする。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -102,7 +561,49 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 
 &lt;p&gt;今回でこのシリーズは最後。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;方針&#34;&gt;方針&lt;/h2&gt;
+
+&lt;p&gt;今まで取得したハイライトを記録しておいて、
+差分だけを返信するという単純な仕様にした。&lt;/p&gt;
+
+&lt;p&gt;記録する方法は、これまた単純に外部ファイルに保存するだけ。
+容量が増えてきたら、ソートしておく、データベースに記録する、などの工夫が必要になるかもしれないが、
+とりあえず問題になるまでは単純な実装にする。&lt;/p&gt;
+
+&lt;h2 id=&#34;json形式で保存&#34;&gt;JSON形式で保存&lt;/h2&gt;
+
+&lt;p&gt;以下のメソッドで&lt;code&gt;@highlights&lt;/code&gt;という配列をJSON形式にして保存する。
+&lt;code&gt;&#39;json&#39;&lt;/code&gt;を忘れずに&lt;code&gt;require&lt;/code&gt;すること。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  # ハイライトをJSON形式にして外部ファイルに保存する
+  def store_highlights
+    File.open(JSON_FILE_NAME, &#39;w&#39;) do |file|
+      JSON.dump(@highlights, file)
+    end
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;json形式のファイルを読み出し&#34;&gt;JSON形式のファイルを読み出し&lt;/h2&gt;
+
+&lt;p&gt;以下のメソッドでJSON_FILE_NAMEというJSON形式ファイルから&lt;code&gt;@highlights&lt;/code&gt;配列にデータを読み出す。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;  # 外部ファイルから既に取得しているハイライトを読み出す
+  def restore_highlights
+    return unless File.exist?(JSON_FILE_NAME)
+    File.open(JSON_FILE_NAME, &#39;r&#39;) do |file|
+      @highlights = JSON.load(file)
+    end
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとは、&lt;code&gt;@highlights&lt;/code&gt;に存在しないハイライトだけをLINEで送信し、外部ファイルに保存すればよい。&lt;/p&gt;
+
+&lt;h2 id=&#34;全ソース&#34;&gt;全ソース&lt;/h2&gt;
+
+&lt;p&gt;githubに全ソースをあげた。
+&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -114,7 +615,72 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;起動タイミング&#34;&gt;起動タイミング&lt;/h2&gt;
+
+&lt;h3 id=&#34;仕様&#34;&gt;仕様&lt;/h3&gt;
+
+&lt;p&gt;cronで周期的に実行する仕様や、手動で合図してから一定時間だけ連続起動する仕様など、いくつか考えたが、
+結局は手動で合図したタイミングで1度だけ起動する仕様にした。&lt;/p&gt;
+
+&lt;p&gt;LINEでタイミングを通知する方法であれば、手動でも大した手間ではない。&lt;/p&gt;
+
+&lt;p&gt;妥協案とも言える仕様だが、この仕様にした一番の理由は、
+頻繁にアクセスすると、ロボットと疑われてCAPTCHAでブロックされてしまうため。
+これを解除することもできるとは思うが、一気に難易度が上がるので今回は見送ることにした。&lt;/p&gt;
+
+&lt;h3 id=&#34;流れ&#34;&gt;流れ&lt;/h3&gt;
+
+&lt;p&gt;以下のような流れで起動要求を伝達する。&lt;/p&gt;
+
+&lt;p&gt;LINEで起動要求&lt;br /&gt;
+↓&lt;br /&gt;
+LINEからGoogle Apps Scriptのスクリプト実行&lt;br /&gt;
+↓&lt;br /&gt;
+ソケット通信でスクレイピング開始要求&lt;/p&gt;
+
+&lt;h3 id=&#34;実装&#34;&gt;実装&lt;/h3&gt;
+
+&lt;p&gt;まずは前回まで作ったクローラーを、ソケット通信をトリガにして動作するようにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;+require &#39;socket&#39;
+
++gs = TCPServer.open(12345)
++addr = gs.addr
++addr.shift
++printf(&amp;quot;server is on %s\n&amp;quot;, addr.join(&amp;quot;:&amp;quot;))
+
+ crawler = LineKindleHighlights.new
+
++loop do
++  s = gs.accept
++  print(s, &amp;quot; is accepted\n&amp;quot;)
++
+   crawler.scrape
++
++  print(s, &amp;quot; is gone\n&amp;quot;)
++  s.close
++end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでポート12345番でアクセスされると1度だけ動作するようになる。&lt;/p&gt;
+
+&lt;p&gt;つづいて、LINEをトリガにして動作するスクリプトをGoogle Apps Scriptとして作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function doPost(e) {
+  Logger.log(&#39;doPost&#39;)
+  var events = JSON.parse(e.postData.contents).events;
+  events.forEach (function(event) {
+    if (event.type == &amp;quot;message&amp;quot;) { UrlFetchApp.fetch(&amp;quot;http://your_server_address.com:12345&amp;quot;); }
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じでウェブアプリケーションとして導入して、LINE側のWebhookアドレスに紐付けると、
+BOTに話しかけたタイミングでソケット通信が飛ぶようになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_4/&#34;&gt;続きはこちら&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -126,7 +692,68 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;サーバで起動&#34;&gt;サーバで起動&lt;/h2&gt;
+
+&lt;p&gt;前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
+POLTERGEISTを使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize
+-   Capybara.current_driver = :selenium
++   Capybara.current_driver = :poltergeist
+-   Capybara.javascript_driver = :selenium
++   Capybara.javascript_driver = :poltergeist
+    Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39;
+    Capybara.default_max_wait_time = 5
+-   Capybara.register_driver :selenium do |app|
++   Capybara.register_driver :poltergeist do |app|
+-     # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+-     Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome)
++     Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false})
+    end
++   page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;}
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Amazonのウェブサイト固有の問題で、ユーザーエージェントの変更が必要なので、Mac Safariとしている。&lt;/p&gt;
+
+&lt;p&gt;これでサーバ（今回はUbuntuを使った）で動作するようになった。&lt;/p&gt;
+
+&lt;h2 id=&#34;line通知&#34;&gt;LINE通知&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize(driver)
+    Capybara.current_driver = :poltergeist
+    Capybara.javascript_driver = :poltergeist
+    Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39;
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :poltergeist do |app|
+      Capybara::Poltergeist::Driver.new(app, {:timeout =&amp;gt; 120, js_errors: false})
+    end
+    page.driver.headers = {&#39;User-Agent&#39; =&amp;gt; &#39;Mac Safari&#39;} if driver == POLTERGEIST
+
++   @line = Line::Bot::Client.new do |config|
++     config.channel_secret = &#39;&#39;
++     config.channel_token  = &#39;&#39;
++   end
+
++   @user_id = &#39;&#39;
+  end
+
++ def push_highlight(highlight)
++   message = {
++     type: &#39;text&#39;,
++     text: highlight
++   }
+
++   @line.push_message(@user_id, message)
++ end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_3/&#34;&gt;続きはこちら&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -140,7 +767,114 @@ KindleにはハイライトをメールやTwitterでシェアする機能があ�
 
 &lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
+
+&lt;p&gt;RubyのCapybaraを使った。&lt;/p&gt;
+
+&lt;h3 id=&#34;動作環境&#34;&gt;動作環境&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15]
+selenium-webdriver (2.53.0, 2.52.0)
+capybara (2.14.0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;ソースコード&#34;&gt;ソースコード&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# coding: utf-8
+require &#39;capybara&#39;
+require &#39;capybara/dsl&#39;
+require &#39;capybara/poltergeist&#39;
+require &#39;selenium-webdriver&#39;
+
+class LineKindleHighlights
+  include Capybara::DSL
+
+  KINDLE_EMAIL    = &#39;your@email&#39;
+  KINDLE_PASSWORD = &#39;your_password&#39;
+  CRAWL_PAGE_NUM = 2
+
+  def initialize
+    Capybara.current_driver = :selenium
+    Capybara.javascript_driver = :selenium
+    Capybara.app_host = &#39;https://kindle.amazon.co.jp&#39;
+    Capybara.default_max_wait_time = 5
+    Capybara.register_driver :selenium do |app|
+      # 最新のSeleniumではFirefoxが動作しない問題があるのでchromeを使う
+      Capybara::Selenium::Driver.new(app, :browser =&amp;gt; :chrome)
+    end
+  end
+
+  def scrape
+    login
+
+    # ページ読み込み待ち
+    sleep 5
+
+    go_to_highlights
+
+    CRAWL_PAGE_NUM.times do
+      all(&#39;.title&#39;).each do |element|
+        p element.text
+      end
+
+      all(&#39;.highlight&#39;).each do |element|
+        p element.text
+      end
+
+      next_page
+    end
+  end
+
+  private
+
+  # Kindleのマイページにアクセスしログインする
+  def login
+    visit(&#39;&#39;)
+    click_link &#39;sign in&#39;
+    fill_in &#39;ap_email&#39;,
+      :with =&amp;gt; KINDLE_EMAIL
+    fill_in &#39;password&#39;,
+      :with =&amp;gt; KINDLE_PASSWORD
+    click_on &#39;signInSubmit&#39;
+  end
+
+  # Your Hightlightsのページに遷移する
+  # @note ログイン直後のページで使う
+  def go_to_highlights
+    click_link &#39;Your Highlights&#39;
+  end
+
+  # 次のページに遷移
+  # @note Your Hightlightsのページで使うことで次の本のハイライトページに遷移する
+  def next_page
+    visit(find_by_id(&#39;nextBookLink&#39;, visible: false)[:href])
+  end
+end
+
+crawler = LineKindleHighlights.new
+crawler.scrape
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;KINDLE_EMAIL&lt;/code&gt;と&lt;code&gt;KINDLE_PASSWORD&lt;/code&gt;だけ設定すれば動く&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CRAWL_PAGE_NUM&lt;/code&gt;は実質的には取得するハイライトの本の数になる (1ページに1冊分の情報が出る）&lt;/li&gt;
+&lt;li&gt;次のページへの遷移で少しハマった。hiddenなクラスのリンクを取得するには&lt;code&gt;visible: false&lt;/code&gt;する必要があるらしい&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;とりあえず今回はここまで。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;続きはこちら&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
+
+&lt;ul class=&#34;task-list&#34;&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; クローラー作成&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; LINE通知機能&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; 通知済みハイライトを通知しない&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; サーバ上で動作&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>
