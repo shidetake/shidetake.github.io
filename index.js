@@ -1,5 +1,10 @@
 var data = [
 {
+url: "http://shidetake.com/heroku_domains/",
+title: "Herokuの公開URLをコマンドで確認する",
+content: "[最近、Ruby on Railsチュートリアルを進めているんだけど、 その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、 いちいちHerokuにログインして確認するという手間が発生する。 たぶんherokuコマンドにあるだろうと思って探したらあったので、備忘録的に残しておく。 $ heroku domains これだけ。]"
+}
+,{
 url: "http://shidetake.com/alexa_node_red1/",
 title: "AlexaとNode-REDを利用したスマートホームスキル作成時の注意",
 content: "[最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。 前回のApple TVを操作するスクリプトもその一環だったのだが、うまく動かなかったのでその対処法を書く。 AlexaとNode-REDの連携 Amazon Echoとラズパイで、音声で照明をon/offするという記事を参考にした。 丁寧に書いてあって、補足する必要が全く無いので、連携についてはこちらの記事を読むといい。 execにpyatvを設定 こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。 よく見ると、atvremoteコマンドが見つからないというエラーが出ていた。 systemdで起動しているサービスは、ユーザーの環境変数を読み込まないらしい。 systemdについては前にも書いたが、絶対パスで書かないといけないとか、いろいろ作法があって面倒くさい。 systemdの設定変更 pyenvを使って導入したソフトをsystemdで使う場合の注意点はpyenvの公式に記載があったのでこれを参考にした。 まず以下のコマンドでNode-REDのサービスファイルの場所を調べる。 sudo systemctl status nodered たぶん /lib/systemd/system/nodered.serviceにある。 これを書き換える。 Environment=&amp;quot;PI_NODE_OPTIONS=--max_old_space_size=256&amp;quot; Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;quot; PI_NODE_OPTIONSという環境変数を設定しているところの下に、PATHの設定を追加する。 デフォルトでは、/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/binがPATHに設定されているようなので、 そこに追加する形。 ちなみに環境変数の展開もできないので、こんな書き方はNG。ホントに面倒くさい。 Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:$PATH&amp;quot;]"
