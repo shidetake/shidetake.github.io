@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/big_image/</loc>
+    <lastmod>2018-05-06T21:37:25+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/heroku_domains/</loc>
     <lastmod>2018-03-10T15:37:24+09:00</lastmod>
   </url>
@@ -264,6 +269,12 @@
   </url>
   
   <url>
+    <loc>http://shidetake.com/tags/imagemagick/</loc>
+    <lastmod>2018-05-06T21:37:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/tags/kindle/</loc>
     <lastmod>2017-06-18T14:33:41+09:00</lastmod>
     <priority>0</priority>
@@ -307,7 +318,7 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2018-03-10T15:37:24+09:00</lastmod>
+    <lastmod>2018-05-06T21:37:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -365,7 +376,7 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2018-03-10T15:37:24+09:00</lastmod>
+    <lastmod>2018-05-06T21:37:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -383,7 +394,7 @@
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2018-03-10T15:37:24+09:00</lastmod>
+    <lastmod>2018-05-06T21:37:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   

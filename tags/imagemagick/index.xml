@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Imagemagick on blog</title>
+    <link>http://shidetake.com/tags/imagemagick/</link>
+    <description>Recent content in Imagemagick on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 May 2018 21:37:25 +0900</lastBuildDate>
+    
+        <atom:link href="http://shidetake.com/tags/imagemagick/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>画像を任意のサイズ（容量）に変換する</title>
+      <link>http://shidetake.com/big_image/</link>
+      <pubDate>Sun, 06 May 2018 21:37:25 +0900</pubDate>
+      
+      <guid>http://shidetake.com/big_image/</guid>
+      <description>&lt;p&gt;テストのために容量の大きい画像が必要になったが、
+案外見つからなくて、結局ImageMagickで適当な画像を変換して作ることにしたので、そのやり方を記す。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;iPhoneとかで取った写真だと2〜3MBくらい。
+今回欲しかったのは5MB以上だったのでダメ。&lt;/p&gt;
+
+&lt;p&gt;前に一眼レフで撮ってもらった写真があったなと思い、Google Photoで探したら、数百KBくらいだった。
+Google Photoが頑張って圧縮しちゃっていたようだ。&lt;/p&gt;
+
+&lt;p&gt;インターネットで適当に探しても、5MB以上となるとなかなか出てこない。
+1GBオーバーの天体画像なら出てきたが、さすがにでかすぎた。&lt;/p&gt;
+
+&lt;p&gt;ということで、ImageMagickに頼ることにした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;convert input.jpg -resize 2048x2048 output.bmp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。ビットマップなので、2048x2048の画像でだいたい12MB。&lt;/p&gt;
+
+&lt;p&gt;完全に任意の容量にするにはちょっと計算が必要だけど、ざっくりでいいならこれで作れる。
+ビットマップにしているのは、無圧縮のほうが計算しやすいため。
+RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
+1024x1024サイズだと、画素数がちょうど1Mなので、3MB。5MBには少し足りないので、
+縦横倍にして4倍の12MBの画像になるというわけ。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
