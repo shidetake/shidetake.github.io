@@ -36,7 +36,7 @@
 プロバイダ機能を自前で持たないISPに対してその機能を提供するというサービスのようだ。&lt;/p&gt;
 
 &lt;p&gt;このあたりを調べている時に知ったのだが、
-&lt;a href=&#34;https://env.b4iine.net&#34;&gt;確認くん+&lt;/a&gt;というウェブサイトにアクセスすると、&lt;code&gt;traceroute&lt;/code&gt;などしなくても簡単にわかる。
+&lt;a href=&#34;https://env.b4iine.net&#34; target=&#34;_blank&#34;&gt;確認くん+&lt;/a&gt;というウェブサイトにアクセスすると、&lt;code&gt;traceroute&lt;/code&gt;などしなくても簡単にわかる。
 ここにアクセスして、お使いのプロバイダーがap.yournet.ne.jpならばfreebit系。&lt;/p&gt;
 
 &lt;h2 id=&#34;プロバイダに確認&#34;&gt;プロバイダに確認&lt;/h2&gt;

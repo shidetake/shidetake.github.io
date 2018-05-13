@@ -31,7 +31,7 @@
 &lt;h2 id=&#34;参考サイト&#34;&gt;参考サイト&lt;/h2&gt;
 
 &lt;p&gt;先に白状しておくと、この記事は
-&lt;a href=&#34;https://asatte.biz/gmail-line/&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
+&lt;a href=&#34;https://asatte.biz/gmail-line/&#34; target=&#34;_blank&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
@@ -117,7 +117,7 @@ function line_push(message) {
 このメールが届くようにするには、三菱東京UFJダイレクトで設定する必要がある（設定したのはだいぶ前なので詳細は忘れた）。&lt;/p&gt;
 
 &lt;p&gt;で、みずほ銀行も使っているのでこっちも同じようにしようと思ったら、みずほは通知メールサービスが無いらしい。
-結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
+結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34; target=&#34;_blank&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
 
 &lt;p&gt;サブバンクをみずほから新生銀行あたりに乗り換えようかなと思った。&lt;/p&gt;</description>
     </item>
@@ -424,7 +424,7 @@ function buyIIJmioCoupon() {
 &lt;h2 id=&#34;全ソース&#34;&gt;全ソース&lt;/h2&gt;
 
 &lt;p&gt;githubに全ソースをあげた。
-&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
+&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34; target=&#34;_blank&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -543,7 +543,7 @@ POLTERGEISTを使う。&lt;/p&gt;
 
 &lt;h2 id=&#34;line通知&#34;&gt;LINE通知&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34; target=&#34;_blank&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize(driver)
@@ -586,7 +586,7 @@ push_highlightメソッドを使って、前回標準出力していた文字列
       <description>&lt;p&gt;読書メモのためにハイライトした文章をコピペできる形にしたい。
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
-&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
+&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -709,7 +709,7 @@ crawler.scrape
 &lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
 
 &lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;
-個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;
+個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34; target=&#34;_blank&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;
 
 &lt;h2 id=&#34;lineへのpush通知設定&#34;&gt;LINEへのPUSH通知設定&lt;/h2&gt;
 

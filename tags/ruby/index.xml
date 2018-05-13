@@ -184,7 +184,7 @@ end
 &lt;p&gt;国内で株価を取得するためのAPIは（正規には）ないらしい。
 ただ、Google Finance APIという非公式のAPIがあり、使ってる人は使っているとか。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
+&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34; target=&#34;_blank&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
 今回やりたいことのほとんどはここに書いてある。
 違いは、&lt;/p&gt;
 
@@ -231,7 +231,7 @@ stock_data = google_finance.stock
 &lt;h2 id=&#34;チャート描画&#34;&gt;チャート描画&lt;/h2&gt;
 
 &lt;p&gt;これはgnuplotを使う。
-&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
+&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34; target=&#34;_blank&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install numo-gnuplot
 &lt;/code&gt;&lt;/pre&gt;
@@ -339,7 +339,7 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 &lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;Gmailのとき&lt;/a&gt;とは違い、PicasaのAPIを使うのは少しコツがいる。
 既にPicasaのサービスが終了しているためか、API MANAGERで検索してもPicasa APIが出てこない。&lt;/p&gt;
 
-&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
+&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34; target=&#34;_blank&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
 
 &lt;p&gt;Select the scopeの一覧から、Picasa Web v2を選択して表示されるURLをクリックする。
 Authorize APIsボタンが有効になるので、それを押してAPIを有効にする許可を与える。&lt;/p&gt;
@@ -456,7 +456,7 @@ end
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
 
-&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
+&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34; target=&#34;_blank&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
 それから、Gmail APIを有効にし、認証情報を追加する。&lt;/p&gt;
 
 &lt;ul&gt;
@@ -603,7 +603,7 @@ end
 &lt;h2 id=&#34;全ソース&#34;&gt;全ソース&lt;/h2&gt;
 
 &lt;p&gt;githubに全ソースをあげた。
-&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
+&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34; target=&#34;_blank&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -722,7 +722,7 @@ POLTERGEISTを使う。&lt;/p&gt;
 
 &lt;h2 id=&#34;line通知&#34;&gt;LINE通知&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34; target=&#34;_blank&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize(driver)
@@ -765,7 +765,7 @@ push_highlightメソッドを使って、前回標準出力していた文字列
       <description>&lt;p&gt;読書メモのためにハイライトした文章をコピペできる形にしたい。
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
-&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
+&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 

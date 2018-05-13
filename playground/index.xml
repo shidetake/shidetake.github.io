@@ -49,8 +49,8 @@
 
 &lt;h2 id=&#34;絶対パス&#34;&gt;絶対パス&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://google.com&#34;&gt;Google&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&#34;http://google.com&#34;&gt;http://google.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://google.com&#34; target=&#34;_blank&#34;&gt;Google&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://google.com&#34; target=&#34;_blank&#34;&gt;http://google.com&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;相対パス&#34;&gt;相対パス&lt;/h2&gt;
 
@@ -168,7 +168,7 @@ rubyとRubyとか。現時点ではざっくり以下のタグわけ
 
 &lt;h2 id=&#34;テキスト&#34;&gt;テキスト&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://amzn.to/2CuC9Qc&#34;&gt;任意のテキスト&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://amzn.to/2CuC9Qc&#34; target=&#34;_blank&#34;&gt;任意のテキスト&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;画像-1&#34;&gt;画像&lt;/h2&gt;
 

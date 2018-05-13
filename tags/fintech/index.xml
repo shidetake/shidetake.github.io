@@ -31,7 +31,7 @@
 &lt;h2 id=&#34;参考サイト&#34;&gt;参考サイト&lt;/h2&gt;
 
 &lt;p&gt;先に白状しておくと、この記事は
-&lt;a href=&#34;https://asatte.biz/gmail-line/&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
+&lt;a href=&#34;https://asatte.biz/gmail-line/&#34; target=&#34;_blank&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
@@ -117,7 +117,7 @@ function line_push(message) {
 このメールが届くようにするには、三菱東京UFJダイレクトで設定する必要がある（設定したのはだいぶ前なので詳細は忘れた）。&lt;/p&gt;
 
 &lt;p&gt;で、みずほ銀行も使っているのでこっちも同じようにしようと思ったら、みずほは通知メールサービスが無いらしい。
-結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
+結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34; target=&#34;_blank&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
 
 &lt;p&gt;サブバンクをみずほから新生銀行あたりに乗り換えようかなと思った。&lt;/p&gt;</description>
     </item>
@@ -295,7 +295,7 @@ end
 &lt;p&gt;国内で株価を取得するためのAPIは（正規には）ないらしい。
 ただ、Google Finance APIという非公式のAPIがあり、使ってる人は使っているとか。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
+&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34; target=&#34;_blank&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
 今回やりたいことのほとんどはここに書いてある。
 違いは、&lt;/p&gt;
 
@@ -342,7 +342,7 @@ stock_data = google_finance.stock
 &lt;h2 id=&#34;チャート描画&#34;&gt;チャート描画&lt;/h2&gt;
 
 &lt;p&gt;これはgnuplotを使う。
-&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
+&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34; target=&#34;_blank&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install numo-gnuplot
 &lt;/code&gt;&lt;/pre&gt;

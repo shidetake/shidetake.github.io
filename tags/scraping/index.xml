@@ -234,7 +234,7 @@ function buyIIJmioCoupon() {
 &lt;h2 id=&#34;全ソース&#34;&gt;全ソース&lt;/h2&gt;
 
 &lt;p&gt;githubに全ソースをあげた。
-&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
+&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34; target=&#34;_blank&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -353,7 +353,7 @@ POLTERGEISTを使う。&lt;/p&gt;
 
 &lt;h2 id=&#34;line通知&#34;&gt;LINE通知&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34; target=&#34;_blank&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize(driver)
@@ -396,7 +396,7 @@ push_highlightメソッドを使って、前回標準出力していた文字列
       <description>&lt;p&gt;読書メモのためにハイライトした文章をコピペできる形にしたい。
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
-&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
+&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 

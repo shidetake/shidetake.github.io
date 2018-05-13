@@ -17,7 +17,7 @@
       <pubDate>Sat, 10 Mar 2018 15:37:24 +0900</pubDate>
       
       <guid>http://shidetake.com/heroku_domains/</guid>
-      <description>&lt;p&gt;最近、&lt;a href=&#34;https://railstutorial.jp&#34;&gt;Ruby on Railsチュートリアル&lt;/a&gt;を進めているんだけど、
+      <description>&lt;p&gt;最近、&lt;a href=&#34;https://railstutorial.jp&#34; target=&#34;_blank&#34;&gt;Ruby on Railsチュートリアル&lt;/a&gt;を進めているんだけど、
 その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、
 いちいちHerokuにログインして確認するという手間が発生する。&lt;/p&gt;
 

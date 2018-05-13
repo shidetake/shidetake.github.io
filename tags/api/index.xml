@@ -49,13 +49,13 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws rds start-db-instance --db-instance-identifier $instance
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;GitHubに&lt;a href=&#34;https://github.com/shidetake/aws/blob/master/aws_rds.sh&#34;&gt;簡単に操作するためのシェルスクリプト&lt;/a&gt;を置いたので、参考にして欲しい。
+&lt;p&gt;GitHubに&lt;a href=&#34;https://github.com/shidetake/aws/blob/master/aws_rds.sh&#34; target=&#34;_blank&#34;&gt;簡単に操作するためのシェルスクリプト&lt;/a&gt;を置いたので、参考にして欲しい。
 インスタンスの名前と状態のリスト表示、全インスタンスの開始、全インスタンスの停止ができる（はず）。
 手元の環境だと1インスタンスしかないので、複数インスタンスがある場合のテストはしていない。&lt;/p&gt;
 
 &lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.manabusakai.com/2017/06/stopping-rds/&#34;&gt;RDS の停止機能を使ってコストを半分まで削減してみた&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://blog.manabusakai.com/2017/06/stopping-rds/&#34; target=&#34;_blank&#34;&gt;RDS の停止機能を使ってコストを半分まで削減してみた&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -231,7 +231,7 @@ end
 &lt;p&gt;国内で株価を取得するためのAPIは（正規には）ないらしい。
 ただ、Google Finance APIという非公式のAPIがあり、使ってる人は使っているとか。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
+&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34; target=&#34;_blank&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
 今回やりたいことのほとんどはここに書いてある。
 違いは、&lt;/p&gt;
 
@@ -278,7 +278,7 @@ stock_data = google_finance.stock
 &lt;h2 id=&#34;チャート描画&#34;&gt;チャート描画&lt;/h2&gt;
 
 &lt;p&gt;これはgnuplotを使う。
-&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
+&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34; target=&#34;_blank&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install numo-gnuplot
 &lt;/code&gt;&lt;/pre&gt;
@@ -386,7 +386,7 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 &lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;Gmailのとき&lt;/a&gt;とは違い、PicasaのAPIを使うのは少しコツがいる。
 既にPicasaのサービスが終了しているためか、API MANAGERで検索してもPicasa APIが出てこない。&lt;/p&gt;
 
-&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
+&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34; target=&#34;_blank&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
 
 &lt;p&gt;Select the scopeの一覧から、Picasa Web v2を選択して表示されるURLをクリックする。
 Authorize APIsボタンが有効になるので、それを押してAPIを有効にする許可を与える。&lt;/p&gt;
@@ -503,7 +503,7 @@ end
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
 
-&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
+&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34; target=&#34;_blank&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
 それから、Gmail APIを有効にし、認証情報を追加する。&lt;/p&gt;
 
 &lt;ul&gt;

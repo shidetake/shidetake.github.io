@@ -49,13 +49,13 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws rds start-db-instance --db-instance-identifier $instance
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;GitHubに&lt;a href=&#34;https://github.com/shidetake/aws/blob/master/aws_rds.sh&#34;&gt;簡単に操作するためのシェルスクリプト&lt;/a&gt;を置いたので、参考にして欲しい。
+&lt;p&gt;GitHubに&lt;a href=&#34;https://github.com/shidetake/aws/blob/master/aws_rds.sh&#34; target=&#34;_blank&#34;&gt;簡単に操作するためのシェルスクリプト&lt;/a&gt;を置いたので、参考にして欲しい。
 インスタンスの名前と状態のリスト表示、全インスタンスの開始、全インスタンスの停止ができる（はず）。
 手元の環境だと1インスタンスしかないので、複数インスタンスがある場合のテストはしていない。&lt;/p&gt;
 
 &lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://blog.manabusakai.com/2017/06/stopping-rds/&#34;&gt;RDS の停止機能を使ってコストを半分まで削減してみた&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://blog.manabusakai.com/2017/06/stopping-rds/&#34; target=&#34;_blank&#34;&gt;RDS の停止機能を使ってコストを半分まで削減してみた&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@ RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
       <pubDate>Sat, 10 Mar 2018 15:37:24 +0900</pubDate>
       
       <guid>http://shidetake.com/heroku_domains/</guid>
-      <description>&lt;p&gt;最近、&lt;a href=&#34;https://railstutorial.jp&#34;&gt;Ruby on Railsチュートリアル&lt;/a&gt;を進めているんだけど、
+      <description>&lt;p&gt;最近、&lt;a href=&#34;https://railstutorial.jp&#34; target=&#34;_blank&#34;&gt;Ruby on Railsチュートリアル&lt;/a&gt;を進めているんだけど、
 その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、
 いちいちHerokuにログインして確認するという手間が発生する。&lt;/p&gt;
 
@@ -125,7 +125,7 @@ RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
 
 &lt;h2 id=&#34;alexaとnode-redの連携&#34;&gt;AlexaとNode-REDの連携&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://qiita.com/kikuzo/items/753b5065dde9633bda18&#34;&gt;Amazon Echoとラズパイで、音声で照明をon/offする&lt;/a&gt;という記事を参考にした。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qiita.com/kikuzo/items/753b5065dde9633bda18&#34; target=&#34;_blank&#34;&gt;Amazon Echoとラズパイで、音声で照明をon/offする&lt;/a&gt;という記事を参考にした。&lt;/p&gt;
 
 &lt;p&gt;丁寧に書いてあって、補足する必要が全く無いので、連携についてはこちらの記事を読むといい。&lt;/p&gt;
 
@@ -141,7 +141,7 @@ systemdについては&lt;a href=&#34;../dasher_systemd/&#34;&gt;前にも書い
 
 &lt;h2 id=&#34;systemdの設定変更&#34;&gt;systemdの設定変更&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;pyenv&lt;/code&gt;を使って導入したソフトをsystemdで使う場合の注意点は&lt;a href=&#34;https://github.com/pyenv/pyenv/wiki/Deploying-with-pyenv&#34;&gt;&lt;code&gt;pyenv&lt;/code&gt;の公式に記載があった&lt;/a&gt;のでこれを参考にした。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pyenv&lt;/code&gt;を使って導入したソフトをsystemdで使う場合の注意点は&lt;a href=&#34;https://github.com/pyenv/pyenv/wiki/Deploying-with-pyenv&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;pyenv&lt;/code&gt;の公式に記載があった&lt;/a&gt;のでこれを参考にした。&lt;/p&gt;
 
 &lt;p&gt;まず以下のコマンドでNode-REDのサービスファイルの場所を調べる。&lt;/p&gt;
 
@@ -178,7 +178,7 @@ Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/loc
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
+&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34; target=&#34;_blank&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
 一部わかりにくいところがあったので、そこだけ説明する。&lt;/p&gt;
 
 &lt;h2 id=&#34;初期設定&#34;&gt;初期設定&lt;/h2&gt;
@@ -220,7 +220,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 &lt;h2 id=&#34;参考サイト&#34;&gt;参考サイト&lt;/h2&gt;
 
 &lt;p&gt;先に白状しておくと、この記事は
-&lt;a href=&#34;https://asatte.biz/gmail-line/&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
+&lt;a href=&#34;https://asatte.biz/gmail-line/&#34; target=&#34;_blank&#34;&gt;Google Apps ScriptでGmailの特定のメールを受信したらLINEと連携して通知する&lt;/a&gt;という記事のほとんどパクリです。&lt;/p&gt;
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
@@ -306,7 +306,7 @@ function line_push(message) {
 このメールが届くようにするには、三菱東京UFJダイレクトで設定する必要がある（設定したのはだいぶ前なので詳細は忘れた）。&lt;/p&gt;
 
 &lt;p&gt;で、みずほ銀行も使っているのでこっちも同じようにしようと思ったら、みずほは通知メールサービスが無いらしい。
-結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
+結構古い情報だけど、&lt;a href=&#34;http://moneylab.ldblog.jp/archives/51639875.html&#34; target=&#34;_blank&#34;&gt;このブログ記事&lt;/a&gt;によると、銀行によって通知サービスが無かったり、有料だったりする模様。&lt;/p&gt;
 
 &lt;p&gt;サブバンクをみずほから新生銀行あたりに乗り換えようかなと思った。&lt;/p&gt;</description>
     </item>
@@ -504,7 +504,7 @@ function mailGroupId(e) {
 &lt;/table&gt;
 
 &lt;p&gt;Lambda関数のコードは以下のようにした。
-ちなみにこれは、&lt;a href=&#34;https://github.com/alexa/skill-sample-nodejs-hello-world&#34;&gt;alexa/skill-sample-nodejs-hello-world&lt;/a&gt;に公開されているindex.jsから必要な部分だけを残した。&lt;/p&gt;
+ちなみにこれは、&lt;a href=&#34;https://github.com/alexa/skill-sample-nodejs-hello-world&#34; target=&#34;_blank&#34;&gt;alexa/skill-sample-nodejs-hello-world&lt;/a&gt;に公開されているindex.jsから必要な部分だけを残した。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;use strict&#39;;
 const Alexa = require(&amp;quot;alexa-sdk&amp;quot;);
@@ -536,7 +536,7 @@ const handlers = {
 
 &lt;h2 id=&#34;amazon-developper&#34;&gt;Amazon Developper&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://developer.amazon.com/&#34;&gt;Amazon Developper Services and Technologies&lt;/a&gt;にアクセスして、右上のサインインからアカウントを作成する。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://developer.amazon.com/&#34; target=&#34;_blank&#34;&gt;Amazon Developper Services and Technologies&lt;/a&gt;にアクセスして、右上のサインインからアカウントを作成する。&lt;/p&gt;
 
 &lt;h2 id=&#34;スキル作成&#34;&gt;スキル作成&lt;/h2&gt;
 
@@ -802,7 +802,7 @@ Enable Alexa skill &amp;quot;hello world&amp;quot;
 プロバイダ機能を自前で持たないISPに対してその機能を提供するというサービスのようだ。&lt;/p&gt;
 
 &lt;p&gt;このあたりを調べている時に知ったのだが、
-&lt;a href=&#34;https://env.b4iine.net&#34;&gt;確認くん+&lt;/a&gt;というウェブサイトにアクセスすると、&lt;code&gt;traceroute&lt;/code&gt;などしなくても簡単にわかる。
+&lt;a href=&#34;https://env.b4iine.net&#34; target=&#34;_blank&#34;&gt;確認くん+&lt;/a&gt;というウェブサイトにアクセスすると、&lt;code&gt;traceroute&lt;/code&gt;などしなくても簡単にわかる。
 ここにアクセスして、お使いのプロバイダーがap.yournet.ne.jpならばfreebit系。&lt;/p&gt;
 
 &lt;h2 id=&#34;プロバイダに確認&#34;&gt;プロバイダに確認&lt;/h2&gt;
@@ -1201,7 +1201,7 @@ date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
 
 &lt;h2 id=&#34;サンプルソース&#34;&gt;サンプルソース&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/maddox/dasher/wiki/Running-Dasher-on-a-Raspberry-Pi-at-startup&#34;&gt;GitHubのWiki&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/maddox/dasher/wiki/Running-Dasher-on-a-Raspberry-Pi-at-startup&#34; target=&#34;_blank&#34;&gt;GitHubのWiki&lt;/a&gt;
 にサンプルソースがあったのでそのまま記載する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[Unit]
@@ -1347,8 +1347,8 @@ IPアドレスは数値の羅列で人間には覚えにくいので、ドメイ
 
 &lt;h2 id=&#34;登録&#34;&gt;登録&lt;/h2&gt;
 
-&lt;p&gt;いくつか選択肢はあるが、今回は&lt;a href=&#34;https://www.noip.com&#34;&gt;no-ip&lt;/a&gt;というサービスを使うことにした。
-なぜなら、&lt;a href=&#34;http://portaltan.hatenablog.com/entry/2017/02/07/092205&#34;&gt;raspberryPi にnoipでDDNSの設定をする方法&lt;/a&gt;というサイトを参考にしたため。&lt;/p&gt;
+&lt;p&gt;いくつか選択肢はあるが、今回は&lt;a href=&#34;https://www.noip.com&#34; target=&#34;_blank&#34;&gt;no-ip&lt;/a&gt;というサービスを使うことにした。
+なぜなら、&lt;a href=&#34;http://portaltan.hatenablog.com/entry/2017/02/07/092205&#34; target=&#34;_blank&#34;&gt;raspberryPi にnoipでDDNSの設定をする方法&lt;/a&gt;というサイトを参考にしたため。&lt;/p&gt;
 
 &lt;p&gt;登録・設定から自動実行まで、ほぼほぼこの手順でいける。&lt;/p&gt;
 
@@ -1606,7 +1606,7 @@ end
 &lt;p&gt;国内で株価を取得するためのAPIは（正規には）ないらしい。
 ただ、Google Finance APIという非公式のAPIがあり、使ってる人は使っているとか。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
+&lt;p&gt;&lt;a href=&#34;http://ymtttk.hatenablog.jp/entry/2017/02/18/192130&#34; target=&#34;_blank&#34;&gt;google financeのAPIのメモ&lt;/a&gt;という記事が参考になる。
 今回やりたいことのほとんどはここに書いてある。
 違いは、&lt;/p&gt;
 
@@ -1653,7 +1653,7 @@ stock_data = google_finance.stock
 &lt;h2 id=&#34;チャート描画&#34;&gt;チャート描画&lt;/h2&gt;
 
 &lt;p&gt;これはgnuplotを使う。
-&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
+&lt;a href=&#34;https://github.com/ruby-numo/gnuplot&#34; target=&#34;_blank&#34;&gt;Numo::Gnuplot&lt;/a&gt;というgemが便利そうだったので、これを使った。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install numo-gnuplot
 &lt;/code&gt;&lt;/pre&gt;
@@ -2162,7 +2162,7 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 &lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;Gmailのとき&lt;/a&gt;とは違い、PicasaのAPIを使うのは少しコツがいる。
 既にPicasaのサービスが終了しているためか、API MANAGERで検索してもPicasa APIが出てこない。&lt;/p&gt;
 
-&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
+&lt;p&gt;そこで、Access tokenを取得するために&lt;a href=&#34;https://developers.google.com/oauthplayground/&#34; target=&#34;_blank&#34;&gt;OAuth 2.0 Playground&lt;/a&gt;を使う。&lt;/p&gt;
 
 &lt;p&gt;Select the scopeの一覧から、Picasa Web v2を選択して表示されるURLをクリックする。
 Authorize APIsボタンが有効になるので、それを押してAPIを有効にする許可を与える。&lt;/p&gt;
@@ -2457,7 +2457,7 @@ end
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
 
-&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
+&lt;p&gt;まずはAPIを使うための準備。&lt;a href=&#34;https://console.developers.google.com/&#34; target=&#34;_blank&#34;&gt;https://console.developers.google.com/&lt;/a&gt; にアクセスして、プロジェクトを作成する。
 それから、Gmail APIを有効にし、認証情報を追加する。&lt;/p&gt;
 
 &lt;ul&gt;
@@ -2604,7 +2604,7 @@ end
 &lt;h2 id=&#34;全ソース&#34;&gt;全ソース&lt;/h2&gt;
 
 &lt;p&gt;githubに全ソースをあげた。
-&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
+&lt;a href=&#34;https://github.com/shidetake/line_kindle_highlights&#34; target=&#34;_blank&#34;&gt;https://github.com/shidetake/line_kindle_highlights&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -2723,7 +2723,7 @@ POLTERGEISTを使う。&lt;/p&gt;
 
 &lt;h2 id=&#34;line通知&#34;&gt;LINE通知&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
+&lt;p&gt;&lt;a href=&#34;https://github.com/line/line-bot-sdk-ruby&#34; target=&#34;_blank&#34;&gt;line-bot-api&lt;/a&gt;を使った。だいたい以下のような感じ。Channel Secret, Channel Access Token, userIdはLINE developersから取得して入力すること。
 push_highlightメソッドを使って、前回標準出力していた文字列をLINEに送れる。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;  def initialize(driver)
@@ -2766,7 +2766,7 @@ push_highlightメソッドを使って、前回標準出力していた文字列
       <description>&lt;p&gt;読書メモのためにハイライトした文章をコピペできる形にしたい。
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
-&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
+&lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -2928,7 +2928,7 @@ for ((i=0; i &amp;lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=100000
 &lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
 
 &lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;
-個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;
+個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34; target=&#34;_blank&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;
 
 &lt;h2 id=&#34;lineへのpush通知設定&#34;&gt;LINEへのPUSH通知設定&lt;/h2&gt;
 

@@ -24,7 +24,7 @@
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
+&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34; target=&#34;_blank&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
 一部わかりにくいところがあったので、そこだけ説明する。&lt;/p&gt;
 
 &lt;h2 id=&#34;初期設定&#34;&gt;初期設定&lt;/h2&gt;
@@ -205,7 +205,7 @@ date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
 
 &lt;h2 id=&#34;サンプルソース&#34;&gt;サンプルソース&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/maddox/dasher/wiki/Running-Dasher-on-a-Raspberry-Pi-at-startup&#34;&gt;GitHubのWiki&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/maddox/dasher/wiki/Running-Dasher-on-a-Raspberry-Pi-at-startup&#34; target=&#34;_blank&#34;&gt;GitHubのWiki&lt;/a&gt;
 にサンプルソースがあったのでそのまま記載する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[Unit]
@@ -351,8 +351,8 @@ IPアドレスは数値の羅列で人間には覚えにくいので、ドメイ
 
 &lt;h2 id=&#34;登録&#34;&gt;登録&lt;/h2&gt;
 
-&lt;p&gt;いくつか選択肢はあるが、今回は&lt;a href=&#34;https://www.noip.com&#34;&gt;no-ip&lt;/a&gt;というサービスを使うことにした。
-なぜなら、&lt;a href=&#34;http://portaltan.hatenablog.com/entry/2017/02/07/092205&#34;&gt;raspberryPi にnoipでDDNSの設定をする方法&lt;/a&gt;というサイトを参考にしたため。&lt;/p&gt;
+&lt;p&gt;いくつか選択肢はあるが、今回は&lt;a href=&#34;https://www.noip.com&#34; target=&#34;_blank&#34;&gt;no-ip&lt;/a&gt;というサービスを使うことにした。
+なぜなら、&lt;a href=&#34;http://portaltan.hatenablog.com/entry/2017/02/07/092205&#34; target=&#34;_blank&#34;&gt;raspberryPi にnoipでDDNSの設定をする方法&lt;/a&gt;というサイトを参考にしたため。&lt;/p&gt;
 
 &lt;p&gt;登録・設定から自動実行まで、ほぼほぼこの手順でいける。&lt;/p&gt;
 

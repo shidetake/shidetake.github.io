@@ -24,7 +24,7 @@
 
 &lt;h2 id=&#34;alexaとnode-redの連携&#34;&gt;AlexaとNode-REDの連携&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://qiita.com/kikuzo/items/753b5065dde9633bda18&#34;&gt;Amazon Echoとラズパイで、音声で照明をon/offする&lt;/a&gt;という記事を参考にした。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://qiita.com/kikuzo/items/753b5065dde9633bda18&#34; target=&#34;_blank&#34;&gt;Amazon Echoとラズパイで、音声で照明をon/offする&lt;/a&gt;という記事を参考にした。&lt;/p&gt;
 
 &lt;p&gt;丁寧に書いてあって、補足する必要が全く無いので、連携についてはこちらの記事を読むといい。&lt;/p&gt;
 
@@ -40,7 +40,7 @@ systemdについては&lt;a href=&#34;../dasher_systemd/&#34;&gt;前にも書い
 
 &lt;h2 id=&#34;systemdの設定変更&#34;&gt;systemdの設定変更&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;pyenv&lt;/code&gt;を使って導入したソフトをsystemdで使う場合の注意点は&lt;a href=&#34;https://github.com/pyenv/pyenv/wiki/Deploying-with-pyenv&#34;&gt;&lt;code&gt;pyenv&lt;/code&gt;の公式に記載があった&lt;/a&gt;のでこれを参考にした。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pyenv&lt;/code&gt;を使って導入したソフトをsystemdで使う場合の注意点は&lt;a href=&#34;https://github.com/pyenv/pyenv/wiki/Deploying-with-pyenv&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;pyenv&lt;/code&gt;の公式に記載があった&lt;/a&gt;のでこれを参考にした。&lt;/p&gt;
 
 &lt;p&gt;まず以下のコマンドでNode-REDのサービスファイルの場所を調べる。&lt;/p&gt;
 
@@ -77,7 +77,7 @@ Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/loc
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
+&lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34; target=&#34;_blank&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
 一部わかりにくいところがあったので、そこだけ説明する。&lt;/p&gt;
 
 &lt;h2 id=&#34;初期設定&#34;&gt;初期設定&lt;/h2&gt;

@@ -74,7 +74,7 @@
 &lt;/table&gt;
 
 &lt;p&gt;Lambda関数のコードは以下のようにした。
-ちなみにこれは、&lt;a href=&#34;https://github.com/alexa/skill-sample-nodejs-hello-world&#34;&gt;alexa/skill-sample-nodejs-hello-world&lt;/a&gt;に公開されているindex.jsから必要な部分だけを残した。&lt;/p&gt;
+ちなみにこれは、&lt;a href=&#34;https://github.com/alexa/skill-sample-nodejs-hello-world&#34; target=&#34;_blank&#34;&gt;alexa/skill-sample-nodejs-hello-world&lt;/a&gt;に公開されているindex.jsから必要な部分だけを残した。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;use strict&#39;;
 const Alexa = require(&amp;quot;alexa-sdk&amp;quot;);
@@ -106,7 +106,7 @@ const handlers = {
 
 &lt;h2 id=&#34;amazon-developper&#34;&gt;Amazon Developper&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://developer.amazon.com/&#34;&gt;Amazon Developper Services and Technologies&lt;/a&gt;にアクセスして、右上のサインインからアカウントを作成する。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://developer.amazon.com/&#34; target=&#34;_blank&#34;&gt;Amazon Developper Services and Technologies&lt;/a&gt;にアクセスして、右上のサインインからアカウントを作成する。&lt;/p&gt;
 
 &lt;h2 id=&#34;スキル作成&#34;&gt;スキル作成&lt;/h2&gt;
 
