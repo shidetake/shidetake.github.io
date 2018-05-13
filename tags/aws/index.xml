@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aws on blog</title>
+    <link>http://shidetake.com/tags/aws/</link>
+    <description>Recent content in Aws on blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 13 May 2018 17:45:37 +0900</lastBuildDate>
+    
+        <atom:link href="http://shidetake.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWSのRDSインスタンスをCLIで操作</title>
+      <link>http://shidetake.com/aws_cli/</link>
+      <pubDate>Sun, 13 May 2018 17:45:37 +0900</pubDate>
+      
+      <guid>http://shidetake.com/aws_cli/</guid>
+      <description>&lt;p&gt;AWSのRDSは使っていないときは停止しないともったいない。
+とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
+&lt;code&gt;aws&lt;/code&gt;コマンドは既に導入しているという前提。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;インスタンス名の取得&#34;&gt;インスタンス名の取得&lt;/h1&gt;
+
+&lt;p&gt;操作するインスタンスの名前を取得する。
+自分で名前を付けているので、わざわざ取得しなくても知っていると思うが。
+飛ばして次に進んでも良い。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws rds describe-db-instances
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とすると、ずらずらとインスタンスの情報が出てくる。
+&lt;code&gt;DBInstanceIdentifier&lt;/code&gt;という項目に名前がある。&lt;/p&gt;
+
+&lt;h1 id=&#34;停止&#34;&gt;停止&lt;/h1&gt;
+
+&lt;p&gt;以下のコマンドで停止できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws rds stop-db-instance --db-instance-identifier $instance
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;開始&#34;&gt;開始&lt;/h1&gt;
+
+&lt;p&gt;以下のコマンドで開始できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws rds start-db-instance --db-instance-identifier $instance
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;GitHubに&lt;a href=&#34;https://github.com/shidetake/aws/blob/master/aws_rds.sh&#34;&gt;簡単に操作するためのシェルスクリプト&lt;/a&gt;を置いたので、参考にして欲しい。
+インスタンスの名前と状態のリスト表示、全インスタンスの開始、全インスタンスの停止ができる（はず）。
+手元の環境だと1インスタンスしかないので、複数インスタンスがある場合のテストはしていない。&lt;/p&gt;
+
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://blog.manabusakai.com/2017/06/stopping-rds/&#34;&gt;RDS の停止機能を使ってコストを半分まで削減してみた&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Alexa Skills</title>
+    <title>AWSのRDSインスタンスをCLIで操作</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/tags/alexa-skills/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="AWSのRDSは使っていないときは停止しないともったいない。
+とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
+awsコマンドは既に導入しているという前提。
+
+">
+    <meta property="og:description" content="AWSのRDSは使っていないときは停止しないともったいない。
+とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
+awsコマンドは既に導入しているという前提。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Alexa Skills">
-    <meta property="og:url" content="/tags/alexa-skills/">
+    <meta property="og:title" content="AWSのRDSインスタンスをCLIで操作">
+    <meta property="og:url" content="/aws_cli/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="AWSのRDSは使っていないときは停止しないともったいない。
+とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
+awsコマンドは既に導入しているという前提。
+
+">
     
     
 
@@ -81,7 +95,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -99,7 +113,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,44 +222,26 @@ ga('send', 'pageview');
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      AWSのRDSインスタンスをCLIで操作
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/alexa_skill_1/">
-          Alexa SkillsでHello worldする
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-12-04T22:44:29&#43;09:00">
+      <time itemprop="datePublished" datetime="2018-05-13T17:45:37&#43;09:00">
         
-  December 4, 2017
+  May 13, 2018
 
       </time>
     
@@ -261,26 +257,126 @@ ga('send', 'pageview');
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Amazon Echoが届いたので、早速スキルを作ってみることにした。
-やはり最初はHello world。</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>AWSのRDSは使っていないときは停止しないともったいない。
+とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
+<code>aws</code>コマンドは既に導入しているという前提。</p>
 
 <p></p>
-      <p>
-        <a href="http://shidetake.com/alexa_skill_1/" class="postShorten-excerpt_link link">Continue reading</a>
+
+<h1 id="インスタンス名の取得">インスタンス名の取得</h1>
+
+<p>操作するインスタンスの名前を取得する。
+自分で名前を付けているので、わざわざ取得しなくても知っていると思うが。
+飛ばして次に進んでも良い。</p>
+
+<pre><code class="language-bash">$ aws rds describe-db-instances
+</code></pre>
+
+<p>とすると、ずらずらとインスタンスの情報が出てくる。
+<code>DBInstanceIdentifier</code>という項目に名前がある。</p>
+
+<h1 id="停止">停止</h1>
+
+<p>以下のコマンドで停止できる。</p>
+
+<pre><code class="language-bash">$ aws rds stop-db-instance --db-instance-identifier $instance
+</code></pre>
+
+<h1 id="開始">開始</h1>
+
+<p>以下のコマンドで開始できる。</p>
+
+<pre><code class="language-bash">$ aws rds start-db-instance --db-instance-identifier $instance
+</code></pre>
+
+<p>GitHubに<a href="https://github.com/shidetake/aws/blob/master/aws_rds.sh">簡単に操作するためのシェルスクリプト</a>を置いたので、参考にして欲しい。
+インスタンスの名前と状態のリスト表示、全インスタンスの開始、全インスタンスの停止ができる（はず）。
+手元の環境だと1インスタンスしかないので、複数インスタンスがある場合のテストはしていない。</p>
+
+<h1 id="参考">参考</h1>
+
+<p><a href="https://blog.manabusakai.com/2017/06/stopping-rds/">RDS の停止機能を使ってコストを半分まで削減してみた</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/aws/">AWS</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/big_image/" data-tooltip="画像を任意のサイズ（容量）に変換する">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 shidetake. All Rights Reserved
@@ -288,6 +384,64 @@ ga('send', 'pageview');
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/big_image/" data-tooltip="画像を任意のサイズ（容量）に変換する">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -591,6 +745,32 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/aws_cli\/';
+          
+            this.page.identifier = '\/aws_cli\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
