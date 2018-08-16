@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.1-BETA">
-    <title>WindowsでもLinuxでも動くMakefileを書く</title>
+    <title>Yahoo!ジオコーダAPIで住所から経度緯度を取得</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -30,28 +30,19 @@
     
 
     
-    <meta name="description" content="シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。
-
-WindowsのmakeはMinGWのものを想定している。
+    <meta name="description" content="Rubyを使う。
 
 ">
-    <meta property="og:description" content="シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。
-
-WindowsのmakeはMinGWのものを想定している。
+    <meta property="og:description" content="Rubyを使う。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="WindowsでもLinuxでも動くMakefileを書く">
-    <meta property="og:url" content="/make_win/">
+    <meta property="og:title" content="Yahoo!ジオコーダAPIで住所から経度緯度を取得">
+    <meta property="og:url" content="/geoapi/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。
-
-WindowsのmakeはMinGWのものを想定している。
+    <meta name="twitter:description" content="Rubyを使う。
 
 ">
     
@@ -236,15 +227,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      WindowsでもLinuxでも動くMakefileを書く
+      Yahoo!ジオコーダAPIで住所から経度緯度を取得
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-05T08:38:17&#43;09:00">
+      <time itemprop="datePublished" datetime="2018-08-16T15:56:34&#43;09:00">
         
-  November 5, 2017
+  August 16, 2018
 
       </time>
     
@@ -264,95 +255,58 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。</p>
-
-<p>Windowsの<code>make</code>はMinGWのものを想定している。</p>
+              <p>Rubyを使う。</p>
 
 <p></p>
 
-<h2 id="linux専用">Linux専用</h2>
+<h1 id="アプリケーションid登録">アプリケーションID登録</h1>
 
-<pre><code class="language-make">install:
-    ln -s ~/dotfiles/.vimrc ~/.vimrc;
+<p>まずはAPIを使うための登録。
+<a href="https://e.developer.yahoo.co.jp/register" target="_blank">アプリケーション登録ページ</a>から登録できる。
+デフォルトの設定のまま登録でOK。</p>
+
+<p><a href="https://www.yahoo-help.jp/app/answers/detail/p/537/a_id/43398" target="_blank">アプリケーションIDを登録する</a>に記入例があるので、
+ちゃんとした登録をする場合は参考になる。</p>
+
+<h1 id="お試しアクセス">お試しアクセス</h1>
+
+<p>登録時に表示されるClient IDを使って、以下のURLにブラウザからアクセスする。
+<code>CLIENT_ID</code>という部分を自分のClient IDに置き換えること。
+東京都の各区の情報が表示されれば成功。</p>
+
+<pre><code class="language-bash">https://map.yahooapis.jp/geocode/V1/geoCoder?appid=CLIENT_ID&amp;query=東京都
 </code></pre>
 
-<p>シンボリックリンクを作るコマンドをそのまま書いただけ。</p>
+<h1 id="rubyでアクセス">Rubyでアクセス</h1>
 
-<h2 id="windows専用">Windows専用</h2>
+<p>上と同じく、<code>CLIENT_ID</code>という部分を自分のClient IDに置き換えること。</p>
 
-<pre><code class="language-make">install:
-    cmd.exe /C mklink $(HOME)\.vimrc $(HOME)\dotfiles\.vimrc
-</code></pre>
+<pre><code class="language-ruby">require 'json'
+require 'open-uri'
 
-<p>Windowsのコマンドを使う場合は、<code>cmd.exe /C</code>を接頭語のように付ける。
-これで、<code>mklink</code>コマンドが使えるようになる。</p>
+CLIENT_ID = 'CLIENT_ID'
 
-<p>Linux用と比べて以下の点が異なっている</p>
+class Geocoder
+  def exec
 
-<ul>
-<li>sourceとtargetの順番が逆</li>
-<li>パスのディレクトリ区切りがバックスラッシュ</li>
-<li>ホームディレクトリの指定がチルダではなく<code>$(HOME)</code>
+    base_url = 'https://map.yahooapis.jp/geocode/V1/geoCoder'
+    params = {
+      'appid' =&gt; CLIENT_ID,
+      'query' =&gt; '東京都',
+      'results' =&gt; '1',
+      'output' =&gt; 'json',
+    }
+    url = base_url + '?' + URI.encode_www_form(params)
 
-<ul>
-<li>環境変数<code>HOME</code>をあらかじめ指定する必要があるかも</li>
-</ul></li>
-</ul>
+    res = JSON.parse(open(url).read)
+    lon, lat = res['Feature'][0]['Geometry']['Coordinates'].split(',')
+    puts &quot;経度: #{lon}&quot;
+    puts &quot;緯度: #{lat}&quot;
+  end
+end
 
-<h2 id="両対応版">両対応版</h2>
-
-<p>愚直に書くと以下のようになる。
-<code>ifeq ($(OS),Windows_NT)</code>でWindowsかどうかを分岐させている。</p>
-
-<pre><code class="language-make">install:
-ifeq ($(OS),Windows_NT)
-    ln -s ~/dotfiles/.vimrc ~/.vimrc;
-else
-    cmd.exe /C mklink $(HOME)\.vimrc $(HOME)\dotfiles\.vimrc
-endif
-</code></pre>
-
-<p>この書き方だと、シンボリックリンクを張るファイルが増えると、Linux用とWindows用のそれぞれに追記する必要がある。
-以下のように書くとスマート。</p>
-
-<pre><code class="language-make">install:
-	make link SOURCE:=$(HOME)/dotfiles/.vimrc TARGET:=$(HOME)/.vimrc
-
-link:
-ifeq ($(OS),Windows_NT)
-    cmd.exe /C mklink $(subst /,\,$(TARGET)) $(subst /,\,$(SOURCE))
-else
-    ln -s $(SOURCE) $(TARGET)
-endif
-</code></pre>
-
-<p><code>link</code>というターゲットを用意して、関数のように使っている。
-<code>link</code>の中でOSを分岐させることで、それを呼び出す側を統一できるというわけ。</p>
-
-<p><code>subst</code>というのは<code>make</code>の文字列置換関数。スラッシュをバックスラッシュに置き換えるために使っている。</p>
-
-<h2 id="おまけ">おまけ</h2>
-
-<p>ここまででほぼ完成。</p>
-
-<p>最後に鬱陶しい出力を抑えるために、<code>--no-print-directory</code>したり、シンボリックリンクが既に存在している場合にはコマンドをスキップする仕組みを入れたものを載せる
-（解説は割愛）。</p>
-
-<pre><code class="language-make">MAKEFLAGS += --no-print-directory
-
-install:
-	make link SOURCE:=$(HOME)/dotfiles/.vimrc TARGET:=$(HOME)/.vimrc
-
-link:
-ifeq ($(OS),Windows_NT)
-	@cmd.exe /C if not exist $(subst /,\,$(TARGET)) \
-		cmd.exe /C mklink $(subst /,\,$(TARGET)) $(subst /,\,$(SOURCE))
-else
-	@if [ ! -e $(TARGET) ]; then\
-		ln -s $(SOURCE) $(TARGET);\
-	fi
-endif
+geocoder = Geocoder.new
+geocoder.exec
 </code></pre>
               
             </div>
@@ -365,11 +319,9 @@ endif
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/makefile/">Makefile</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
 
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/windows/">Windows</a>
-
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/linux/">Linux</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ruby/">Ruby</a>
 
                   </div>
                 
@@ -381,7 +333,7 @@ endif
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ebroad/" data-tooltip="マンション付属の光回線が早くなった話">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -389,7 +341,7 @@ endif
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_difftool/" data-tooltip="gitのdiffをvimdiffで見る">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/aws_cli/" data-tooltip="AWSのRDSインスタンスをCLIで操作">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -447,7 +399,7 @@ endif
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ebroad/" data-tooltip="マンション付属の光回線が早くなった話">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -455,7 +407,7 @@ endif
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_difftool/" data-tooltip="gitのdiffをvimdiffで見る">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/aws_cli/" data-tooltip="AWSのRDSインスタンスをCLIで操作">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -805,9 +757,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/make_win\/';
+          this.page.url = 'http:\/\/shidetake.com\/geoapi\/';
           
-            this.page.identifier = '\/make_win\/'
+            this.page.identifier = '\/geoapi\/'
           
         };
         (function() {

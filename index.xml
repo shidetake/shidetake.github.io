@@ -6,10 +6,71 @@
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 May 2018 17:45:37 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 16 Aug 2018 15:56:34 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Yahoo!ジオコーダAPIで住所から経度緯度を取得</title>
+      <link>http://shidetake.com/geoapi/</link>
+      <pubDate>Thu, 16 Aug 2018 15:56:34 +0900</pubDate>
+      
+      <guid>http://shidetake.com/geoapi/</guid>
+      <description>&lt;p&gt;Rubyを使う。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;アプリケーションid登録&#34;&gt;アプリケーションID登録&lt;/h1&gt;
+
+&lt;p&gt;まずはAPIを使うための登録。
+&lt;a href=&#34;https://e.developer.yahoo.co.jp/register&#34; target=&#34;_blank&#34;&gt;アプリケーション登録ページ&lt;/a&gt;から登録できる。
+デフォルトの設定のまま登録でOK。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.yahoo-help.jp/app/answers/detail/p/537/a_id/43398&#34; target=&#34;_blank&#34;&gt;アプリケーションIDを登録する&lt;/a&gt;に記入例があるので、
+ちゃんとした登録をする場合は参考になる。&lt;/p&gt;
+
+&lt;h1 id=&#34;お試しアクセス&#34;&gt;お試しアクセス&lt;/h1&gt;
+
+&lt;p&gt;登録時に表示されるClient IDを使って、以下のURLにブラウザからアクセスする。
+&lt;code&gt;CLIENT_ID&lt;/code&gt;という部分を自分のClient IDに置き換えること。
+東京都の各区の情報が表示されれば成功。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;https://map.yahooapis.jp/geocode/V1/geoCoder?appid=CLIENT_ID&amp;amp;query=東京都
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;rubyでアクセス&#34;&gt;Rubyでアクセス&lt;/h1&gt;
+
+&lt;p&gt;上と同じく、&lt;code&gt;CLIENT_ID&lt;/code&gt;という部分を自分のClient IDに置き換えること。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;json&#39;
+require &#39;open-uri&#39;
+
+CLIENT_ID = &#39;CLIENT_ID&#39;
+
+class Geocoder
+  def exec
+
+    base_url = &#39;https://map.yahooapis.jp/geocode/V1/geoCoder&#39;
+    params = {
+      &#39;appid&#39; =&amp;gt; CLIENT_ID,
+      &#39;query&#39; =&amp;gt; &#39;東京都&#39;,
+      &#39;results&#39; =&amp;gt; &#39;1&#39;,
+      &#39;output&#39; =&amp;gt; &#39;json&#39;,
+    }
+    url = base_url + &#39;?&#39; + URI.encode_www_form(params)
+
+    res = JSON.parse(open(url).read)
+    lon, lat = res[&#39;Feature&#39;][0][&#39;Geometry&#39;][&#39;Coordinates&#39;].split(&#39;,&#39;)
+    puts &amp;quot;経度: #{lon}&amp;quot;
+    puts &amp;quot;緯度: #{lat}&amp;quot;
+  end
+end
+
+geocoder = Geocoder.new
+geocoder.exec
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>AWSのRDSインスタンスをCLIで操作</title>

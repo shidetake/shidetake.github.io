@@ -1,9 +1,5 @@
 
 
-  
-    
-  
-
 
   
 
@@ -22,38 +18,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.1-BETA">
-    <title>WindowsでもLinuxでも動くMakefileを書く</title>
+    <title>Api</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/tags/api/index.xml">
+    
 
     
-    <meta name="description" content="シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。
-
-WindowsのmakeはMinGWのものを想定している。
-
-">
-    <meta property="og:description" content="シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。
-
-WindowsのmakeはMinGWのものを想定している。
-
-">
+    <meta name="description" content="Hugo tranquilpeak theme demo">
+    <meta property="og:description" content="Hugo tranquilpeak theme demo">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="WindowsでもLinuxでも動くMakefileを書く">
-    <meta property="og:url" content="/make_win/">
+    <meta property="og:title" content="Api">
+    <meta property="og:url" content="/tags/api/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。
-
-WindowsのmakeはMinGWのものを想定している。
-
-">
+    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
     
     
 
@@ -98,7 +81,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="5">
+      <header id="header" data-behavior="2">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -116,7 +99,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="5">
+      <nav id="sidebar" data-behavior="2">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -225,26 +208,44 @@ ga('send', 'pageview');
 </nav>
 
       
+        
 
-      <div id="main" data-behavior="5"
+      
+      <div id="main" data-behavior="2"
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
   
-    <h1 class="post-title" itemprop="headline">
-      WindowsでもLinuxでも動くMakefileを書く
-    </h1>
+    
+      
+        
+      
+    
   
+
+
   
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/gmail_api_1/">
+          RubyでGmail本文を取得する 1
+        </a>
+      </h1>
+      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-05T08:38:17&#43;09:00">
+      <time itemprop="datePublished" datetime="2017-06-20T22:55:21&#43;09:00">
         
-  November 5, 2017
+  June 20, 2017
 
       </time>
     
@@ -260,179 +261,40 @@ ga('send', 'pageview');
 
   </div>
 
-</div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <p>シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
-今回はシンボリックリンクを作成するコマンドを例にして説明する。</p>
-
-<p>Windowsの<code>make</code>はMinGWのものを想定している。</p>
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>GmailのAPIをRubyで使う方法を何回かに分けて書く。</p>
 
 <p></p>
-
-<h2 id="linux専用">Linux専用</h2>
-
-<pre><code class="language-make">install:
-    ln -s ~/dotfiles/.vimrc ~/.vimrc;
-</code></pre>
-
-<p>シンボリックリンクを作るコマンドをそのまま書いただけ。</p>
-
-<h2 id="windows専用">Windows専用</h2>
-
-<pre><code class="language-make">install:
-    cmd.exe /C mklink $(HOME)\.vimrc $(HOME)\dotfiles\.vimrc
-</code></pre>
-
-<p>Windowsのコマンドを使う場合は、<code>cmd.exe /C</code>を接頭語のように付ける。
-これで、<code>mklink</code>コマンドが使えるようになる。</p>
-
-<p>Linux用と比べて以下の点が異なっている</p>
-
-<ul>
-<li>sourceとtargetの順番が逆</li>
-<li>パスのディレクトリ区切りがバックスラッシュ</li>
-<li>ホームディレクトリの指定がチルダではなく<code>$(HOME)</code>
-
-<ul>
-<li>環境変数<code>HOME</code>をあらかじめ指定する必要があるかも</li>
-</ul></li>
-</ul>
-
-<h2 id="両対応版">両対応版</h2>
-
-<p>愚直に書くと以下のようになる。
-<code>ifeq ($(OS),Windows_NT)</code>でWindowsかどうかを分岐させている。</p>
-
-<pre><code class="language-make">install:
-ifeq ($(OS),Windows_NT)
-    ln -s ~/dotfiles/.vimrc ~/.vimrc;
-else
-    cmd.exe /C mklink $(HOME)\.vimrc $(HOME)\dotfiles\.vimrc
-endif
-</code></pre>
-
-<p>この書き方だと、シンボリックリンクを張るファイルが増えると、Linux用とWindows用のそれぞれに追記する必要がある。
-以下のように書くとスマート。</p>
-
-<pre><code class="language-make">install:
-	make link SOURCE:=$(HOME)/dotfiles/.vimrc TARGET:=$(HOME)/.vimrc
-
-link:
-ifeq ($(OS),Windows_NT)
-    cmd.exe /C mklink $(subst /,\,$(TARGET)) $(subst /,\,$(SOURCE))
-else
-    ln -s $(SOURCE) $(TARGET)
-endif
-</code></pre>
-
-<p><code>link</code>というターゲットを用意して、関数のように使っている。
-<code>link</code>の中でOSを分岐させることで、それを呼び出す側を統一できるというわけ。</p>
-
-<p><code>subst</code>というのは<code>make</code>の文字列置換関数。スラッシュをバックスラッシュに置き換えるために使っている。</p>
-
-<h2 id="おまけ">おまけ</h2>
-
-<p>ここまででほぼ完成。</p>
-
-<p>最後に鬱陶しい出力を抑えるために、<code>--no-print-directory</code>したり、シンボリックリンクが既に存在している場合にはコマンドをスキップする仕組みを入れたものを載せる
-（解説は割愛）。</p>
-
-<pre><code class="language-make">MAKEFLAGS += --no-print-directory
-
-install:
-	make link SOURCE:=$(HOME)/dotfiles/.vimrc TARGET:=$(HOME)/.vimrc
-
-link:
-ifeq ($(OS),Windows_NT)
-	@cmd.exe /C if not exist $(subst /,\,$(TARGET)) \
-		cmd.exe /C mklink $(subst /,\,$(TARGET)) $(subst /,\,$(SOURCE))
-else
-	@if [ ! -e $(TARGET) ]; then\
-		ln -s $(SOURCE) $(TARGET);\
-	fi
-endif
-</code></pre>
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
-            
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/makefile/">Makefile</a>
-
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/windows/">Windows</a>
-
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/linux/">Linux</a>
-
-                  </div>
-                
-              
-            
-            
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ebroad/" data-tooltip="マンション付属の光回線が早くなった話">
-              
-                <i class="fa fa-angle-left"></i>
-                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-              </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_difftool/" data-tooltip="gitのdiffをvimdiffで見る">
-              
-                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
+      <p>
+        <a href="http://shidetake.com/gmail_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
         
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+            
+  <div class="pagination-bar">
+    <ul class="pagination">
       
-      
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
-            <i class="fa fa-comment-o"></i>
+        <li class="pagination-prev">
+          <a class="btn btn--default btn--small" href="http://shidetake.com/tags/api/">
+            <i class="fa fa-angle-left text-base icon-mr"></i>
+            <span>NEWER POSTS</span>
           </a>
         </li>
       
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
+      
+      <li class="pagination-number">page 2 of 2</li>
     </ul>
   </div>
 
 
-            
-              
-                <div id="disqus_thread">
-  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-              
-            
-          </div>
-        </article>
+          </section>
+        
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 shidetake. All Rights Reserved
@@ -440,64 +302,6 @@ endif
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ebroad/" data-tooltip="マンション付属の光回線が早くなった話">
-              
-                <i class="fa fa-angle-left"></i>
-                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-              </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/git_difftool/" data-tooltip="gitのdiffをvimdiffで見る">
-              
-                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
-        
-      
-      
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
-            <i class="fa fa-comment-o"></i>
-          </a>
-        </li>
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
-  <ul class="share-options">
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -800,32 +604,6 @@ $(document).ready(function() {
   });
 });
 </script>
-
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/make_win\/';
-          
-            this.page.identifier = '\/make_win\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'shidetake-com';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-    
-  
 
 
 

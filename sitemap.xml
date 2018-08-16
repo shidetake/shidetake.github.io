@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/geoapi/</loc>
+    <lastmod>2018-08-16T15:56:34+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/aws_cli/</loc>
     <lastmod>2018-05-13T17:45:37+09:00</lastmod>
   </url>
@@ -211,7 +216,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/api/</loc>
-    <lastmod>2018-05-13T17:45:37+09:00</lastmod>
+    <lastmod>2018-08-16T15:56:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -329,7 +334,7 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2018-05-13T17:45:37+09:00</lastmod>
+    <lastmod>2018-08-16T15:56:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -347,7 +352,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/ruby/</loc>
-    <lastmod>2017-09-17T16:36:18+00:00</lastmod>
+    <lastmod>2018-08-16T15:56:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -387,7 +392,7 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2018-05-13T17:45:37+09:00</lastmod>
+    <lastmod>2018-08-16T15:56:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -405,7 +410,7 @@
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2018-05-13T17:45:37+09:00</lastmod>
+    <lastmod>2018-08-16T15:56:34+09:00</lastmod>
     <priority>0</priority>
   </url>
   

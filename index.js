@@ -1,5 +1,10 @@
 var data = [
 {
+url: "http://shidetake.com/geoapi/",
+title: "Yahoo!ジオコーダAPIで住所から経度緯度を取得",
+content: "[Rubyを使う。 アプリケーションID登録 まずはAPIを使うための登録。 アプリケーション登録ページから登録できる。 デフォルトの設定のまま登録でOK。 アプリケーションIDを登録するに記入例があるので、 ちゃんとした登録をする場合は参考になる。 お試しアクセス 登録時に表示されるClient IDを使って、以下のURLにブラウザからアクセスする。 CLIENT_IDという部分を自分のClient IDに置き換えること。 東京都の各区の情報が表示されれば成功。 https://map.yahooapis.jp/geocode/V1/geoCoder?appid=CLIENT_ID&amp;amp;query=東京都 Rubyでアクセス 上と同じく、CLIENT_IDという部分を自分のClient IDに置き換えること。 require &#39;json&#39; require &#39;open-uri&#39; CLIENT_ID = &#39;CLIENT_ID&#39; class Geocoder def exec base_url = &#39;https://map.yahooapis.jp/geocode/V1/geoCoder&#39; params = { &#39;appid&#39; =&amp;gt; CLIENT_ID, &#39;query&#39; =&amp;gt; &#39;東京都&#39;, &#39;results&#39; =&amp;gt; &#39;1&#39;, &#39;output&#39; =&amp;gt; &#39;json&#39;, } url = base_url &#43; &#39;?&#39; &#43; URI.encode_www_form(params) res = JSON.parse(open(url).read) lon, lat = res[&#39;Feature&#39;][0][&#39;Geometry&#39;][&#39;Coordinates&#39;].split(&#39;,&#39;) puts &amp;quot;経度: #{lon}&amp;quot; puts &amp;quot;緯度: #{lat}&amp;quot; end end geocoder = Geocoder.new geocoder.exec]"
+}
+,{
 url: "http://shidetake.com/aws_cli/",
 title: "AWSのRDSインスタンスをCLIで操作",
 content: "[AWSのRDSは使っていないときは停止しないともったいない。 とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。 awsコマンドは既に導入しているという前提。 インスタンス名の取得 操作するインスタンスの名前を取得する。 自分で名前を付けているので、わざわざ取得しなくても知っていると思うが。 飛ばして次に進んでも良い。 $ aws rds describe-db-instances とすると、ずらずらとインスタンスの情報が出てくる。 DBInstanceIdentifierという項目に名前がある。 停止 以下のコマンドで停止できる。 $ aws rds stop-db-instance --db-instance-identifier $instance 開始 以下のコマンドで開始できる。 $ aws rds start-db-instance --db-instance-identifier $instance GitHubに簡単に操作するためのシェルスクリプトを置いたので、参考にして欲しい。 インスタンスの名前と状態のリスト表示、全インスタンスの開始、全インスタンスの停止ができる（はず）。 手元の環境だと1インスタンスしかないので、複数インスタンスがある場合のテストはしていない。 参考 RDS の停止機能を使ってコストを半分まで削減してみた]"
