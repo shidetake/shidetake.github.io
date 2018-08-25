@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Ruby</title>
+    <title>地域ごとのマンション単価をGoogleマップで見る</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
     <link rel="icon" href="http://shidetake.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://shidetake.com/tags/ruby/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="最近、新築マンションの購入を検討し始めた。
+そこで気になるのが、周辺の相場だ。
+ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。
+
+">
+    <meta property="og:description" content="最近、新築マンションの購入を検討し始めた。
+そこで気になるのが、周辺の相場だ。
+ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Ruby">
-    <meta property="og:url" content="/tags/ruby/">
+    <meta property="og:title" content="地域ごとのマンション単価をGoogleマップで見る">
+    <meta property="og:url" content="/reins_map/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="最近、新築マンションの購入を検討し始めた。
+そこで気になるのが、周辺の相場だ。
+ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。
+
+">
     
     
 
@@ -47,6 +61,8 @@
       <meta property="og:image" content="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=640">
     
 
+    
+      <meta property="og:image" content="https://ift.tt/2BIyBPp">
     
     
     
@@ -81,7 +97,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://shidetake.com/">blog</a>
@@ -99,7 +115,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -208,35 +224,21 @@ ga('send', 'pageview');
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
+    <h1 class="post-title" itemprop="headline">
+      地域ごとのマンション単価をGoogleマップで見る
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/reins_map/">
-          地域ごとのマンション単価をGoogleマップで見る
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2018-08-25T17:40:38&#43;09:00">
@@ -257,401 +259,114 @@ ga('send', 'pageview');
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>最近、新築マンションの購入を検討し始めた。
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>最近、新築マンションの購入を検討し始めた。
 そこで気になるのが、周辺の相場だ。
 ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。</p>
 
 <p></p>
-      <p>
-        <a href="http://shidetake.com/reins_map/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="http://shidetake.com/reins_map/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://ift.tt/2BIyBPp"/>
-      </div>
-    </a>
-  
-</article>
 
+<p>新築マンションは似たような地域で同時に建つことは稀なので、
+中古マンション価格から推測する。</p>
+
+<p>中古マンションは売出し価格と成約価格に乖離があることが珍しくないので、
+できれば実態に近い成約価格を使いたい。</p>
+
+<p><a href="http://www.contract.reins.or.jp" target="_blank">REINS Market Information</a>というサイトでは、
+地域ごとのマンション・戸建の成約価格を調べることができる。</p>
+
+<p>これを使って、Googleマップにインポート可能な形式のデータを作成する。</p>
+
+<h1 id="スクリーンショット">スクリーンショット</h1>
+
+<p>完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。
+<img src="https://ift.tt/2BIyBPp" alt="image" /></p>
+
+<p>東京都心の単価は高すぎてサチってしまっている。
+本来買いたいレンジが単価100万以下なのでしょうがない。</p>
+
+<h1 id="成果物">成果物</h1>
+
+<p>GitHubに<a href="https://github.com/shidetake/reins_map" target="_blank">reins_map</a>というリポジトリを作成して、成果物をおいた。
+使い方等はREADMEを読んでほしい。Rubyを使った。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
               
-  
-    
-      
-        
-      
-    
-  
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ruby/">Ruby</a>
 
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/geoapi/">
-          Yahoo!ジオコーダAPIで住所から経度緯度を取得
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-08-16T15:56:34&#43;09:00">
-        
-  August 16, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Rubyを使う。</p>
-
-<p></p>
-      <p>
-        <a href="http://shidetake.com/geoapi/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                  </div>
+                
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/stock_trendline_1/">
-          株価チャートからトレンドラインを引く 1
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-09-17T16:36:18Z">
-        
-  September 17, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>以前、<a href="../google_finance_api/">Google Finance APIにより株価を取得する方法</a>を書いた。
-このデータからトレンドラインを引くスクリプトを作ろうと思う。</p>
-
-<p>まずは、トレンドラインを引くためのポイントを選択する。</p>
-
-<p></p>
-      <p>
-        <a href="http://shidetake.com/stock_trendline_1/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
             
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/google_finance_api/">
-          Google Finance APIを使って株価チャートを作成
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-09-04T23:14:36Z">
-        
-  September 4, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
-手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
-まずは普通の株価チャートを描いてみた。</p>
-
-<p>そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
-色々自由にカスタマイズするには自分で作ったほうがいいかなと。</p>
-
-<p></p>
-      <p>
-        <a href="http://shidetake.com/google_finance_api/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--disabled">
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/google_photo_api_2/">
-          Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-08-01T22:41:29Z">
-        
-  August 1, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p><a href="../google_photo_api_1/">前回</a>の続き。
-今回は任意のアルバムから写真の情報を取得する。
-</p>
-      <p>
-        <a href="http://shidetake.com/google_photo_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/google_photo_api_1/">
-          Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-07-30T22:56:40Z">
-        
-  July 30, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
-あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-</p>
-      <p>
-        <a href="http://shidetake.com/google_photo_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/geoapi/" data-tooltip="Yahoo!ジオコーダAPIで住所から経度緯度を取得">
               
-  
-    
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
       
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/gmail_api_2/">
-          RubyでGmail本文を取得する 2
-        </a>
-      </h1>
       
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-06-26T22:44:57&#43;09:00">
-        
-  June 26, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。</p>
-
-<p></p>
-      <p>
-        <a href="http://shidetake.com/gmail_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-            
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-      
-        <li class="pagination-next">
-          <a class="btn btn--default btn--small" href="http://shidetake.com/tags/ruby/page/2/">
-            <span>OLDER POSTS</span>
-            <i class="fa fa-angle-right text-base icon-ml"></i>
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
           </a>
         </li>
       
-      <li class="pagination-number">page 1 of 2</li>
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
     </ul>
   </div>
 
 
-          </section>
-        
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 shidetake. All Rights Reserved
@@ -659,6 +374,64 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/geoapi/" data-tooltip="Yahoo!ジオコーダAPIで住所から経度緯度を取得">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -962,6 +735,32 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/shidetake.com\/reins_map\/';
+          
+            this.page.identifier = '\/reins_map\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'shidetake-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

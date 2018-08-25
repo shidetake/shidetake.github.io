@@ -6,10 +6,47 @@
     <description>Recent content in Posts on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Aug 2018 15:56:34 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 25 Aug 2018 17:40:38 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>地域ごとのマンション単価をGoogleマップで見る</title>
+      <link>http://shidetake.com/reins_map/</link>
+      <pubDate>Sat, 25 Aug 2018 17:40:38 +0900</pubDate>
+      
+      <guid>http://shidetake.com/reins_map/</guid>
+      <description>&lt;p&gt;最近、新築マンションの購入を検討し始めた。
+そこで気になるのが、周辺の相場だ。
+ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;新築マンションは似たような地域で同時に建つことは稀なので、
+中古マンション価格から推測する。&lt;/p&gt;
+
+&lt;p&gt;中古マンションは売出し価格と成約価格に乖離があることが珍しくないので、
+できれば実態に近い成約価格を使いたい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.contract.reins.or.jp&#34; target=&#34;_blank&#34;&gt;REINS Market Information&lt;/a&gt;というサイトでは、
+地域ごとのマンション・戸建の成約価格を調べることができる。&lt;/p&gt;
+
+&lt;p&gt;これを使って、Googleマップにインポート可能な形式のデータを作成する。&lt;/p&gt;
+
+&lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
+
+&lt;p&gt;完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。
+&lt;img src=&#34;https://ift.tt/2BIyBPp&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;東京都心の単価は高すぎてサチってしまっている。
+本来買いたいレンジが単価100万以下なのでしょうがない。&lt;/p&gt;
+
+&lt;h1 id=&#34;成果物&#34;&gt;成果物&lt;/h1&gt;
+
+&lt;p&gt;GitHubに&lt;a href=&#34;https://github.com/shidetake/reins_map&#34; target=&#34;_blank&#34;&gt;reins_map&lt;/a&gt;というリポジトリを作成して、成果物をおいた。
+使い方等はREADMEを読んでほしい。Rubyを使った。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Yahoo!ジオコーダAPIで住所から経度緯度を取得</title>

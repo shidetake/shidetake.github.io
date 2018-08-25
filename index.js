@@ -1,5 +1,10 @@
 var data = [
 {
+url: "http://shidetake.com/reins_map/",
+title: "地域ごとのマンション単価をGoogleマップで見る",
+content: "[最近、新築マンションの購入を検討し始めた。 そこで気になるのが、周辺の相場だ。 ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。 新築マンションは似たような地域で同時に建つことは稀なので、 中古マンション価格から推測する。 中古マンションは売出し価格と成約価格に乖離があることが珍しくないので、 できれば実態に近い成約価格を使いたい。 REINS Market Informationというサイトでは、 地域ごとのマンション・戸建の成約価格を調べることができる。 これを使って、Googleマップにインポート可能な形式のデータを作成する。 スクリーンショット 完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。 東京都心の単価は高すぎてサチってしまっている。 本来買いたいレンジが単価100万以下なのでしょうがない。 成果物 GitHubにreins_mapというリポジトリを作成して、成果物をおいた。 使い方等はREADMEを読んでほしい。Rubyを使った。]"
+}
+,{
 url: "http://shidetake.com/geoapi/",
 title: "Yahoo!ジオコーダAPIで住所から経度緯度を取得",
 content: "[Rubyを使う。 アプリケーションID登録 まずはAPIを使うための登録。 アプリケーション登録ページから登録できる。 デフォルトの設定のまま登録でOK。 アプリケーションIDを登録するに記入例があるので、 ちゃんとした登録をする場合は参考になる。 お試しアクセス 登録時に表示されるClient IDを使って、以下のURLにブラウザからアクセスする。 CLIENT_IDという部分を自分のClient IDに置き換えること。 東京都の各区の情報が表示されれば成功。 https://map.yahooapis.jp/geocode/V1/geoCoder?appid=CLIENT_ID&amp;amp;query=東京都 Rubyでアクセス 上と同じく、CLIENT_IDという部分を自分のClient IDに置き換えること。 require &#39;json&#39; require &#39;open-uri&#39; CLIENT_ID = &#39;CLIENT_ID&#39; class Geocoder def exec base_url = &#39;https://map.yahooapis.jp/geocode/V1/geoCoder&#39; params = { &#39;appid&#39; =&amp;gt; CLIENT_ID, &#39;query&#39; =&amp;gt; &#39;東京都&#39;, &#39;results&#39; =&amp;gt; &#39;1&#39;, &#39;output&#39; =&amp;gt; &#39;json&#39;, } url = base_url &#43; &#39;?&#39; &#43; URI.encode_www_form(params) res = JSON.parse(open(url).read) lon, lat = res[&#39;Feature&#39;][0][&#39;Geometry&#39;][&#39;Coordinates&#39;].split(&#39;,&#39;) puts &amp;quot;経度: #{lon}&amp;quot; puts &amp;quot;緯度: #{lat}&amp;quot; end end geocoder = Geocoder.new geocoder.exec]"
