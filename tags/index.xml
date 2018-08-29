@@ -32,7 +32,7 @@
     <item>
       <title>Api</title>
       <link>http://shidetake.com/tags/api/</link>
-      <pubDate>Thu, 16 Aug 2018 15:56:34 +0900</pubDate>
+      <pubDate>Wed, 29 Aug 2018 23:13:09 +0900</pubDate>
       
       <guid>http://shidetake.com/tags/api/</guid>
       <description></description>
@@ -215,6 +215,15 @@
       <pubDate>Sun, 03 Sep 2017 10:27:20 +0000</pubDate>
       
       <guid>http://shidetake.com/tags/scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>http://shidetake.com/tags/shell/</link>
+      <pubDate>Wed, 29 Aug 2018 23:13:09 +0900</pubDate>
+      
+      <guid>http://shidetake.com/tags/shell/</guid>
       <description></description>
     </item>
     

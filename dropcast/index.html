@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.1-BETA">
-    <title>HandBrakeCLIによるDVDリッピング 3</title>
+    <title>Dropboxで自分専用のPodcast配信</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -30,22 +30,31 @@
     
 
     
-    <meta name="description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta name="description" content="最近Podcastにハマっている。
+Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。
+
+その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
+できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。
 
 ">
-    <meta property="og:description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta property="og:description" content="最近Podcastにハマっている。
+Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。
+
+その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
+できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。
 
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="HandBrakeCLIによるDVDリッピング 3">
-    <meta property="og:url" content="/ripping_3/">
+    <meta property="og:title" content="Dropboxで自分専用のPodcast配信">
+    <meta property="og:url" content="/dropcast/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。
+    <meta name="twitter:description" content="最近Podcastにハマっている。
+Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。
+
+その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
+できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。
 
 ">
     
@@ -230,15 +239,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      HandBrakeCLIによるDVDリッピング 3
+      Dropboxで自分専用のPodcast配信
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-07-19T22:36:23&#43;09:00">
+      <time itemprop="datePublished" datetime="2018-08-29T23:13:09&#43;09:00">
         
-  July 19, 2017
+  August 29, 2018
 
       </time>
     
@@ -258,49 +267,71 @@ ga('send', 'pageview');
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><a href="../ripping_2/">前回</a>からの続き。
-これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。</p>
+              <p>最近Podcastにハマっている。
+Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。</p>
+
+<p>その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
+できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。</p>
 
 <p></p>
 
-<h2 id="dvdドライブのパスを取得">DVDドライブのパスを取得</h2>
+<h1 id="動機">動機</h1>
 
-<p><code>diskutil</code>コマンドを使う（たぶんmacOSでしか使えない）。
-DVDをドライブに入れた状態で、</p>
+<p>上でも書いたが、Podcastにハマっているので、それと同じ体験で聞けるととても楽。
+音楽再生用のツールで聞くと、レジューム再生できないだろうし、再生速度も変えられないし、
+普通に音楽聴きたいときにランダム再生でラジオ流れてくるの嫌だし。</p>
 
-<pre><code class="language-bash">diskutil list
+<h1 id="サーバー選定">サーバー選定</h1>
+
+<p>タイトルにも書いたが、Dropboxを使うことにした。
+VPSでも自宅サーバでもなんでもいい気はするが、なんとなく。</p>
+
+<h1 id="dropboxについて">Dropboxについて</h1>
+
+<p>Dropbox APIというものを使って、ファイルのアップロードと、直リンクの取得を行う。
+Dropbox APIの使い方についてはQiitaあたりで探してほしい。</p>
+
+<p>APIを使って取得できるのは共有リンクというもので、直リンクではないのが注意点。
+共有リンクの<code>www.dropbox.com</code>という部分を<code>dl.dropboxusercontent.com</code>に置き換えて、
+末尾にある<code>?dl=0</code>という文字列を削除すると直リンクになる。</p>
+
+<h1 id="配信方法">配信方法</h1>
+
+<p>Podcastというのは、RSSフィードに書かれているリンク先のmp3を引っ張ってくるだけの仕組みなので、
+mp3をDropboxにアップロードして、その直リンクをRSSに書いて、更にそのRSSファイルをDropboxにアップロードすればよい。
+その直リンクを手持ちのPodcastクライアントに読ませれば完成。</p>
+
+<h1 id="スクリプト">スクリプト</h1>
+
+<p>mp3が少ない場合は手動でやってもいいが、今回は100本以上の番組だったので、スクリプト化した。
+GitHubに<a href="https://github.com/shidetake/dropcast" target="_blank">dropcast</a>というリポジトリに、今回作成したスクリプトをおいた。</p>
+
+<ol>
+<li>mp3フォルダに置いたmp3をDropbox APIを使って指定したディレクトリにアップロード</li>
+<li>アップロードしたmp3の直リンクを取得し、それをもとにPodcast用のRSSファイルを生成</li>
+<li>生成したRSSをDropboxにアップロードして、直リンクを標準出力</li>
+</ol>
+
+<p>という処理を一気に実行してくれるシェルスクリプト。
+3行目にDropbox API用のTOKENを入力して、mp3ファイルを用意すればあとは実行するだけ。
+最後に出力されるリンクを、手持ちのPodcastクライアントに入力すればOK。</p>
+
+<p>オプションとしてタイトルとDropbox上のパスを変更できるようにしている。</p>
+
+<h1 id="おまけ">おまけ</h1>
+
+<p>結構いい感じで使えるようになったけど、気になるのがサムネイル画像。
+最初はどうでもいいと思っていたが、ここまで来たら画像まで完璧にしたくなってしまった。
+さすがに番組紹介的な文章はいらないけれど、サムネは欲しい。</p>
+
+<p>ということで、スクリプトには含めてないけれど、サムネイル画像を手動で設定することにした。
+画像もDropboxにアップロードしたものを使う。いつものように直リンクを取得して、RSSファイルの<code>title</code>の下あたりに、</p>
+
+<pre><code class="language-xml">    &lt;itunes:image href=&quot;https://dl.dropboxusercontent.com/s/*/thumbnail.jpg&quot;/&gt;
 </code></pre>
 
-<p>すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。
-NAMEの部分に入れたDVDの名前が表示されているのがあるはず。
-例えば以下のような感じ。</p>
-
-<pre><code class="language-bash">/dev/disk2 (external, physical):
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:                            VIBY_521               *2.0 GB     disk2
-</code></pre>
-
-<p>この場合、<code>/dev/disk2</code>を入力として指定することでDVDから直接リッピングが可能になる。</p>
-
-<pre><code class="language-bash">HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c 1 -i /dev/disk2 -o hoge_1.mkv
-</code></pre>
-
-<p>前回の最後のスクリプトと組み合わせて、</p>
-
-<pre><code class="language-bash">chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk '{gsub(/,/,&quot;&quot;); print $6}'`
-for ((i = 1; i &lt;= $chapter_num; i++)); do
-  HandBrakeCLI -Z 'H.265 MKV 1080p30' --all-audio -s '1,2,3,4,5,6' -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv
-done
-</code></pre>
-
-<p>ここまでで、かなり形になったので今回でラストとする。
-ただ、実はこれだけだと使えないタイプのDVDがある。
-そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。</p>
-
-<h2 id="お約束">お約束</h2>
-
-<p>違法なリッピングを推奨しているわけではないので注意。
-コピーガードされたDVDをリッピングするのはダメ。ぜったい。</p>
+<p>こんな感じで書けばOK。ただしクライアントアプリの作り次第なのかDropboxの問題なのかわからないが、
+反映には結構時間がかかる。RSSファイルの名前を変えて直リンクを生成し直せばすぐに反映される。</p>
               
             </div>
           </div>
@@ -312,7 +343,9 @@ done
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ripping/">Ripping</a>
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/shell/">shell</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
 
                   </div>
                 
@@ -324,7 +357,7 @@ done
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -332,7 +365,7 @@ done
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_2/" data-tooltip="HandBrakeCLIによるDVDリッピング 2">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/reins_map/" data-tooltip="地域ごとのマンション単価をGoogleマップで見る">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -390,7 +423,7 @@ done
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -398,7 +431,7 @@ done
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/ripping_2/" data-tooltip="HandBrakeCLIによるDVDリッピング 2">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/reins_map/" data-tooltip="地域ごとのマンション単価をGoogleマップで見る">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -753,9 +786,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'http:\/\/shidetake.com\/ripping_3\/';
+          this.page.url = 'http:\/\/shidetake.com\/dropcast\/';
           
-            this.page.identifier = '\/ripping_3\/'
+            this.page.identifier = '\/dropcast\/'
           
         };
         (function() {
