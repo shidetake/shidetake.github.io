@@ -6,10 +6,44 @@
     <description>Recent content in Heroku on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Mar 2018 15:37:24 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 28 Oct 2018 11:15:57 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Heroku上のRailsアプリのDBをリセットする</title>
+      <link>http://shidetake.com/heroku_reset/</link>
+      <pubDate>Sun, 28 Oct 2018 11:15:57 +0900</pubDate>
+      
+      <guid>http://shidetake.com/heroku_reset/</guid>
+      <description>&lt;p&gt;HerokuでホスティングしているRailsアプリのDB構造を変えて、
+&lt;code&gt;rails db:migrate:reset&lt;/code&gt;したくなったんだけど、そのままのコマンドではだめだったので調査した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;失敗したときのログがこちら&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rails aborted!
+ActiveRecord::ProtectedEnvironmentError: You are attempting to run a destructive action against your &#39;production&#39; database.
+If you are sure you want to continue, run the same command with the environment variable:
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;どうやら、productionのDBを破壊するようなコマンドはそのままでは通らないらしい。
+ということで、ここに書かれているように、&lt;code&gt;DISABLE_DATABASE_ENVIRONMENT_CHECK=1&lt;/code&gt;にして実行する。以下にようにコマンドに続けて環境変数をセットするだけ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ heroku run rails db:migrate:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちなみに、このようにコマンドに続けて環境変数をセットしただけだと、一時的に環境変数を変えるだけなので安心。
+常に&lt;code&gt;DISABLE_DATABASE_ENVIRONMENT_CHECK=1&lt;/code&gt;にしておきたい場合は、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ heroku config:set DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とすればよいが、危険なので推奨しない。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Herokuの公開URLをコマンドで確認する</title>

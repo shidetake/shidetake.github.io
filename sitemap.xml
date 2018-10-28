@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shidetake.com/heroku_reset/</loc>
+    <lastmod>2018-10-28T11:15:57+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/blu_ripping/</loc>
+    <lastmod>2018-10-03T22:08:51+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shidetake.com/dropcast/</loc>
     <lastmod>2018-08-29T23:13:09+09:00</lastmod>
   </url>
@@ -290,7 +300,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/heroku/</loc>
-    <lastmod>2018-03-10T15:37:24+09:00</lastmod>
+    <lastmod>2018-10-28T11:15:57+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -344,7 +354,13 @@
   
   <url>
     <loc>http://shidetake.com/post/</loc>
-    <lastmod>2018-08-29T23:13:09+09:00</lastmod>
+    <lastmod>2018-10-28T11:15:57+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://shidetake.com/tags/rails/</loc>
+    <lastmod>2018-10-28T11:15:57+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -356,7 +372,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/ripping/</loc>
-    <lastmod>2017-07-19T22:36:23+09:00</lastmod>
+    <lastmod>2018-10-03T22:08:51+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -384,7 +400,7 @@
   
   <url>
     <loc>http://shidetake.com/tags/shell/</loc>
-    <lastmod>2018-08-29T23:13:09+09:00</lastmod>
+    <lastmod>2018-10-03T22:08:51+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -408,7 +424,7 @@
   
   <url>
     <loc>http://shidetake.com/categories/tech/</loc>
-    <lastmod>2018-08-29T23:13:09+09:00</lastmod>
+    <lastmod>2018-10-28T11:15:57+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -426,7 +442,7 @@
   
   <url>
     <loc>http://shidetake.com/</loc>
-    <lastmod>2018-08-29T23:13:09+09:00</lastmod>
+    <lastmod>2018-10-28T11:15:57+09:00</lastmod>
     <priority>0</priority>
   </url>
   

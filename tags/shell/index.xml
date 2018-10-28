@@ -6,10 +6,47 @@
     <description>Recent content in Shell on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Aug 2018 23:13:09 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 03 Oct 2018 22:08:51 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MakeMKVとHandBrakeによるBlu-lay Discリッピング</title>
+      <link>http://shidetake.com/blu_ripping/</link>
+      <pubDate>Wed, 03 Oct 2018 22:08:51 +0900</pubDate>
+      
+      <guid>http://shidetake.com/blu_ripping/</guid>
+      <description>&lt;p&gt;DVDのリッピングについて&lt;a href=&#34;../ripping_1/&#34;&gt;以前&lt;/a&gt;書いたが、ブルーレイに未対応だったので対応した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;
+
+&lt;p&gt;HandBrakeではBlu-rayをそのままリッピングできないので、MakeMKVというソフトを使う。
+mkv形式にしてくれるので、これだけでリッピング完成としてもいいが、
+ほとんど圧縮かけてないようなので、HandBrakeを使って圧縮する。ついでに必要に応じてチャプター毎に分割する。&lt;/p&gt;
+
+&lt;h1 id=&#34;makemkvのインストール&#34;&gt;MakeMKVのインストール&lt;/h1&gt;
+
+&lt;h1 id=&#34;makemkvの使い方&#34;&gt;MakeMKVの使い方&lt;/h1&gt;
+
+&lt;p&gt;GUIもあるが、ここでは&lt;code&gt;makemkvcon&lt;/code&gt;というCUIを使う。
+makemkvconにパスを通した状態で&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;makemkvcon mkv dev:/dev/disk3 all ~/dist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。&lt;code&gt;/dev/disk3&lt;/code&gt;にはBlu-lay Discを入れたドライブを環境に応じて設定する。
+&lt;code&gt;~/dist&lt;/code&gt;にファイルが出力される。&lt;/p&gt;
+
+&lt;h1 id=&#34;handbrakeによる加工&#34;&gt;HandBrakeによる加工&lt;/h1&gt;
+
+&lt;h1 id=&#34;お約束&#34;&gt;お約束&lt;/h1&gt;
+
+&lt;p&gt;違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたDVDをリッピングするのはダメ。ぜったい。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Dropboxで自分専用のPodcast配信</title>
