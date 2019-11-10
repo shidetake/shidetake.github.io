@@ -1,5 +1,10 @@
 var data = [
 {
+url: "http://shidetake.com/blu_ripping/",
+title: "MakeMKVとHandBrakeによるBlu-lay Discリッピング",
+content: "[DVDのリッピングについて以前書いたが、ブルーレイに未対応だったので対応した。 概要 HandBrakeではBlu-rayをそのままリッピングできないので、MakeMKVというソフトを使う。 mkv形式にしてくれるので、これだけでリッピング完成としてもいいが、 ほとんど圧縮かけてないようなので、HandBrakeを使って圧縮する。ついでに必要に応じてチャプター毎に分割する。 MakeMKVのインストール Homebrewには無いので公式サイトからインストーラーを使う。 MakeMKVの使い方 GUIもあるが、ここではmakemkvconというCUIを使う。 おそらく/Applications/MakeMKV.app/Contents/MacOS/makemkvconにあるので、ここにパスを通す。 makemkvcon mkv dev:/dev/disk2 all ~/dist こんな感じ。/dev/disk2にはBlu-lay Discを入れたドライブを環境に応じて設定する。 ~/distにファイルが出力される。 HandBrakeによる加工 このままだとかなり重たいファイルなのと、場合によってはチャプターごとにファイルを分けたいので、 HandBrakeを使って加工する。 これについてはDVDリッピングのときと同じ（入力ファイルをisoでもDVDドライブでもなくMakeMKVで出力したmkvにするだけ） なので割愛する。 お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたBlu-rayをリッピングするのはダメ。ぜったい。]"
+}
+,{
 url: "http://shidetake.com/heroku_reset/",
 title: "Heroku上のRailsアプリのDBをリセットする",
 content: "[HerokuでホスティングしているRailsアプリのDB構造を変えて、 rails db:migrate:resetしたくなったんだけど、そのままのコマンドではだめだったので調査した。 失敗したときのログがこちら rails aborted! ActiveRecord::ProtectedEnvironmentError: You are attempting to run a destructive action against your &#39;production&#39; database. If you are sure you want to continue, run the same command with the environment variable: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 どうやら、productionのDBを破壊するようなコマンドはそのままでは通らないらしい。 ということで、ここに書かれているように、DISABLE_DATABASE_ENVIRONMENT_CHECK=1にして実行する。以下にようにコマンドに続けて環境変数をセットするだけ。 $ heroku run rails db:migrate:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1 ちなみに、このようにコマンドに続けて環境変数をセットしただけだと、一時的に環境変数を変えるだけなので安心。 常にDISABLE_DATABASE_ENVIRONMENT_CHECK=1にしておきたい場合は、 $ heroku config:set DISABLE_DATABASE_ENVIRONMENT_CHECK=1 とすればよいが、危険なので推奨しない。]"
@@ -147,7 +152,7 @@ content: "[Google Photoの検索では、Exif情報の撮影機器のモデル�
 ,{
 url: "http://shidetake.com/ripping_3/",
 title: "HandBrakeCLIによるDVDリッピング 3",
-content: "[前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。 DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、 diskutil list すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。 /dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2 この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。 HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv 前回の最後のスクリプトと組み合わせて、 chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;` for ((i = 1; i &amp;lt;= $chapter_num; i&#43;&#43;)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv done ここまでで、かなり形になったので今回でラストとする。 ただ、実はこれだけだと使えないタイプのDVDがある。 そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。 お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。]"
+content: "[前回からの続き。 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。 DVDドライブのパスを取得 diskutilコマンドを使う（たぶんmacOSでしか使えない）。 DVDをドライブに入れた状態で、 diskutil list すると、HDD含め、OSが認識しているディスクのパーティション一覧が出てくる。 NAMEの部分に入れたDVDの名前が表示されているのがあるはず。 例えば以下のような感じ。 /dev/disk2 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: VIBY_521 *2.0 GB disk2 この場合、/dev/disk2を入力として指定することでDVDから直接リッピングが可能になる。 HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c 1 -i /dev/disk2 -o hoge_1.mkv 前回の最後のスクリプトと組み合わせて、 chapter_num=`lsdvd /dev/disk2 | grep Chapters | awk &#39;{gsub(/,/,&amp;quot;&amp;quot;); print $6}&#39;` for ((i = 1; i &amp;lt;= $chapter_num; i&#43;&#43;)); do HandBrakeCLI -Z &#39;H.265 MKV 1080p30&#39; --all-audio -s &#39;1,2,3,4,5,6&#39; -c $i -i /dev/disk2 -o hoge_$(printf %02d $i).mkv done ここまでで、かなり形になったので今回でラストとする。 ただ、実はこれだけだと使えないタイプのDVDがある。 そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。 Blu-rayからのリッピングについてはこちら お約束 違法なリッピングを推奨しているわけではないので注意。 コピーガードされたDVDをリッピングするのはダメ。ぜったい。]"
 }
 ,{
 url: "http://shidetake.com/ripping_2/",

@@ -6,10 +6,54 @@
     <description>Recent content in Ripping on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Jul 2017 22:36:23 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2019 17:00:51 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/tags/ripping/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MakeMKVとHandBrakeによるBlu-lay Discリッピング</title>
+      <link>http://shidetake.com/blu_ripping/</link>
+      <pubDate>Sun, 10 Nov 2019 17:00:51 +0900</pubDate>
+      
+      <guid>http://shidetake.com/blu_ripping/</guid>
+      <description>&lt;p&gt;DVDのリッピングについて&lt;a href=&#34;../ripping_1/&#34;&gt;以前&lt;/a&gt;書いたが、ブルーレイに未対応だったので対応した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;
+
+&lt;p&gt;HandBrakeではBlu-rayをそのままリッピングできないので、MakeMKVというソフトを使う。
+mkv形式にしてくれるので、これだけでリッピング完成としてもいいが、
+ほとんど圧縮かけてないようなので、HandBrakeを使って圧縮する。ついでに必要に応じてチャプター毎に分割する。&lt;/p&gt;
+
+&lt;h1 id=&#34;makemkvのインストール&#34;&gt;MakeMKVのインストール&lt;/h1&gt;
+
+&lt;p&gt;Homebrewには無いので&lt;a href=&#34;https://makemkv.com/download&#34; target=&#34;_blank&#34;&gt;公式サイト&lt;/a&gt;からインストーラーを使う。&lt;/p&gt;
+
+&lt;h1 id=&#34;makemkvの使い方&#34;&gt;MakeMKVの使い方&lt;/h1&gt;
+
+&lt;p&gt;GUIもあるが、ここでは&lt;code&gt;makemkvcon&lt;/code&gt;というCUIを使う。
+おそらく&lt;code&gt;/Applications/MakeMKV.app/Contents/MacOS/makemkvcon&lt;/code&gt;にあるので、ここにパスを通す。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;makemkvcon mkv dev:/dev/disk2 all ~/dist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。&lt;code&gt;/dev/disk2&lt;/code&gt;にはBlu-lay Discを入れたドライブを環境に応じて設定する。
+&lt;code&gt;~/dist&lt;/code&gt;にファイルが出力される。&lt;/p&gt;
+
+&lt;h1 id=&#34;handbrakeによる加工&#34;&gt;HandBrakeによる加工&lt;/h1&gt;
+
+&lt;p&gt;このままだとかなり重たいファイルなのと、場合によってはチャプターごとにファイルを分けたいので、
+HandBrakeを使って加工する。
+これについては&lt;a href=&#34;../ripping_1/&#34;&gt;DVDリッピングのとき&lt;/a&gt;と同じ（入力ファイルをisoでもDVDドライブでもなくMakeMKVで出力したmkvにするだけ）
+なので割愛する。&lt;/p&gt;
+
+&lt;h1 id=&#34;お約束&#34;&gt;お約束&lt;/h1&gt;
+
+&lt;p&gt;違法なリッピングを推奨しているわけではないので注意。
+コピーガードされたBlu-rayをリッピングするのはダメ。ぜったい。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 3</title>
@@ -55,6 +99,8 @@ done
 &lt;p&gt;ここまでで、かなり形になったので今回でラストとする。
 ただ、実はこれだけだと使えないタイプのDVDがある。
 そのあたりは、そのうち載せようと思う。スクリプトを少し整理してGitHubで公開する予定。&lt;/p&gt;
+
+&lt;p&gt;Blu-rayからのリッピングについては&lt;a href=&#34;../blu_ripping/&#34;&gt;こちら&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;お約束&#34;&gt;お約束&lt;/h2&gt;
 
