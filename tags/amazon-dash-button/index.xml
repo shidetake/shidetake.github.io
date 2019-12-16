@@ -22,8 +22,6 @@
 
 &lt;p&gt;最近はinit.dは古くて、Systemdが推奨されているようなので、これに書き換えることにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;サンプルソース&#34;&gt;サンプルソース&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/maddox/dasher/wiki/Running-Dasher-on-a-Raspberry-Pi-at-startup&#34; target=&#34;_blank&#34;&gt;GitHubのWiki&lt;/a&gt;
@@ -150,9 +148,7 @@ network.targetの実体は、&lt;code&gt;/lib/systemd/system/network.target&lt;/
       <pubDate>Thu, 11 May 2017 22:31:20 +0900</pubDate>
       
       <guid>http://shidetake.com/dash_button/</guid>
-      <description>&lt;p&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
 
 &lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;
 個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34; target=&#34;_blank&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;

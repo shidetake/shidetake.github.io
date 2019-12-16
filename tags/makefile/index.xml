@@ -19,8 +19,6 @@
       <guid>http://shidetake.com/make_cron/</guid>
       <description>&lt;p&gt;主に重複登録をしないようにするためのtipsを紹介する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;cron登録コマンド&#34;&gt;cron登録コマンド&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot; | crontab
@@ -72,8 +70,6 @@
 今回はシンボリックリンクを作成するコマンドを例にして説明する。&lt;/p&gt;
 
 &lt;p&gt;Windowsの&lt;code&gt;make&lt;/code&gt;はMinGWのものを想定している。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;linux専用&#34;&gt;Linux専用&lt;/h2&gt;
 

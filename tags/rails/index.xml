@@ -20,8 +20,6 @@
       <description>&lt;p&gt;HerokuでホスティングしているRailsアプリのDB構造を変えて、
 &lt;code&gt;rails db:migrate:reset&lt;/code&gt;したくなったんだけど、そのままのコマンドではだめだったので調査した。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;p&gt;失敗したときのログがこちら&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rails aborted!

@@ -25,8 +25,6 @@
 
 &lt;p&gt;今回でこのシリーズは最後。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;方針&#34;&gt;方針&lt;/h2&gt;
 
 &lt;p&gt;今まで取得したハイライトを記録しておいて、
@@ -78,8 +76,6 @@
       <guid>http://shidetake.com/line_highlights_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;起動タイミング&#34;&gt;起動タイミング&lt;/h2&gt;
 
@@ -156,8 +152,6 @@ BOTに話しかけたタイミングでソケット通信が飛ぶようにな�
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;サーバで起動&#34;&gt;サーバで起動&lt;/h2&gt;
 
 &lt;p&gt;前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
@@ -230,8 +224,6 @@ push_highlightメソッドを使って、前回標準出力していた文字列
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
 &lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
 

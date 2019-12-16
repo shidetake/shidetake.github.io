@@ -26,8 +26,6 @@
 
 &lt;p&gt;今回は、引き落としに失敗した時にLINE通知してくれるシステムを構築する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;参考サイト&#34;&gt;参考サイト&lt;/h2&gt;
 
 &lt;p&gt;先に白状しておくと、この記事は
@@ -133,8 +131,6 @@ function line_push(message) {
 
 &lt;p&gt;でも面倒なので、LINE BOTに頼むことにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;../line_push/&#34;&gt;LINE BOTでPUSH通知する&lt;/a&gt;と&lt;a href=&#34;../make_cron/&#34;&gt;Makefileでcronを登録する&lt;/a&gt;を組み合わせるだけ。&lt;/p&gt;
@@ -212,8 +208,6 @@ function mailGroupId(e) {
 購入はブラウザから。&lt;/p&gt;
 
 &lt;p&gt;不便なのでLINE botに買ってもらうことにした。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;実行画面&#34;&gt;実行画面&lt;/h2&gt;
 
@@ -382,8 +376,6 @@ function buyIIJmioCoupon() {
 
 &lt;p&gt;今回でこのシリーズは最後。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;方針&#34;&gt;方針&lt;/h2&gt;
 
 &lt;p&gt;今まで取得したハイライトを記録しておいて、
@@ -435,8 +427,6 @@ function buyIIJmioCoupon() {
       <guid>http://shidetake.com/line_highlights_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;起動タイミング&#34;&gt;起動タイミング&lt;/h2&gt;
 
@@ -513,8 +503,6 @@ BOTに話しかけたタイミングでソケット通信が飛ぶようにな�
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;サーバで起動&#34;&gt;サーバで起動&lt;/h2&gt;
 
 &lt;p&gt;前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
@@ -587,8 +575,6 @@ push_highlightメソッドを使って、前回標準出力していた文字列
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
 &lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
 
@@ -704,9 +690,7 @@ crawler.scrape
       <pubDate>Thu, 11 May 2017 22:31:20 +0900</pubDate>
       
       <guid>http://shidetake.com/dash_button/</guid>
-      <description>&lt;p&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
 
 &lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;
 個人的には&lt;a href=&#34;http://kakts-tec.hatenablog.com/entry/2016/12/10/231205&#34; target=&#34;_blank&#34;&gt;Amazon Dash Button と slackを連携させる&lt;/a&gt;という記事がとても参考になった。&lt;/p&gt;
@@ -748,9 +732,7 @@ MAC_ADDRESSはdasher導入時に取得したものを書くこと。&lt;/p&gt;
       <pubDate>Mon, 17 Apr 2017 23:11:57 +0900</pubDate>
       
       <guid>http://shidetake.com/line_push/</guid>
-      <description>&lt;p&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;登録&#34;&gt;登録&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;登録&#34;&gt;登録&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;PUSH通知する場合はDeveloper Trialで登録&lt;/li&gt;

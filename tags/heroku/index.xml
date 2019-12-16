@@ -20,8 +20,6 @@
       <description>&lt;p&gt;HerokuでホスティングしているRailsアプリのDB構造を変えて、
 &lt;code&gt;rails db:migrate:reset&lt;/code&gt;したくなったんだけど、そのままのコマンドではだめだったので調査した。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;p&gt;失敗したときのログがこちら&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rails aborted!
@@ -56,8 +54,6 @@ DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 いちいちHerokuにログインして確認するという手間が発生する。&lt;/p&gt;
 
 &lt;p&gt;たぶん&lt;code&gt;heroku&lt;/code&gt;コマンドにあるだろうと思って探したらあったので、備忘録的に残しておく。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ heroku domains
 &lt;/code&gt;&lt;/pre&gt;

@@ -20,8 +20,6 @@
       <description>&lt;p&gt;最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
 &lt;a href=&#34;../pyatv/&#34;&gt;前回のApple TVを操作するスクリプト&lt;/a&gt;もその一環だったのだが、うまく動かなかったのでその対処法を書く。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;alexaとnode-redの連携&#34;&gt;AlexaとNode-REDの連携&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://qiita.com/kikuzo/items/753b5065dde9633bda18&#34; target=&#34;_blank&#34;&gt;Amazon Echoとラズパイで、音声で照明をon/offする&lt;/a&gt;という記事を参考にした。&lt;/p&gt;
@@ -74,8 +72,6 @@ Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/loc
 テレビはほとんどApple TVのために存在しているので、これを動かしてみた。&lt;/p&gt;
 
 &lt;p&gt;使ったのは、&lt;code&gt;pyatv&lt;/code&gt;というツール。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34; target=&#34;_blank&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
 一部わかりにくいところがあったので、そこだけ説明する。&lt;/p&gt;

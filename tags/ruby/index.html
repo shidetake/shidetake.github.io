@@ -17,7 +17,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.1-BETA">
+    <meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.1-BETA">
     <title>Ruby</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
@@ -65,14 +65,17 @@
 
     
       
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-100589187-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-100589187-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
     
@@ -222,6 +225,62 @@ ga('send', 'pageview');
               
   
     
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/active_support_time/">
+          素のRubyで日時を扱う
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-16T23:07:30&#43;09:00">
+        
+  December 16, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>Railsではなく素のRubyで日時を扱うときのベストプラクティスについて。
+毎回悩むのでここに書いておく。</p>
+      <p>
+        <a href="http://shidetake.com/active_support_time/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
   
 
 
@@ -262,8 +321,6 @@ ga('send', 'pageview');
       <p>最近、新築マンションの購入を検討し始めた。
 そこで気になるのが、周辺の相場だ。
 ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。</p>
-
-<p></p>
       <p>
         <a href="http://shidetake.com/reins_map/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -325,8 +382,6 @@ ga('send', 'pageview');
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>Rubyを使う。</p>
-
-<p></p>
       <p>
         <a href="http://shidetake.com/geoapi/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -385,8 +440,6 @@ ga('send', 'pageview');
 このデータからトレンドラインを引くスクリプトを作ろうと思う。</p>
 
 <p>まずは、トレンドラインを引くためのポイントを選択する。</p>
-
-<p></p>
       <p>
         <a href="http://shidetake.com/stock_trendline_1/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -447,8 +500,6 @@ ga('send', 'pageview');
 
 <p>そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
 色々自由にカスタマイズするには自分で作ったほうがいいかなと。</p>
-
-<p></p>
       <p>
         <a href="http://shidetake.com/google_finance_api/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -504,8 +555,7 @@ ga('send', 'pageview');
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p><a href="../google_photo_api_1/">前回</a>の続き。
-今回は任意のアルバムから写真の情報を取得する。
-</p>
+今回は任意のアルバムから写真の情報を取得する。</p>
       <p>
         <a href="http://shidetake.com/google_photo_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -562,69 +612,9 @@ ga('send', 'pageview');
     <div class="postShorten-excerpt" itemprop="articleBody">
       <p>Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-</p>
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。</p>
       <p>
         <a href="http://shidetake.com/google_photo_api_1/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-              
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/gmail_api_2/">
-          RubyでGmail本文を取得する 2
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-06-26T22:44:57&#43;09:00">
-        
-  June 26, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
-ただしアクセストークンには期限があり、取得しなおさなくてはならない。
-今回はリフレッシュトークンを使うことで、これを解決する。</p>
-
-<p></p>
-      <p>
-        <a href="http://shidetake.com/gmail_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
         
       </p>
     </div>
@@ -712,6 +702,24 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/active_support_time/">
+                <h3 class="media-heading">素のRubyで日時を扱う</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Railsではなく素のRubyで日時を扱うときのベストプラクティスについて。
+毎回悩むのでここに書いておく。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/blu_ripping/">
                 <h3 class="media-heading">MakeMKVとHandBrakeによるBlu-lay Discリッピング</h3>
               </a>
@@ -720,9 +728,7 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                   Nov 11, 2019
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>DVDのリッピングについて<a href="../ripping_1/">以前</a>書いたが、ブルーレイに未対応だったので対応した。</p>
-
-<p></p></div>
+              <div class="media-content hide-xs font-merryweather"><p>DVDのリッピングについて<a href="../ripping_1/">以前</a>書いたが、ブルーレイに未対応だったので対応した。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -740,9 +746,7 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather"><p>HerokuでホスティングしているRailsアプリのDB構造を変えて、
-<code>rails db:migrate:reset</code>したくなったんだけど、そのままのコマンドではだめだったので調査した。</p>
-
-<p></p></div>
+<code>rails db:migrate:reset</code>したくなったんだけど、そのままのコマンドではだめだったので調査した。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -763,9 +767,7 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。</p>
 
 <p>その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
-できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。</p>
-
-<p></p></div>
+できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -784,9 +786,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
               </span>
               <div class="media-content hide-xs font-merryweather"><p>最近、新築マンションの購入を検討し始めた。
 そこで気になるのが、周辺の相場だ。
-ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。</p>
-
-<p></p></div>
+ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -803,9 +803,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
                   Aug 8, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Rubyを使う。</p>
-
-<p></p></div>
+              <div class="media-content hide-xs font-merryweather"><p>Rubyを使う。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -824,9 +822,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
               </span>
               <div class="media-content hide-xs font-merryweather"><p>AWSのRDSは使っていないときは停止しないともったいない。
 とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
-<code>aws</code>コマンドは既に導入しているという前提。</p>
-
-<p></p></div>
+<code>aws</code>コマンドは既に導入しているという前提。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -844,9 +840,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather"><p>テストのために容量の大きい画像が必要になったが、
-案外見つからなくて、結局ImageMagickで適当な画像を変換して作ることにしたので、そのやり方を記す。</p>
-
-<p></p></div>
+案外見つからなくて、結局ImageMagickで適当な画像を変換して作ることにしたので、そのやり方を記す。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -867,9 +861,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
 その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、
 いちいちHerokuにログインして確認するという手間が発生する。</p>
 
-<p>たぶん<code>heroku</code>コマンドにあるだろうと思って探したらあったので、備忘録的に残しておく。</p>
-
-<p></p></div>
+<p>たぶん<code>heroku</code>コマンドにあるだろうと思って探したらあったので、備忘録的に残しておく。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -887,31 +879,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather"><p>最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
-<a href="../pyatv/">前回のApple TVを操作するスクリプト</a>もその一環だったのだが、うまく動かなかったのでその対処法を書く。</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/pyatv/">
-                <h3 class="media-heading">Apple TVをRaspberry Piで操作</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jan 1, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
-テレビはほとんどApple TVのために存在しているので、これを動かしてみた。</p>
-
-<p>使ったのは、<code>pyatv</code>というツール。</p>
-
-<p></p></div>
+<a href="../pyatv/">前回のApple TVを操作するスクリプト</a>もその一環だったのだが、うまく動かなかったのでその対処法を書く。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -924,7 +892,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         43 posts found
+         44 posts found
       </p>
     </div>
   </div>

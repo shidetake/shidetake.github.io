@@ -22,8 +22,6 @@
 
 &lt;p&gt;使ったのは、&lt;code&gt;pyatv&lt;/code&gt;というツール。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://github.com/postlund/pyatv&#34; target=&#34;_blank&#34;&gt;postlund/pyatv&lt;/a&gt;にインストール方法から使い方まで書いてあるが、
 一部わかりにくいところがあったので、そこだけ説明する。&lt;/p&gt;
 
@@ -58,8 +56,6 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 cron定期的に実行してくれるようにした。&lt;/p&gt;
 
 &lt;p&gt;Raspberry Piで動作する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;実行結果&#34;&gt;実行結果&lt;/h2&gt;
 
@@ -201,8 +197,6 @@ date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
 
 &lt;p&gt;最近はinit.dは古くて、Systemdが推奨されているようなので、これに書き換えることにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;サンプルソース&#34;&gt;サンプルソース&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/maddox/dasher/wiki/Running-Dasher-on-a-Raspberry-Pi-at-startup&#34; target=&#34;_blank&#34;&gt;GitHubのWiki&lt;/a&gt;
@@ -335,8 +329,6 @@ network.targetの実体は、&lt;code&gt;/lib/systemd/system/network.target&lt;/
 &lt;p&gt;かといって、固定グローバルIPアドレスを貰うには月1000円くらい払う必要がある。&lt;/p&gt;
 
 &lt;p&gt;そこで、Dynamic DNS (DDNS) というサービスを利用することにする。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ddnsとは&#34;&gt;DDNSとは&lt;/h2&gt;
 

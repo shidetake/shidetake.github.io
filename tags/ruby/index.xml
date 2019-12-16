@@ -6,10 +6,42 @@
     <description>Recent content in Ruby on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Aug 2018 17:40:38 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 23:07:30 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>素のRubyで日時を扱う</title>
+      <link>http://shidetake.com/active_support_time/</link>
+      <pubDate>Mon, 16 Dec 2019 23:07:30 +0900</pubDate>
+      
+      <guid>http://shidetake.com/active_support_time/</guid>
+      <description>&lt;p&gt;Railsではなく素のRubyで日時を扱うときのベストプラクティスについて。
+毎回悩むのでここに書いておく。&lt;/p&gt;
+
+&lt;p&gt;Timeを使うか、Dateを使うか、DateTimeを使うか。
+それについては
+&lt;a href=&#34;https://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c&#34; target=&#34;_blank&#34;&gt;RubyとRailsにおけるTime, Date, DateTime, TimeWithZoneの違い&lt;/a&gt;
+に従ってTimeを使う。&lt;/p&gt;
+
+&lt;p&gt;これで間に合う場合は終わり。&lt;/p&gt;
+
+&lt;p&gt;ただ、ちょっと計算したいとなったときには、やはりActiveSupportを使うのがよい。
+ActiveSupportを使うかどうか迷うポイントとして、一部の機能しか使わないのに、
+あんなに巨大なライブラリを使ってしまっていいのだろうか…という罪悪感があると思う（あるよね？）。&lt;/p&gt;
+
+&lt;p&gt;その罪悪感を小さくするために、ActiveSupportには一部の機能だけをrequireできるようになっている。
+本当のミニマリストは使う機能だけをrequireするのかもしれないが、ここは少し妥協して、日時系の機能全般をrequireすることにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;active_support/time&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで大抵の機能が使えるようになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/rails/rails/blob/master/activesupport/lib/active_support/time.rb&#34; target=&#34;_blank&#34;&gt;https://github.com/rails/rails/blob/master/activesupport/lib/active_support/time.rb&lt;/a&gt;&lt;br /&gt;
+を見るとわかるが、このファイルは正にそのためのものだ。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>地域ごとのマンション単価をGoogleマップで見る</title>
@@ -20,8 +52,6 @@
       <description>&lt;p&gt;最近、新築マンションの購入を検討し始めた。
 そこで気になるのが、周辺の相場だ。
 ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;新築マンションは似たような地域で同時に建つことは稀なので、
 中古マンション価格から推測する。&lt;/p&gt;
@@ -55,8 +85,6 @@
       
       <guid>http://shidetake.com/geoapi/</guid>
       <description>&lt;p&gt;Rubyを使う。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;アプリケーションid登録&#34;&gt;アプリケーションID登録&lt;/h1&gt;
 
@@ -119,8 +147,6 @@ geocoder.exec
 このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
 
 &lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;移動平均&#34;&gt;移動平均&lt;/h2&gt;
 
@@ -269,8 +295,6 @@ end
 &lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
 色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;p&gt;2017.9.16追記&lt;br /&gt;
 これを公開した直後にAPIのURLが変わった模様。&lt;/p&gt;
 
@@ -366,8 +390,7 @@ end
       
       <guid>http://shidetake.com/google_photo_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
-今回は任意のアルバムから写真の情報を取得する。
-&lt;/p&gt;
+今回は任意のアルバムから写真の情報を取得する。&lt;/p&gt;
 
 &lt;h1 id=&#34;写真情報の取得&#34;&gt;写真情報の取得&lt;/h1&gt;
 
@@ -425,8 +448,7 @@ end
       <guid>http://shidetake.com/google_photo_api_1/</guid>
       <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-&lt;/p&gt;
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。&lt;/p&gt;
 
 &lt;p&gt;ちなみにGoogle PhotoのAPIはまだ用意されておらず、Piacasa APIがその代替となっている。&lt;/p&gt;
 
@@ -483,8 +505,6 @@ albums.each { |a| p a.title }
       <description>&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;前回&lt;/a&gt;はアクセストークンを取得して、メール本文を取得することに成功した。
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;リフレッシュトークンの取得&#34;&gt;リフレッシュトークンの取得&lt;/h2&gt;
 
@@ -549,8 +569,6 @@ end
       
       <guid>http://shidetake.com/gmail_api_1/</guid>
       <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
 
@@ -659,8 +677,6 @@ end
 
 &lt;p&gt;今回でこのシリーズは最後。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;方針&#34;&gt;方針&lt;/h2&gt;
 
 &lt;p&gt;今まで取得したハイライトを記録しておいて、
@@ -712,8 +728,6 @@ end
       <guid>http://shidetake.com/line_highlights_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;起動タイミング&#34;&gt;起動タイミング&lt;/h2&gt;
 
@@ -790,8 +804,6 @@ BOTに話しかけたタイミングでソケット通信が飛ぶようにな�
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;サーバで起動&#34;&gt;サーバで起動&lt;/h2&gt;
 
 &lt;p&gt;前回はSeleniumを使ったが、サーバで実行する場合はGUIアプリケーションにはできないので、
@@ -864,8 +876,6 @@ push_highlightメソッドを使って、前回標準出力していた文字列
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
 &lt;p&gt;ハイライトした内容は &lt;a href=&#34;https://kindle.amazon.co.jp/your_highlights&#34; target=&#34;_blank&#34;&gt;https://kindle.amazon.co.jp/your_highlights&lt;/a&gt; で見えるので、これを取得して通知するクローラーを作ればよい。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
 

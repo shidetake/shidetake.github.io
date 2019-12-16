@@ -19,8 +19,6 @@
       <guid>http://shidetake.com/blu_ripping/</guid>
       <description>&lt;p&gt;DVDのリッピングについて&lt;a href=&#34;../ripping_1/&#34;&gt;以前&lt;/a&gt;書いたが、ブルーレイに未対応だったので対応した。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;
 
 &lt;p&gt;HandBrakeではBlu-rayをそのままリッピングできないので、MakeMKVというソフトを使う。
@@ -63,8 +61,6 @@ HandBrakeを使って加工する。
       <guid>http://shidetake.com/ripping_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_2/&#34;&gt;前回&lt;/a&gt;からの続き。
 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;dvdドライブのパスを取得&#34;&gt;DVDドライブのパスを取得&lt;/h2&gt;
 
@@ -115,8 +111,6 @@ done
       
       <guid>http://shidetake.com/ripping_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_1/&#34;&gt;前回&lt;/a&gt;からの続き。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;チャプター分割&#34;&gt;チャプター分割&lt;/h2&gt;
 
@@ -190,8 +184,6 @@ done
 しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。&lt;/p&gt;
 
 &lt;p&gt;そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;handbrakecli&#34;&gt;HandBrakeCLI&lt;/h2&gt;
 

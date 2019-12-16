@@ -23,8 +23,6 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
 &lt;p&gt;その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
 できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://ift.tt/2ooqgXo&#34; alt=&#34;image&#34; /&gt;
@@ -98,8 +96,6 @@ GitHubに&lt;a href=&#34;https://github.com/shidetake/dropcast&#34; target=&#34;
       <guid>http://shidetake.com/geoapi/</guid>
       <description>&lt;p&gt;Rubyを使う。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h1 id=&#34;アプリケーションid登録&#34;&gt;アプリケーションID登録&lt;/h1&gt;
 
 &lt;p&gt;まずはAPIを使うための登録。
@@ -161,8 +157,6 @@ geocoder.exec
 とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
 &lt;code&gt;aws&lt;/code&gt;コマンドは既に導入しているという前提。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h1 id=&#34;インスタンス名の取得&#34;&gt;インスタンス名の取得&lt;/h1&gt;
 
 &lt;p&gt;操作するインスタンスの名前を取得する。
@@ -208,8 +202,6 @@ geocoder.exec
 このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
 
 &lt;p&gt;まずは、トレンドラインを引くためのポイントを選択する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;移動平均&#34;&gt;移動平均&lt;/h2&gt;
 
@@ -358,8 +350,6 @@ end
 &lt;p&gt;そのへんに落ちてるアプリでもできそうだけど、最終的に買いかどうか判断させたり、
 色々自由にカスタマイズするには自分で作ったほうがいいかなと。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;p&gt;2017.9.16追記&lt;br /&gt;
 これを公開した直後にAPIのURLが変わった模様。&lt;/p&gt;
 
@@ -455,8 +445,7 @@ end
       
       <guid>http://shidetake.com/google_photo_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
-今回は任意のアルバムから写真の情報を取得する。
-&lt;/p&gt;
+今回は任意のアルバムから写真の情報を取得する。&lt;/p&gt;
 
 &lt;h1 id=&#34;写真情報の取得&#34;&gt;写真情報の取得&lt;/h1&gt;
 
@@ -514,8 +503,7 @@ end
       <guid>http://shidetake.com/google_photo_api_1/</guid>
       <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
-PicasaのAPIを使うことで実現できたので、そのやり方を記す。
-&lt;/p&gt;
+PicasaのAPIを使うことで実現できたので、そのやり方を記す。&lt;/p&gt;
 
 &lt;p&gt;ちなみにGoogle PhotoのAPIはまだ用意されておらず、Piacasa APIがその代替となっている。&lt;/p&gt;
 
@@ -572,8 +560,6 @@ albums.each { |a| p a.title }
       <description>&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;前回&lt;/a&gt;はアクセストークンを取得して、メール本文を取得することに成功した。
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;リフレッシュトークンの取得&#34;&gt;リフレッシュトークンの取得&lt;/h2&gt;
 
@@ -638,8 +624,6 @@ end
       
       <guid>http://shidetake.com/gmail_api_1/</guid>
       <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
 

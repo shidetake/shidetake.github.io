@@ -24,8 +24,6 @@ github-pageでホスティングしているのだが、画像をアップする
 &lt;p&gt;というわけで、Google Photoの画像を&lt;strong&gt;簡単に&lt;/strong&gt;直接ブログに貼り付ける方法を模索していたが、
 IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;設定手順&#34;&gt;設定手順&lt;/h2&gt;
 
 &lt;ol&gt;

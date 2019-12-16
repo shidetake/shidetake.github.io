@@ -22,8 +22,6 @@
 
 &lt;p&gt;Windowsの&lt;code&gt;make&lt;/code&gt;はMinGWのものを想定している。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;linux専用&#34;&gt;Linux専用&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;install:
@@ -116,8 +114,6 @@ endif
       
       <guid>http://shidetake.com/mysql_install/</guid>
       <description>&lt;p&gt;aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;install&#34;&gt;install&lt;/h2&gt;
 

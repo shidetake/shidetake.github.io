@@ -20,8 +20,6 @@
       <description>&lt;p&gt;以前、&lt;a href=&#34;../git_difftool/&#34;&gt;git diffをvimdiffで見る方法&lt;/a&gt;を紹介した。
 今回は&lt;code&gt;git show&lt;/code&gt;を&lt;code&gt;vimdiff&lt;/code&gt;で見る方法を紹介する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;git-show&#34;&gt;git show&lt;/h2&gt;
 
 &lt;p&gt;あるコミットの詳細を表示するコマンド。&lt;code&gt;diff&lt;/code&gt;も表示してくれる。
@@ -76,8 +74,6 @@
 
 &lt;p&gt;今、各種dotfileを見直している中で、このダサいやり方を改善できないか調べたところ、
 今の主流は&lt;code&gt;difftool&lt;/code&gt;を使うやり方のようなので、乗り換えた。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;gitconfig&#34;&gt;.gitconfig&lt;/h2&gt;
 

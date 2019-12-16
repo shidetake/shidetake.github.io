@@ -22,8 +22,6 @@
 
 &lt;p&gt;でも面倒なので、LINE BOTに頼むことにした。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;../line_push/&#34;&gt;LINE BOTでPUSH通知する&lt;/a&gt;と&lt;a href=&#34;../make_cron/&#34;&gt;Makefileでcronを登録する&lt;/a&gt;を組み合わせるだけ。&lt;/p&gt;
@@ -98,8 +96,6 @@ function mailGroupId(e) {
       <guid>http://shidetake.com/make_cron/</guid>
       <description>&lt;p&gt;主に重複登録をしないようにするためのtipsを紹介する。&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;cron登録コマンド&#34;&gt;cron登録コマンド&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;0 9,18 * * * /usr/local/bin/example.sh&amp;quot; | crontab
@@ -153,8 +149,6 @@ function mailGroupId(e) {
 cron定期的に実行してくれるようにした。&lt;/p&gt;
 
 &lt;p&gt;Raspberry Piで動作する。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;実行結果&#34;&gt;実行結果&lt;/h2&gt;
 
