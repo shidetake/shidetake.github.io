@@ -35,6 +35,10 @@
 &lt;p&gt;文末に半角スペース2つ&lt;br /&gt;
 で改行。&lt;/p&gt;
 
+&lt;h1 id=&#34;脚注&#34;&gt;脚注&lt;/h1&gt;
+
+&lt;p&gt;こんな感じ&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:a&#34;&gt;&lt;a href=&#34;#fn:a&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
 &lt;h1 id=&#34;画像&#34;&gt;画像&lt;/h1&gt;
 
 &lt;h2 id=&#34;from-google-photo&#34;&gt;from google photo&lt;/h2&gt;
@@ -181,7 +185,16 @@ rubyとRubyとか。現時点ではざっくり以下のタグわけ
 
 &lt;h2 id=&#34;テキストと画像&#34;&gt;テキストと画像&lt;/h2&gt;
 
-&lt;iframe style=&#34;width:120px;height:240px;&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; frameborder=&#34;0&#34; src=&#34;//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=shidetake0e-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B00QJDOM6U&amp;linkId=05fa0e9ef8fc667966c6780e891940c1&#34;&gt;&lt;/iframe&gt;</description>
+&lt;iframe style=&#34;width:120px;height:240px;&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; frameborder=&#34;0&#34; src=&#34;//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=shidetake0e-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=as_ss_li_til&amp;asins=B00QJDOM6U&amp;linkId=05fa0e9ef8fc667966c6780e891940c1&#34;&gt;&lt;/iframe&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:a&#34;&gt;hoge
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:a&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>

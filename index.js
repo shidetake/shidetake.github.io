@@ -1,5 +1,10 @@
 var data = [
 {
+url: "http://shidetake.com/google_auth/",
+title: "任意のGoogle APIをRubyで使うときの手順",
+content: "[]"
+}
+,{
 url: "http://shidetake.com/active_support_time/",
 title: "素のRubyで日時を扱う",
 content: "[]"

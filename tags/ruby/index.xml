@@ -6,10 +6,119 @@
     <description>Recent content in Ruby on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Dec 2019 23:07:30 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 17:53:28 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>任意のGoogle APIをRubyで使うときの手順</title>
+      <link>http://shidetake.com/google_auth/</link>
+      <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
+      
+      <guid>http://shidetake.com/google_auth/</guid>
+      <description>&lt;p&gt;GmailのAPIについては&lt;a href=&#34;../gmail_api_1.md&#34;&gt;以前記事にした&lt;/a&gt;が、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。&lt;/p&gt;
+
+&lt;p&gt;今回使いたくなったのはGoogle Photos APIsなのでこれを例に進めるが、
+汎用的に使えるように書く。&lt;/p&gt;
+
+&lt;h1 id=&#34;apiの有効化&#34;&gt;APIの有効化&lt;/h1&gt;
+
+&lt;p&gt;Gmailのときと同じく、&lt;a href=&#34;https://console.developers.google.com/&#34; target=&#34;_blank&#34;&gt;Google API Console&lt;/a&gt;で使いたいAPIを有効化する。
+ライブラリからAPIの検索ができる。今回は&amp;rsquo;Photo&amp;rsquo;で検索すると、Photos Library API&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:a&#34;&gt;&lt;a href=&#34;#fn:a&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;が出てくるので、
+選択して、&amp;rsquo;有効にする&amp;rsquo;をクリック。&lt;/p&gt;
+
+&lt;p&gt;このページにドキュメントへのリンクがあるので、開いておく（あとで使う）。&lt;/p&gt;
+
+&lt;p&gt;続いて、Google API Consoleのトップに戻ってから、認証情報に進む。&lt;/p&gt;
+
+&lt;p&gt;認証情報を作成 -&amp;gt; OAuthクライアントID -&amp;gt; その他&lt;/p&gt;
+
+&lt;p&gt;で認証情報を作成して、JSONファイルをダウンロードする。&lt;/p&gt;
+
+&lt;h1 id=&#34;scopeの取得&#34;&gt;Scopeの取得&lt;/h1&gt;
+
+&lt;p&gt;APIのドキュメントにScopeが書かれているので、それを探す。
+Photos Library APIの場合は、Overviewの中のAuthorizationにScope記載ページへのリンクがあった。
+ここから、必要な権限を取れるScopeを選ぶ。&lt;/p&gt;
+
+&lt;p&gt;ちなみにGmailとかDriveだとgoogle-api-clientというgemにScopeのパスを定義した定数があるので、それを使うことが多い。
+&lt;a href=&#34;https://github.com/googleapis/google-api-ruby-client/tree/master/generated/google/apis&#34; target=&#34;_blank&#34;&gt;ここ&lt;/a&gt;に使いたいAPIがあればそれを使うと良い。&lt;/p&gt;
+
+&lt;h1 id=&#34;access-tokenの取得&#34;&gt;Access Tokenの取得&lt;/h1&gt;
+
+&lt;p&gt;googleauthというgemを使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ gem install googleauth
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;からの&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &amp;quot;googleauth&amp;quot;
+require &amp;quot;googleauth/stores/file_token_store&amp;quot;
+require &amp;quot;fileutils&amp;quot;
+require &amp;quot;json&amp;quot;
+
+class Auth
+  OOB_URI = &amp;quot;urn:ietf:wg:oauth:2.0:oob&amp;quot;.freeze
+  CREDENTIALS_PATH = &amp;quot;credentials.json&amp;quot;.freeze
+  # The file token.yaml stores the user&#39;s access and refresh tokens, and is
+  # created automatically when the authorization flow completes for the first
+  # time.
+  TOKEN_PATH = &amp;quot;token.yaml&amp;quot;.freeze
+  SCOPE = [&#39;https://www.googleapis.com/auth/photoslibrary.readonly&#39;]
+
+  def initialize
+    authorize
+  end
+
+  private
+
+  ##
+  # Ensure valid credentials, either by restoring from the saved credentials
+  # files or intitiating an OAuth2 authorization. If authorization is required,
+  # the user&#39;s default browser will be launched to approve the request.
+  #
+  # @return [Google::Auth::UserRefreshCredentials] OAuth2 credentials
+  def authorize
+    client_id = Google::Auth::ClientId.from_file CREDENTIALS_PATH
+    token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
+    authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
+    user_id = &amp;quot;default&amp;quot;
+    credentials = authorizer.get_credentials user_id
+    if credentials.nil?
+      url = authorizer.get_authorization_url base_url: OOB_URI
+      puts &amp;quot;Open the following URL in the browser and enter the &amp;quot; \
+           &amp;quot;resulting code after authorization:\n&amp;quot; + url
+      code = gets
+      credentials = authorizer.get_and_store_credentials_from_code(
+        user_id: user_id, code: code, base_url: OOB_URI
+      )
+    end
+    credentials
+  end
+end
+
+Auth.new
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここで、CREDENTIALS_PATHはダウロードしたJSONファイル。これはrbファイルと同じ場所に置いている前提。
+また、SCOPEには取得したScopeを書く。&lt;/p&gt;
+
+&lt;p&gt;このスクリプトを実行すると、初回はAccess Tokenを取得するためのページへのURLが表示される。
+ブラウザでここを開くと、アクセス権限を渡してよいか聞かれるのでOKを押すと、コードが表示されるので、それをターミナルに貼り付けてエンターキーを押すと、
+Access Tokenが取得できる。&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:a&#34;&gt;ここでの名前はPhotos Library APIだけど、ドキュメントにはGoogle Photos APIsと出る
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:a&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>素のRubyで日時を扱う</title>

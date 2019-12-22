@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.1-BETA">
-    <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
+    <title>任意のGoogle APIをRubyで使うときの手順</title>
     <meta name="author" content="shidetake">
     <meta name="keywords" content="">
 
@@ -30,18 +30,18 @@
     
 
     
-    <meta name="description" content="前回の続き。
-今回は任意のアルバムから写真の情報を取得する。">
-    <meta property="og:description" content="前回の続き。
-今回は任意のアルバムから写真の情報を取得する。">
+    <meta name="description" content="GmailのAPIについては以前記事にしたが、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。">
+    <meta property="og:description" content="GmailのAPIについては以前記事にしたが、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2">
-    <meta property="og:url" content="/google_photo_api_2/">
+    <meta property="og:title" content="任意のGoogle APIをRubyで使うときの手順">
+    <meta property="og:url" content="/google_auth/">
     <meta property="og:site_name" content="blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="blog">
-    <meta name="twitter:description" content="前回の続き。
-今回は任意のアルバムから写真の情報を取得する。">
+    <meta name="twitter:description" content="GmailのAPIについては以前記事にしたが、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。">
     
     
 
@@ -227,15 +227,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2
+      任意のGoogle APIをRubyで使うときの手順
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-08-01T22:41:29Z">
+      <time itemprop="datePublished" datetime="2019-12-22T17:53:28&#43;09:00">
         
-  August 1, 2017
+  December 22, 2019
 
       </time>
     
@@ -255,55 +255,107 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><a href="../google_photo_api_1/">前回</a>の続き。
-今回は任意のアルバムから写真の情報を取得する。</p>
+              <p>GmailのAPIについては<a href="../gmail_api_1.md">以前記事にした</a>が、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。</p>
 
-<h1 id="写真情報の取得">写真情報の取得</h1>
+<p>今回使いたくなったのはGoogle Photos APIsなのでこれを例に進めるが、
+汎用的に使えるように書く。</p>
 
-<p>your_album_nameアルバムから取得する場合は以下のような感じ。</p>
+<h1 id="apiの有効化">APIの有効化</h1>
 
-<pre><code class="language-ruby">require 'picasa'
+<p>Gmailのときと同じく、<a href="https://console.developers.google.com/" target="_blank">Google API Console</a>で使いたいAPIを有効化する。
+ライブラリからAPIの検索ができる。今回は&rsquo;Photo&rsquo;で検索すると、Photos Library API<sup class="footnote-ref" id="fnref:a"><a href="#fn:a">1</a></sup>が出てくるので、
+選択して、&rsquo;有効にする&rsquo;をクリック。</p>
 
-client = Picasa::Client.new(
-  user_id: 'your@email',
-  access_token: 'your_access_token'
-)
+<p>このページにドキュメントへのリンクがあるので、開いておく（あとで使う）。</p>
 
-albums = client.album.list.entries
-album = albums.find { |a| a.title == 'your_album_name' }
+<p>続いて、Google API Consoleのトップに戻ってから、認証情報に進む。</p>
 
-photos = client.album.show(album.id).entries
+<p>認証情報を作成 -&gt; OAuthクライアントID -&gt; その他</p>
 
-photos.each do |photo|
-  puts &quot;#{photo.id}, #{photo.exif.time}, #{photo.title}, #{photo.exif.model}&quot;
-end
+<p>で認証情報を作成して、JSONファイルをダウンロードする。</p>
+
+<h1 id="scopeの取得">Scopeの取得</h1>
+
+<p>APIのドキュメントにScopeが書かれているので、それを探す。
+Photos Library APIの場合は、Overviewの中のAuthorizationにScope記載ページへのリンクがあった。
+ここから、必要な権限を取れるScopeを選ぶ。</p>
+
+<p>ちなみにGmailとかDriveだとgoogle-api-clientというgemにScopeのパスを定義した定数があるので、それを使うことが多い。
+<a href="https://github.com/googleapis/google-api-ruby-client/tree/master/generated/google/apis" target="_blank">ここ</a>に使いたいAPIがあればそれを使うと良い。</p>
+
+<h1 id="access-tokenの取得">Access Tokenの取得</h1>
+
+<p>googleauthというgemを使う。</p>
+
+<pre><code class="language-bash">$ gem install googleauth
 </code></pre>
 
-<p>Exif情報から撮影機器のモデル名を取得することもできた。
-これで最初にやりたかったことはほぼできたが、
-このスクリプトだと1000枚しか処理できないという欠点があるのでもう少し続ける。</p>
+<p>からの</p>
 
-<h1 id="大量の写真情報の取得">大量の写真情報の取得</h1>
+<pre><code class="language-ruby">require &quot;googleauth&quot;
+require &quot;googleauth/stores/file_token_store&quot;
+require &quot;fileutils&quot;
+require &quot;json&quot;
 
-<p><code>start-index</code>オプションを使って以下のように書くことで、1000枚以上の写真を処理することができる。
-ただし、<code>start-index</code>の最大値は10001らしいので、この方法でも11000枚までしか処理できない。
-11000枚で十分事足りたので、この対処法までは調べていない。</p>
+class Auth
+  OOB_URI = &quot;urn:ietf:wg:oauth:2.0:oob&quot;.freeze
+  CREDENTIALS_PATH = &quot;credentials.json&quot;.freeze
+  # The file token.yaml stores the user's access and refresh tokens, and is
+  # created automatically when the authorization flow completes for the first
+  # time.
+  TOKEN_PATH = &quot;token.yaml&quot;.freeze
+  SCOPE = ['https://www.googleapis.com/auth/photoslibrary.readonly']
 
-<pre><code class="language-ruby">PAGE_NUM_MAX = 11
+  def initialize
+    authorize
+  end
 
-page_num = [album.numphotos / 1000, PAGE_NUM_MAX].min
+  private
 
-page_num.times do |page|
-  opt = {}
-  opt['start-index'] = page * 1000 + 1
-  photos = client.album.show(album.id, opt).entries
-  photos.each do |photo|
-    puts &quot;#{photo.id}, #{photo.exif.time}, #{photo.title}, #{photo.exif.model}&quot;
+  ##
+  # Ensure valid credentials, either by restoring from the saved credentials
+  # files or intitiating an OAuth2 authorization. If authorization is required,
+  # the user's default browser will be launched to approve the request.
+  #
+  # @return [Google::Auth::UserRefreshCredentials] OAuth2 credentials
+  def authorize
+    client_id = Google::Auth::ClientId.from_file CREDENTIALS_PATH
+    token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
+    authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
+    user_id = &quot;default&quot;
+    credentials = authorizer.get_credentials user_id
+    if credentials.nil?
+      url = authorizer.get_authorization_url base_url: OOB_URI
+      puts &quot;Open the following URL in the browser and enter the &quot; \
+           &quot;resulting code after authorization:\n&quot; + url
+      code = gets
+      credentials = authorizer.get_and_store_credentials_from_code(
+        user_id: user_id, code: code, base_url: OOB_URI
+      )
+    end
+    credentials
   end
 end
+
+Auth.new
 </code></pre>
 
-<p>albumの指定まではこれまでと変わらないので省略した。</p>
+<p>ここで、CREDENTIALS_PATHはダウロードしたJSONファイル。これはrbファイルと同じ場所に置いている前提。
+また、SCOPEには取得したScopeを書く。</p>
+
+<p>このスクリプトを実行すると、初回はAccess Tokenを取得するためのページへのURLが表示される。
+ブラウザでここを開くと、アクセス権限を渡してよいか聞かれるのでOKを押すと、コードが表示されるので、それをターミナルに貼り付けてエンターキーを押すと、
+Access Tokenが取得できる。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:a">ここでの名前はPhotos Library APIだけど、ドキュメントにはGoogle Photos APIsと出る
+ <a class="footnote-return" href="#fnref:a"><sup>[return]</sup></a></li>
+</ol>
+</div>
               
             </div>
           </div>
@@ -315,9 +367,9 @@ end
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
-
   <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/ruby/">Ruby</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/api/">API</a>
 
                   </div>
                 
@@ -329,7 +381,7 @@ end
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/wireless_tv/" data-tooltip="テレビのアンテナ線を無線化する">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -337,7 +389,7 @@ end
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/active_support_time/" data-tooltip="素のRubyで日時を扱う">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>
@@ -385,7 +437,7 @@ end
         <ul class="post-actions post-action-nav">
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/wireless_tv/" data-tooltip="テレビのアンテナ線を無線化する">
+                <a class="post-action-btn btn btn--disabled">
               
                 <i class="fa fa-angle-left"></i>
                 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -393,7 +445,7 @@ end
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_photo_api_1/" data-tooltip="Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/active_support_time/" data-tooltip="素のRubyで日時を扱う">
               
                 <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                 <i class="fa fa-angle-right"></i>

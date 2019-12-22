@@ -239,6 +239,63 @@ if (!doNotTrack) {
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/gmail_api_2/">
+          RubyでGmail本文を取得する 2
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-06-26T22:44:57&#43;09:00">
+        
+  June 26, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p><a href="../gmail_api_1/">前回</a>はアクセストークンを取得して、メール本文を取得することに成功した。
+ただしアクセストークンには期限があり、取得しなおさなくてはならない。
+今回はリフレッシュトークンを使うことで、これを解決する。</p>
+      <p>
+        <a href="http://shidetake.com/gmail_api_2/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="http://shidetake.com/gmail_api_1/">
           RubyでGmail本文を取得する 1
         </a>
@@ -570,65 +627,6 @@ Time Machineを使うと、容量がいっぱいになるまでバックアッ�
 </article>
 
             
-              
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/dash_button/">
-          Amazon Dash ButtonからLINE通知
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-05-11T22:31:20&#43;09:00">
-        
-  May 11, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      dasher導入 他の人が詳しく書いているので割愛。
-個人的にはAmazon Dash Button と slackを連携させるという記事がとても参考になった。
-LINEへのPUSH通知設定 LINE側の設定はLINE BOTでPUSH通知するを参照。
-CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSはdasher導入時に取得したものを書くこと。
-{&quot;buttons&quot;: [ { &quot;name&quot;: &quot;joy&quot;, &quot;address&quot;: &quot;MAC_ADDRESS&quot;, &quot;url&quot;: &quot;https://api.line.me/v2/bot/message/push&quot;, &quot;method&quot;: &quot;POST&quot;, &quot;headers&quot;: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer {CHANNEL_ACCESS_TOKEN}&quot;}, &quot;json&quot;: true, &quot;body&quot;: { &quot;to&quot;: &quot;USERID&quot;, &quot;messages&quot;: [ { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;JOY!&quot; } ] } } ]} 
-      <p>
-        <a href="http://shidetake.com/dash_button/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
             
   <div class="pagination-bar">
     <ul class="pagination">
@@ -711,6 +709,24 @@ CHANNEL_ACCESS_TOKENとUSERIDは上記事で取得したもの。 MAC_ADDRESSは
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/google_auth/">
+                <h3 class="media-heading">任意のGoogle APIをRubyで使うときの手順</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>GmailのAPIについては<a href="../gmail_api_1.md">以前記事にした</a>が、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -880,24 +896,6 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/alexa_node_red1/">
-                <h3 class="media-heading">AlexaとNode-REDを利用したスマートホームスキル作成時の注意</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jan 1, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
-<a href="../pyatv/">前回のApple TVを操作するスクリプト</a>もその一環だったのだが、うまく動かなかったのでその対処法を書く。</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -905,7 +903,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         44 posts found
+         45 posts found
       </p>
     </div>
   </div>
