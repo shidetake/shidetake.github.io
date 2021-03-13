@@ -1,10 +1,5 @@
 var data = [
 {
-url: "http://shidetake.com/vpn/",
-title: "実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1",
-content: "[]"
-}
-,{
 url: "http://shidetake.com/google_auth/",
 title: "任意のGoogle APIをRubyで使うときの手順",
 content: "[]"

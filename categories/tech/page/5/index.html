@@ -225,66 +225,6 @@ if (!doNotTrack) {
               
   
     
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://shidetake.com/blog_img/">
-          IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-08-21T22:44:54Z">
-        
-  August 21, 2017
-
-      </time>
-    
-    
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
-    
-  
-
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>ブログに貼る画像置き場として、Google Photoを選んだ。
-github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
-容量制限はないものの、1GBまでを推奨しているらしいし。</p>
-
-<p>というわけで、Google Photoの画像を<strong>簡単に</strong>直接ブログに貼り付ける方法を模索していたが、
-IFTTTを使って直リンクアドレスをメールしてもらうのが一番簡単だった。</p>
-      <p>
-        <a href="http://shidetake.com/blog_img/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
-              
-  
-    
   
 
 
@@ -633,6 +573,70 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
 </article>
 
             
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="http://shidetake.com/ripping_1/">
+          HandBrakeCLIによるDVDリッピング 1
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-07-03T22:08:55&#43;09:00">
+        
+  July 3, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      <p>DVDのリッピングというのは、設定が異常に多い。</p>
+
+<p>まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。
+コンテナはどうする？mp4なんかはよく見るし汎用性ありそう。でも字幕や音声を切り替えるならmkvを選んだ方がいい。
+フレームレートは？ノイズ除去フィルタの種類や強さも決めなきゃ。</p>
+
+<p>と言った具合に無数に決めることがあり、それをいちいち設定してたら何十枚もあるDVDをリッピングするのにどれだけ時間がかかるかわからない。
+しかも、今回設定した内容を次に覚えてないとまたノイズフィルタのかかり具合を見極める作業を繰り返すことになる。</p>
+
+<p>そういった面倒なことを避けるために、DVDをドライブに挿入したら、あとはコマンドを一発送るだけでいつもの設定でリッピングできるようにした。</p>
+      <p>
+        <a href="http://shidetake.com/ripping_1/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
             
   <div class="pagination-bar">
     <ul class="pagination">
@@ -715,29 +719,6 @@ PicasaのAPIを使うことで実現できたので、そのやり方を記す�
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/vpn/">
-                <h3 class="media-heading">実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jan 1, 2020
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
-壁のLANポートに接続すると、何の手続きもなく接続できるもの。</p>
-
-<p>このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。</p>
-
-<p>そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
-ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
         
           <div class="media">
             
@@ -904,6 +885,27 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/heroku_domains/">
+                <h3 class="media-heading">Herokuの公開URLをコマンドで確認する</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>最近、<a href="https://railstutorial.jp" target="_blank">Ruby on Railsチュートリアル</a>を進めているんだけど、
+その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、
+いちいちHerokuにログインして確認するという手間が発生する。</p>
+
+<p>たぶん<code>heroku</code>コマンドにあるだろうと思って探したらあったので、備忘録的に残しておく。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -911,7 +913,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         46 posts found
+         45 posts found
       </p>
     </div>
   </div>

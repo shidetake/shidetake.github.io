@@ -6,97 +6,10 @@
     <description>Recent content in Tech on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2020 10:57:47 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 17:53:28 +0900</lastBuildDate>
     
         <atom:link href="http://shidetake.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1</title>
-      <link>http://shidetake.com/vpn/</link>
-      <pubDate>Wed, 01 Jan 2020 10:57:47 +0900</pubDate>
-      
-      <guid>http://shidetake.com/vpn/</guid>
-      <description>&lt;p&gt;いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
-壁のLANポートに接続すると、何の手続きもなく接続できるもの。&lt;/p&gt;
-
-&lt;p&gt;このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。&lt;/p&gt;
-
-&lt;p&gt;そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
-ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。&lt;/p&gt;
-
-&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2fy4P1F&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;メイン拠点(実家)が左側&lt;/li&gt;
-&lt;li&gt;サブ拠点(いま住んでいる家)が右側&lt;/li&gt;
-&lt;li&gt;拠点間をRaspberry Piに入れたSoftEtherでVPN接続する&lt;/li&gt;
-&lt;li&gt;外部からメイン拠点にアクセスすることで、サブ拠点とも通信が可能となる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;softetherインストール&#34;&gt;SoftEtherインストール&lt;/h2&gt;
-
-&lt;p&gt;踏み台にする方のRaspberry PiにSoftEther VPN Serverをインストールする。
-手元のPC等で&lt;a href=&#34;http://www.softether-download.com&#34; target=&#34;_blank&#34;&gt;SoftEther ダウンロードセンター&lt;/a&gt;にアクセスして、必要なソフトのダウンロードアドレスを取得する。&lt;/p&gt;
-
-&lt;p&gt;下図のように選択した。
-&lt;img src=&#34;http://ift.tt/2wpPrj1&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;取得したアドレスで&lt;code&gt;wget&lt;/code&gt;して解凍して&lt;code&gt;make&lt;/code&gt;まで。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v4.32-9731-beta/softether-vpnserver-v4.32-9731-beta-2020.01.01-linux-x64-64bit.tar.gz
-$ tar xzvf softether-vpnserver-v4.32-9731-beta-2020.01.01-linux-x64-64bit.tar.gz
-$ make
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;正しくビルドできているか、実行して確認する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./vpnserver start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;して表示されるURLにアクセスする。
-SoftEther VPN Serverというタイトルのページが出てくればOK。
-ただ、Chromeとかセキュリティ意識の高いブラウザでアクセスすると、SSLの証明書が信頼できんと言われて表示できないので注意。Safariでなら表示できた（それでも許可を出さないと表示してくれない）。&lt;/p&gt;
-
-&lt;h2 id=&#34;サービス化&#34;&gt;サービス化&lt;/h2&gt;
-
-&lt;p&gt;サービス化して、サーバーが再起動しても自動で起動するように設定する。
-Systemdを使った。
-設定ファイルはGitHubにあったものをベースに以下のようにした。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;メイン拠点側の設定&#34;&gt;メイン拠点側の設定&lt;/h2&gt;
-
-&lt;p&gt;SoftEtherの設定はコマンドで行うには複雑すぎる。
-GUIの管理ツールがかなり使いやすいのでこれを使う。
-Windows版とmacOS版があるが、Windows版を使った。&lt;/p&gt;
-
-&lt;h3 id=&#34;接続&#34;&gt;接続&lt;/h3&gt;
-
-&lt;h3 id=&#34;ウィザード&#34;&gt;ウィザード&lt;/h3&gt;
-
-&lt;p&gt;拠点間VPNを張るためのプリセットがあるので、それを使う。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;画像&#34; target=&#34;_blank&#34;&gt;!image&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;このあとダイナミックDNSの設定が出てくるが、使わないので適当に閉じる。
-ダイナミックDNSについては&lt;a href=&#34;../ddns/&#34;&gt;別の方法&lt;/a&gt;で実現しているので、不要だった。&lt;/p&gt;
-
-&lt;p&gt;VPN Azureも使わないので無効。&lt;/p&gt;
-
-&lt;h4 id=&#34;ユーザーの作成&#34;&gt;ユーザーの作成&lt;/h4&gt;
-
-&lt;p&gt;ようわからんけどユーザーを作る。
-ユーザー名だけ適当に書いてOK&lt;/p&gt;
-
-&lt;h4 id=&#34;ローカルブリッジの設定&#34;&gt;ローカルブリッジの設定&lt;/h4&gt;
-
-&lt;p&gt;実家のRaspberry Piは無線LAN接続なのでwlan0にブリッジ接続する。&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>任意のGoogle APIをRubyで使うときの手順</title>
