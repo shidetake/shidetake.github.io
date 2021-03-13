@@ -37,7 +37,7 @@
 IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
 Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2BkAaOM&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
 

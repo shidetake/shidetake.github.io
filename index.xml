@@ -414,7 +414,7 @@ GitHubに&lt;a href=&#34;https://github.com/shidetake/dropcast&#34; target=&#34;
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
 &lt;p&gt;完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。
-&lt;img src=&#34;https://ift.tt/2BIyBPp&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;img/reins_map.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;東京都心の単価は高すぎてサチってしまっている。
 本来買いたいレンジが単価100万以下なのでしょうがない。&lt;/p&gt;
@@ -605,7 +605,7 @@ RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
 
 &lt;h2 id=&#34;execにpyatvを設定&#34;&gt;execにpyatvを設定&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2Eg7OHK&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
 よく見ると、&lt;code&gt;atvremote&lt;/code&gt;コマンドが見つからないというエラーが出ていた。&lt;/p&gt;
@@ -698,7 +698,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
 Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2BkAaOM&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
 
@@ -918,7 +918,7 @@ function mailGroupId(e) {
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2B4AsMG&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/alexa_skill_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Amazon Echoにスキルをインストールして、声でスキルを呼び出す。
 呼び出されたスキルは、登録されたAWS Lambdaの関数を呼び出して、処理を実行するという流れ。&lt;/p&gt;
@@ -1495,7 +1495,7 @@ csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行�
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ついでにグラフ化。
-&lt;img src=&#34;http://ift.tt/2ifbMt0&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;image/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。&lt;/p&gt;
 
@@ -1884,7 +1884,7 @@ Last IP Addressとあるので、初回より前のアドレスを出そうと�
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
       <link>http://shidetake.com/stock_trendline_1/</link>
-      <pubDate>Sun, 17 Sep 2017 16:36:18 +0000</pubDate>
+      <pubDate>Sun, 17 Sep 2017 16:36:18 +0900</pubDate>
       
       <guid>http://shidetake.com/stock_trendline_1/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
@@ -1956,7 +1956,7 @@ end
 
 &lt;p&gt;移動平均の期間をどう決めるかが難しいところだが、いったん10日とした。あとで調整する。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2jAdPbn&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;極値&#34;&gt;極値&lt;/h2&gt;
 
@@ -2020,7 +2020,7 @@ end
 
 &lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2wy0emn&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
 実際に線を引くのは次回。&lt;/p&gt;</description>
@@ -2029,7 +2029,7 @@ end
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>
       <link>http://shidetake.com/google_finance_api/</link>
-      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0900</pubDate>
       
       <guid>http://shidetake.com/google_finance_api/</guid>
       <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
@@ -2124,13 +2124,13 @@ end
 &lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
 得られたチャートを貼って終わり。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2wAIcS7&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>IIJmioの追加クーポンをLINE botに買ってもらう</title>
       <link>http://shidetake.com/iij_coupon/</link>
-      <pubDate>Sun, 03 Sep 2017 10:27:20 +0000</pubDate>
+      <pubDate>Sun, 03 Sep 2017 10:27:20 +0900</pubDate>
       
       <guid>http://shidetake.com/iij_coupon/</guid>
       <description>&lt;p&gt;IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
@@ -2141,7 +2141,7 @@ end
 
 &lt;h2 id=&#34;実行画面&#34;&gt;実行画面&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2iSCU12&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://ift.tt/2wtX1rd&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/iij_coupon.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
@@ -2149,7 +2149,7 @@ end
 &lt;li&gt;LINEメッセージをMessaging APIが受けて、Google Apps Scriptを発動&lt;/li&gt;
 &lt;li&gt;GASはソケット通信でVPS上のrubyスクリプトを起こす&lt;/li&gt;
 &lt;li&gt;rubyスクリプト上でCapybaraさんがIIJmioのウェブページにクーポン購入を依頼する
-&lt;img src=&#34;http://ift.tt/2vBgyXT&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;img/3.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;クローラー作成&#34;&gt;クローラー作成&lt;/h2&gt;
@@ -2376,7 +2376,7 @@ IFTTTを使って直リンクアドレスをメールしてもらうのが一番
     <item>
       <title>iPadをウェブカメラ化してiCamSourceと連携</title>
       <link>http://shidetake.com/icam/</link>
-      <pubDate>Thu, 17 Aug 2017 17:14:33 +0000</pubDate>
+      <pubDate>Thu, 17 Aug 2017 17:14:33 +0900</pubDate>
       
       <guid>http://shidetake.com/icam/</guid>
       <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
@@ -2408,7 +2408,7 @@ IFTTTを使って直リンクアドレスをメールしてもらうのが一番
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2vi1qtp&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/icam.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ipadのウェブカメラ化&#34;&gt;iPadのウェブカメラ化&lt;/h2&gt;
 
@@ -2417,7 +2417,7 @@ IFTTTを使って直リンクアドレスをメールしてもらうのが一番
 
 &lt;p&gt;更に、それをCamTwistというアプリで受けることで、ウェブカメラの入力画像のように使えるようになる。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2uYxTtD&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;EpocCamが繋がっている状態 (上図左下) で、CamTwistの設定をSyphonにして、Syphon ServerとしてEpocCam Viewer Proを選択する (上図上) 。
 CamTwistのPreviewにEpocCamと同じ映像が表示されれば成功 (上図右下) 。&lt;/p&gt;
@@ -2427,7 +2427,7 @@ CamTwistのPreviewにEpocCamと同じ映像が表示されれば成功 (上図�
 &lt;p&gt;MBAにiCamSourceというアプリを入れて、VideoにCamTwist (2VUY)を選択する。
 idとパスワードは適当に入力して、右下のStartボタンを押して、EpocCamと同じ映像が表示されれば成功。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2vhuf9q&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;iPhoneに入れたiCamアプリにidとパスワードを入力するとiPadのカメラの映像を見ることができる。&lt;/p&gt;</description>
     </item>
@@ -2435,7 +2435,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
     <item>
       <title>テレビのアンテナ線を無線化する</title>
       <link>http://shidetake.com/wireless_tv/</link>
-      <pubDate>Thu, 10 Aug 2017 22:26:23 +0000</pubDate>
+      <pubDate>Thu, 10 Aug 2017 22:26:23 +0900</pubDate>
       
       <guid>http://shidetake.com/wireless_tv/</guid>
       <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
@@ -2467,7 +2467,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2uZ3rzy&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/wireless_tv.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;環境構築手順&#34;&gt;環境構築手順&lt;/h2&gt;
 

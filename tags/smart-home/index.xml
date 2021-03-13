@@ -28,7 +28,7 @@
 
 &lt;h2 id=&#34;execにpyatvを設定&#34;&gt;execにpyatvを設定&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2Eg7OHK&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
 よく見ると、&lt;code&gt;atvremote&lt;/code&gt;コマンドが見つからないというエラーが出ていた。&lt;/p&gt;
@@ -98,7 +98,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
     <item>
       <title>iPadをウェブカメラ化してiCamSourceと連携</title>
       <link>http://shidetake.com/icam/</link>
-      <pubDate>Thu, 17 Aug 2017 17:14:33 +0000</pubDate>
+      <pubDate>Thu, 17 Aug 2017 17:14:33 +0900</pubDate>
       
       <guid>http://shidetake.com/icam/</guid>
       <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
@@ -130,7 +130,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2vi1qtp&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/icam.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ipadのウェブカメラ化&#34;&gt;iPadのウェブカメラ化&lt;/h2&gt;
 
@@ -139,7 +139,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 
 &lt;p&gt;更に、それをCamTwistというアプリで受けることで、ウェブカメラの入力画像のように使えるようになる。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2uYxTtD&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;EpocCamが繋がっている状態 (上図左下) で、CamTwistの設定をSyphonにして、Syphon ServerとしてEpocCam Viewer Proを選択する (上図上) 。
 CamTwistのPreviewにEpocCamと同じ映像が表示されれば成功 (上図右下) 。&lt;/p&gt;
@@ -149,7 +149,7 @@ CamTwistのPreviewにEpocCamと同じ映像が表示されれば成功 (上図�
 &lt;p&gt;MBAにiCamSourceというアプリを入れて、VideoにCamTwist (2VUY)を選択する。
 idとパスワードは適当に入力して、右下のStartボタンを押して、EpocCamと同じ映像が表示されれば成功。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2vhuf9q&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;iPhoneに入れたiCamアプリにidとパスワードを入力するとiPadのカメラの映像を見ることができる。&lt;/p&gt;</description>
     </item>
@@ -157,7 +157,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
     <item>
       <title>テレビのアンテナ線を無線化する</title>
       <link>http://shidetake.com/wireless_tv/</link>
-      <pubDate>Thu, 10 Aug 2017 22:26:23 +0000</pubDate>
+      <pubDate>Thu, 10 Aug 2017 22:26:23 +0900</pubDate>
       
       <guid>http://shidetake.com/wireless_tv/</guid>
       <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
@@ -189,7 +189,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2uZ3rzy&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/wireless_tv.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;環境構築手順&#34;&gt;環境構築手順&lt;/h2&gt;
 

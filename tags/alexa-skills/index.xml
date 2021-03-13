@@ -22,7 +22,7 @@
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2B4AsMG&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/alexa_skill_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Amazon Echoにスキルをインストールして、声でスキルを呼び出す。
 呼び出されたスキルは、登録されたAWS Lambdaの関数を呼び出して、処理を実行するという流れ。&lt;/p&gt;

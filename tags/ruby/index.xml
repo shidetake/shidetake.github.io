@@ -176,7 +176,7 @@ ActiveSupportを使うかどうか迷うポイントとして、一部の機能�
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
 &lt;p&gt;完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。
-&lt;img src=&#34;https://ift.tt/2BIyBPp&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;img/reins_map.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;東京都心の単価は高すぎてサチってしまっている。
 本来買いたいレンジが単価100万以下なのでしょうがない。&lt;/p&gt;
@@ -249,7 +249,7 @@ geocoder.exec
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
       <link>http://shidetake.com/stock_trendline_1/</link>
-      <pubDate>Sun, 17 Sep 2017 16:36:18 +0000</pubDate>
+      <pubDate>Sun, 17 Sep 2017 16:36:18 +0900</pubDate>
       
       <guid>http://shidetake.com/stock_trendline_1/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
@@ -321,7 +321,7 @@ end
 
 &lt;p&gt;移動平均の期間をどう決めるかが難しいところだが、いったん10日とした。あとで調整する。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2jAdPbn&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;極値&#34;&gt;極値&lt;/h2&gt;
 
@@ -385,7 +385,7 @@ end
 
 &lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2wy0emn&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
 実際に線を引くのは次回。&lt;/p&gt;</description>
@@ -394,7 +394,7 @@ end
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>
       <link>http://shidetake.com/google_finance_api/</link>
-      <pubDate>Mon, 04 Sep 2017 23:14:36 +0000</pubDate>
+      <pubDate>Mon, 04 Sep 2017 23:14:36 +0900</pubDate>
       
       <guid>http://shidetake.com/google_finance_api/</guid>
       <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
@@ -489,7 +489,7 @@ end
 &lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
 得られたチャートを貼って終わり。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ift.tt/2wAIcS7&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
