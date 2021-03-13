@@ -1,0 +1,766 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.1-BETA">
+    <title>実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1</title>
+    <meta name="author" content="shidetake">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="http://shidetake.com/favicon.png">
+    
+
+    
+    <meta name="description" content="いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
+壁のLANポートに接続すると、何の手続きもなく接続できるもの。
+
+このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。
+
+そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
+ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。">
+    <meta property="og:description" content="いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
+壁のLANポートに接続すると、何の手続きもなく接続できるもの。
+
+このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。
+
+そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
+ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1">
+    <meta property="og:url" content="/vpn/">
+    <meta property="og:site_name" content="blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="blog">
+    <meta name="twitter:description" content="いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
+壁のLANポートに接続すると、何の手続きもなく接続できるもの。
+
+このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。
+
+そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
+ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="http://shidetake.com/css/style-fpbzgxsy0kgmdvyrj5ykkg6ratccrk3gocmaqn4xpcjywmv5dteilzucro4f.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-100589187-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://shidetake.com/">blog</a>
+  </div>
+  
+    
+      <a class="header-right-icon "
+         href="http://shidetake.com/search.html">
+    
+    
+      <i class="fa fa-lg fa-search"></i>
+    
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://shidetake.com/">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">shidetake</h4>
+        
+          <h5 class="sidebar-profile-bio">software engineer</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link open-algolia-search" href="http://shidetake.com/search.html">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+      
+      <span class="sidebar-button-desc">Search</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/shidetake" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://shidetake.com/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-01-01T10:57:47&#43;09:00">
+        
+  January 1, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://shidetake.com/categories/tech">Tech</a>
+    
+  
+
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
+壁のLANポートに接続すると、何の手続きもなく接続できるもの。</p>
+
+<p>このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。</p>
+
+<p>そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
+ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。</p>
+
+<h2 id="構成">構成</h2>
+
+<p><img src="http://ift.tt/2fy4P1F" alt="image" /></p>
+
+<ul>
+<li>メイン拠点(実家)が左側</li>
+<li>サブ拠点(いま住んでいる家)が右側</li>
+<li>拠点間をRaspberry Piに入れたSoftEtherでVPN接続する</li>
+<li>外部からメイン拠点にアクセスすることで、サブ拠点とも通信が可能となる</li>
+</ul>
+
+<h2 id="softetherインストール">SoftEtherインストール</h2>
+
+<p>踏み台にする方のRaspberry PiにSoftEther VPN Serverをインストールする。
+手元のPC等で<a href="http://www.softether-download.com" target="_blank">SoftEther ダウンロードセンター</a>にアクセスして、必要なソフトのダウンロードアドレスを取得する。</p>
+
+<p>下図のように選択した。
+<img src="http://ift.tt/2wpPrj1" alt="image" /></p>
+
+<p>取得したアドレスで<code>wget</code>して解凍して<code>make</code>まで。</p>
+
+<pre><code class="language-bash">$ wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v4.32-9731-beta/softether-vpnserver-v4.32-9731-beta-2020.01.01-linux-x64-64bit.tar.gz
+$ tar xzvf softether-vpnserver-v4.32-9731-beta-2020.01.01-linux-x64-64bit.tar.gz
+$ make
+</code></pre>
+
+<p>正しくビルドできているか、実行して確認する。</p>
+
+<pre><code class="language-bash">$ ./vpnserver start
+</code></pre>
+
+<p>して表示されるURLにアクセスする。
+SoftEther VPN Serverというタイトルのページが出てくればOK。
+ただ、Chromeとかセキュリティ意識の高いブラウザでアクセスすると、SSLの証明書が信頼できんと言われて表示できないので注意。Safariでなら表示できた（それでも許可を出さないと表示してくれない）。</p>
+
+<h2 id="サービス化">サービス化</h2>
+
+<p>サービス化して、サーバーが再起動しても自動で起動するように設定する。
+Systemdを使った。
+設定ファイルはGitHubにあったものをベースに以下のようにした。</p>
+
+<pre><code class="language-bash">
+</code></pre>
+
+<h2 id="メイン拠点側の設定">メイン拠点側の設定</h2>
+
+<p>SoftEtherの設定はコマンドで行うには複雑すぎる。
+GUIの管理ツールがかなり使いやすいのでこれを使う。
+Windows版とmacOS版があるが、Windows版を使った。</p>
+
+<h3 id="接続">接続</h3>
+
+<h3 id="ウィザード">ウィザード</h3>
+
+<p>拠点間VPNを張るためのプリセットがあるので、それを使う。</p>
+
+<p><a href="画像" target="_blank">!image</a></p>
+
+<p>このあとダイナミックDNSの設定が出てくるが、使わないので適当に閉じる。
+ダイナミックDNSについては<a href="../ddns/">別の方法</a>で実現しているので、不要だった。</p>
+
+<p>VPN Azureも使わないので無効。</p>
+
+<h4 id="ユーザーの作成">ユーザーの作成</h4>
+
+<p>ようわからんけどユーザーを作る。
+ユーザー名だけ適当に書いてOK</p>
+
+<h4 id="ローカルブリッジの設定">ローカルブリッジの設定</h4>
+
+<p>実家のRaspberry Piは無線LAN接続なのでwlan0にブリッジ接続する。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/raspberry-pi/">Raspberry Pi</a>
+
+  <a class="tag tag--primary tag--small" href="http://shidetake.com//tags/vpn/">VPN</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_auth/" data-tooltip="任意のGoogle APIをRubyで使うときの手順">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 shidetake. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                <i class="fa fa-angle-left"></i>
+                <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+              </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://shidetake.com/google_auth/" data-tooltip="任意のGoogle APIをRubyで使うときの手順">
+              
+                <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/c50eca9d63f3a6179ab14645cf2dc1ea?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">shidetake</h4>
+    
+      <div id="about-card-bio">software engineer</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        software engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Japan
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/vpn/">
+                <h3 class="media-heading">実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
+壁のLANポートに接続すると、何の手続きもなく接続できるもの。</p>
+
+<p>このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。</p>
+
+<p>そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
+ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/google_auth/">
+                <h3 class="media-heading">任意のGoogle APIをRubyで使うときの手順</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>GmailのAPIについては<a href="../gmail_api_1.md">以前記事にした</a>が、
+別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/active_support_time/">
+                <h3 class="media-heading">素のRubyで日時を扱う</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Railsではなく素のRubyで日時を扱うときのベストプラクティスについて。
+毎回悩むのでここに書いておく。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/blu_ripping/">
+                <h3 class="media-heading">MakeMKVとHandBrakeによるBlu-lay Discリッピング</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>DVDのリッピングについて<a href="../ripping_1/">以前</a>書いたが、ブルーレイに未対応だったので対応した。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/heroku_reset/">
+                <h3 class="media-heading">Heroku上のRailsアプリのDBをリセットする</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>HerokuでホスティングしているRailsアプリのDB構造を変えて、
+<code>rails db:migrate:reset</code>したくなったんだけど、そのままのコマンドではだめだったので調査した。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/dropcast/">
+                <h3 class="media-heading">Dropboxで自分専用のPodcast配信</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>最近Podcastにハマっている。
+Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。</p>
+
+<p>その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
+できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/reins_map/">
+                <h3 class="media-heading">地域ごとのマンション単価をGoogleマップで見る</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>最近、新築マンションの購入を検討し始めた。
+そこで気になるのが、周辺の相場だ。
+ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/geoapi/">
+                <h3 class="media-heading">Yahoo!ジオコーダAPIで住所から経度緯度を取得</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Rubyを使う。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/aws_cli/">
+                <h3 class="media-heading">AWSのRDSインスタンスをCLIで操作</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>AWSのRDSは使っていないときは停止しないともったいない。
+とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
+<code>aws</code>コマンドは既に導入しているという前提。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/big_image/">
+                <h3 class="media-heading">画像を任意のサイズ（容量）に変換する</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>テストのために容量の大きい画像が必要になったが、
+案外見つからなくて、結局ImageMagickで適当な画像を変換して作ることにしたので、そのやり方を記す。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         46 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://ift.tt/2vXumJj');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" integrity="sha256-IFHWFEbU2/+wNycDECKgjIRSirRNIDp2acEB5fvdVRU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js" integrity="sha256-+mpyNVJsNt4rVXCw0F+pAOiB3YxmHgrbJsx4ecPuUaI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js" integrity="sha256-vMxgR/7FtLovVA+IPrR7+xTgIgARH7y9VZQnmmi0HDI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js" integrity="sha256-N0qFUh7/9vLvia87dDndewmsgsyYoNkdA212tPc+2NI=" crossorigin="anonymous"></script>
+
+
+<script src="http://shidetake.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+    
+  </body>
+</html>
+

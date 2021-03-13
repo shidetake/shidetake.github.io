@@ -222,6 +222,25 @@ if (!doNotTrack) {
 <section class="boxes">
   
     
+    <div class="archive archive-year box" data-date="2020">
+      <h4 class="archive-title" style="text-decoration: none;">2020</h4>
+      
+        <ul class="archive-posts archive-month" data-date="202001">
+          <h5 class="archive-title" style="text-decoration: none;">January</h5>
+          
+            <li class="archive-post archive-day" data-date="20200101">
+              <a class="archive-post-title" href="http://shidetake.com/vpn/">実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1</a>
+            </li>
+          
+            <li class="archive-post archive-day" data-date="20200101">
+              <a class="archive-post-title" href="http://shidetake.com/post/">Posts</a>
+            </li>
+          
+        </ul>
+      
+    </div>
+  
+    
     <div class="archive archive-year box" data-date="2019">
       <h4 class="archive-title" style="text-decoration: none;">2019</h4>
       
@@ -230,10 +249,6 @@ if (!doNotTrack) {
           
             <li class="archive-post archive-day" data-date="20191222">
               <a class="archive-post-title" href="http://shidetake.com/google_auth/">任意のGoogle APIをRubyで使うときの手順</a>
-            </li>
-          
-            <li class="archive-post archive-day" data-date="20191222">
-              <a class="archive-post-title" href="http://shidetake.com/post/">Posts</a>
             </li>
           
             <li class="archive-post archive-day" data-date="20191216">
@@ -555,6 +570,29 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="http://shidetake.com/vpn/">
+                <h3 class="media-heading">実家のRaspberry Piを踏み台にしてマンション内の機器に接続 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2020
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>いま住んでるマンションはインターネット回線があらかじめ付いているタイプで、
+壁のLANポートに接続すると、何の手続きもなく接続できるもの。</p>
+
+<p>このタイプだとグローバルIPアドレスがもらえないので、外部から家のサーバに接続するのが難しい。</p>
+
+<p>そこで、実家のRaspberry PiにVPNを張って拠点間LANを形成することでマンション内の機器に接続できるようにした。
+ちなみにVPSを踏み台にすることもできるが、通信量が多すぎると怒られるので注意が必要(実体験)。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="http://shidetake.com/google_auth/">
                 <h3 class="media-heading">任意のGoogle APIをRubyで使うときの手順</h3>
               </a>
@@ -717,27 +755,6 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="http://shidetake.com/heroku_domains/">
-                <h3 class="media-heading">Herokuの公開URLをコマンドで確認する</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Mar 3, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>最近、<a href="https://railstutorial.jp" target="_blank">Ruby on Railsチュートリアル</a>を進めているんだけど、
-その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、
-いちいちHerokuにログインして確認するという手間が発生する。</p>
-
-<p>たぶん<code>heroku</code>コマンドにあるだろうと思って探したらあったので、備忘録的に残しておく。</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -745,7 +762,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         45 posts found
+         46 posts found
       </p>
     </div>
   </div>
