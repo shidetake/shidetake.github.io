@@ -182,7 +182,7 @@ csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行�
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ついでにグラフ化。
-&lt;img src=&#34;image/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;img/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。&lt;/p&gt;
 
