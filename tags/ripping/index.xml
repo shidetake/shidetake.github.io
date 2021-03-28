@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ripping on blog</title>
-    <link>http://shidetake.com/tags/ripping/</link>
+    <link>https://shidetake.com/tags/ripping/</link>
     <description>Recent content in Ripping on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Nov 2019 17:00:51 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/ripping/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/ripping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MakeMKVとHandBrakeによるBlu-lay Discリッピング</title>
-      <link>http://shidetake.com/blu_ripping/</link>
+      <link>https://shidetake.com/blu_ripping/</link>
       <pubDate>Sun, 10 Nov 2019 17:00:51 +0900</pubDate>
       
-      <guid>http://shidetake.com/blu_ripping/</guid>
+      <guid>https://shidetake.com/blu_ripping/</guid>
       <description>&lt;p&gt;DVDのリッピングについて&lt;a href=&#34;../ripping_1/&#34;&gt;以前&lt;/a&gt;書いたが、ブルーレイに未対応だったので対応した。&lt;/p&gt;
 
 &lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;
@@ -55,10 +55,10 @@ HandBrakeを使って加工する。
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 3</title>
-      <link>http://shidetake.com/ripping_3/</link>
+      <link>https://shidetake.com/ripping_3/</link>
       <pubDate>Wed, 19 Jul 2017 22:36:23 +0900</pubDate>
       
-      <guid>http://shidetake.com/ripping_3/</guid>
+      <guid>https://shidetake.com/ripping_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_2/&#34;&gt;前回&lt;/a&gt;からの続き。
 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。&lt;/p&gt;
 
@@ -106,10 +106,10 @@ done
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 2</title>
-      <link>http://shidetake.com/ripping_2/</link>
+      <link>https://shidetake.com/ripping_2/</link>
       <pubDate>Mon, 10 Jul 2017 22:41:58 +0900</pubDate>
       
-      <guid>http://shidetake.com/ripping_2/</guid>
+      <guid>https://shidetake.com/ripping_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_1/&#34;&gt;前回&lt;/a&gt;からの続き。&lt;/p&gt;
 
 &lt;h2 id=&#34;チャプター分割&#34;&gt;チャプター分割&lt;/h2&gt;
@@ -170,10 +170,10 @@ done
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 1</title>
-      <link>http://shidetake.com/ripping_1/</link>
+      <link>https://shidetake.com/ripping_1/</link>
       <pubDate>Mon, 03 Jul 2017 22:08:55 +0900</pubDate>
       
-      <guid>http://shidetake.com/ripping_1/</guid>
+      <guid>https://shidetake.com/ripping_1/</guid>
       <description>&lt;p&gt;DVDのリッピングというのは、設定が異常に多い。&lt;/p&gt;
 
 &lt;p&gt;まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。

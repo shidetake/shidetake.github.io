@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on blog</title>
-    <link>http://shidetake.com/categories/</link>
+    <link>https://shidetake.com/categories/</link>
     <description>Recent content in Categories on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-        <atom:link href="http://shidetake.com/categories/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tech</title>
-      <link>http://shidetake.com/categories/tech/</link>
+      <link>https://shidetake.com/categories/tech/</link>
       <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
       
-      <guid>http://shidetake.com/categories/tech/</guid>
+      <guid>https://shidetake.com/categories/tech/</guid>
       <description></description>
     </item>
     

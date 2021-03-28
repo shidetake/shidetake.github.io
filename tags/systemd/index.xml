@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Systemd on blog</title>
-    <link>http://shidetake.com/tags/systemd/</link>
+    <link>https://shidetake.com/tags/systemd/</link>
     <description>Recent content in Systemd on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Jan 2018 07:56:05 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/systemd/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/systemd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AlexaとNode-REDを利用したスマートホームスキル作成時の注意</title>
-      <link>http://shidetake.com/alexa_node_red1/</link>
+      <link>https://shidetake.com/alexa_node_red1/</link>
       <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/alexa_node_red1/</guid>
+      <guid>https://shidetake.com/alexa_node_red1/</guid>
       <description>&lt;p&gt;最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
 &lt;a href=&#34;../pyatv/&#34;&gt;前回のApple TVを操作するスクリプト&lt;/a&gt;もその一環だったのだが、うまく動かなかったのでその対処法を書く。&lt;/p&gt;
 
@@ -28,7 +28,7 @@
 
 &lt;h2 id=&#34;execにpyatvを設定&#34;&gt;execにpyatvを設定&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
 よく見ると、&lt;code&gt;atvremote&lt;/code&gt;コマンドが見つからないというエラーが出ていた。&lt;/p&gt;

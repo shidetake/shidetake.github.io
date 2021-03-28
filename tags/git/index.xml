@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on blog</title>
-    <link>http://shidetake.com/tags/git/</link>
+    <link>https://shidetake.com/tags/git/</link>
     <description>Recent content in Git on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 25 Nov 2017 20:45:30 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>git showの差分をvimdiffで見る</title>
-      <link>http://shidetake.com/git_showtool/</link>
+      <link>https://shidetake.com/git_showtool/</link>
       <pubDate>Sat, 25 Nov 2017 20:45:30 +0900</pubDate>
       
-      <guid>http://shidetake.com/git_showtool/</guid>
+      <guid>https://shidetake.com/git_showtool/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../git_difftool/&#34;&gt;git diffをvimdiffで見る方法&lt;/a&gt;を紹介した。
 今回は&lt;code&gt;git show&lt;/code&gt;を&lt;code&gt;vimdiff&lt;/code&gt;で見る方法を紹介する。&lt;/p&gt;
 
@@ -65,10 +65,10 @@
     
     <item>
       <title>gitのdiffをvimdiffで見る</title>
-      <link>http://shidetake.com/git_difftool/</link>
+      <link>https://shidetake.com/git_difftool/</link>
       <pubDate>Thu, 26 Oct 2017 23:34:29 +0900</pubDate>
       
-      <guid>http://shidetake.com/git_difftool/</guid>
+      <guid>https://shidetake.com/git_difftool/</guid>
       <description>&lt;p&gt;少し前まで、&lt;code&gt;git&lt;/code&gt;のdiffに&lt;code&gt;vimdiff&lt;/code&gt;を使う場合、&lt;code&gt;git_diff_wrapper&lt;/code&gt;なるファイルを用意して、
 &lt;code&gt;.gitconfig&lt;/code&gt;の&lt;code&gt;[diff]&lt;/code&gt;セクションに&lt;code&gt;external = git_diff_wrapper&lt;/code&gt;とするのが主流だった（と思っている）。&lt;/p&gt;
 

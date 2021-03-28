@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Amazon Dash Button on blog</title>
-    <link>http://shidetake.com/tags/amazon-dash-button/</link>
+    <link>https://shidetake.com/tags/amazon-dash-button/</link>
     <description>Recent content in Amazon Dash Button on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Sep 2017 23:42:10 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/amazon-dash-button/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/amazon-dash-button/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Raspberry PiでSystemdを使ってdasherをサービス化</title>
-      <link>http://shidetake.com/dasher_systemd/</link>
+      <link>https://shidetake.com/dasher_systemd/</link>
       <pubDate>Tue, 26 Sep 2017 23:42:10 +0900</pubDate>
       
-      <guid>http://shidetake.com/dasher_systemd/</guid>
+      <guid>https://shidetake.com/dasher_systemd/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../dash_button&#34;&gt;Amazon Dash Buttonを使ってLINEに通知する方法&lt;/a&gt;を以前書いた。
 記事には記載していないが、このときは、init.dを使って自動起動するように設定していた。&lt;/p&gt;
 
@@ -144,10 +144,10 @@ network.targetの実体は、&lt;code&gt;/lib/systemd/system/network.target&lt;/
     
     <item>
       <title>Amazon Dash ButtonからLINE通知</title>
-      <link>http://shidetake.com/dash_button/</link>
+      <link>https://shidetake.com/dash_button/</link>
       <pubDate>Thu, 11 May 2017 22:31:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/dash_button/</guid>
+      <guid>https://shidetake.com/dash_button/</guid>
       <description>&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
 
 &lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;

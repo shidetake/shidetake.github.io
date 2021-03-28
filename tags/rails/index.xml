@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rails on blog</title>
-    <link>http://shidetake.com/tags/rails/</link>
+    <link>https://shidetake.com/tags/rails/</link>
     <description>Recent content in Rails on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Oct 2018 11:15:57 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/rails/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/rails/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Heroku上のRailsアプリのDBをリセットする</title>
-      <link>http://shidetake.com/heroku_reset/</link>
+      <link>https://shidetake.com/heroku_reset/</link>
       <pubDate>Sun, 28 Oct 2018 11:15:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/heroku_reset/</guid>
+      <guid>https://shidetake.com/heroku_reset/</guid>
       <description>&lt;p&gt;HerokuでホスティングしているRailsアプリのDB構造を変えて、
 &lt;code&gt;rails db:migrate:reset&lt;/code&gt;したくなったんだけど、そのままのコマンドではだめだったので調査した。&lt;/p&gt;
 

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>blog</title>
-    <link>http://shidetake.com/</link>
+    <link>https://shidetake.com/</link>
     <description>Recent content on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Dec 2019 17:53:28 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>任意のGoogle APIをRubyで使うときの手順</title>
-      <link>http://shidetake.com/google_auth/</link>
+      <link>https://shidetake.com/google_auth/</link>
       <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_auth/</guid>
+      <guid>https://shidetake.com/google_auth/</guid>
       <description>&lt;p&gt;GmailのAPIについては&lt;a href=&#34;../gmail_api_1.md&#34;&gt;以前記事にした&lt;/a&gt;が、
 別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。&lt;/p&gt;
 
@@ -122,10 +122,10 @@ Access Tokenが取得できる。&lt;/p&gt;
     
     <item>
       <title>素のRubyで日時を扱う</title>
-      <link>http://shidetake.com/active_support_time/</link>
+      <link>https://shidetake.com/active_support_time/</link>
       <pubDate>Mon, 16 Dec 2019 23:07:30 +0900</pubDate>
       
-      <guid>http://shidetake.com/active_support_time/</guid>
+      <guid>https://shidetake.com/active_support_time/</guid>
       <description>&lt;p&gt;Railsではなく素のRubyで日時を扱うときのベストプラクティスについて。
 毎回悩むのでここに書いておく。&lt;/p&gt;
 
@@ -154,10 +154,10 @@ ActiveSupportを使うかどうか迷うポイントとして、一部の機能�
     
     <item>
       <title>MakeMKVとHandBrakeによるBlu-lay Discリッピング</title>
-      <link>http://shidetake.com/blu_ripping/</link>
+      <link>https://shidetake.com/blu_ripping/</link>
       <pubDate>Sun, 10 Nov 2019 17:00:51 +0900</pubDate>
       
-      <guid>http://shidetake.com/blu_ripping/</guid>
+      <guid>https://shidetake.com/blu_ripping/</guid>
       <description>&lt;p&gt;DVDのリッピングについて&lt;a href=&#34;../ripping_1/&#34;&gt;以前&lt;/a&gt;書いたが、ブルーレイに未対応だったので対応した。&lt;/p&gt;
 
 &lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;
@@ -196,10 +196,10 @@ HandBrakeを使って加工する。
     
     <item>
       <title>Heroku上のRailsアプリのDBをリセットする</title>
-      <link>http://shidetake.com/heroku_reset/</link>
+      <link>https://shidetake.com/heroku_reset/</link>
       <pubDate>Sun, 28 Oct 2018 11:15:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/heroku_reset/</guid>
+      <guid>https://shidetake.com/heroku_reset/</guid>
       <description>&lt;p&gt;HerokuでホスティングしているRailsアプリのDB構造を変えて、
 &lt;code&gt;rails db:migrate:reset&lt;/code&gt;したくなったんだけど、そのままのコマンドではだめだったので調査した。&lt;/p&gt;
 
@@ -228,10 +228,10 @@ DISABLE_DATABASE_ENVIRONMENT_CHECK=1
     
     <item>
       <title>Dropboxで自分専用のPodcast配信</title>
-      <link>http://shidetake.com/dropcast/</link>
+      <link>https://shidetake.com/dropcast/</link>
       <pubDate>Wed, 29 Aug 2018 23:13:09 +0900</pubDate>
       
-      <guid>http://shidetake.com/dropcast/</guid>
+      <guid>https://shidetake.com/dropcast/</guid>
       <description>&lt;p&gt;最近Podcastにハマっている。
 Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなど。&lt;/p&gt;
 
@@ -240,7 +240,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
 
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/dropcast.png&#34; alt=&#34;image&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/dropcast.png&#34; alt=&#34;image&#34; /&gt;
 当然、著作物は私的利用に留めること。
 音源もPodcast配信用のRSSファイルも自分しかアクセスできない場所に置いているので私的利用の範囲内。&lt;/p&gt;
 
@@ -305,10 +305,10 @@ GitHubに&lt;a href=&#34;https://github.com/shidetake/dropcast&#34; target=&#34;
     
     <item>
       <title>地域ごとのマンション単価をGoogleマップで見る</title>
-      <link>http://shidetake.com/reins_map/</link>
+      <link>https://shidetake.com/reins_map/</link>
       <pubDate>Sat, 25 Aug 2018 17:40:38 +0900</pubDate>
       
-      <guid>http://shidetake.com/reins_map/</guid>
+      <guid>https://shidetake.com/reins_map/</guid>
       <description>&lt;p&gt;最近、新築マンションの購入を検討し始めた。
 そこで気になるのが、周辺の相場だ。
 ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。&lt;/p&gt;
@@ -327,7 +327,7 @@ GitHubに&lt;a href=&#34;https://github.com/shidetake/dropcast&#34; target=&#34;
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
 &lt;p&gt;完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。
-&lt;img src=&#34;http://shidetake.com/img/reins_map.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://shidetake.com/img/reins_map.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;東京都心の単価は高すぎてサチってしまっている。
 本来買いたいレンジが単価100万以下なのでしょうがない。&lt;/p&gt;
@@ -340,10 +340,10 @@ GitHubに&lt;a href=&#34;https://github.com/shidetake/dropcast&#34; target=&#34;
     
     <item>
       <title>Yahoo!ジオコーダAPIで住所から経度緯度を取得</title>
-      <link>http://shidetake.com/geoapi/</link>
+      <link>https://shidetake.com/geoapi/</link>
       <pubDate>Thu, 16 Aug 2018 15:56:34 +0900</pubDate>
       
-      <guid>http://shidetake.com/geoapi/</guid>
+      <guid>https://shidetake.com/geoapi/</guid>
       <description>&lt;p&gt;Rubyを使う。&lt;/p&gt;
 
 &lt;h1 id=&#34;アプリケーションid登録&#34;&gt;アプリケーションID登録&lt;/h1&gt;
@@ -399,10 +399,10 @@ geocoder.exec
     
     <item>
       <title>AWSのRDSインスタンスをCLIで操作</title>
-      <link>http://shidetake.com/aws_cli/</link>
+      <link>https://shidetake.com/aws_cli/</link>
       <pubDate>Sun, 13 May 2018 17:45:37 +0900</pubDate>
       
-      <guid>http://shidetake.com/aws_cli/</guid>
+      <guid>https://shidetake.com/aws_cli/</guid>
       <description>&lt;p&gt;AWSのRDSは使っていないときは停止しないともったいない。
 とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
 &lt;code&gt;aws&lt;/code&gt;コマンドは既に導入しているという前提。&lt;/p&gt;
@@ -444,10 +444,10 @@ geocoder.exec
     
     <item>
       <title>画像を任意のサイズ（容量）に変換する</title>
-      <link>http://shidetake.com/big_image/</link>
+      <link>https://shidetake.com/big_image/</link>
       <pubDate>Sun, 06 May 2018 21:37:25 +0900</pubDate>
       
-      <guid>http://shidetake.com/big_image/</guid>
+      <guid>https://shidetake.com/big_image/</guid>
       <description>&lt;p&gt;テストのために容量の大きい画像が必要になったが、
 案外見つからなくて、結局ImageMagickで適当な画像を変換して作ることにしたので、そのやり方を記す。&lt;/p&gt;
 
@@ -476,10 +476,10 @@ RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
     
     <item>
       <title>Herokuの公開URLをコマンドで確認する</title>
-      <link>http://shidetake.com/heroku_domains/</link>
+      <link>https://shidetake.com/heroku_domains/</link>
       <pubDate>Sat, 10 Mar 2018 15:37:24 +0900</pubDate>
       
-      <guid>http://shidetake.com/heroku_domains/</guid>
+      <guid>https://shidetake.com/heroku_domains/</guid>
       <description>&lt;p&gt;最近、&lt;a href=&#34;https://railstutorial.jp&#34; target=&#34;_blank&#34;&gt;Ruby on Railsチュートリアル&lt;/a&gt;を進めているんだけど、
 その中でHerokuを使うことになる。で、途中まで進めて、別の日に続きをやろうとすると、作っているWebサービスのURLがわからなくなり、
 いちいちHerokuにログインして確認するという手間が発生する。&lt;/p&gt;
@@ -494,19 +494,19 @@ RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
     
     <item>
       <title></title>
-      <link>http://shidetake.com/index.js</link>
+      <link>https://shidetake.com/index.js</link>
       <pubDate>Sun, 18 Feb 2018 22:50:07 +0900</pubDate>
       
-      <guid>http://shidetake.com/index.js</guid>
+      <guid>https://shidetake.com/index.js</guid>
       <description></description>
     </item>
     
     <item>
       <title>AlexaとNode-REDを利用したスマートホームスキル作成時の注意</title>
-      <link>http://shidetake.com/alexa_node_red1/</link>
+      <link>https://shidetake.com/alexa_node_red1/</link>
       <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/alexa_node_red1/</guid>
+      <guid>https://shidetake.com/alexa_node_red1/</guid>
       <description>&lt;p&gt;最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
 &lt;a href=&#34;../pyatv/&#34;&gt;前回のApple TVを操作するスクリプト&lt;/a&gt;もその一環だったのだが、うまく動かなかったのでその対処法を書く。&lt;/p&gt;
 
@@ -518,7 +518,7 @@ RGBそれぞれ1バイトずつなので、1画素あたり3MBになる。
 
 &lt;h2 id=&#34;execにpyatvを設定&#34;&gt;execにpyatvを設定&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
 よく見ると、&lt;code&gt;atvremote&lt;/code&gt;コマンドが見つからないというエラーが出ていた。&lt;/p&gt;
@@ -554,10 +554,10 @@ Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/loc
     
     <item>
       <title>Apple TVをRaspberry Piで操作</title>
-      <link>http://shidetake.com/pyatv/</link>
+      <link>https://shidetake.com/pyatv/</link>
       <pubDate>Fri, 26 Jan 2018 22:28:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/pyatv/</guid>
+      <guid>https://shidetake.com/pyatv/</guid>
       <description>&lt;p&gt;スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
 テレビはほとんどApple TVのために存在しているので、これを動かしてみた。&lt;/p&gt;
 
@@ -587,10 +587,10 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
     
     <item>
       <title>Gmailに重要なメールが届いたらLINEに通知する</title>
-      <link>http://shidetake.com/gmail2line/</link>
+      <link>https://shidetake.com/gmail2line/</link>
       <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail2line/</guid>
+      <guid>https://shidetake.com/gmail2line/</guid>
       <description>&lt;p&gt;最近はめっきりメールを使わなくなった。iOSもメール機能なんかどうでもいいと思っているのか、
 いまいち使い勝手が悪い。Gmailのプッシュ通知に非対応ってどうなの。&lt;/p&gt;
 
@@ -611,7 +611,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
 Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
 
@@ -696,10 +696,10 @@ function line_push(message) {
     
     <item>
       <title>定期的なリマインドをLINE BOTにやってもらう</title>
-      <link>http://shidetake.com/line_feeding/</link>
+      <link>https://shidetake.com/line_feeding/</link>
       <pubDate>Thu, 21 Dec 2017 22:46:24 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_feeding/</guid>
+      <guid>https://shidetake.com/line_feeding/</guid>
       <description>&lt;p&gt;自分だけで完結するような定期処理は、適当なアラームアプリあたりに設定すれば良いが、
 他人にお願いしていることは、わざわざアラーム設定しておいてと頼むのも角が立つので、こちらからリマインドしたい。&lt;/p&gt;
 
@@ -773,10 +773,10 @@ function mailGroupId(e) {
     
     <item>
       <title>Makefileでcronを登録する</title>
-      <link>http://shidetake.com/make_cron/</link>
+      <link>https://shidetake.com/make_cron/</link>
       <pubDate>Sun, 17 Dec 2017 11:18:31 +0900</pubDate>
       
-      <guid>http://shidetake.com/make_cron/</guid>
+      <guid>https://shidetake.com/make_cron/</guid>
       <description>&lt;p&gt;主に重複登録をしないようにするためのtipsを紹介する。&lt;/p&gt;
 
 &lt;h2 id=&#34;cron登録コマンド&#34;&gt;cron登録コマンド&lt;/h2&gt;
@@ -822,16 +822,16 @@ function mailGroupId(e) {
     
     <item>
       <title>Alexa SkillsでHello worldする</title>
-      <link>http://shidetake.com/alexa_skill_1/</link>
+      <link>https://shidetake.com/alexa_skill_1/</link>
       <pubDate>Mon, 04 Dec 2017 22:44:29 +0900</pubDate>
       
-      <guid>http://shidetake.com/alexa_skill_1/</guid>
+      <guid>https://shidetake.com/alexa_skill_1/</guid>
       <description>&lt;p&gt;Amazon Echoが届いたので、早速スキルを作ってみることにした。
 やはり最初はHello world。&lt;/p&gt;
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/alexa_skill_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/alexa_skill_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Amazon Echoにスキルをインストールして、声でスキルを呼び出す。
 呼び出されたスキルは、登録されたAWS Lambdaの関数を呼び出して、処理を実行するという流れ。&lt;/p&gt;
@@ -1102,10 +1102,10 @@ Enable Alexa skill &amp;quot;hello world&amp;quot;
     
     <item>
       <title>git showの差分をvimdiffで見る</title>
-      <link>http://shidetake.com/git_showtool/</link>
+      <link>https://shidetake.com/git_showtool/</link>
       <pubDate>Sat, 25 Nov 2017 20:45:30 +0900</pubDate>
       
-      <guid>http://shidetake.com/git_showtool/</guid>
+      <guid>https://shidetake.com/git_showtool/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../git_difftool/&#34;&gt;git diffをvimdiffで見る方法&lt;/a&gt;を紹介した。
 今回は&lt;code&gt;git show&lt;/code&gt;を&lt;code&gt;vimdiff&lt;/code&gt;で見る方法を紹介する。&lt;/p&gt;
 
@@ -1154,10 +1154,10 @@ Enable Alexa skill &amp;quot;hello world&amp;quot;
     
     <item>
       <title>マンション付属の光回線が早くなった話</title>
-      <link>http://shidetake.com/ebroad/</link>
+      <link>https://shidetake.com/ebroad/</link>
       <pubDate>Wed, 15 Nov 2017 23:11:02 +0900</pubDate>
       
-      <guid>http://shidetake.com/ebroad/</guid>
+      <guid>https://shidetake.com/ebroad/</guid>
       <description>&lt;p&gt;自宅の光回線が遅くて、&lt;a href=&#34;../speedtest/&#34;&gt;スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事&lt;/a&gt;を書いた。
 その後の話。&lt;/p&gt;
 
@@ -1199,10 +1199,10 @@ Enable Alexa skill &amp;quot;hello world&amp;quot;
     
     <item>
       <title>WindowsでもLinuxでも動くMakefileを書く</title>
-      <link>http://shidetake.com/make_win/</link>
+      <link>https://shidetake.com/make_win/</link>
       <pubDate>Sun, 05 Nov 2017 08:38:17 +0900</pubDate>
       
-      <guid>http://shidetake.com/make_win/</guid>
+      <guid>https://shidetake.com/make_win/</guid>
       <description>&lt;p&gt;シェルのコマンドが異なるので、両方に対応するのは意外とめんどくさい。
 今回はシンボリックリンクを作成するコマンドを例にして説明する。&lt;/p&gt;
 
@@ -1295,10 +1295,10 @@ endif
     
     <item>
       <title>gitのdiffをvimdiffで見る</title>
-      <link>http://shidetake.com/git_difftool/</link>
+      <link>https://shidetake.com/git_difftool/</link>
       <pubDate>Thu, 26 Oct 2017 23:34:29 +0900</pubDate>
       
-      <guid>http://shidetake.com/git_difftool/</guid>
+      <guid>https://shidetake.com/git_difftool/</guid>
       <description>&lt;p&gt;少し前まで、&lt;code&gt;git&lt;/code&gt;のdiffに&lt;code&gt;vimdiff&lt;/code&gt;を使う場合、&lt;code&gt;git_diff_wrapper&lt;/code&gt;なるファイルを用意して、
 &lt;code&gt;.gitconfig&lt;/code&gt;の&lt;code&gt;[diff]&lt;/code&gt;セクションに&lt;code&gt;external = git_diff_wrapper&lt;/code&gt;とするのが主流だった（と思っている）。&lt;/p&gt;
 
@@ -1365,10 +1365,10 @@ diff見ながら手直しするというのはよくあるので、毎回&lt;cod
     
     <item>
       <title>スピードテストを定期的に実行して回線速度の推移を見る</title>
-      <link>http://shidetake.com/speedtest/</link>
+      <link>https://shidetake.com/speedtest/</link>
       <pubDate>Mon, 16 Oct 2017 22:43:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/speedtest/</guid>
+      <guid>https://shidetake.com/speedtest/</guid>
       <description>&lt;p&gt;自宅の回線速度が遅いので、なんとか改善できないか考えている。
 まずは、現状把握ということで、スピードテストを実施した。
 常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
@@ -1408,7 +1408,7 @@ csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行�
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ついでにグラフ化。
-&lt;img src=&#34;http://shidetake.com/img/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://shidetake.com/img/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。&lt;/p&gt;
 
@@ -1507,10 +1507,10 @@ date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
     
     <item>
       <title>Ubuntu 16.04にmysqlをインストールする</title>
-      <link>http://shidetake.com/mysql_install/</link>
+      <link>https://shidetake.com/mysql_install/</link>
       <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
       
-      <guid>http://shidetake.com/mysql_install/</guid>
+      <guid>https://shidetake.com/mysql_install/</guid>
       <description>&lt;p&gt;aptで適当にインストールすれば使えると思っていたが、意外と手間取ったので、手順を書いておく。&lt;/p&gt;
 
 &lt;h2 id=&#34;install&#34;&gt;install&lt;/h2&gt;
@@ -1553,10 +1553,10 @@ date &amp;quot;+%Y/%m/%d %H:%M:%S&amp;quot; &amp;gt;&amp;gt; ~/tmp/speedtest.log
     
     <item>
       <title>Raspberry PiでSystemdを使ってdasherをサービス化</title>
-      <link>http://shidetake.com/dasher_systemd/</link>
+      <link>https://shidetake.com/dasher_systemd/</link>
       <pubDate>Tue, 26 Sep 2017 23:42:10 +0900</pubDate>
       
-      <guid>http://shidetake.com/dasher_systemd/</guid>
+      <guid>https://shidetake.com/dasher_systemd/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../dash_button&#34;&gt;Amazon Dash Buttonを使ってLINEに通知する方法&lt;/a&gt;を以前書いた。
 記事には記載していないが、このときは、init.dを使って自動起動するように設定していた。&lt;/p&gt;
 
@@ -1684,10 +1684,10 @@ network.targetの実体は、&lt;code&gt;/lib/systemd/system/network.target&lt;/
     
     <item>
       <title>DDNSでLANの外から自宅のRaspberry PiにSSH接続する</title>
-      <link>http://shidetake.com/ddns/</link>
+      <link>https://shidetake.com/ddns/</link>
       <pubDate>Mon, 18 Sep 2017 21:51:18 +0900</pubDate>
       
-      <guid>http://shidetake.com/ddns/</guid>
+      <guid>https://shidetake.com/ddns/</guid>
       <description>&lt;p&gt;普通のインターネット回線では、グローバルIPが定期的に変わってしまうため、
 自宅に置いたRaspberry Piなんかをサーバー代わりに使うには不便。&lt;/p&gt;
 
@@ -1796,10 +1796,10 @@ Last IP Addressとあるので、初回より前のアドレスを出そうと�
     
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
-      <link>http://shidetake.com/stock_trendline_1/</link>
+      <link>https://shidetake.com/stock_trendline_1/</link>
       <pubDate>Sun, 17 Sep 2017 16:36:18 +0900</pubDate>
       
-      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <guid>https://shidetake.com/stock_trendline_1/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
 このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
 
@@ -1933,7 +1933,7 @@ end
 
 &lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
 実際に線を引くのは次回。&lt;/p&gt;</description>
@@ -1941,10 +1941,10 @@ end
     
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>
-      <link>http://shidetake.com/google_finance_api/</link>
+      <link>https://shidetake.com/google_finance_api/</link>
       <pubDate>Mon, 04 Sep 2017 23:14:36 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_finance_api/</guid>
+      <guid>https://shidetake.com/google_finance_api/</guid>
       <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
 手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
 まずは普通の株価チャートを描いてみた。&lt;/p&gt;
@@ -2037,15 +2037,15 @@ end
 &lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
 得られたチャートを貼って終わり。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>IIJmioの追加クーポンをLINE botに買ってもらう</title>
-      <link>http://shidetake.com/iij_coupon/</link>
+      <link>https://shidetake.com/iij_coupon/</link>
       <pubDate>Sun, 03 Sep 2017 10:27:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/iij_coupon/</guid>
+      <guid>https://shidetake.com/iij_coupon/</guid>
       <description>&lt;p&gt;IIJmioにはIIJmioクーポンスイッチというiPhoneアプリが用意されているが、
 残りの通信量（IIJではクーポンと呼ぶ）を見ることはできても、追加購入することができない。
 購入はブラウザから。&lt;/p&gt;
@@ -2054,7 +2054,7 @@ end
 
 &lt;h2 id=&#34;実行画面&#34;&gt;実行画面&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/iij_coupon.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/iij_coupon.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;img/2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
@@ -2207,10 +2207,10 @@ function buyIIJmioCoupon() {
     
     <item>
       <title>IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</title>
-      <link>http://shidetake.com/blog_img/</link>
+      <link>https://shidetake.com/blog_img/</link>
       <pubDate>Mon, 21 Aug 2017 22:44:54 +0000</pubDate>
       
-      <guid>http://shidetake.com/blog_img/</guid>
+      <guid>https://shidetake.com/blog_img/</guid>
       <description>&lt;p&gt;ブログに貼る画像置き場として、Google Photoを選んだ。
 github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
 容量制限はないものの、1GBまでを推奨しているらしいし。&lt;/p&gt;
@@ -2288,10 +2288,10 @@ IFTTTを使って直リンクアドレスをメールしてもらうのが一番
     
     <item>
       <title>iPadをウェブカメラ化してiCamSourceと連携</title>
-      <link>http://shidetake.com/icam/</link>
+      <link>https://shidetake.com/icam/</link>
       <pubDate>Thu, 17 Aug 2017 17:14:33 +0900</pubDate>
       
-      <guid>http://shidetake.com/icam/</guid>
+      <guid>https://shidetake.com/icam/</guid>
       <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
 ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。&lt;/p&gt;
 
@@ -2321,7 +2321,7 @@ IFTTTを使って直リンクアドレスをメールしてもらうのが一番
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/icam.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/icam.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ipadのウェブカメラ化&#34;&gt;iPadのウェブカメラ化&lt;/h2&gt;
 
@@ -2347,10 +2347,10 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
     
     <item>
       <title>テレビのアンテナ線を無線化する</title>
-      <link>http://shidetake.com/wireless_tv/</link>
+      <link>https://shidetake.com/wireless_tv/</link>
       <pubDate>Thu, 10 Aug 2017 22:26:23 +0900</pubDate>
       
-      <guid>http://shidetake.com/wireless_tv/</guid>
+      <guid>https://shidetake.com/wireless_tv/</guid>
       <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
 マンションなのでアンテナ設置など大掛かりな方法は除いて、
 ざっと調べたところ、以下の方法がある。&lt;/p&gt;
@@ -2380,7 +2380,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/wireless_tv.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/wireless_tv.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;環境構築手順&#34;&gt;環境構築手順&lt;/h2&gt;
 
@@ -2435,10 +2435,10 @@ Mac用のアプリを2500円も出して買ったが起動すらしないクソ�
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
-      <link>http://shidetake.com/google_photo_api_2/</link>
+      <link>https://shidetake.com/google_photo_api_2/</link>
       <pubDate>Tue, 01 Aug 2017 22:41:29 +0000</pubDate>
       
-      <guid>http://shidetake.com/google_photo_api_2/</guid>
+      <guid>https://shidetake.com/google_photo_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
 今回は任意のアルバムから写真の情報を取得する。&lt;/p&gt;
 
@@ -2492,10 +2492,10 @@ end
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
-      <link>http://shidetake.com/google_photo_api_1/</link>
+      <link>https://shidetake.com/google_photo_api_1/</link>
       <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
       
-      <guid>http://shidetake.com/google_photo_api_1/</guid>
+      <guid>https://shidetake.com/google_photo_api_1/</guid>
       <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
 PicasaのAPIを使うことで実現できたので、そのやり方を記す。&lt;/p&gt;
@@ -2548,10 +2548,10 @@ albums.each { |a| p a.title }
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 3</title>
-      <link>http://shidetake.com/ripping_3/</link>
+      <link>https://shidetake.com/ripping_3/</link>
       <pubDate>Wed, 19 Jul 2017 22:36:23 +0900</pubDate>
       
-      <guid>http://shidetake.com/ripping_3/</guid>
+      <guid>https://shidetake.com/ripping_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_2/&#34;&gt;前回&lt;/a&gt;からの続き。
 これまではisoファイルからリッピングする形だったが、DVDドライブから直接リッピングする。&lt;/p&gt;
 
@@ -2599,10 +2599,10 @@ done
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 2</title>
-      <link>http://shidetake.com/ripping_2/</link>
+      <link>https://shidetake.com/ripping_2/</link>
       <pubDate>Mon, 10 Jul 2017 22:41:58 +0900</pubDate>
       
-      <guid>http://shidetake.com/ripping_2/</guid>
+      <guid>https://shidetake.com/ripping_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../ripping_1/&#34;&gt;前回&lt;/a&gt;からの続き。&lt;/p&gt;
 
 &lt;h2 id=&#34;チャプター分割&#34;&gt;チャプター分割&lt;/h2&gt;
@@ -2663,10 +2663,10 @@ done
     
     <item>
       <title>HandBrakeCLIによるDVDリッピング 1</title>
-      <link>http://shidetake.com/ripping_1/</link>
+      <link>https://shidetake.com/ripping_1/</link>
       <pubDate>Mon, 03 Jul 2017 22:08:55 +0900</pubDate>
       
-      <guid>http://shidetake.com/ripping_1/</guid>
+      <guid>https://shidetake.com/ripping_1/</guid>
       <description>&lt;p&gt;DVDのリッピングというのは、設定が異常に多い。&lt;/p&gt;
 
 &lt;p&gt;まず大きいところで、コーデック。汎用性の高いH.264にするのか、先を見越してH.265にするのか。
@@ -2722,10 +2722,10 @@ DVDからの取り込みやチャプター分割など、もう少し突っ込�
     
     <item>
       <title>RubyでGmail本文を取得する 2</title>
-      <link>http://shidetake.com/gmail_api_2/</link>
+      <link>https://shidetake.com/gmail_api_2/</link>
       <pubDate>Mon, 26 Jun 2017 22:44:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail_api_2/</guid>
+      <guid>https://shidetake.com/gmail_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;前回&lt;/a&gt;はアクセストークンを取得して、メール本文を取得することに成功した。
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
@@ -2788,10 +2788,10 @@ end
     
     <item>
       <title>RubyでGmail本文を取得する 1</title>
-      <link>http://shidetake.com/gmail_api_1/</link>
+      <link>https://shidetake.com/gmail_api_1/</link>
       <pubDate>Tue, 20 Jun 2017 22:55:21 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail_api_1/</guid>
+      <guid>https://shidetake.com/gmail_api_1/</guid>
       <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
@@ -2889,10 +2889,10 @@ end
     
     <item>
       <title>KindleのハイライトをLINEに通知する 4</title>
-      <link>http://shidetake.com/line_highlights_4/</link>
+      <link>https://shidetake.com/line_highlights_4/</link>
       <pubDate>Sun, 18 Jun 2017 14:33:41 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_4/</guid>
+      <guid>https://shidetake.com/line_highlights_4/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_3/&#34;&gt;前回&lt;/a&gt;はLINEのBOTにメッセージを送ることで、
 ハイライトを取得して返信してくれるようにした。
 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、
@@ -2946,10 +2946,10 @@ end
     
     <item>
       <title>KindleのハイライトをLINEに通知する 3</title>
-      <link>http://shidetake.com/line_highlights_3/</link>
+      <link>https://shidetake.com/line_highlights_3/</link>
       <pubDate>Wed, 07 Jun 2017 22:27:01 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_3/</guid>
+      <guid>https://shidetake.com/line_highlights_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
 
@@ -3021,10 +3021,10 @@ BOTに話しかけたタイミングでソケット通信が飛ぶようにな�
     
     <item>
       <title>KindleのハイライトをLINEに通知する 2</title>
-      <link>http://shidetake.com/line_highlights_2/</link>
+      <link>https://shidetake.com/line_highlights_2/</link>
       <pubDate>Sun, 04 Jun 2017 22:44:34 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_2/</guid>
+      <guid>https://shidetake.com/line_highlights_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
@@ -3092,10 +3092,10 @@ push_highlightメソッドを使って、前回標準出力していた文字列
     
     <item>
       <title>KindleのハイライトをLINEに通知する 1</title>
-      <link>http://shidetake.com/line_highlights_1/</link>
+      <link>https://shidetake.com/line_highlights_1/</link>
       <pubDate>Sat, 27 May 2017 13:08:32 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_1/</guid>
+      <guid>https://shidetake.com/line_highlights_1/</guid>
       <description>&lt;p&gt;読書メモのためにハイライトした文章をコピペできる形にしたい。
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 
@@ -3211,10 +3211,10 @@ crawler.scrape
     
     <item>
       <title>Time Machineの容量制限</title>
-      <link>http://shidetake.com/time_capsule/</link>
+      <link>https://shidetake.com/time_capsule/</link>
       <pubDate>Sun, 14 May 2017 21:01:17 +0900</pubDate>
       
-      <guid>http://shidetake.com/time_capsule/</guid>
+      <guid>https://shidetake.com/time_capsule/</guid>
       <description>&lt;p&gt;Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
 何らかの方法で容量を制限する必要がある。&lt;/p&gt;
@@ -3248,10 +3248,10 @@ for ((i=0; i &amp;lt; 10; i++)); do dd if=/dev/zero of=./dummy_10GB_$i bs=100000
     
     <item>
       <title>Amazon Dash ButtonからLINE通知</title>
-      <link>http://shidetake.com/dash_button/</link>
+      <link>https://shidetake.com/dash_button/</link>
       <pubDate>Thu, 11 May 2017 22:31:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/dash_button/</guid>
+      <guid>https://shidetake.com/dash_button/</guid>
       <description>&lt;h2 id=&#34;dasher導入&#34;&gt;dasher導入&lt;/h2&gt;
 
 &lt;p&gt;他の人が詳しく書いているので割愛。&lt;br /&gt;
@@ -3290,10 +3290,10 @@ MAC_ADDRESSはdasher導入時に取得したものを書くこと。&lt;/p&gt;
     
     <item>
       <title>LINE BOTでPUSH通知する</title>
-      <link>http://shidetake.com/line_push/</link>
+      <link>https://shidetake.com/line_push/</link>
       <pubDate>Mon, 17 Apr 2017 23:11:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_push/</guid>
+      <guid>https://shidetake.com/line_push/</guid>
       <description>&lt;h2 id=&#34;登録&#34;&gt;登録&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -3360,10 +3360,10 @@ function mailUserId(e) {
     
     <item>
       <title>cheat_sheet</title>
-      <link>http://shidetake.com/playground/cheat_sheet/</link>
+      <link>https://shidetake.com/playground/cheat_sheet/</link>
       <pubDate>Thu, 30 Mar 2017 23:30:11 +0900</pubDate>
       
-      <guid>http://shidetake.com/playground/cheat_sheet/</guid>
+      <guid>https://shidetake.com/playground/cheat_sheet/</guid>
       <description>&lt;p&gt;要約&lt;br /&gt;
 チートシート&lt;/p&gt;
 
@@ -3546,10 +3546,10 @@ rubyとRubyとか。現時点ではざっくり以下のタグわけ
     
     <item>
       <title>Search</title>
-      <link>http://shidetake.com/search.html</link>
+      <link>https://shidetake.com/search.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://shidetake.com/search.html</guid>
+      <guid>https://shidetake.com/search.html</guid>
       <description></description>
     </item>
     

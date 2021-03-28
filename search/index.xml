@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Searches on blog</title>
-    <link>http://shidetake.com/search/</link>
+    <link>https://shidetake.com/search/</link>
     <description>Recent content in Searches on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 18 Feb 2018 22:50:07 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/search/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/search/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://shidetake.com/index.js</link>
+      <link>https://shidetake.com/index.js</link>
       <pubDate>Sun, 18 Feb 2018 22:50:07 +0900</pubDate>
       
-      <guid>http://shidetake.com/index.js</guid>
+      <guid>https://shidetake.com/index.js</guid>
       <description></description>
     </item>
     
     <item>
       <title>Search</title>
-      <link>http://shidetake.com/search.html</link>
+      <link>https://shidetake.com/search.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://shidetake.com/search.html</guid>
+      <guid>https://shidetake.com/search.html</guid>
       <description></description>
     </item>
     

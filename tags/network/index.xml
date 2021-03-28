@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Network on blog</title>
-    <link>http://shidetake.com/tags/network/</link>
+    <link>https://shidetake.com/tags/network/</link>
     <description>Recent content in Network on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Nov 2017 23:11:02 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>マンション付属の光回線が早くなった話</title>
-      <link>http://shidetake.com/ebroad/</link>
+      <link>https://shidetake.com/ebroad/</link>
       <pubDate>Wed, 15 Nov 2017 23:11:02 +0900</pubDate>
       
-      <guid>http://shidetake.com/ebroad/</guid>
+      <guid>https://shidetake.com/ebroad/</guid>
       <description>&lt;p&gt;自宅の光回線が遅くて、&lt;a href=&#34;../speedtest/&#34;&gt;スピードテストを自動実行するスクリプトで現状把握してみるといった内容の記事&lt;/a&gt;を書いた。
 その後の話。&lt;/p&gt;
 
@@ -58,10 +58,10 @@
     
     <item>
       <title>スピードテストを定期的に実行して回線速度の推移を見る</title>
-      <link>http://shidetake.com/speedtest/</link>
+      <link>https://shidetake.com/speedtest/</link>
       <pubDate>Mon, 16 Oct 2017 22:43:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/speedtest/</guid>
+      <guid>https://shidetake.com/speedtest/</guid>
       <description>&lt;p&gt;自宅の回線速度が遅いので、なんとか改善できないか考えている。
 まずは、現状把握ということで、スピードテストを実施した。
 常に遅いのか、時間によって遅いのかなどがわかれば改善の手がかりになるかもしれないと考え、
@@ -101,7 +101,7 @@ csv形式で左からping値 [ms]、Download [Mbit/s], Upload [Mbit/s], 実行�
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;ついでにグラフ化。
-&lt;img src=&#34;http://shidetake.com/img/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://shidetake.com/img/speedtest.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;昼間は25Mbpsくらい出ているらしい。15時以降から下がりだして、21時から25時までは1桁というありさま。&lt;/p&gt;
 

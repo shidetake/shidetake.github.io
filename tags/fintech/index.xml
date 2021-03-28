@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fintech on blog</title>
-    <link>http://shidetake.com/tags/fintech/</link>
+    <link>https://shidetake.com/tags/fintech/</link>
     <description>Recent content in Fintech on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/fintech/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/fintech/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Gmailに重要なメールが届いたらLINEに通知する</title>
-      <link>http://shidetake.com/gmail2line/</link>
+      <link>https://shidetake.com/gmail2line/</link>
       <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail2line/</guid>
+      <guid>https://shidetake.com/gmail2line/</guid>
       <description>&lt;p&gt;最近はめっきりメールを使わなくなった。iOSもメール機能なんかどうでもいいと思っているのか、
 いまいち使い勝手が悪い。Gmailのプッシュ通知に非対応ってどうなの。&lt;/p&gt;
 
@@ -37,7 +37,7 @@
 IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
 Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
 
@@ -122,10 +122,10 @@ function line_push(message) {
     
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
-      <link>http://shidetake.com/stock_trendline_1/</link>
+      <link>https://shidetake.com/stock_trendline_1/</link>
       <pubDate>Sun, 17 Sep 2017 16:36:18 +0900</pubDate>
       
-      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <guid>https://shidetake.com/stock_trendline_1/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
 このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
 
@@ -259,7 +259,7 @@ end
 
 &lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
 実際に線を引くのは次回。&lt;/p&gt;</description>
@@ -267,10 +267,10 @@ end
     
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>
-      <link>http://shidetake.com/google_finance_api/</link>
+      <link>https://shidetake.com/google_finance_api/</link>
       <pubDate>Mon, 04 Sep 2017 23:14:36 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_finance_api/</guid>
+      <guid>https://shidetake.com/google_finance_api/</guid>
       <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
 手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
 まずは普通の株価チャートを描いてみた。&lt;/p&gt;
@@ -363,7 +363,7 @@ end
 &lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
 得られたチャートを貼って終わり。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

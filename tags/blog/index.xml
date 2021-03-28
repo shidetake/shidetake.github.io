@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on blog</title>
-    <link>http://shidetake.com/tags/blog/</link>
+    <link>https://shidetake.com/tags/blog/</link>
     <description>Recent content in Blog on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 21 Aug 2017 22:44:54 +0000</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>IFTTTとGoogle Photoを連携するとブログ用の画像準備がはかどる</title>
-      <link>http://shidetake.com/blog_img/</link>
+      <link>https://shidetake.com/blog_img/</link>
       <pubDate>Mon, 21 Aug 2017 22:44:54 +0000</pubDate>
       
-      <guid>http://shidetake.com/blog_img/</guid>
+      <guid>https://shidetake.com/blog_img/</guid>
       <description>&lt;p&gt;ブログに貼る画像置き場として、Google Photoを選んだ。
 github-pageでホスティングしているのだが、画像をアップするのはイマイチかなと。
 容量制限はないものの、1GBまでを推奨しているらしいし。&lt;/p&gt;

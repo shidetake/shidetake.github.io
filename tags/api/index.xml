@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Api on blog</title>
-    <link>http://shidetake.com/tags/api/</link>
+    <link>https://shidetake.com/tags/api/</link>
     <description>Recent content in Api on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Dec 2019 17:53:28 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/api/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/api/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>任意のGoogle APIをRubyで使うときの手順</title>
-      <link>http://shidetake.com/google_auth/</link>
+      <link>https://shidetake.com/google_auth/</link>
       <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_auth/</guid>
+      <guid>https://shidetake.com/google_auth/</guid>
       <description>&lt;p&gt;GmailのAPIについては&lt;a href=&#34;../gmail_api_1.md&#34;&gt;以前記事にした&lt;/a&gt;が、
 別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。&lt;/p&gt;
 
@@ -122,10 +122,10 @@ Access Tokenが取得できる。&lt;/p&gt;
     
     <item>
       <title>Dropboxで自分専用のPodcast配信</title>
-      <link>http://shidetake.com/dropcast/</link>
+      <link>https://shidetake.com/dropcast/</link>
       <pubDate>Wed, 29 Aug 2018 23:13:09 +0900</pubDate>
       
-      <guid>http://shidetake.com/dropcast/</guid>
+      <guid>https://shidetake.com/dropcast/</guid>
       <description>&lt;p&gt;最近Podcastにハマっている。
 Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなど。&lt;/p&gt;
 
@@ -134,7 +134,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
 
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/dropcast.png&#34; alt=&#34;image&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/dropcast.png&#34; alt=&#34;image&#34; /&gt;
 当然、著作物は私的利用に留めること。
 音源もPodcast配信用のRSSファイルも自分しかアクセスできない場所に置いているので私的利用の範囲内。&lt;/p&gt;
 
@@ -199,10 +199,10 @@ GitHubに&lt;a href=&#34;https://github.com/shidetake/dropcast&#34; target=&#34;
     
     <item>
       <title>Yahoo!ジオコーダAPIで住所から経度緯度を取得</title>
-      <link>http://shidetake.com/geoapi/</link>
+      <link>https://shidetake.com/geoapi/</link>
       <pubDate>Thu, 16 Aug 2018 15:56:34 +0900</pubDate>
       
-      <guid>http://shidetake.com/geoapi/</guid>
+      <guid>https://shidetake.com/geoapi/</guid>
       <description>&lt;p&gt;Rubyを使う。&lt;/p&gt;
 
 &lt;h1 id=&#34;アプリケーションid登録&#34;&gt;アプリケーションID登録&lt;/h1&gt;
@@ -258,10 +258,10 @@ geocoder.exec
     
     <item>
       <title>AWSのRDSインスタンスをCLIで操作</title>
-      <link>http://shidetake.com/aws_cli/</link>
+      <link>https://shidetake.com/aws_cli/</link>
       <pubDate>Sun, 13 May 2018 17:45:37 +0900</pubDate>
       
-      <guid>http://shidetake.com/aws_cli/</guid>
+      <guid>https://shidetake.com/aws_cli/</guid>
       <description>&lt;p&gt;AWSのRDSは使っていないときは停止しないともったいない。
 とは言え、毎回ブラウザでログインして操作するのはかったるいので、コマンドラインで操作できるようにした。
 &lt;code&gt;aws&lt;/code&gt;コマンドは既に導入しているという前提。&lt;/p&gt;
@@ -303,10 +303,10 @@ geocoder.exec
     
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
-      <link>http://shidetake.com/stock_trendline_1/</link>
+      <link>https://shidetake.com/stock_trendline_1/</link>
       <pubDate>Sun, 17 Sep 2017 16:36:18 +0900</pubDate>
       
-      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <guid>https://shidetake.com/stock_trendline_1/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
 このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
 
@@ -440,7 +440,7 @@ end
 
 &lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
 実際に線を引くのは次回。&lt;/p&gt;</description>
@@ -448,10 +448,10 @@ end
     
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>
-      <link>http://shidetake.com/google_finance_api/</link>
+      <link>https://shidetake.com/google_finance_api/</link>
       <pubDate>Mon, 04 Sep 2017 23:14:36 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_finance_api/</guid>
+      <guid>https://shidetake.com/google_finance_api/</guid>
       <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
 手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
 まずは普通の株価チャートを描いてみた。&lt;/p&gt;
@@ -544,15 +544,15 @@ end
 &lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
 得られたチャートを貼って終わり。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
-      <link>http://shidetake.com/google_photo_api_2/</link>
+      <link>https://shidetake.com/google_photo_api_2/</link>
       <pubDate>Tue, 01 Aug 2017 22:41:29 +0000</pubDate>
       
-      <guid>http://shidetake.com/google_photo_api_2/</guid>
+      <guid>https://shidetake.com/google_photo_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
 今回は任意のアルバムから写真の情報を取得する。&lt;/p&gt;
 
@@ -606,10 +606,10 @@ end
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
-      <link>http://shidetake.com/google_photo_api_1/</link>
+      <link>https://shidetake.com/google_photo_api_1/</link>
       <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
       
-      <guid>http://shidetake.com/google_photo_api_1/</guid>
+      <guid>https://shidetake.com/google_photo_api_1/</guid>
       <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
 PicasaのAPIを使うことで実現できたので、そのやり方を記す。&lt;/p&gt;
@@ -662,10 +662,10 @@ albums.each { |a| p a.title }
     
     <item>
       <title>RubyでGmail本文を取得する 2</title>
-      <link>http://shidetake.com/gmail_api_2/</link>
+      <link>https://shidetake.com/gmail_api_2/</link>
       <pubDate>Mon, 26 Jun 2017 22:44:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail_api_2/</guid>
+      <guid>https://shidetake.com/gmail_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;前回&lt;/a&gt;はアクセストークンを取得して、メール本文を取得することに成功した。
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
@@ -728,10 +728,10 @@ end
     
     <item>
       <title>RubyでGmail本文を取得する 1</title>
-      <link>http://shidetake.com/gmail_api_1/</link>
+      <link>https://shidetake.com/gmail_api_1/</link>
       <pubDate>Tue, 20 Jun 2017 22:55:21 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail_api_1/</guid>
+      <guid>https://shidetake.com/gmail_api_1/</guid>
       <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;

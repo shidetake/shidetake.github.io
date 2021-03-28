@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ruby on blog</title>
-    <link>http://shidetake.com/tags/ruby/</link>
+    <link>https://shidetake.com/tags/ruby/</link>
     <description>Recent content in Ruby on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Dec 2019 17:53:28 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>任意のGoogle APIをRubyで使うときの手順</title>
-      <link>http://shidetake.com/google_auth/</link>
+      <link>https://shidetake.com/google_auth/</link>
       <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_auth/</guid>
+      <guid>https://shidetake.com/google_auth/</guid>
       <description>&lt;p&gt;GmailのAPIについては&lt;a href=&#34;../gmail_api_1.md&#34;&gt;以前記事にした&lt;/a&gt;が、
 別のAPI使うときにどうするのか、毎回悩むので汎用的な部分はここにまとめることにした。&lt;/p&gt;
 
@@ -122,10 +122,10 @@ Access Tokenが取得できる。&lt;/p&gt;
     
     <item>
       <title>素のRubyで日時を扱う</title>
-      <link>http://shidetake.com/active_support_time/</link>
+      <link>https://shidetake.com/active_support_time/</link>
       <pubDate>Mon, 16 Dec 2019 23:07:30 +0900</pubDate>
       
-      <guid>http://shidetake.com/active_support_time/</guid>
+      <guid>https://shidetake.com/active_support_time/</guid>
       <description>&lt;p&gt;Railsではなく素のRubyで日時を扱うときのベストプラクティスについて。
 毎回悩むのでここに書いておく。&lt;/p&gt;
 
@@ -154,10 +154,10 @@ ActiveSupportを使うかどうか迷うポイントとして、一部の機能�
     
     <item>
       <title>地域ごとのマンション単価をGoogleマップで見る</title>
-      <link>http://shidetake.com/reins_map/</link>
+      <link>https://shidetake.com/reins_map/</link>
       <pubDate>Sat, 25 Aug 2018 17:40:38 +0900</pubDate>
       
-      <guid>http://shidetake.com/reins_map/</guid>
+      <guid>https://shidetake.com/reins_map/</guid>
       <description>&lt;p&gt;最近、新築マンションの購入を検討し始めた。
 そこで気になるのが、周辺の相場だ。
 ということで、Googleマップのマイマップを使って地域ごとの相場を視覚的に確認できるようにした。&lt;/p&gt;
@@ -176,7 +176,7 @@ ActiveSupportを使うかどうか迷うポイントとして、一部の機能�
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
 &lt;p&gt;完成系のイメージはこんな感じ（というか、完成したスクリプトで作ったマップ）。
-&lt;img src=&#34;http://shidetake.com/img/reins_map.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://shidetake.com/img/reins_map.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;東京都心の単価は高すぎてサチってしまっている。
 本来買いたいレンジが単価100万以下なのでしょうがない。&lt;/p&gt;
@@ -189,10 +189,10 @@ ActiveSupportを使うかどうか迷うポイントとして、一部の機能�
     
     <item>
       <title>Yahoo!ジオコーダAPIで住所から経度緯度を取得</title>
-      <link>http://shidetake.com/geoapi/</link>
+      <link>https://shidetake.com/geoapi/</link>
       <pubDate>Thu, 16 Aug 2018 15:56:34 +0900</pubDate>
       
-      <guid>http://shidetake.com/geoapi/</guid>
+      <guid>https://shidetake.com/geoapi/</guid>
       <description>&lt;p&gt;Rubyを使う。&lt;/p&gt;
 
 &lt;h1 id=&#34;アプリケーションid登録&#34;&gt;アプリケーションID登録&lt;/h1&gt;
@@ -248,10 +248,10 @@ geocoder.exec
     
     <item>
       <title>株価チャートからトレンドラインを引く 1</title>
-      <link>http://shidetake.com/stock_trendline_1/</link>
+      <link>https://shidetake.com/stock_trendline_1/</link>
       <pubDate>Sun, 17 Sep 2017 16:36:18 +0900</pubDate>
       
-      <guid>http://shidetake.com/stock_trendline_1/</guid>
+      <guid>https://shidetake.com/stock_trendline_1/</guid>
       <description>&lt;p&gt;以前、&lt;a href=&#34;../google_finance_api/&#34;&gt;Google Finance APIにより株価を取得する方法&lt;/a&gt;を書いた。
 このデータからトレンドラインを引くスクリプトを作ろうと思う。&lt;/p&gt;
 
@@ -385,7 +385,7 @@ end
 
 &lt;p&gt;GoogleFinanceクラスはcalc_extremumメソッド以外は変わっていないので省略した。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/stock_trendline_1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;少し見にくいが、緑点が極小値、紫点が極大値。それなりにいい具合の場所を選んでいるように思える。
 実際に線を引くのは次回。&lt;/p&gt;</description>
@@ -393,10 +393,10 @@ end
     
     <item>
       <title>Google Finance APIを使って株価チャートを作成</title>
-      <link>http://shidetake.com/google_finance_api/</link>
+      <link>https://shidetake.com/google_finance_api/</link>
       <pubDate>Mon, 04 Sep 2017 23:14:36 +0900</pubDate>
       
-      <guid>http://shidetake.com/google_finance_api/</guid>
+      <guid>https://shidetake.com/google_finance_api/</guid>
       <description>&lt;p&gt;株を買うかどうか判断するために株価チャートに補助線を書いたりする手法があるらしい。
 手軽に補助線（トレンドラインと呼ぶらしい）を引いてくれるスクリプトでも作ろうかと思い、
 まずは普通の株価チャートを描いてみた。&lt;/p&gt;
@@ -489,15 +489,15 @@ end
 &lt;p&gt;これだけ。GoogleFinanceクラスは変わらないので省略した。
 得られたチャートを貼って終わり。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/google_finance_api.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 2</title>
-      <link>http://shidetake.com/google_photo_api_2/</link>
+      <link>https://shidetake.com/google_photo_api_2/</link>
       <pubDate>Tue, 01 Aug 2017 22:41:29 +0000</pubDate>
       
-      <guid>http://shidetake.com/google_photo_api_2/</guid>
+      <guid>https://shidetake.com/google_photo_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../google_photo_api_1/&#34;&gt;前回&lt;/a&gt;の続き。
 今回は任意のアルバムから写真の情報を取得する。&lt;/p&gt;
 
@@ -551,10 +551,10 @@ end
     
     <item>
       <title>Picasa APIを使ってGoogle Photoからデジカメ写真だけを取得 1</title>
-      <link>http://shidetake.com/google_photo_api_1/</link>
+      <link>https://shidetake.com/google_photo_api_1/</link>
       <pubDate>Sun, 30 Jul 2017 22:56:40 +0000</pubDate>
       
-      <guid>http://shidetake.com/google_photo_api_1/</guid>
+      <guid>https://shidetake.com/google_photo_api_1/</guid>
       <description>&lt;p&gt;Google Photoの検索では、Exif情報の撮影機器のモデル名をキーにすることができないらしい。
 あるデジカメで撮った写真だけを抽出するために試行錯誤した結果、
 PicasaのAPIを使うことで実現できたので、そのやり方を記す。&lt;/p&gt;
@@ -607,10 +607,10 @@ albums.each { |a| p a.title }
     
     <item>
       <title>RubyでGmail本文を取得する 2</title>
-      <link>http://shidetake.com/gmail_api_2/</link>
+      <link>https://shidetake.com/gmail_api_2/</link>
       <pubDate>Mon, 26 Jun 2017 22:44:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail_api_2/</guid>
+      <guid>https://shidetake.com/gmail_api_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../gmail_api_1/&#34;&gt;前回&lt;/a&gt;はアクセストークンを取得して、メール本文を取得することに成功した。
 ただしアクセストークンには期限があり、取得しなおさなくてはならない。
 今回はリフレッシュトークンを使うことで、これを解決する。&lt;/p&gt;
@@ -673,10 +673,10 @@ end
     
     <item>
       <title>RubyでGmail本文を取得する 1</title>
-      <link>http://shidetake.com/gmail_api_1/</link>
+      <link>https://shidetake.com/gmail_api_1/</link>
       <pubDate>Tue, 20 Jun 2017 22:55:21 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail_api_1/</guid>
+      <guid>https://shidetake.com/gmail_api_1/</guid>
       <description>&lt;p&gt;GmailのAPIをRubyで使う方法を何回かに分けて書く。&lt;/p&gt;
 
 &lt;h2 id=&#34;api準備&#34;&gt;API準備&lt;/h2&gt;
@@ -774,10 +774,10 @@ end
     
     <item>
       <title>KindleのハイライトをLINEに通知する 4</title>
-      <link>http://shidetake.com/line_highlights_4/</link>
+      <link>https://shidetake.com/line_highlights_4/</link>
       <pubDate>Sun, 18 Jun 2017 14:33:41 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_4/</guid>
+      <guid>https://shidetake.com/line_highlights_4/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_3/&#34;&gt;前回&lt;/a&gt;はLINEのBOTにメッセージを送ることで、
 ハイライトを取得して返信してくれるようにした。
 現状では、設定したページ数だけスクレイピングして、全てのハイライトを返信することになっているので、
@@ -831,10 +831,10 @@ end
     
     <item>
       <title>KindleのハイライトをLINEに通知する 3</title>
-      <link>http://shidetake.com/line_highlights_3/</link>
+      <link>https://shidetake.com/line_highlights_3/</link>
       <pubDate>Wed, 07 Jun 2017 22:27:01 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_3/</guid>
+      <guid>https://shidetake.com/line_highlights_3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_2/&#34;&gt;前回&lt;/a&gt;はサーバで起動してLINE通知するところまで。
 このままだとサーバ側で手動で起動しないといけない。これを解決する。&lt;/p&gt;
 
@@ -906,10 +906,10 @@ BOTに話しかけたタイミングでソケット通信が飛ぶようにな�
     
     <item>
       <title>KindleのハイライトをLINEに通知する 2</title>
-      <link>http://shidetake.com/line_highlights_2/</link>
+      <link>https://shidetake.com/line_highlights_2/</link>
       <pubDate>Sun, 04 Jun 2017 22:44:34 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_2/</guid>
+      <guid>https://shidetake.com/line_highlights_2/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;../line_highlights_1/&#34;&gt;前回&lt;/a&gt;はクローラーを作成してハイライトを取得するところまでだった。
 今回はサーバで起動してLINE通知するところまでを作る。&lt;/p&gt;
 
@@ -977,10 +977,10 @@ push_highlightメソッドを使って、前回標準出力していた文字列
     
     <item>
       <title>KindleのハイライトをLINEに通知する 1</title>
-      <link>http://shidetake.com/line_highlights_1/</link>
+      <link>https://shidetake.com/line_highlights_1/</link>
       <pubDate>Sat, 27 May 2017 13:08:32 +0900</pubDate>
       
-      <guid>http://shidetake.com/line_highlights_1/</guid>
+      <guid>https://shidetake.com/line_highlights_1/</guid>
       <description>&lt;p&gt;読書メモのためにハイライトした文章をコピペできる形にしたい。
 KindleにはハイライトをメールやTwitterでシェアする機能があるが、これはアクションが増えて読書を妨げるので使いたくない。&lt;/p&gt;
 

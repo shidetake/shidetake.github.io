@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell on blog</title>
-    <link>http://shidetake.com/tags/shell/</link>
+    <link>https://shidetake.com/tags/shell/</link>
     <description>Recent content in Shell on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Nov 2019 17:00:51 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MakeMKVとHandBrakeによるBlu-lay Discリッピング</title>
-      <link>http://shidetake.com/blu_ripping/</link>
+      <link>https://shidetake.com/blu_ripping/</link>
       <pubDate>Sun, 10 Nov 2019 17:00:51 +0900</pubDate>
       
-      <guid>http://shidetake.com/blu_ripping/</guid>
+      <guid>https://shidetake.com/blu_ripping/</guid>
       <description>&lt;p&gt;DVDのリッピングについて&lt;a href=&#34;../ripping_1/&#34;&gt;以前&lt;/a&gt;書いたが、ブルーレイに未対応だったので対応した。&lt;/p&gt;
 
 &lt;h1 id=&#34;概要&#34;&gt;概要&lt;/h1&gt;
@@ -55,10 +55,10 @@ HandBrakeを使って加工する。
     
     <item>
       <title>Dropboxで自分専用のPodcast配信</title>
-      <link>http://shidetake.com/dropcast/</link>
+      <link>https://shidetake.com/dropcast/</link>
       <pubDate>Wed, 29 Aug 2018 23:13:09 +0900</pubDate>
       
-      <guid>http://shidetake.com/dropcast/</guid>
+      <guid>https://shidetake.com/dropcast/</guid>
       <description>&lt;p&gt;最近Podcastにハマっている。
 Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなど。&lt;/p&gt;
 
@@ -67,7 +67,7 @@ Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュース
 
 &lt;h1 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/dropcast.png&#34; alt=&#34;image&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/dropcast.png&#34; alt=&#34;image&#34; /&gt;
 当然、著作物は私的利用に留めること。
 音源もPodcast配信用のRSSファイルも自分しかアクセスできない場所に置いているので私的利用の範囲内。&lt;/p&gt;
 

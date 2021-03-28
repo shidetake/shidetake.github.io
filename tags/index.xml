@@ -2,273 +2,273 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on blog</title>
-    <link>http://shidetake.com/tags/</link>
+    <link>https://shidetake.com/tags/</link>
     <description>Recent content in Tags on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Dec 2017 22:44:29 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alexa Skills</title>
-      <link>http://shidetake.com/tags/alexa-skills/</link>
+      <link>https://shidetake.com/tags/alexa-skills/</link>
       <pubDate>Mon, 04 Dec 2017 22:44:29 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/alexa-skills/</guid>
+      <guid>https://shidetake.com/tags/alexa-skills/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Amazon Dash Button</title>
-      <link>http://shidetake.com/tags/amazon-dash-button/</link>
+      <link>https://shidetake.com/tags/amazon-dash-button/</link>
       <pubDate>Tue, 26 Sep 2017 23:42:10 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/amazon-dash-button/</guid>
+      <guid>https://shidetake.com/tags/amazon-dash-button/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Api</title>
-      <link>http://shidetake.com/tags/api/</link>
+      <link>https://shidetake.com/tags/api/</link>
       <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/api/</guid>
+      <guid>https://shidetake.com/tags/api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Apple Tv</title>
-      <link>http://shidetake.com/tags/apple-tv/</link>
+      <link>https://shidetake.com/tags/apple-tv/</link>
       <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/apple-tv/</guid>
+      <guid>https://shidetake.com/tags/apple-tv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Aws</title>
-      <link>http://shidetake.com/tags/aws/</link>
+      <link>https://shidetake.com/tags/aws/</link>
       <pubDate>Sun, 13 May 2018 17:45:37 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/aws/</guid>
+      <guid>https://shidetake.com/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blog</title>
-      <link>http://shidetake.com/tags/blog/</link>
+      <link>https://shidetake.com/tags/blog/</link>
       <pubDate>Mon, 21 Aug 2017 22:44:54 +0000</pubDate>
       
-      <guid>http://shidetake.com/tags/blog/</guid>
+      <guid>https://shidetake.com/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cron</title>
-      <link>http://shidetake.com/tags/cron/</link>
+      <link>https://shidetake.com/tags/cron/</link>
       <pubDate>Thu, 21 Dec 2017 22:46:24 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/cron/</guid>
+      <guid>https://shidetake.com/tags/cron/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dotfile</title>
-      <link>http://shidetake.com/tags/dotfile/</link>
+      <link>https://shidetake.com/tags/dotfile/</link>
       <pubDate>Sat, 25 Nov 2017 20:45:30 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/dotfile/</guid>
+      <guid>https://shidetake.com/tags/dotfile/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fintech</title>
-      <link>http://shidetake.com/tags/fintech/</link>
+      <link>https://shidetake.com/tags/fintech/</link>
       <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/fintech/</guid>
+      <guid>https://shidetake.com/tags/fintech/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>http://shidetake.com/tags/git/</link>
+      <link>https://shidetake.com/tags/git/</link>
       <pubDate>Sat, 25 Nov 2017 20:45:30 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/git/</guid>
+      <guid>https://shidetake.com/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Google Apps Script</title>
-      <link>http://shidetake.com/tags/google-apps-script/</link>
+      <link>https://shidetake.com/tags/google-apps-script/</link>
       <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/google-apps-script/</guid>
+      <guid>https://shidetake.com/tags/google-apps-script/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Heroku</title>
-      <link>http://shidetake.com/tags/heroku/</link>
+      <link>https://shidetake.com/tags/heroku/</link>
       <pubDate>Sun, 28 Oct 2018 11:15:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/heroku/</guid>
+      <guid>https://shidetake.com/tags/heroku/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Imagemagick</title>
-      <link>http://shidetake.com/tags/imagemagick/</link>
+      <link>https://shidetake.com/tags/imagemagick/</link>
       <pubDate>Sun, 06 May 2018 21:37:25 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/imagemagick/</guid>
+      <guid>https://shidetake.com/tags/imagemagick/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kindle</title>
-      <link>http://shidetake.com/tags/kindle/</link>
+      <link>https://shidetake.com/tags/kindle/</link>
       <pubDate>Sun, 18 Jun 2017 14:33:41 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/kindle/</guid>
+      <guid>https://shidetake.com/tags/kindle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Line Bot</title>
-      <link>http://shidetake.com/tags/line-bot/</link>
+      <link>https://shidetake.com/tags/line-bot/</link>
       <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/line-bot/</guid>
+      <guid>https://shidetake.com/tags/line-bot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>http://shidetake.com/tags/linux/</link>
+      <link>https://shidetake.com/tags/linux/</link>
       <pubDate>Sun, 05 Nov 2017 08:38:17 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/linux/</guid>
+      <guid>https://shidetake.com/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Makefile</title>
-      <link>http://shidetake.com/tags/makefile/</link>
+      <link>https://shidetake.com/tags/makefile/</link>
       <pubDate>Sun, 17 Dec 2017 11:18:31 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/makefile/</guid>
+      <guid>https://shidetake.com/tags/makefile/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mysql</title>
-      <link>http://shidetake.com/tags/mysql/</link>
+      <link>https://shidetake.com/tags/mysql/</link>
       <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/mysql/</guid>
+      <guid>https://shidetake.com/tags/mysql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Network</title>
-      <link>http://shidetake.com/tags/network/</link>
+      <link>https://shidetake.com/tags/network/</link>
       <pubDate>Wed, 15 Nov 2017 23:11:02 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/network/</guid>
+      <guid>https://shidetake.com/tags/network/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rails</title>
-      <link>http://shidetake.com/tags/rails/</link>
+      <link>https://shidetake.com/tags/rails/</link>
       <pubDate>Sun, 28 Oct 2018 11:15:57 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/rails/</guid>
+      <guid>https://shidetake.com/tags/rails/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Raspberry Pi</title>
-      <link>http://shidetake.com/tags/raspberry-pi/</link>
+      <link>https://shidetake.com/tags/raspberry-pi/</link>
       <pubDate>Fri, 26 Jan 2018 22:28:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/raspberry-pi/</guid>
+      <guid>https://shidetake.com/tags/raspberry-pi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ripping</title>
-      <link>http://shidetake.com/tags/ripping/</link>
+      <link>https://shidetake.com/tags/ripping/</link>
       <pubDate>Sun, 10 Nov 2019 17:00:51 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/ripping/</guid>
+      <guid>https://shidetake.com/tags/ripping/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ruby</title>
-      <link>http://shidetake.com/tags/ruby/</link>
+      <link>https://shidetake.com/tags/ruby/</link>
       <pubDate>Sun, 22 Dec 2019 17:53:28 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/ruby/</guid>
+      <guid>https://shidetake.com/tags/ruby/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scraping</title>
-      <link>http://shidetake.com/tags/scraping/</link>
+      <link>https://shidetake.com/tags/scraping/</link>
       <pubDate>Sun, 03 Sep 2017 10:27:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/scraping/</guid>
+      <guid>https://shidetake.com/tags/scraping/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Shell</title>
-      <link>http://shidetake.com/tags/shell/</link>
+      <link>https://shidetake.com/tags/shell/</link>
       <pubDate>Sun, 10 Nov 2019 17:00:51 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/shell/</guid>
+      <guid>https://shidetake.com/tags/shell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Smart Home</title>
-      <link>http://shidetake.com/tags/smart-home/</link>
+      <link>https://shidetake.com/tags/smart-home/</link>
       <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/smart-home/</guid>
+      <guid>https://shidetake.com/tags/smart-home/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Systemd</title>
-      <link>http://shidetake.com/tags/systemd/</link>
+      <link>https://shidetake.com/tags/systemd/</link>
       <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/systemd/</guid>
+      <guid>https://shidetake.com/tags/systemd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu</title>
-      <link>http://shidetake.com/tags/ubuntu/</link>
+      <link>https://shidetake.com/tags/ubuntu/</link>
       <pubDate>Sun, 01 Oct 2017 22:27:25 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/ubuntu/</guid>
+      <guid>https://shidetake.com/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows</title>
-      <link>http://shidetake.com/tags/windows/</link>
+      <link>https://shidetake.com/tags/windows/</link>
       <pubDate>Sun, 05 Nov 2017 08:38:17 +0900</pubDate>
       
-      <guid>http://shidetake.com/tags/windows/</guid>
+      <guid>https://shidetake.com/tags/windows/</guid>
       <description></description>
     </item>
     

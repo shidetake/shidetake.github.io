@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Google Apps Script on blog</title>
-    <link>http://shidetake.com/tags/google-apps-script/</link>
+    <link>https://shidetake.com/tags/google-apps-script/</link>
     <description>Recent content in Google Apps Script on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Dec 2017 23:37:27 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/google-apps-script/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/google-apps-script/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Gmailに重要なメールが届いたらLINEに通知する</title>
-      <link>http://shidetake.com/gmail2line/</link>
+      <link>https://shidetake.com/gmail2line/</link>
       <pubDate>Thu, 21 Dec 2017 23:37:27 +0900</pubDate>
       
-      <guid>http://shidetake.com/gmail2line/</guid>
+      <guid>https://shidetake.com/gmail2line/</guid>
       <description>&lt;p&gt;最近はめっきりメールを使わなくなった。iOSもメール機能なんかどうでもいいと思っているのか、
 いまいち使い勝手が悪い。Gmailのプッシュ通知に非対応ってどうなの。&lt;/p&gt;
 
@@ -37,7 +37,7 @@
 IFTTTあたりを使うともっと簡単に作れるが、ポーリング間隔が数時間と長すぎるので今回はNG。
 Google Apps Scriptだと1分間隔でポーリング可能。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/gmail2line.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;事前準備&#34;&gt;事前準備&lt;/h2&gt;
 

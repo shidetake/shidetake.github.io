@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Smart Home on blog</title>
-    <link>http://shidetake.com/tags/smart-home/</link>
+    <link>https://shidetake.com/tags/smart-home/</link>
     <description>Recent content in Smart Home on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Jan 2018 07:56:05 +0900</lastBuildDate>
     
-        <atom:link href="http://shidetake.com/tags/smart-home/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/smart-home/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AlexaとNode-REDを利用したスマートホームスキル作成時の注意</title>
-      <link>http://shidetake.com/alexa_node_red1/</link>
+      <link>https://shidetake.com/alexa_node_red1/</link>
       <pubDate>Sun, 28 Jan 2018 07:56:05 +0900</pubDate>
       
-      <guid>http://shidetake.com/alexa_node_red1/</guid>
+      <guid>https://shidetake.com/alexa_node_red1/</guid>
       <description>&lt;p&gt;最近、AlexaとNode-REDを連携してスマートホームスキルを作っている。
 &lt;a href=&#34;../pyatv/&#34;&gt;前回のApple TVを操作するスクリプト&lt;/a&gt;もその一環だったのだが、うまく動かなかったのでその対処法を書く。&lt;/p&gt;
 
@@ -28,7 +28,7 @@
 
 &lt;h2 id=&#34;execにpyatvを設定&#34;&gt;execにpyatvを設定&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/alexa_node_red1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;こんな感じで、「Alexa, テレビつけて」でmenuボタンを押すようにしたんだけど、うまく動かない。
 よく見ると、&lt;code&gt;atvremote&lt;/code&gt;コマンドが見つからないというエラーが出ていた。&lt;/p&gt;
@@ -64,10 +64,10 @@ Environment=&amp;quot;PATH=/home/user_name/.pyenv/shims:/usr/local/sbin:/usr/loc
     
     <item>
       <title>Apple TVをRaspberry Piで操作</title>
-      <link>http://shidetake.com/pyatv/</link>
+      <link>https://shidetake.com/pyatv/</link>
       <pubDate>Fri, 26 Jan 2018 22:28:20 +0900</pubDate>
       
-      <guid>http://shidetake.com/pyatv/</guid>
+      <guid>https://shidetake.com/pyatv/</guid>
       <description>&lt;p&gt;スマートホーム化のために、いろんな家電をRaspberry Piで動かせるようにしている。
 テレビはほとんどApple TVのために存在しているので、これを動かしてみた。&lt;/p&gt;
 
@@ -97,10 +97,10 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
     
     <item>
       <title>iPadをウェブカメラ化してiCamSourceと連携</title>
-      <link>http://shidetake.com/icam/</link>
+      <link>https://shidetake.com/icam/</link>
       <pubDate>Thu, 17 Aug 2017 17:14:33 +0900</pubDate>
       
-      <guid>http://shidetake.com/icam/</guid>
+      <guid>https://shidetake.com/icam/</guid>
       <description>&lt;p&gt;iCamを使って外出先から部屋にいる犬の様子を見たいが、MBAのカメラ1つじゃ視野が狭い。
 ということで、部屋に置いているiPadのカメラの映像も同時に見れるようにした。&lt;/p&gt;
 
@@ -130,7 +130,7 @@ iTunesのホームシェアリングを有効にしている場合はいらな�
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/icam.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/icam.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ipadのウェブカメラ化&#34;&gt;iPadのウェブカメラ化&lt;/h2&gt;
 
@@ -156,10 +156,10 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
     
     <item>
       <title>テレビのアンテナ線を無線化する</title>
-      <link>http://shidetake.com/wireless_tv/</link>
+      <link>https://shidetake.com/wireless_tv/</link>
       <pubDate>Thu, 10 Aug 2017 22:26:23 +0900</pubDate>
       
-      <guid>http://shidetake.com/wireless_tv/</guid>
+      <guid>https://shidetake.com/wireless_tv/</guid>
       <description>&lt;p&gt;テレビ端子がイマイチな場所にあって、テレビを置く位置が限られてしまうので無線化を考えた。
 マンションなのでアンテナ設置など大掛かりな方法は除いて、
 ざっと調べたところ、以下の方法がある。&lt;/p&gt;
@@ -189,7 +189,7 @@ idとパスワードは適当に入力して、右下のStartボタンを押し�
 
 &lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shidetake.com/img/wireless_tv.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://shidetake.com/img/wireless_tv.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;環境構築手順&#34;&gt;環境構築手順&lt;/h2&gt;
 
@@ -244,10 +244,10 @@ Mac用のアプリを2500円も出して買ったが起動すらしないクソ�
     
     <item>
       <title>Time Machineの容量制限</title>
-      <link>http://shidetake.com/time_capsule/</link>
+      <link>https://shidetake.com/time_capsule/</link>
       <pubDate>Sun, 14 May 2017 21:01:17 +0900</pubDate>
       
-      <guid>http://shidetake.com/time_capsule/</guid>
+      <guid>https://shidetake.com/time_capsule/</guid>
       <description>&lt;p&gt;Time Capsuleをバックアップ用途だけでなく、NASとしても使いたい。
 Time Machineを使うと、容量がいっぱいになるまでバックアップを取り続けてしまうので、
 何らかの方法で容量を制限する必要がある。&lt;/p&gt;
