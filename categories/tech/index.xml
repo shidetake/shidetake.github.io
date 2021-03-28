@@ -233,7 +233,7 @@ DISABLE_DATABASE_ENVIRONMENT_CHECK=1
       
       <guid>http://shidetake.com/dropcast/</guid>
       <description>&lt;p&gt;最近Podcastにハマっている。
-Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなどなど。&lt;/p&gt;
+Rebuild.fmから始まり、backspace.fm、TCFM、バイリンガルニュースなど。&lt;/p&gt;
 
 &lt;p&gt;その流れで、過去に録ったラジオを聞きたくなり、古いHDDからmp3を引っ張り出してきた。
 できればPodcastと同じように聞きたいなと思い、自分専用に配信すればよいのでは、と考えて作ってみた。&lt;/p&gt;
