@@ -1,5 +1,10 @@
 var data = [
 {
+url: "https://shidetake.com/launchd_rails/",
+title: "macOS起動時にrailsを走らせる",
+content: "[]"
+}
+,{
 url: "https://shidetake.com/google_auth/",
 title: "任意のGoogle APIをRubyで使うときの手順",
 content: "[]"

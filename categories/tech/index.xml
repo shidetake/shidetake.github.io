@@ -6,10 +6,142 @@
     <description>Recent content in Tech on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Dec 2019 17:53:28 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 03 May 2021 22:26:56 +0900</lastBuildDate>
     
         <atom:link href="https://shidetake.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS起動時にrailsを走らせる</title>
+      <link>https://shidetake.com/launchd_rails/</link>
+      <pubDate>Mon, 03 May 2021 22:26:56 +0900</pubDate>
+      
+      <guid>https://shidetake.com/launchd_rails/</guid>
+      <description>&lt;p&gt;メインマシンとして使っているMac miniを自作サービスのサーバーとしても使っていて、
+毎回立ち上げるのが面倒だったので自動で起動するようにした。&lt;/p&gt;
+
+&lt;p&gt;PATH周りでトラブったので備忘録を残しておく。&lt;/p&gt;
+
+&lt;h1 id=&#34;launchd&#34;&gt;launchd&lt;/h1&gt;
+
+&lt;p&gt;通常のアプリの起動ならGUIで設定することができるっぽいが、自作のRailsアプリなので
+&lt;code&gt;launchd&lt;/code&gt;を使うことにした。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;init.d&lt;/code&gt;や&lt;code&gt;systemctl&lt;/code&gt;のmacOS版らしい。&lt;/p&gt;
+
+&lt;h2 id=&#34;plistファイル&#34;&gt;plistファイル&lt;/h2&gt;
+
+&lt;p&gt;plistファイルというのに実行するコマンドや条件を書いておいて、loadすると起動時に自動で実行されるようになる。&lt;/p&gt;
+
+&lt;p&gt;plistファイルは&lt;code&gt;~/Library/LaunchAgents/&lt;/code&gt;に置いた。サーバーアプリケーションだから&lt;code&gt;/Library/LaunchDaemons/&lt;/code&gt;に置くのが正解な気はするけど、
+rootが実行するとなると&lt;code&gt;rbenv&lt;/code&gt;や&lt;code&gt;bundler&lt;/code&gt;あたりがややこしくなりそうだったので避けた。試してないので案外すんなり通るかもしれないが。&lt;/p&gt;
+
+&lt;p&gt;以下がサンプル。ファイル名は&lt;code&gt;local.mac.sample.plist&lt;/code&gt;とでもしておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml:local.mac.sample.plist&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;!DOCTYPE plist PUBLIC &amp;quot;-//Apple//DTD PLIST 1.0//EN&amp;quot; &amp;quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&amp;quot;&amp;gt;
+&amp;lt;plist version=&amp;quot;1.0&amp;quot;&amp;gt;
+&amp;lt;dict&amp;gt;
+  &amp;lt;key&amp;gt;KeepAlive&amp;lt;/key&amp;gt;
+  &amp;lt;true/&amp;gt;
+  &amp;lt;key&amp;gt;Label&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;local.mac.sample&amp;lt;/string&amp;gt;
+  &amp;lt;key&amp;gt;ProgramArguments&amp;lt;/key&amp;gt;
+  &amp;lt;array&amp;gt;
+    &amp;lt;string&amp;gt;echo&amp;lt;/string&amp;gt;
+    &amp;lt;string&amp;gt;hoge&amp;lt;/string&amp;gt;
+  &amp;lt;/array&amp;gt;
+  &amp;lt;key&amp;gt;RunAtLoad&amp;lt;/key&amp;gt;
+  &amp;lt;true/&amp;gt;
+  &amp;lt;key&amp;gt;WorkingDirectory&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;/Users/shidetake&amp;lt;/string&amp;gt;
+  &amp;lt;key&amp;gt;StandardOutPath&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;/Users/shidetake/sample.plist.log&amp;lt;/string&amp;gt;
+  &amp;lt;key&amp;gt;StandardErrorPath&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;/Users/shidetake/sample.plist.log&amp;lt;/string&amp;gt;
+&amp;lt;/dict&amp;gt;
+&amp;lt;/plist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;WorkingDirectory&lt;/code&gt;で実行する場所を選べる。
+あと大事なのが&lt;code&gt;StandardOutPath&lt;/code&gt;と&lt;code&gt;StandardErrorPath&lt;/code&gt;。これをちゃんと設定しておくとデバッグしやすい。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;echo hoge&lt;/code&gt;の部分を&lt;code&gt;rails s&lt;/code&gt;にしてやるだけで動くように見えるが実は動かない。ここの対処がキモだが、一旦後回しにしてplistをloadする方法を先に説明する。&lt;/p&gt;
+
+&lt;h2 id=&#34;plistのload&#34;&gt;plistのload&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ launchctl load local.mac.sample.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じ。
+unloadする場合はunloadに変えればOK。&lt;/p&gt;
+
+&lt;h1 id=&#34;railsを実行する際の注意&#34;&gt;railsを実行する際の注意&lt;/h1&gt;
+
+&lt;p&gt;ここがこの記事のメイントピック。
+上述したように、単純に&lt;code&gt;rails s&lt;/code&gt;を&lt;code&gt;launchd&lt;/code&gt;から実行しようとしてもうまくいかない。&lt;/p&gt;
+
+&lt;h2 id=&#34;pathの問題&#34;&gt;PATHの問題&lt;/h2&gt;
+
+&lt;p&gt;どうやら&lt;code&gt;launchd&lt;/code&gt;で実行する際には通常のPATHが通ってないらしい。
+なので、単に&lt;code&gt;rails&lt;/code&gt;と入力しても、そんなコマンドはないと怒られてしまう。&lt;/p&gt;
+
+&lt;p&gt;ならばフルパスにしたら終わりかと思ったらそうでもない。&lt;/p&gt;
+
+&lt;h2 id=&#34;なぜか発生するjavascriptのランタイムエラー&#34;&gt;なぜか発生するJavascriptのランタイムエラー&lt;/h2&gt;
+
+&lt;p&gt;エラー名でググっても、nodejsを入れたらいいとか、そんなのしか出てこない。
+普通に実行するときはできているので、そういう問題ではない。&lt;/p&gt;
+
+&lt;p&gt;おそらくこれもPATHの問題と思われる。結局&lt;code&gt;rails&lt;/code&gt;だけでなく、依存関係のあるプログラムもPATHが通ってないと動かない。まぁ当然だ。&lt;/p&gt;
+
+&lt;h2 id=&#34;launchdに環境変数を設定する方法&#34;&gt;launchdに環境変数を設定する方法&lt;/h2&gt;
+
+&lt;p&gt;plistに&lt;code&gt;EnvironmentVariables&lt;/code&gt;というパラメータを設定してやると、環境変数を設定できる。
+ただしこれを使うには&lt;code&gt;/bin/zsh -c rails s&lt;/code&gt;というように一度&lt;code&gt;zsh&lt;/code&gt;を起動してやる必要がある。理由は不明。&lt;/p&gt;
+
+&lt;h2 id=&#34;完成形のplist&#34;&gt;完成形のplist&lt;/h2&gt;
+
+&lt;p&gt;ということで、PATHを正しく設定して、&lt;code&gt;zsh&lt;/code&gt;を起動してその中で実行する形にしたのがこれ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml:local.mac.rails.plist&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;!DOCTYPE plist PUBLIC &amp;quot;-//Apple//DTD PLIST 1.0//EN&amp;quot; &amp;quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&amp;quot;&amp;gt;
+&amp;lt;plist version=&amp;quot;1.0&amp;quot;&amp;gt;
+&amp;lt;dict&amp;gt;
+  &amp;lt;key&amp;gt;KeepAlive&amp;lt;/key&amp;gt;
+  &amp;lt;true/&amp;gt;
+  &amp;lt;key&amp;gt;Label&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;local.mac.rails&amp;lt;/string&amp;gt;
+  &amp;lt;key&amp;gt;EnvironmentVariables&amp;lt;/key&amp;gt;
+  &amp;lt;dict&amp;gt;
+    &amp;lt;key&amp;gt;PATH&amp;lt;/key&amp;gt;
+    &amp;lt;string&amp;gt;/Users/shidetake/.rbenv/shims:/Users/shidetake/.rbenv/bin:/usr/local/bin:/usr/bin:/bin&amp;lt;/string&amp;gt;
+  &amp;lt;/dict&amp;gt;
+  &amp;lt;key&amp;gt;ProgramArguments&amp;lt;/key&amp;gt;
+  &amp;lt;array&amp;gt;
+    &amp;lt;string&amp;gt;/bin/zsh&amp;lt;/string&amp;gt;
+    &amp;lt;string&amp;gt;-c&amp;lt;/string&amp;gt;
+    &amp;lt;string&amp;gt;rails s&amp;lt;/string&amp;gt;
+  &amp;lt;/array&amp;gt;
+  &amp;lt;key&amp;gt;RunAtLoad&amp;lt;/key&amp;gt;
+  &amp;lt;true/&amp;gt;
+  &amp;lt;key&amp;gt;WorkingDirectory&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;/Users/shidetake/git/rails&amp;lt;/string&amp;gt;
+  &amp;lt;key&amp;gt;StandardOutPath&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;/Users/shidetake/git/rails/rails.plist.log&amp;lt;/string&amp;gt;
+  &amp;lt;key&amp;gt;StandardErrorPath&amp;lt;/key&amp;gt;
+  &amp;lt;string&amp;gt;/Users/shidetake/git/rails/rails.plist.log&amp;lt;/string&amp;gt;
+&amp;lt;/dict&amp;gt;
+&amp;lt;/plist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://qiita.com/rsahara/items/7d37a4cb6c73329d4683&#34; target=&#34;_blank&#34;&gt;launchdで定期的にスクリプトを実行&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://serverfault.com/questions/111391/use-an-environment-variable-in-a-launchd-script&#34; target=&#34;_blank&#34;&gt;Use an environment variable in a launchd script&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>任意のGoogle APIをRubyで使うときの手順</title>

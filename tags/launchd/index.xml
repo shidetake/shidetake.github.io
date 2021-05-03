@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rails on blog</title>
-    <link>https://shidetake.com/tags/rails/</link>
-    <description>Recent content in Rails on blog</description>
+    <title>Launchd on blog</title>
+    <link>https://shidetake.com/tags/launchd/</link>
+    <description>Recent content in Launchd on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 May 2021 22:26:56 +0900</lastBuildDate>
     
-        <atom:link href="https://shidetake.com/tags/rails/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://shidetake.com/tags/launchd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -141,38 +141,6 @@ unloadする場合はunloadに変えればOK。&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://qiita.com/rsahara/items/7d37a4cb6c73329d4683&#34; target=&#34;_blank&#34;&gt;launchdで定期的にスクリプトを実行&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://serverfault.com/questions/111391/use-an-environment-variable-in-a-launchd-script&#34; target=&#34;_blank&#34;&gt;Use an environment variable in a launchd script&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>Heroku上のRailsアプリのDBをリセットする</title>
-      <link>https://shidetake.com/heroku_reset/</link>
-      <pubDate>Sun, 28 Oct 2018 11:15:57 +0900</pubDate>
-      
-      <guid>https://shidetake.com/heroku_reset/</guid>
-      <description>&lt;p&gt;HerokuでホスティングしているRailsアプリのDB構造を変えて、
-&lt;code&gt;rails db:migrate:reset&lt;/code&gt;したくなったんだけど、そのままのコマンドではだめだったので調査した。&lt;/p&gt;
-
-&lt;p&gt;失敗したときのログがこちら&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rails aborted!
-ActiveRecord::ProtectedEnvironmentError: You are attempting to run a destructive action against your &#39;production&#39; database.
-If you are sure you want to continue, run the same command with the environment variable:
-DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;どうやら、productionのDBを破壊するようなコマンドはそのままでは通らないらしい。
-ということで、ここに書かれているように、&lt;code&gt;DISABLE_DATABASE_ENVIRONMENT_CHECK=1&lt;/code&gt;にして実行する。以下にようにコマンドに続けて環境変数をセットするだけ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ heroku run rails db:migrate:reset DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ちなみに、このようにコマンドに続けて環境変数をセットしただけだと、一時的に環境変数を変えるだけなので安心。
-常に&lt;code&gt;DISABLE_DATABASE_ENVIRONMENT_CHECK=1&lt;/code&gt;にしておきたい場合は、&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ heroku config:set DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;とすればよいが、危険なので推奨しない。&lt;/p&gt;</description>
     </item>
     
   </channel>
