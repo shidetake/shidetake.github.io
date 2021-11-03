@@ -6,10 +6,183 @@
     <description>Recent content in Tech on blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 May 2021 22:26:56 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 31 Oct 2021 17:06:03 +0900</lastBuildDate>
     
         <atom:link href="https://shidetake.com/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Macの新規設定項目</title>
+      <link>https://shidetake.com/init_mac/</link>
+      <pubDate>Sun, 31 Oct 2021 17:06:03 +0900</pubDate>
+      
+      <guid>https://shidetake.com/init_mac/</guid>
+      <description>&lt;p&gt;新しいMacを買ったとき、前のMacから環境移行せずに新しく設定したい派である。とはいえ、いつもやることはある程度決まっているのでそれを記録しておく。&lt;/p&gt;
+
+&lt;h1 id=&#34;電源投入&#34;&gt;電源投入&lt;/h1&gt;
+
+&lt;p&gt;電源投入してからの初期セットアップはなるべく後回しにせずやってしまってOK。
+フルネームとアカウント名が分かれているが、フルネームにも本名は入れずアカウント名と同じでよい。&lt;/p&gt;
+
+&lt;h1 id=&#34;capslockをctrlに置き換え&#34;&gt;CapsLockをCtrlに置き換え&lt;/h1&gt;
+
+&lt;p&gt;キーボード &amp;gt; 修飾キー&lt;br /&gt;
+Caps LockキーにControlキーを割り当てる&lt;/p&gt;
+
+&lt;h1 id=&#34;トラックパッド&#34;&gt;トラックパッド&lt;/h1&gt;
+
+&lt;h2 id=&#34;軌跡の速さ&#34;&gt;軌跡の速さ&lt;/h2&gt;
+
+&lt;p&gt;トラックパッド &amp;gt; ポイントとクリック &amp;gt; 軌跡の速さ&lt;br /&gt;
+右から5番目にセット&lt;/p&gt;
+
+&lt;h2 id=&#34;３本指のドラッグ&#34;&gt;３本指のドラッグ&lt;/h2&gt;
+
+&lt;p&gt;アクセシビリティ &amp;gt; ポインタコントロール &amp;gt; トラックパッドオプション&lt;br /&gt;
+ドラッグを有効にする &amp;gt; ３本指のドラッグ&lt;/p&gt;
+
+&lt;h1 id=&#34;pc名-ユーザ名変更&#34;&gt;PC名・ユーザ名変更&lt;/h1&gt;
+
+&lt;p&gt;システム環境設定 &amp;gt; 共有 &amp;gt; コンピュータ名&lt;/p&gt;
+
+&lt;h1 id=&#34;秘密鍵&#34;&gt;秘密鍵&lt;/h1&gt;
+
+&lt;p&gt;古いPCから鍵ペアをコピーする。
+AirDropを使うのが良い。&lt;/p&gt;
+
+&lt;p&gt;※AirDropならP2Pの通信なのでリスクは低い。鍵を使い回すリスクはここでは考えない&lt;/p&gt;
+
+&lt;h1 id=&#34;git&#34;&gt;Git&lt;/h1&gt;
+
+&lt;p&gt;ターミナルを開いて、&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とかすると出てくるコマンドライン・デベロッパ・ツールをインストールする。この中にGitも入っている模様。
+自前でHomebrewとか使ってそれぞれ必要なツールをインストールしたくなるが、一応入れておく。この手順はそのうち見直すかも。&lt;/p&gt;
+
+&lt;h1 id=&#34;homebrew&#34;&gt;Homebrew&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://brew.sh/index_ja&#34; target=&#34;_blank&#34;&gt;Web&lt;/a&gt;のトップにインストール用のコマンドが記載されているので、
+その通りにインストールする。&lt;/p&gt;
+
+&lt;h1 id=&#34;tools&#34;&gt;tools&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install --cask bettertouchtool
+$ brew install --cask google-chrome
+$ brew install --cask google-drive
+$ brew install --cask bartender
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちなみにBetterTouchToolはWindowのスナップ機能が使いたいだけなのでほぼデフォルト設定でOK。
+環境設定から自動起動の設定をして、ライセンスキーを入れるだけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;ターミナル設定&#34;&gt;ターミナル設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;カラースキーム&#34;&gt;カラースキーム&lt;/h2&gt;
+
+&lt;p&gt;環境設定 &amp;gt; プロファイルでProを選択してデフォルトボタンを押してデフォルトにする。&lt;br /&gt;
+環境設定 &amp;gt; 一般 &amp;gt; 起動時に開くの方もProにする。&lt;/p&gt;
+
+&lt;h2 id=&#34;起動時ウィンドウサイズ&#34;&gt;起動時ウィンドウサイズ&lt;/h2&gt;
+
+&lt;p&gt;開きたいサイズに手動で調整して、ウィンドウタイトルからサイズを確認する。&lt;br /&gt;
+環境設定 &amp;gt; プロファイル &amp;gt; ウィンドウ &amp;gt; ウィンドウサイズに入力。&lt;/p&gt;
+
+&lt;h2 id=&#34;シェル終了時にウィンドウを閉じる&#34;&gt;シェル終了時にウィンドウを閉じる&lt;/h2&gt;
+
+&lt;p&gt;環境設定 &amp;gt; プロファイル &amp;gt; シェル &amp;gt; シェルの終了時で正常終了した場合は閉じる。&lt;/p&gt;
+
+&lt;h1 id=&#34;dotfiles&#34;&gt;dotfiles&lt;/h1&gt;
+
+&lt;p&gt;.vimrcや.bashrcなどの設定ファイルはGitHubで管理しているのでそれを使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/git
+$ git clone git@github.com:shidetake/dotfiles.git
+$ cd dotfiles
+$ make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;asdf&#34;&gt;asdf&lt;/h1&gt;
+
+&lt;p&gt;rbenvのような言語のバージョン管理ツールの現時点での最適解がたぶんこれ。
+rbenvとかpyenvをまとめて管理できるようにしたのがanyenvで、ちょっと前までこれが主流だったっぽいが、
+より使いやすく統合したのがasdfらしい。env系の管理ではなくて、直接いろんな言語の管理をするようなので、アプローチは大きく違うっぽいけど。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install asdf
+$ echo . /opt/homebrew/opt/asdf/libexec/asdf.sh &amp;gt;&amp;gt; ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ターミナルを再起動する。&lt;/p&gt;
+
+&lt;h2 id=&#34;python&#34;&gt;Python&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ asdf plugin add python
+$ asdf list all python
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;表示されるバージョンから選んで&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ asdf install python 3.10.0
+$ asdf global python 3.10.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;pipのバージョンも最新にしておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ pip list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;してWARNINGが出てきたらそれに従ってバージョンアップする。&lt;/p&gt;
+
+&lt;h2 id=&#34;ruby&#34;&gt;Ruby&lt;/h2&gt;
+
+&lt;p&gt;上のpyhonをrubyに置き換える&lt;/p&gt;
+
+&lt;h1 id=&#34;vim&#34;&gt;vim&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install neovim
+$ pip install pynvim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;finder設定&#34;&gt;Finder設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;finderのパスバー表示&#34;&gt;Finderのパスバー表示&lt;/h2&gt;
+
+&lt;p&gt;Finder &amp;gt; 表示 &amp;gt; パスバーを表示&lt;/p&gt;
+
+&lt;h2 id=&#34;finderを常にカラム表示&#34;&gt;Finderを常にカラム表示&lt;/h2&gt;
+
+&lt;p&gt;適当な階層でカラム表示に変更したあと、表示 &amp;gt; 表示オプション &amp;gt; 常にカラム表示で開く&lt;/p&gt;
+
+&lt;h2 id=&#34;よく使う項目を整理&#34;&gt;よく使う項目を整理&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ホームディレクトリを追加&lt;/li&gt;
+&lt;li&gt;最近の項目を削除&lt;/li&gt;
+&lt;li&gt;アプリケーションを削除&lt;/li&gt;
+&lt;li&gt;デスクトップを削除&lt;/li&gt;
+&lt;li&gt;書類を削除&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;新規finderウィンドウでホームディレクトリを表示&#34;&gt;新規Finderウィンドウでホームディレクトリを表示&lt;/h2&gt;
+
+&lt;p&gt;環境設定 &amp;gt; 一般 &amp;gt; 新規Finderウィンドウで次を表示&lt;/p&gt;
+
+&lt;h2 id=&#34;拡張子を表示&#34;&gt;拡張子を表示&lt;/h2&gt;
+
+&lt;p&gt;環境設定 &amp;gt; 詳細 &amp;gt; すべてのファイル名拡張子を表示&lt;/p&gt;
+
+&lt;h2 id=&#34;タグを非表示にする&#34;&gt;タグを非表示にする&lt;/h2&gt;
+
+&lt;p&gt;環境設定 &amp;gt; サイドバー &amp;gt; 最近使ったタグのチェックを外す&lt;/p&gt;
+
+&lt;h1 id=&#34;その他&#34;&gt;その他&lt;/h1&gt;
+
+&lt;h2 id=&#34;ドックを隠す&#34;&gt;ドックを隠す&lt;/h2&gt;
+
+&lt;p&gt;ドックを右クリックして&amp;rdquo;自動的に非表示&amp;rdquo;をオンにする&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>macOS起動時にrailsを走らせる</title>

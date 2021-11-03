@@ -1,5 +1,10 @@
 var data = [
 {
+url: "https://shidetake.com/init_mac/",
+title: "Macの新規設定項目",
+content: "[]"
+}
+,{
 url: "https://shidetake.com/launchd_rails/",
 title: "macOS起動時にrailsを走らせる",
 content: "[]"
